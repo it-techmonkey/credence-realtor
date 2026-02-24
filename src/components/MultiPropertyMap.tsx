@@ -339,20 +339,24 @@ export default function MultiPropertyMap({ properties, height = "450px", onMarke
         });
     };
 
+    const maptilerKey = process.env.NEXT_PUBLIC_MAPTILER_API_KEY;
+    const tileUrl = maptilerKey
+        ? `https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=${maptilerKey}`
+        : "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
+    const attribution = maptilerKey
+        ? '&copy; <a href="https://www.maptiler.com/">MapTiler</a>'
+        : '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>';
+
     return (
         <div className="w-full rounded-xl overflow-hidden" style={{ height }}>
-            {process.env.NEXT_PUBLIC_MAPTILER_API_KEY ? (
-                <MapContainer
-                    center={[centerLat, centerLng]}
-                    zoom={12}
-                    style={{ height: "100%", width: "100%" }}
-                    className="rounded-xl"
-                    scrollWheelZoom={false}
-                >
-                    <TileLayer
-                        attribution='&copy; <a href="https://www.maptiler.com/">MapTiler</a>'
-                        url={`https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=${process.env.NEXT_PUBLIC_MAPTILER_API_KEY}`}
-                    />
+            <MapContainer
+                center={[centerLat, centerLng]}
+                zoom={12}
+                style={{ height: "100%", width: "100%" }}
+                className="rounded-xl"
+                scrollWheelZoom={false}
+            >
+                <TileLayer attribution={attribution} url={tileUrl} />
 
                     {processedProperties.map((property) => {
                         const isSelected = selectedPropertyId === property.propertyId;
@@ -373,15 +377,7 @@ export default function MultiPropertyMap({ properties, height = "450px", onMarke
                             />
                         );
                     })}
-                </MapContainer>
-            ) : (
-                <div className="flex items-center justify-center h-full bg-gray-800 rounded-xl">
-                    <div className="text-white text-center">
-                        <p className="text-lg font-semibold mb-2">Map Configuration Error</p>
-                        <p className="text-sm">MapTiler API key is missing. Please check your environment configuration.</p>
-                    </div>
-                </div>
-            )}
+            </MapContainer>
         </div>
     );
 }
