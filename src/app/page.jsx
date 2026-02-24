@@ -4,7 +4,7 @@ import React, { useState, useEffect, Suspense } from 'react';
 import Link from 'next/link';
 import { usePathname, useSearchParams, useRouter } from 'next/navigation';
 import { ArrowRight, MapPin, ChevronDown, ChevronUp, Star, Phone, MessageCircle, Percent, TrendingUp, Award, ShieldCheck, Users, Building2, Globe, ChevronLeft, ChevronRight } from 'lucide-react';
-import { formatPrice, formatDate } from '@/lib/properties';
+import { formatPrice } from '@/lib/properties';
 import Hotspots from '@/components/Hotspots';
 import { openWhatsApp } from '@/utils/whatsappRedirect';
 import { useScrollAnimations } from '@/utils/useScrollAnimation';
@@ -368,7 +368,7 @@ const HomeContent = () => {
                                             <div>
                                                 <p className="text-xs text-gray-400 uppercase">Delivery Date</p>
                                                 <p className="text-secondary font-semibold text-sm">
-                                                    {formatDate(item.readyDate)}
+                                                    {item.readyDate && String(item.readyDate).trim() ? String(item.readyDate).trim() : 'TBA'}
                                                 </p>
                                             </div>
                                             <div className="text-right">
@@ -549,7 +549,7 @@ const HomeContent = () => {
                                             </div>
                                             <div>
                                                 <span className="block text-gray-500 text-xs">Handover</span>
-                                                {formatDate(item.readyDate)}
+                                                {item.readyDate && String(item.readyDate).trim() ? String(item.readyDate).trim() : 'TBA'}
                                             </div>
                                         </div>
 

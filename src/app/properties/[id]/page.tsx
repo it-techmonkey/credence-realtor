@@ -144,6 +144,8 @@ export default function PropertyDetailPage() {
   const [translatedDeveloper, setTranslatedDeveloper] = useState<string | null>(null);
   const [translatedDescription, setTranslatedDescription] = useState<string | null>(null);
   const [translatedLocality, setTranslatedLocality] = useState<string | null>(null);
+  const [translatedTitle, setTranslatedTitle] = useState<string | null>(null);
+  const [translatedLocation, setTranslatedLocation] = useState<string | null>(null);
 
   useEffect(() => {
     const loadProperty = async () => {
@@ -152,6 +154,8 @@ export default function PropertyDetailPage() {
         setProjectDescription('');
         setTranslatedDeveloper(null);
         setTranslatedLocality(null);
+        setTranslatedTitle(null);
+        setTranslatedLocation(null);
         setTranslatedDescription(null);
         
         // Minimum loading time to prevent flickering (400ms for detail page)
@@ -235,6 +239,18 @@ export default function PropertyDetailPage() {
     return () => { cancelled = true; };
   }, [property?.developer, id]);
 
+  // Translate property title from Arabic to English
+  useEffect(() => {
+    const t = property?.title;
+    if (!t || typeof t !== 'string' || !containsArabic(t)) {
+      setTranslatedTitle(null);
+      return;
+    }
+    let cancelled = false;
+    translateToEnglish(t).then((text) => { if (!cancelled) setTranslatedTitle(text); });
+    return () => { cancelled = true; };
+  }, [property?.title, id]);
+
   // Translate locality from Arabic to English
   useEffect(() => {
     const loc = property?.locality;
@@ -246,6 +262,18 @@ export default function PropertyDetailPage() {
     translateToEnglish(loc).then((t) => { if (!cancelled) setTranslatedLocality(t); });
     return () => { cancelled = true; };
   }, [property?.locality, id]);
+
+  // Translate location from Arabic to English
+  useEffect(() => {
+    const loc = property?.location;
+    if (!loc || typeof loc !== 'string' || !containsArabic(loc)) {
+      setTranslatedLocation(null);
+      return;
+    }
+    let cancelled = false;
+    translateToEnglish(loc).then((t) => { if (!cancelled) setTranslatedLocation(t); });
+    return () => { cancelled = true; };
+  }, [property?.location, id]);
 
   // Translate project description from Arabic to English
   useEffect(() => {
@@ -294,6 +322,8 @@ export default function PropertyDetailPage() {
   
   const displayDescription = projectDescription || property?.description || '';
   const effectiveDescription = translatedDescription ?? displayDescription;
+  const displayTitle = (translatedTitle ?? property?.title ?? '').trim() || property?.title ?? '';
+  const displayLocation = (translatedLocation ?? property?.location ?? '').trim() || property?.location ?? '';
   const descriptionPreview = useMemo(() => {
     if (!effectiveDescription) return '';
     const plain = effectiveDescription.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
@@ -376,7 +406,7 @@ export default function PropertyDetailPage() {
                     >
                       <Image
                         src={images[selectedImage]}
-                        alt={property.title}
+                        alt={displayTitle}
                         fill
                         className="object-cover transition-transform duration-700 group-hover:scale-105"
                         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 569px"
@@ -489,15 +519,15 @@ export default function PropertyDetailPage() {
                 {/* Title and Location */}
                 <div className="flex flex-col gap-3">
                   <h1 className="font-display font-bold text-2xl md:text-3xl lg:text-4xl leading-tight text-secondary">
-                    {property.title}
+                    {displayTitle}
                   </h1>
-                  {property.location && (
+                  {displayLocation && (
                     <p className="text-sm md:text-base leading-normal text-gray-500 flex items-center gap-2">
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-[#C5A365]">
                         <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
                         <circle cx="12" cy="10" r="3"/>
                       </svg>
-                      {property.location}
+                      {displayLocation}
                     </p>
                   )}
                 </div>
@@ -613,13 +643,13 @@ export default function PropertyDetailPage() {
           isOpen={isModalOpen}
           onClose={handleCloseInquiry}
           propertyId={property.id?.toString() || ''}
-          propertyTitle={property.title}
+          propertyTitle={displayTitle}
         />
 
         <DescriptionModal
           isOpen={isDescriptionModalOpen}
           onClose={handleCloseDescription}
-          title={property.title}
+          title={displayTitle}
           description={effectiveDescription || property.description}
         />
 
@@ -628,14 +658,14 @@ export default function PropertyDetailPage() {
           onClose={handleCloseImageViewer}
           images={images}
           initialIndex={selectedImage}
-          propertyTitle={property.title}
+          propertyTitle={displayTitle}
         />
 
         <AmenitiesModal
           isOpen={isAmenitiesModalOpen}
           onClose={handleCloseAmenities}
           amenities={property.amenities || []}
-          propertyTitle={property.title}
+          propertyTitle={displayTitle}
         />
       </main>
     </>
