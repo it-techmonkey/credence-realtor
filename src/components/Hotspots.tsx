@@ -5,6 +5,7 @@ import dynamic from "next/dynamic";
 import { geocodeRegion } from "@/utils/geocodeRegion";
 import { formatPrice } from "@/utils/formatPrice";
 import { getDeveloperIdByName, fetchDevelopersMapping, DEVELOPERS } from "@/utils/developerMapping";
+import { containsArabic, translateToEnglish } from "@/lib/translate";
 
 const MultiPropertyMap = dynamic(() => import("@/components/MultiPropertyMap"), {
   ssr: false,
@@ -306,7 +307,30 @@ export default function Hotspots({
 
         console.log(`After filtering: ${mappedProperties.length} properties remain`);
 
-        setProperties(mappedProperties);
+        // Translate Arabic title/location to English for map display
+        const stringsToTranslate = new Set<string>();
+        mappedProperties.forEach((p) => {
+          if (p.title && containsArabic(p.title)) stringsToTranslate.add(p.title);
+          if (p.location && containsArabic(p.location)) stringsToTranslate.add(p.location);
+          if (p.developer && containsArabic(p.developer)) stringsToTranslate.add(p.developer);
+        });
+        const translationCache: Record<string, string> = {};
+        if (stringsToTranslate.size > 0) {
+          await Promise.all(
+            Array.from(stringsToTranslate).map(async (str) => {
+              const translated = await translateToEnglish(str);
+              translationCache[str] = translated;
+            })
+          );
+        }
+        const translatedProperties = mappedProperties.map((p) => ({
+          ...p,
+          title: (p.title && translationCache[p.title]) || p.title,
+          location: (p.location && translationCache[p.location]) || p.location,
+          developer: (p.developer && translationCache[p.developer]) || p.developer,
+        }));
+
+        setProperties(translatedProperties);
         setSelectedProperty(null);
       } catch (error) {
         console.error("Error fetching properties from Alnair:", error);
