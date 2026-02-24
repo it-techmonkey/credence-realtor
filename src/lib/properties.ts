@@ -826,12 +826,17 @@ export function formatDate(dateString: string | undefined | null): string {
   }
 
   try {
-    // Handle various date formats (ISO, datetime strings, year-only, etc.)
+    // Handle various date formats (ISO, datetime strings, year-only, quarter, etc.)
     const trimmed = dateString.trim();
     
     // If it's just a year (4 digits), return as-is
     if (/^\d{4}$/.test(trimmed)) {
       return trimmed;
+    }
+    
+    // Quarter format e.g. "Q1 2030", "Q4 2026" – return as-is to avoid Invalid Date
+    if (/^Q[1-4]\s*\d{4}$/i.test(trimmed)) {
+      return trimmed.replace(/\s+/g, ' ').trim();
     }
     
     // Try to parse as date

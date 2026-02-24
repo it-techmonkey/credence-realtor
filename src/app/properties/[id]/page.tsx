@@ -10,10 +10,12 @@ import DescriptionModal from '@/components/property/description-modal';
 import ImageViewerModal from '@/components/property/image-viewer-modal';
 import AmenitiesModal from '@/components/property/amenities-modal';
 import { getPropertyById, getRelatedProperties, formatPrice, formatDate, Property } from '@/lib/properties';
+import { translateToEnglish, containsArabic } from '@/lib/translate';
 import { memo } from 'react';
 
 // Memoized Property Details Grid component
-const PropertyDetailsGrid = memo(({ property, onOpenAmenities }: { property: Property; onOpenAmenities: () => void }) => {
+const PropertyDetailsGrid = memo(({ property, onOpenAmenities, translatedDeveloper }: { property: Property; onOpenAmenities: () => void; translatedDeveloper?: string | null }) => {
+  const developerDisplay = (translatedDeveloper !== undefined && translatedDeveloper !== null && translatedDeveloper !== '') ? translatedDeveloper : property.developer;
   return (
     <div className="bg-white border border-gray-100 rounded-2xl shadow-sm p-5 md:p-6 lg:p-8 mb-8">
       <h2 className="font-display font-bold text-2xl md:text-3xl text-secondary mb-6">
@@ -21,10 +23,10 @@ const PropertyDetailsGrid = memo(({ property, onOpenAmenities }: { property: Pro
       </h2>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4 lg:gap-6">
         {/* Developer Name - only show if exists and not empty */}
-        {property.developer && typeof property.developer === 'string' && property.developer.trim() !== '' && (
+        {developerDisplay && typeof developerDisplay === 'string' && developerDisplay.trim() !== '' && (
           <div className="flex flex-col gap-1">
             <span className="text-[#61656e] text-xs md:text-sm lg:text-[16px] font-medium leading-[20px] md:leading-[27px]">Developer Name</span>
-            <span className="text-black text-sm md:text-base lg:text-[18px] font-medium leading-[20px] md:leading-[27px]">{property.developer}</span>
+            <span className="text-black text-sm md:text-base lg:text-[18px] font-medium leading-[20px] md:leading-[27px]">{developerDisplay}</span>
           </div>
         )}
         
@@ -138,12 +140,16 @@ export default function PropertyDetailPage() {
   const [isImageViewerOpen, setIsImageViewerOpen] = useState(false);
   const [isAmenitiesModalOpen, setIsAmenitiesModalOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState(0);
+  const [translatedDeveloper, setTranslatedDeveloper] = useState<string | null>(null);
+  const [translatedDescription, setTranslatedDescription] = useState<string | null>(null);
 
   useEffect(() => {
     const loadProperty = async () => {
       if (id) {
         setIsLoading(true);
         setProjectDescription('');
+        setTranslatedDeveloper(null);
+        setTranslatedDescription(null);
         
         // Minimum loading time to prevent flickering (400ms for detail page)
         const minLoadingTime = 400;
@@ -214,6 +220,30 @@ export default function PropertyDetailPage() {
     return () => { cancelled = true; };
   }, [property?.slug, property?.id]);
 
+  // Translate developer name from Arabic to English
+  useEffect(() => {
+    const dev = property?.developer;
+    if (!dev || typeof dev !== 'string' || !containsArabic(dev)) {
+      setTranslatedDeveloper(null);
+      return;
+    }
+    let cancelled = false;
+    translateToEnglish(dev).then((t) => { if (!cancelled) setTranslatedDeveloper(t); });
+    return () => { cancelled = true; };
+  }, [property?.developer, id]);
+
+  // Translate project description from Arabic to English
+  useEffect(() => {
+    const desc = projectDescription || property?.description || '';
+    if (!desc.trim() || !containsArabic(desc)) {
+      setTranslatedDescription(null);
+      return;
+    }
+    let cancelled = false;
+    translateToEnglish(desc).then((t) => { if (!cancelled) setTranslatedDescription(t); });
+    return () => { cancelled = true; };
+  }, [projectDescription, property?.description, id]);
+
   // Memoize modal handlers (must be before early returns)
   const handleOpenInquiry = useCallback(() => setIsModalOpen(true), []);
   const handleCloseInquiry = useCallback(() => setIsModalOpen(false), []);
@@ -248,16 +278,17 @@ export default function PropertyDetailPage() {
   }, [property]);
   
   const displayDescription = projectDescription || property?.description || '';
+  const effectiveDescription = translatedDescription ?? displayDescription;
   const descriptionPreview = useMemo(() => {
-    if (!displayDescription) return '';
-    const plain = displayDescription.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+    if (!effectiveDescription) return '';
+    const plain = effectiveDescription.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
     return plain.length > 200 ? plain.substring(0, 200) : plain;
-  }, [displayDescription]);
+  }, [effectiveDescription]);
   const hasMoreDescription = useMemo(() => {
-    if (!displayDescription) return false;
-    const plain = displayDescription.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+    if (!effectiveDescription) return false;
+    const plain = effectiveDescription.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
     return plain.length > 200;
-  }, [displayDescription]);
+  }, [effectiveDescription]);
 
   // Memoize related properties section
   const relatedPropertiesSection = useMemo(() => {
@@ -508,17 +539,13 @@ export default function PropertyDetailPage() {
                   )}
                 </div>
 
-                {/* Price / Price Range */}
+                {/* Price Starting from */}
                 <div className="mt-auto pt-6 border-t border-gray-100">
                   <p className="text-[10px] text-gray-400 uppercase tracking-widest mb-2 font-medium">
-                    {property.minPrice && property.maxPrice && property.minPrice !== property.maxPrice
-                      ? 'Price Range'
-                      : 'Starting From'}
+                    Price Starting from
                   </p>
                   <p className="font-display font-bold text-3xl md:text-4xl lg:text-3xl leading-tight text-secondary">
-                    {property.minPrice && property.maxPrice && property.minPrice !== property.maxPrice
-                      ? `AED ${formatPrice(property.minPrice)} - ${formatPrice(property.maxPrice)}`
-                      : `AED ${formatPrice(property.price)}`}
+                    AED {formatPrice(property.minPrice ?? property.price)}
                   </p>
                 </div>
 
@@ -539,7 +566,7 @@ export default function PropertyDetailPage() {
           </div>
 
           {/* Property Details Grid */}
-          <PropertyDetailsGrid property={property} onOpenAmenities={handleOpenAmenities} />
+          <PropertyDetailsGrid property={property} onOpenAmenities={handleOpenAmenities} translatedDeveloper={translatedDeveloper} />
 
           {/* Project Description - from Alnair look API (authenticated) */}
           {(displayDescription || isLoadingDescription) && (
@@ -549,14 +576,14 @@ export default function PropertyDetailPage() {
               </h2>
               {isLoadingDescription ? (
                 <p className="text-gray-400 animate-pulse">Loading project description from Alnair...</p>
-              ) : displayDescription && /<[a-z][\s\S]*>/i.test(displayDescription) ? (
+              ) : effectiveDescription && /<[a-z][\s\S]*>/i.test(effectiveDescription) ? (
                 <div
                   className="text-gray-600 text-sm md:text-base leading-relaxed prose prose-p:my-2 prose-ul:my-2 prose-li:my-0 max-w-none"
-                  dangerouslySetInnerHTML={{ __html: displayDescription }}
+                  dangerouslySetInnerHTML={{ __html: effectiveDescription }}
                 />
-              ) : displayDescription ? (
+              ) : effectiveDescription ? (
                 <p className="text-gray-600 text-sm md:text-base leading-relaxed whitespace-pre-wrap">
-                  {displayDescription}
+                  {effectiveDescription}
                 </p>
               ) : null}
             </div>
@@ -578,7 +605,7 @@ export default function PropertyDetailPage() {
           isOpen={isDescriptionModalOpen}
           onClose={handleCloseDescription}
           title={property.title}
-          description={displayDescription || property.description}
+          description={effectiveDescription || property.description}
         />
 
         <ImageViewerModal
