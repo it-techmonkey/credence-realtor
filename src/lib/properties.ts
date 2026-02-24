@@ -819,43 +819,46 @@ export function formatPrice(price: number): string {
   return price.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
 
-// Format date string to readable format
-export function formatDate(dateString: string | undefined | null): string {
-  if (!dateString || typeof dateString !== 'string' || dateString.trim() === '') {
+// Format date string to readable format (handover/delivery dates on homepage and property page)
+export function formatDate(dateString: string | number | undefined | null): string {
+  if (dateString === undefined || dateString === null) {
+    return 'TBA';
+  }
+  // Allow number (e.g. year 2030)
+  if (typeof dateString === 'number') {
+    return String(dateString);
+  }
+  if (typeof dateString !== 'string' || dateString.trim() === '') {
     return 'TBA';
   }
 
   try {
-    // Handle various date formats (ISO, datetime strings, year-only, quarter, etc.)
     const trimmed = dateString.trim();
     
-    // If it's just a year (4 digits), return as-is
+    // Year only (4 digits)
     if (/^\d{4}$/.test(trimmed)) {
       return trimmed;
     }
     
-    // Quarter format e.g. "Q1 2030", "Q4 2026" – return as-is to avoid Invalid Date
+    // Quarter format e.g. "Q1 2030", "Q4 2026", "Q2 2028" – return as-is to avoid Invalid Date
     if (/^Q[1-4]\s*\d{4}$/i.test(trimmed)) {
       return trimmed.replace(/\s+/g, ' ').trim();
     }
     
-    // Try to parse as date
     const date = new Date(trimmed);
-    
-    // Check if date is valid
     if (isNaN(date.getTime())) {
-      return trimmed; // Return original if can't parse
+      return trimmed;
     }
     
-    // Format as "Month Day, Year" (e.g., "December 30, 2026")
-    return date.toLocaleDateString('en-US', {
+    const formatted = date.toLocaleDateString('en-US', {
       year: 'numeric',
       month: 'long',
       day: 'numeric'
     });
-  } catch (error) {
-    // If parsing fails, return original string
-    return dateString;
+    // Never show "Invalid Date" (e.g. if toLocaleDateString misbehaves)
+    return formatted === 'Invalid Date' ? trimmed : formatted;
+  } catch {
+    return dateString.trim() || 'TBA';
   }
 }
 

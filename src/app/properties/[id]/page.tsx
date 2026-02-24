@@ -14,8 +14,9 @@ import { translateToEnglish, containsArabic } from '@/lib/translate';
 import { memo } from 'react';
 
 // Memoized Property Details Grid component
-const PropertyDetailsGrid = memo(({ property, onOpenAmenities, translatedDeveloper }: { property: Property; onOpenAmenities: () => void; translatedDeveloper?: string | null }) => {
+const PropertyDetailsGrid = memo(({ property, onOpenAmenities, translatedDeveloper, translatedLocality }: { property: Property; onOpenAmenities: () => void; translatedDeveloper?: string | null; translatedLocality?: string | null }) => {
   const developerDisplay = (translatedDeveloper !== undefined && translatedDeveloper !== null && translatedDeveloper !== '') ? translatedDeveloper : property.developer;
+  const localityDisplay = (translatedLocality !== undefined && translatedLocality !== null && translatedLocality !== '') ? translatedLocality : property.locality;
   return (
     <div className="bg-white border border-gray-100 rounded-2xl shadow-sm p-5 md:p-6 lg:p-8 mb-8">
       <h2 className="font-display font-bold text-2xl md:text-3xl text-secondary mb-6">
@@ -39,10 +40,10 @@ const PropertyDetailsGrid = memo(({ property, onOpenAmenities, translatedDevelop
         )}
         
         {/* Locality - only show if exists and not empty */}
-        {property.locality && typeof property.locality === 'string' && property.locality.trim() !== '' && (
+        {localityDisplay && typeof localityDisplay === 'string' && localityDisplay.trim() !== '' && (
           <div className="flex flex-col gap-1">
             <span className="text-[#61656e] text-xs md:text-sm lg:text-[16px] font-medium leading-[20px] md:leading-[27px]">Locality</span>
-            <span className="text-black text-sm md:text-base lg:text-[18px] font-medium leading-[20px] md:leading-[27px]">{property.locality}</span>
+            <span className="text-black text-sm md:text-base lg:text-[18px] font-medium leading-[20px] md:leading-[27px]">{localityDisplay}</span>
           </div>
         )}
         
@@ -142,6 +143,7 @@ export default function PropertyDetailPage() {
   const [selectedImage, setSelectedImage] = useState(0);
   const [translatedDeveloper, setTranslatedDeveloper] = useState<string | null>(null);
   const [translatedDescription, setTranslatedDescription] = useState<string | null>(null);
+  const [translatedLocality, setTranslatedLocality] = useState<string | null>(null);
 
   useEffect(() => {
     const loadProperty = async () => {
@@ -149,6 +151,7 @@ export default function PropertyDetailPage() {
         setIsLoading(true);
         setProjectDescription('');
         setTranslatedDeveloper(null);
+        setTranslatedLocality(null);
         setTranslatedDescription(null);
         
         // Minimum loading time to prevent flickering (400ms for detail page)
@@ -231,6 +234,18 @@ export default function PropertyDetailPage() {
     translateToEnglish(dev).then((t) => { if (!cancelled) setTranslatedDeveloper(t); });
     return () => { cancelled = true; };
   }, [property?.developer, id]);
+
+  // Translate locality from Arabic to English
+  useEffect(() => {
+    const loc = property?.locality;
+    if (!loc || typeof loc !== 'string' || !containsArabic(loc)) {
+      setTranslatedLocality(null);
+      return;
+    }
+    let cancelled = false;
+    translateToEnglish(loc).then((t) => { if (!cancelled) setTranslatedLocality(t); });
+    return () => { cancelled = true; };
+  }, [property?.locality, id]);
 
   // Translate project description from Arabic to English
   useEffect(() => {
@@ -566,7 +581,7 @@ export default function PropertyDetailPage() {
           </div>
 
           {/* Property Details Grid */}
-          <PropertyDetailsGrid property={property} onOpenAmenities={handleOpenAmenities} translatedDeveloper={translatedDeveloper} />
+          <PropertyDetailsGrid property={property} onOpenAmenities={handleOpenAmenities} translatedDeveloper={translatedDeveloper} translatedLocality={translatedLocality} />
 
           {/* Project Description - from Alnair look API (authenticated) */}
           {(displayDescription || isLoadingDescription) && (
