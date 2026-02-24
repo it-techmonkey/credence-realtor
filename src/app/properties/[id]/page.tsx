@@ -322,8 +322,8 @@ export default function PropertyDetailPage() {
   
   const displayDescription = projectDescription || property?.description || '';
   const effectiveDescription = translatedDescription ?? displayDescription;
-  const displayTitle = (translatedTitle ?? property?.title ?? '').trim() || property?.title ?? '';
-  const displayLocation = (translatedLocation ?? property?.location ?? '').trim() || property?.location ?? '';
+  const displayTitle = translatedTitle ?? property?.title ?? '';
+  const displayLocation = translatedLocation ?? property?.location ?? '';
   const descriptionPreview = useMemo(() => {
     if (!effectiveDescription) return '';
     const plain = effectiveDescription.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
