@@ -25,3 +25,21 @@ export async function translateToEnglish(text: string): Promise<string> {
   }
   return text;
 }
+
+/** Translate an array of amenity strings from Arabic to English (only items that contain Arabic). */
+export async function translateAmenities(amenities: string[]): Promise<string[]> {
+  if (!Array.isArray(amenities) || amenities.length === 0) return amenities;
+  const stringsToTranslate = new Set<string>();
+  amenities.forEach((a) => {
+    if (a && typeof a === 'string' && a.trim() && containsArabic(a)) stringsToTranslate.add(a.trim());
+  });
+  const cache: Record<string, string> = {};
+  if (stringsToTranslate.size > 0) {
+    await Promise.all(
+      Array.from(stringsToTranslate).map(async (str) => {
+        cache[str] = await translateToEnglish(str);
+      })
+    );
+  }
+  return amenities.map((a) => (a && typeof a === 'string' && cache[a.trim()]) ? cache[a.trim()] : a);
+}

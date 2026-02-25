@@ -10,7 +10,7 @@ import DescriptionModal from '@/components/property/description-modal';
 import ImageViewerModal from '@/components/property/image-viewer-modal';
 import AmenitiesModal from '@/components/property/amenities-modal';
 import { getPropertyById, getRelatedProperties, formatPrice, formatDate, Property } from '@/lib/properties';
-import { translateToEnglish, containsArabic } from '@/lib/translate';
+import { translateToEnglish, containsArabic, translateAmenities } from '@/lib/translate';
 import { memo } from 'react';
 
 // Memoized Property Details Grid component
@@ -217,10 +217,11 @@ export default function PropertyDetailPage() {
     setIsLoadingDescription(true);
     fetch(`/api/project/look/${encodeURIComponent(slug)}`)
       .then((res) => res.ok ? res.json() : null)
-      .then((data) => {
+      .then(async (data) => {
         if (cancelled || !data?.data) return;
         if (data.data.description) setProjectDescription(data.data.description);
-        const amenities = Array.isArray(data.data.amenities) ? data.data.amenities : [];
+        const rawAmenities = Array.isArray(data.data.amenities) ? data.data.amenities : [];
+        const amenities = rawAmenities.length > 0 ? await translateAmenities(rawAmenities) : [];
         const paymentPlan = typeof data.data.payment_plan === 'string' && data.data.payment_plan.trim() ? data.data.payment_plan.trim() : null;
         setProperty((prev) => {
           if (!prev) return null;

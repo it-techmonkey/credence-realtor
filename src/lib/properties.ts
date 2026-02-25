@@ -1,6 +1,6 @@
 import { fetchProperties, fetchPropertyById as fetchPropertyByIdApi, ApiProperty, ApiFilterOptions } from './api';
 import { getDeveloperIdByName, getDeveloperIdByNameAsync, fetchDevelopersMapping } from '@/utils/developerMapping';
-import { containsArabic, translateToEnglish } from '@/lib/translate';
+import { containsArabic, translateToEnglish, translateAmenities } from '@/lib/translate';
 
 // Helper function to convert text numbers to integers
 function textToNumber(text: string): number | null {
@@ -767,7 +767,7 @@ export async function getPropertyById(id: string | number): Promise<Property | n
         if (slug) {
           lookData = await fetchProjectLookData(slug);
           description = lookData.description;
-          amenities = lookData.amenities;
+          amenities = lookData.amenities.length > 0 ? await translateAmenities(lookData.amenities) : lookData.amenities;
         }
         const property = mapStaticProjectToProperty({
           ...baseData,
@@ -792,7 +792,7 @@ export async function getPropertyById(id: string | number): Promise<Property | n
       if (slug) {
         const lookData = await fetchProjectLookData(slug);
         if (lookData.description) property.description = lookData.description;
-        if (lookData.amenities.length > 0) property.amenities = lookData.amenities;
+        if (lookData.amenities.length > 0) property.amenities = await translateAmenities(lookData.amenities);
         if (lookData.paymentPlan) property.paymentPlan = lookData.paymentPlan;
       }
       return property;
@@ -985,7 +985,7 @@ function dedupeByCanonicalTitle(properties: Property[]): Property[] {
   });
 }
 
-/** Translate Arabic title/location/developer/description/locality to English for list/card display */
+/** Translate Arabic title/location/developer/description/locality/amenities to English for list/card display */
 async function translatePropertiesForDisplay(properties: Property[]): Promise<Property[]> {
   if (!properties.length) return properties;
   const stringsToTranslate = new Set<string>();
@@ -995,6 +995,9 @@ async function translatePropertiesForDisplay(properties: Property[]): Promise<Pr
     if (p.developer && containsArabic(p.developer)) stringsToTranslate.add(p.developer);
     if (p.description && containsArabic(p.description)) stringsToTranslate.add(p.description);
     if (p.locality && containsArabic(p.locality)) stringsToTranslate.add(p.locality);
+    if (Array.isArray(p.amenities)) {
+      p.amenities.forEach((a) => { if (a && typeof a === 'string' && containsArabic(a)) stringsToTranslate.add(a.trim()); });
+    }
   }
   const translationCache: Record<string, string> = {};
   if (stringsToTranslate.size > 0) {
@@ -1012,6 +1015,9 @@ async function translatePropertiesForDisplay(properties: Property[]): Promise<Pr
     developer: (p.developer && translationCache[p.developer]) || p.developer,
     description: (p.description && translationCache[p.description]) || p.description,
     locality: (p.locality && translationCache[p.locality]) || p.locality,
+    amenities: Array.isArray(p.amenities)
+      ? p.amenities.map((a) => (a && typeof a === 'string' && translationCache[a.trim()]) ? translationCache[a.trim()] : a)
+      : p.amenities,
   }));
 }
 
