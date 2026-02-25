@@ -2,18 +2,30 @@ import { NextRequest, NextResponse } from 'next/server';
 
 const ALNAIR_LOOK_API = 'https://api.alnair.ae/project/look';
 
-/** Parse amenities from description text (e.g. "Amenities: Pool, Gym" or bullet list) */
+/** Strip HTML tags to get plain text for parsing */
+function stripHtml(html: string): string {
+  if (!html || typeof html !== 'string') return '';
+  return html
+    .replace(/<br\s*\/?>/gi, '\n')
+    .replace(/<\/p>/gi, '\n')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/&amp;/g, '&')
+    .replace(/&nbsp;/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+/** Parse amenities from description text (e.g. "Amenities: Pool, Gym" or bullet list). Handles plain text or HTML. */
 function extractAmenitiesFromDescription(description: string): string[] {
   if (!description || typeof description !== 'string') return [];
-  const text = description.trim();
+  const text = stripHtml(description).trim();
   const results: string[] = [];
-  // Section headers (EN/AR) followed by list
-  const sectionRegex = /(?:Amenities|Features|Facilities|وسائل الراحة|المرافق|المميزات)\s*[:\-]\s*([\s\S]*?)(?=\n\n|\n#|\n\*{2,}|$)/gi;
-  let m: RegExpExecArray | null;
   const seen = new Set<string>();
+  // Section headers (EN/AR) including "Resort-style amenities" style
+  const sectionRegex = /(?:Amenities|Features|Facilities|Resort-style amenities|وسائل الراحة|المرافق|المميزات)\s*[:\-]\s*([\s\S]*?)(?=\s*(?:Investment|Offer|Special|💼|✨|📩|$))/gi;
+  let m: RegExpExecArray | null;
   while ((m = sectionRegex.exec(text)) !== null) {
     const block = m[1].trim();
-    // Split by newlines, commas, " and ", bullets
     const parts = block.split(/\n|[,،]|\s+and\s+|\s+&\s+/gi).map((s) => s.replace(/^[\s\-*•·]\s*/, '').trim()).filter(Boolean);
     for (const p of parts) {
       const item = p.replace(/\s+/g, ' ').trim();
@@ -23,7 +35,7 @@ function extractAmenitiesFromDescription(description: string): string[] {
       }
     }
   }
-  // Bullet list anywhere (lines starting with - * • or number.)
+  // Bullet list (lines starting with - * • or number.)
   const bulletRegex = /^[\s]*[\-*•·]\s+(.+)$/gm;
   while ((m = bulletRegex.exec(text)) !== null) {
     const item = m[1].trim().replace(/\s+/g, ' ');
@@ -94,9 +106,26 @@ export async function GET(
     }
 
     const description = data.description || '';
-    // If API didn't return amenities but description contains an amenities section, parse it
+    // If API didn't return amenities, parse from main description
     if (amenities.length === 0 && description) {
       amenities = extractAmenitiesFromDescription(description);
+    }
+    // Also extract amenities from promotions[].description (e.g. "Resort-style amenities: • Pool • Gym")
+    const promotions = data.promotions ?? data.promotion ?? [];
+    if (Array.isArray(promotions)) {
+      const seenLower = new Set(amenities.map((a) => a.toLowerCase()));
+      for (const promos of promotions) {
+        const promoDesc = promos?.description ?? promos?.body ?? '';
+        if (typeof promoDesc !== 'string' || !promoDesc.trim()) continue;
+        const fromPromo = extractAmenitiesFromDescription(promoDesc);
+        for (const a of fromPromo) {
+          const key = a.toLowerCase();
+          if (!seenLower.has(key)) {
+            seenLower.add(key);
+            amenities.push(a);
+          }
+        }
+      }
     }
 
     // Payment plan (string or HTML from API)
