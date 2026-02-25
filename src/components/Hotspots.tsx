@@ -16,6 +16,7 @@ const PropertyInfoPanel = dynamic(() => import("@/components/PropertyInfoPanel")
 });
 
 // Alnair API endpoint (called directly from browser to bypass Cloudflare)
+// API returns Arabic by default (UAE locale); we request English and translate any remaining Arabic
 const ALNAIR_API_URL = 'https://api.alnair.ae/project/find';
 
 // Helper function to get top 10 developers (computed lazily to avoid webpack issues)
@@ -155,6 +156,7 @@ export default function Hotspots({
         const url = new URL(ALNAIR_API_URL);
         url.searchParams.append('limit', '100');
         url.searchParams.append('page', '1');
+        url.searchParams.append('lang', 'en');
         
         // Filter for Dubai only (city_id=1)
         url.searchParams.append('city_id', '1');
@@ -189,6 +191,7 @@ export default function Hotspots({
           method: 'GET',
           headers: {
             'Accept': 'application/json',
+            'Accept-Language': 'en',
           },
         });
 

@@ -945,6 +945,18 @@ let cachedProperties: Property[] | null = null;
 let cacheTimestamp: number = 0;
 const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
 
+// Dedupe by canonical project name (e.g. "Azizi Venice 1", "Azizi Venice 2" -> keep one)
+function dedupeByCanonicalTitle(properties: Property[]): Property[] {
+  const canonical = (t: string) => (t || '').replace(/\s+\d+$/, '').trim().toLowerCase() || (t || '').toLowerCase();
+  const seen = new Set<string>();
+  return properties.filter((p) => {
+    const can = canonical(p.title || '');
+    if (seen.has(can)) return false;
+    seen.add(can);
+    return true;
+  });
+}
+
 // Fetch paginated properties from all_data.json (static API)
 async function getPaginatedPropertiesFromStatic(
   filters: FilterOptions = {},
@@ -985,11 +997,14 @@ export async function getPaginatedProperties(
   limit: number = 9
 ): Promise<PaginatedPropertiesResult> {
   try {
-    // Use static API (all_data.json) as primary source - supports locality, search, price range
-    try {
-      return await getPaginatedPropertiesFromStatic(filters, page, limit);
-    } catch {
-      // Fall through to Alnair find API if static fails (e.g. all_data.json missing)
+    // Use static API only when NOT filtering by developer (static data has builder names in Arabic)
+    const hasDeveloperFilter = !!(filters.developer && typeof filters.developer === 'string' && filters.developer.trim() !== '');
+    if (!hasDeveloperFilter) {
+      try {
+        return await getPaginatedPropertiesFromStatic(filters, page, limit);
+      } catch {
+        // Fall through to Alnair find API if static fails (e.g. all_data.json missing)
+      }
     }
 
     const apiFilters = await convertToApiFilters(filters);
@@ -1222,6 +1237,9 @@ export async function getPaginatedProperties(
         }
       }
       
+      // Dedupe by canonical project name (e.g. Azizi Venice 1, 2, ... 16 -> one Azizi Venice)
+      properties = dedupeByCanonicalTitle(properties);
+      
       // Calculate pagination from filtered results
       const total = properties.length;
       const totalPages = Math.ceil(total / limit);
@@ -1301,6 +1319,9 @@ export async function getPaginatedProperties(
         }
       }
     }
+    
+    // Dedupe by canonical project name
+    allProperties = dedupeByCanonicalTitle(allProperties);
     
     if (allProperties.length > 0) {
       const total = allProperties.length;

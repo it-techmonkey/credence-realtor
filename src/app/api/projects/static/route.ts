@@ -93,6 +93,16 @@ export async function GET(request: NextRequest) {
       });
     }
 
+    // Dedupe by canonical project name (e.g. "Azizi Venice 1", "Azizi Venice 2" -> keep one "Azizi Venice")
+    const canonicalTitle = (t: string) => (t || '').replace(/\s+\d+$/, '').trim() || (t || '');
+    const seen = new Set<string>();
+    items = items.filter((p: any) => {
+      const can = canonicalTitle(p.title || '').toLowerCase();
+      if (seen.has(can)) return false;
+      seen.add(can);
+      return true;
+    });
+
     const total = items.length;
     const totalPages = Math.ceil(total / limit);
     const start = (page - 1) * limit;

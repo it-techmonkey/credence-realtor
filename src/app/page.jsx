@@ -491,8 +491,7 @@ const HomeContent = () => {
                             title="Explore Properties by Area"
                             showTitle={true}
                             showFilters={false}
-                            showAreaFilters={true}
-                            areaFilters={["All", "Business Bay", "Meydan", "Motor City", "Dubai Hills Estate", "JLT", "JVC", "Arjan", "Dubai South"]}
+                            showAreaFilters={false}
                             filterOptions={["All", "Villa", "2 BHK", "3 BHK", "1 BHK"]}
                             className="px-0 py-0"
                         />
