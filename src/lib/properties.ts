@@ -1,5 +1,6 @@
 import { fetchProperties, fetchPropertyById as fetchPropertyByIdApi, ApiProperty, ApiFilterOptions } from './api';
 import { getDeveloperIdByName, getDeveloperIdByNameAsync, fetchDevelopersMapping } from '@/utils/developerMapping';
+import { containsArabic, translateToEnglish } from '@/lib/translate';
 
 // Helper function to convert text numbers to integers
 function textToNumber(text: string): number | null {
@@ -797,7 +798,7 @@ export async function getRelatedProperties(
       })
       .slice(0, limit);
     
-    return filtered;
+    return await translatePropertiesForDisplay(filtered);
   } catch (error) {
     console.error('Error fetching related properties:', error);
     return [];
@@ -957,6 +958,36 @@ function dedupeByCanonicalTitle(properties: Property[]): Property[] {
   });
 }
 
+/** Translate Arabic title/location/developer/description/locality to English for list/card display */
+async function translatePropertiesForDisplay(properties: Property[]): Promise<Property[]> {
+  if (!properties.length) return properties;
+  const stringsToTranslate = new Set<string>();
+  for (const p of properties) {
+    if (p.title && containsArabic(p.title)) stringsToTranslate.add(p.title);
+    if (p.location && containsArabic(p.location)) stringsToTranslate.add(p.location);
+    if (p.developer && containsArabic(p.developer)) stringsToTranslate.add(p.developer);
+    if (p.description && containsArabic(p.description)) stringsToTranslate.add(p.description);
+    if (p.locality && containsArabic(p.locality)) stringsToTranslate.add(p.locality);
+  }
+  const translationCache: Record<string, string> = {};
+  if (stringsToTranslate.size > 0) {
+    await Promise.all(
+      Array.from(stringsToTranslate).map(async (str) => {
+        const translated = await translateToEnglish(str);
+        translationCache[str] = translated;
+      })
+    );
+  }
+  return properties.map((p) => ({
+    ...p,
+    title: (p.title && translationCache[p.title]) || p.title,
+    location: (p.location && translationCache[p.location]) || p.location,
+    developer: (p.developer && translationCache[p.developer]) || p.developer,
+    description: (p.description && translationCache[p.description]) || p.description,
+    locality: (p.locality && translationCache[p.locality]) || p.locality,
+  }));
+}
+
 // Fetch paginated properties from all_data.json (static API)
 async function getPaginatedPropertiesFromStatic(
   filters: FilterOptions = {},
@@ -1001,7 +1032,9 @@ export async function getPaginatedProperties(
     const hasDeveloperFilter = !!(filters.developer && typeof filters.developer === 'string' && filters.developer.trim() !== '');
     if (!hasDeveloperFilter) {
       try {
-        return await getPaginatedPropertiesFromStatic(filters, page, limit);
+        const result = await getPaginatedPropertiesFromStatic(filters, page, limit);
+        result.properties = await translatePropertiesForDisplay(result.properties);
+        return result;
       } catch {
         // Fall through to Alnair find API if static fails (e.g. all_data.json missing)
       }
@@ -1043,8 +1076,9 @@ export async function getPaginatedProperties(
         console.log('Showing:', paginatedProperties.length, 'properties');
       }
       
+      const translated = await translatePropertiesForDisplay(paginatedProperties);
       return {
-        properties: paginatedProperties,
+        properties: translated,
         pagination: {
           page,
           limit,
@@ -1256,8 +1290,9 @@ export async function getPaginatedProperties(
         console.log('Showing:', paginatedProperties.length, 'properties');
       }
       
+      const translated = await translatePropertiesForDisplay(paginatedProperties);
       return {
-        properties: paginatedProperties,
+        properties: translated,
         pagination: {
           page,
           limit,
@@ -1339,8 +1374,9 @@ export async function getPaginatedProperties(
         console.log('Showing:', paginatedProperties.length, 'properties');
       }
       
+      const translated = await translatePropertiesForDisplay(paginatedProperties);
       return {
-        properties: paginatedProperties,
+        properties: translated,
         pagination: {
           page,
           limit,

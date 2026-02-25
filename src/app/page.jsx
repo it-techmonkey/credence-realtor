@@ -488,8 +488,8 @@ const HomeContent = () => {
                 <div className="bg-white py-16 text-black relative overflow-hidden">
                     <div className="container mx-auto px-4 md:px-6 relative z-10 max-w-7xl">
                         <Hotspots
-                            title="Explore Properties by Area"
-                            showTitle={true}
+                            title="Explore Properties"
+                            showTitle={false}
                             showFilters={false}
                             showAreaFilters={false}
                             filterOptions={["All", "Villa", "2 BHK", "3 BHK", "1 BHK"]}

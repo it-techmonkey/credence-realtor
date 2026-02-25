@@ -310,12 +310,13 @@ export default function Hotspots({
 
         console.log(`After filtering: ${mappedProperties.length} properties remain`);
 
-        // Translate Arabic title/location to English for map display
+        // Translate Arabic title/location/developer/description to English for map display
         const stringsToTranslate = new Set<string>();
         mappedProperties.forEach((p) => {
           if (p.title && containsArabic(p.title)) stringsToTranslate.add(p.title);
           if (p.location && containsArabic(p.location)) stringsToTranslate.add(p.location);
           if (p.developer && containsArabic(p.developer)) stringsToTranslate.add(p.developer);
+          if (p.description && containsArabic(p.description)) stringsToTranslate.add(p.description);
         });
         const translationCache: Record<string, string> = {};
         if (stringsToTranslate.size > 0) {
@@ -331,6 +332,7 @@ export default function Hotspots({
           title: (p.title && translationCache[p.title]) || p.title,
           location: (p.location && translationCache[p.location]) || p.location,
           developer: (p.developer && translationCache[p.developer]) || p.developer,
+          description: (p.description && translationCache[p.description]) || p.description,
         }));
 
         setProperties(translatedProperties);

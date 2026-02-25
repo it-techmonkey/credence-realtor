@@ -340,8 +340,9 @@ export default function MultiPropertyMap({ properties, height = "450px", onMarke
     };
 
     const maptilerKey = process.env.NEXT_PUBLIC_MAPTILER_API_KEY;
+    // Use MapTiler with English labels so area/street names on the base map are not in Arabic
     const tileUrl = maptilerKey
-        ? `https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=${maptilerKey}`
+        ? `https://api.maptiler.com/maps/streets/256/{z}/{x}/{y}.png?key=${maptilerKey}&language=en`
         : "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
     const attribution = maptilerKey
         ? '&copy; <a href="https://www.maptiler.com/">MapTiler</a>'
