@@ -687,18 +687,35 @@ export async function getAllProperties(page: number = 1, limit: number = 100): P
   }
 }
 
-// Fetch project description from Alnair look API
-async function fetchProjectDescription(slug: string): Promise<string> {
+// Fetch project description, amenities, and payment plan from Alnair look API
+export interface ProjectLookData {
+  description: string;
+  amenities: string[];
+  paymentPlan: string | null;
+}
+async function fetchProjectLookData(slug: string): Promise<ProjectLookData> {
   try {
     const base = typeof window !== 'undefined' ? '' : process.env.NEXT_PUBLIC_VERCEL_URL ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}` : 'http://localhost:3000';
     const url = typeof window !== 'undefined' ? `/api/project/look/${encodeURIComponent(slug)}` : `${base || 'http://localhost:3000'}/api/project/look/${encodeURIComponent(slug)}`;
     const response = await fetch(url);
-    if (!response.ok) return '';
+    if (!response.ok) return { description: '', amenities: [], paymentPlan: null };
     const result = await response.json();
-    return result?.data?.description || '';
+    const data = result?.data;
+    const paymentPlan =
+      (typeof data?.payment_plan === 'string' && data.payment_plan.trim()) || null;
+    return {
+      description: data?.description || '',
+      amenities: Array.isArray(data?.amenities) ? data.amenities : [],
+      paymentPlan: paymentPlan || null,
+    };
   } catch {
-    return '';
+    return { description: '', amenities: [], paymentPlan: null };
   }
+}
+/** @deprecated Use fetchProjectLookData for description + amenities */
+async function fetchProjectDescription(slug: string): Promise<string> {
+  const { description } = await fetchProjectLookData(slug);
+  return description;
 }
 
 // Map static API project to Property format
@@ -708,6 +725,7 @@ function mapStaticProjectToProperty(data: any): Property {
   const minPrice = data.minPrice ?? data.price;
   const maxPrice = data.maxPrice ?? data.price;
   const price = minPrice || maxPrice || 0;
+  const amenities = Array.isArray(data.amenities) ? data.amenities.filter((a: unknown) => typeof a === 'string' && a.trim()) : [];
   return {
     id: data.id,
     slug: data.slug,
@@ -724,7 +742,7 @@ function mapStaticProjectToProperty(data: any): Property {
     locality: data.locality || data.location || '',
     developer: typeof data.developer === 'string' ? data.developer : data.developer?.name || '',
     readyDate: data.readyDate || null,
-    amenities: [],
+    amenities,
   };
 }
 
@@ -744,13 +762,20 @@ export async function getPropertyById(id: string | number): Promise<Property | n
       if (baseData) {
         const slug = baseData.slug;
         let description = '';
+        let amenities: string[] = [];
+        let lookData: ProjectLookData | null = null;
         if (slug) {
-          description = await fetchProjectDescription(slug);
+          lookData = await fetchProjectLookData(slug);
+          description = lookData.description;
+          amenities = lookData.amenities;
         }
         const property = mapStaticProjectToProperty({
           ...baseData,
           description: description || baseData.description || '',
+          amenities: amenities.length > 0 ? amenities : (baseData.amenities || []),
         });
+        if (amenities.length > 0) property.amenities = amenities;
+        if (lookData?.paymentPlan) property.paymentPlan = lookData.paymentPlan;
         return property;
       }
     }
@@ -765,8 +790,10 @@ export async function getPropertyById(id: string | number): Promise<Property | n
       const property = mapApiPropertyToProperty(apiProperty);
       const slug = property.slug || (typeof apiProperty.slug === 'string' ? apiProperty.slug : null);
       if (slug) {
-        const description = await fetchProjectDescription(slug);
-        if (description) property.description = description;
+        const lookData = await fetchProjectLookData(slug);
+        if (lookData.description) property.description = lookData.description;
+        if (lookData.amenities.length > 0) property.amenities = lookData.amenities;
+        if (lookData.paymentPlan) property.paymentPlan = lookData.paymentPlan;
       }
       return property;
     }

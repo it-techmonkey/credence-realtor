@@ -203,7 +203,7 @@ export default function PropertyDetailPage() {
     loadProperty();
   }, [id]);
 
-  // Fetch project description from Alnair look API (authenticated) - runs when property has slug
+  // Fetch project description and amenities from Alnair look API - runs when property has slug
   useEffect(() => {
     const slug = property?.slug || (property?.id && typeof property.id === 'string' && !/^\d+$/.test(property.id) ? property.id : null);
     if (!slug) return;
@@ -218,9 +218,17 @@ export default function PropertyDetailPage() {
     fetch(`/api/project/look/${encodeURIComponent(slug)}`)
       .then((res) => res.ok ? res.json() : null)
       .then((data) => {
-        if (!cancelled && data?.data?.description) {
-          setProjectDescription(data.data.description);
-        }
+        if (cancelled || !data?.data) return;
+        if (data.data.description) setProjectDescription(data.data.description);
+        const amenities = Array.isArray(data.data.amenities) ? data.data.amenities : [];
+        const paymentPlan = typeof data.data.payment_plan === 'string' && data.data.payment_plan.trim() ? data.data.payment_plan.trim() : null;
+        setProperty((prev) => {
+          if (!prev) return null;
+          const next = { ...prev };
+          if (amenities.length > 0) next.amenities = amenities;
+          if (paymentPlan) next.paymentPlan = paymentPlan;
+          return next;
+        });
       })
       .catch(() => {})
       .finally(() => { if (!cancelled) setIsLoadingDescription(false); });
@@ -612,6 +620,49 @@ export default function PropertyDetailPage() {
 
           {/* Property Details Grid */}
           <PropertyDetailsGrid property={property} onOpenAmenities={handleOpenAmenities} translatedDeveloper={translatedDeveloper} translatedLocality={translatedLocality} />
+
+          {/* Amenities - from Alnair look API (extracted from description or API) */}
+          {property.amenities && property.amenities.length > 0 && (
+            <div className="bg-white border border-gray-100 rounded-2xl shadow-sm p-5 md:p-6 lg:p-8 mb-8">
+              <h2 className="font-display font-bold text-2xl md:text-3xl text-secondary mb-6">
+                Amenities
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4">
+                {property.amenities.map((amenity, index) => (
+                  <div
+                    key={index}
+                    className="flex items-center gap-3 p-3 md:p-4 bg-gray-50 border border-gray-100 rounded-xl"
+                  >
+                    <svg className="w-5 h-5 text-[#C5A365] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span className="text-gray-800 text-sm md:text-base font-medium">
+                      {amenity}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Payment Plan - from Alnair look API */}
+          {property.paymentPlan && property.paymentPlan.trim() && (
+            <div className="bg-white border border-gray-100 rounded-2xl shadow-sm p-5 md:p-6 lg:p-8 mb-8">
+              <h2 className="font-display font-bold text-2xl md:text-3xl text-secondary mb-6">
+                Payment Plan
+              </h2>
+              {/<[a-z][\s\S]*>/i.test(property.paymentPlan) ? (
+                <div
+                  className="text-gray-600 text-sm md:text-base leading-relaxed prose prose-p:my-2 prose-ul:my-2 prose-li:my-0 max-w-none"
+                  dangerouslySetInnerHTML={{ __html: property.paymentPlan }}
+                />
+              ) : (
+                <p className="text-gray-600 text-sm md:text-base leading-relaxed whitespace-pre-wrap">
+                  {property.paymentPlan}
+                </p>
+              )}
+            </div>
+          )}
 
           {/* Project Description - from Alnair look API (authenticated) */}
           {(displayDescription || isLoadingDescription) && (
