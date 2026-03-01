@@ -203,15 +203,13 @@ export default function PropertyDetailPage() {
     loadProperty();
   }, [id]);
 
-  // Fetch project description and amenities from Alnair look API - runs when property has slug
+  // Fetch project description, amenities, and payment plan from Alnair look API - always runs when property has slug
   useEffect(() => {
     const slug = property?.slug || (property?.id && typeof property.id === 'string' && !/^\d+$/.test(property.id) ? property.id : null);
     if (!slug) return;
     const existingDesc = (property?.description || '').trim();
     if (existingDesc && existingDesc.length > 50) {
       setProjectDescription(existingDesc);
-      setIsLoadingDescription(false);
-      return;
     }
     let cancelled = false;
     setIsLoadingDescription(true);
