@@ -136,7 +136,7 @@ export async function GET(
       (data.catalogs?.payment_plan && typeof data.catalogs.payment_plan === 'string' ? data.catalogs.payment_plan.trim() : null) ||
       null;
 
-    // Structured payment plan percentages from payment_plans field
+    // Structured payment plan percentages from payment_plans[].info (Alnair uses on_booking_percent, on_construction_percent, etc.)
     let paymentPlanBreakdown: {
       onBooking?: number;
       onConstruction?: number;
@@ -145,12 +145,13 @@ export async function GET(
     } | null = null;
     const rawPlans = data.payment_plans ?? data.payment_plan;
     const planItem = Array.isArray(rawPlans) && rawPlans.length > 0 ? rawPlans[0] : (rawPlans && typeof rawPlans === 'object' ? rawPlans : null);
-    if (planItem && typeof planItem === 'object') {
+    const info = planItem && typeof planItem === 'object' && planItem.info && typeof planItem.info === 'object' ? planItem.info : planItem;
+    if (info && typeof info === 'object') {
       const num = (v: unknown) => (typeof v === 'number' && !isNaN(v)) ? v : (typeof v === 'string' ? parseFloat(v) : NaN);
-      const onBooking = num(planItem.on_booking_percentage);
-      const onConstruction = num(planItem.on_construction_percentage);
-      const onHandover = num(planItem.on_handover_percentage);
-      const postHandover = num(planItem.post_handover_percentage);
+      const onBooking = num(info.on_booking_percent ?? info.on_booking_percentage);
+      const onConstruction = num(info.on_construction_percent ?? info.on_construction_percentage);
+      const onHandover = num(info.on_handover_percent ?? info.on_handover_percentage);
+      const postHandover = num(info.post_handover_percent ?? info.post_handover_percentage);
       if (!isNaN(onBooking) || !isNaN(onConstruction) || !isNaN(onHandover) || !isNaN(postHandover)) {
         paymentPlanBreakdown = {
           onBooking: !isNaN(onBooking) ? onBooking : undefined,
