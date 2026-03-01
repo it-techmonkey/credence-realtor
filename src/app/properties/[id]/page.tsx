@@ -223,11 +223,13 @@ export default function PropertyDetailPage() {
         const rawAmenities = Array.isArray(data.data.amenities) ? data.data.amenities : [];
         const amenities = rawAmenities.length > 0 ? await translateAmenities(rawAmenities) : [];
         const paymentPlan = typeof data.data.payment_plan === 'string' && data.data.payment_plan.trim() ? data.data.payment_plan.trim() : null;
+        const paymentPlanBreakdown = data.data.payment_plan_breakdown ?? null;
         setProperty((prev) => {
           if (!prev) return null;
           const next = { ...prev };
           if (amenities.length > 0) next.amenities = amenities;
           if (paymentPlan) next.paymentPlan = paymentPlan;
+          if (paymentPlanBreakdown) next.paymentPlanBreakdown = paymentPlanBreakdown;
           return next;
         });
       })
@@ -646,21 +648,54 @@ export default function PropertyDetailPage() {
             </div>
           )}
 
-          {/* Payment Plan - from Alnair look API */}
-          {property.paymentPlan && property.paymentPlan.trim() && (
+          {/* Payment Plan - from Alnair look API (structured percentages + optional text) */}
+          {(property.paymentPlanBreakdown || (property.paymentPlan && property.paymentPlan.trim())) && (
             <div className="bg-white border border-gray-100 rounded-2xl shadow-sm p-5 md:p-6 lg:p-8 mb-8">
               <h2 className="font-display font-bold text-2xl md:text-3xl text-secondary mb-6">
                 Payment Plan
               </h2>
-              {/<[a-z][\s\S]*>/i.test(property.paymentPlan) ? (
-                <div
-                  className="text-gray-600 text-sm md:text-base leading-relaxed prose prose-p:my-2 prose-ul:my-2 prose-li:my-0 max-w-none"
-                  dangerouslySetInnerHTML={{ __html: property.paymentPlan }}
-                />
-              ) : (
-                <p className="text-gray-600 text-sm md:text-base leading-relaxed whitespace-pre-wrap">
-                  {property.paymentPlan}
-                </p>
+              {property.paymentPlanBreakdown && (
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                  {property.paymentPlanBreakdown.onBooking != null && (
+                    <div className="p-4 bg-gray-50 border border-gray-100 rounded-xl text-center">
+                      <p className="text-xs uppercase tracking-wider text-gray-500 font-medium mb-1">On Booking</p>
+                      <p className="text-xl md:text-2xl font-bold text-secondary">{property.paymentPlanBreakdown.onBooking}%</p>
+                    </div>
+                  )}
+                  {property.paymentPlanBreakdown.onConstruction != null && (
+                    <div className="p-4 bg-gray-50 border border-gray-100 rounded-xl text-center">
+                      <p className="text-xs uppercase tracking-wider text-gray-500 font-medium mb-1">On Construction</p>
+                      <p className="text-xl md:text-2xl font-bold text-secondary">{property.paymentPlanBreakdown.onConstruction}%</p>
+                    </div>
+                  )}
+                  {property.paymentPlanBreakdown.onHandover != null && (
+                    <div className="p-4 bg-gray-50 border border-gray-100 rounded-xl text-center">
+                      <p className="text-xs uppercase tracking-wider text-gray-500 font-medium mb-1">On Handover</p>
+                      <p className="text-xl md:text-2xl font-bold text-secondary">{property.paymentPlanBreakdown.onHandover}%</p>
+                    </div>
+                  )}
+                  {property.paymentPlanBreakdown.postHandover != null && (
+                    <div className="p-4 bg-gray-50 border border-gray-100 rounded-xl text-center">
+                      <p className="text-xs uppercase tracking-wider text-gray-500 font-medium mb-1">Post Handover</p>
+                      <p className="text-xl md:text-2xl font-bold text-secondary">{property.paymentPlanBreakdown.postHandover}%</p>
+                    </div>
+                  )}
+                </div>
+              )}
+              {property.paymentPlan && property.paymentPlan.trim() && (
+                <>
+                  {property.paymentPlanBreakdown && <p className="text-sm text-gray-500 uppercase tracking-wider font-medium mb-3">Details</p>}
+                  {/<[a-z][\s\S]*>/i.test(property.paymentPlan) ? (
+                    <div
+                      className="text-gray-600 text-sm md:text-base leading-relaxed prose prose-p:my-2 prose-ul:my-2 prose-li:my-0 max-w-none"
+                      dangerouslySetInnerHTML={{ __html: property.paymentPlan }}
+                    />
+                  ) : (
+                    <p className="text-gray-600 text-sm md:text-base leading-relaxed whitespace-pre-wrap">
+                      {property.paymentPlan}
+                    </p>
+                  )}
+                </>
               )}
             </div>
           )}

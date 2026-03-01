@@ -78,6 +78,12 @@ export interface Property {
   security?: boolean | string;
   furnished?: string;
   paymentPlan?: string;
+  paymentPlanBreakdown?: {
+    onBooking?: number;
+    onConstruction?: number;
+    onHandover?: number;
+    postHandover?: number;
+  };
   roi?: {
     firstYear: number;
     thirdYear: number;
@@ -692,24 +698,32 @@ export interface ProjectLookData {
   description: string;
   amenities: string[];
   paymentPlan: string | null;
+  paymentPlanBreakdown: {
+    onBooking?: number;
+    onConstruction?: number;
+    onHandover?: number;
+    postHandover?: number;
+  } | null;
 }
 async function fetchProjectLookData(slug: string): Promise<ProjectLookData> {
   try {
     const base = typeof window !== 'undefined' ? '' : process.env.NEXT_PUBLIC_VERCEL_URL ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}` : 'http://localhost:3000';
     const url = typeof window !== 'undefined' ? `/api/project/look/${encodeURIComponent(slug)}` : `${base || 'http://localhost:3000'}/api/project/look/${encodeURIComponent(slug)}`;
     const response = await fetch(url);
-    if (!response.ok) return { description: '', amenities: [], paymentPlan: null };
+    if (!response.ok) return { description: '', amenities: [], paymentPlan: null, paymentPlanBreakdown: null };
     const result = await response.json();
     const data = result?.data;
     const paymentPlan =
       (typeof data?.payment_plan === 'string' && data.payment_plan.trim()) || null;
+    const paymentPlanBreakdown = data?.payment_plan_breakdown ?? null;
     return {
       description: data?.description || '',
       amenities: Array.isArray(data?.amenities) ? data.amenities : [],
       paymentPlan: paymentPlan || null,
+      paymentPlanBreakdown: paymentPlanBreakdown || null,
     };
   } catch {
-    return { description: '', amenities: [], paymentPlan: null };
+    return { description: '', amenities: [], paymentPlan: null, paymentPlanBreakdown: null };
   }
 }
 /** @deprecated Use fetchProjectLookData for description + amenities */
@@ -776,6 +790,7 @@ export async function getPropertyById(id: string | number): Promise<Property | n
         });
         if (amenities.length > 0) property.amenities = amenities;
         if (lookData?.paymentPlan) property.paymentPlan = lookData.paymentPlan;
+        if (lookData?.paymentPlanBreakdown) property.paymentPlanBreakdown = lookData.paymentPlanBreakdown;
         return property;
       }
     }
@@ -794,6 +809,7 @@ export async function getPropertyById(id: string | number): Promise<Property | n
         if (lookData.description) property.description = lookData.description;
         if (lookData.amenities.length > 0) property.amenities = await translateAmenities(lookData.amenities);
         if (lookData.paymentPlan) property.paymentPlan = lookData.paymentPlan;
+        if (lookData.paymentPlanBreakdown) property.paymentPlanBreakdown = lookData.paymentPlanBreakdown;
       }
       return property;
     }

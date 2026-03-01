@@ -136,10 +136,36 @@ export async function GET(
       (data.catalogs?.payment_plan && typeof data.catalogs.payment_plan === 'string' ? data.catalogs.payment_plan.trim() : null) ||
       null;
 
+    // Structured payment plan percentages from payment_plans field
+    let paymentPlanBreakdown: {
+      onBooking?: number;
+      onConstruction?: number;
+      onHandover?: number;
+      postHandover?: number;
+    } | null = null;
+    const rawPlans = data.payment_plans ?? data.payment_plan;
+    const planItem = Array.isArray(rawPlans) && rawPlans.length > 0 ? rawPlans[0] : (rawPlans && typeof rawPlans === 'object' ? rawPlans : null);
+    if (planItem && typeof planItem === 'object') {
+      const num = (v: unknown) => (typeof v === 'number' && !isNaN(v)) ? v : (typeof v === 'string' ? parseFloat(v) : NaN);
+      const onBooking = num(planItem.on_booking_percentage);
+      const onConstruction = num(planItem.on_construction_percentage);
+      const onHandover = num(planItem.on_handover_percentage);
+      const postHandover = num(planItem.post_handover_percentage);
+      if (!isNaN(onBooking) || !isNaN(onConstruction) || !isNaN(onHandover) || !isNaN(postHandover)) {
+        paymentPlanBreakdown = {
+          onBooking: !isNaN(onBooking) ? onBooking : undefined,
+          onConstruction: !isNaN(onConstruction) ? onConstruction : undefined,
+          onHandover: !isNaN(onHandover) ? onHandover : undefined,
+          postHandover: !isNaN(postHandover) ? postHandover : undefined,
+        };
+      }
+    }
+
     const result = {
       description,
       amenities,
       payment_plan: paymentPlan,
+      payment_plan_breakdown: paymentPlanBreakdown,
       planned_at: data.planned_at || data.predicted_completion_at || null,
       construction_inspection_date: data.construction_inspection_date || null,
       statistics: data.statistics || null,
