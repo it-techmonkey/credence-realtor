@@ -1,7 +1,10 @@
 import './globals.css'
-import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
-import ScrollButton from '@/components/ScrollButton'
+import dynamic from 'next/dynamic'
+
+const ClientLayout = dynamic(() => import('@/components/ClientLayout'), {
+  ssr: true,
+  loading: () => <div className="flex flex-col min-h-screen bg-white" />,
+})
 
 export const metadata = {
   title: 'Credence Realtor - Dubai Real Estate',
@@ -15,12 +18,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className="flex flex-col min-h-screen bg-white">
-        <Navbar />
-        <main className="flex-grow">
-          {children}
-        </main>
-        <Footer />
-        <ScrollButton />
+        <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
   )

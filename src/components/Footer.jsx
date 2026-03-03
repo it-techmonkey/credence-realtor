@@ -291,6 +291,8 @@ const Footer = () => {
                     {/* Copyright */}
                     <p className="text-xs text-gray-600 text-center md:text-right">
                         &copy; 2025 Credence Realtor. All rights reserved. <span className="mx-2">|</span> Licensed by RERA Dubai
+                        <span className="mx-2">|</span>
+                        <Link href="/admin/login" className="text-gray-500 hover:text-primary transition-colors">Admin</Link>
                     </p>
                 </div>
             </div>

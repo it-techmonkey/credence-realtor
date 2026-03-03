@@ -1,0 +1,13 @@
+import { neon } from '@neondatabase/serverless';
+
+const connectionString = process.env.DATABASE_URL;
+if (!connectionString) {
+  console.warn('DATABASE_URL is not set. Admin and enquiry APIs will not work.');
+}
+
+export const sql = connectionString ? neon(connectionString) : null;
+
+export function getDb() {
+  if (!sql) throw new Error('Database not configured. Set DATABASE_URL in .env.local');
+  return sql;
+}
