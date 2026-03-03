@@ -1,15 +1,18 @@
 'use client';
 
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import { useState } from 'react';
-import { Menu, X, LayoutDashboard, Mail, LogOut } from 'lucide-react';
+import { Menu, X, LayoutDashboard, LogOut } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
 
 export default function AdminHeader() {
   const router = useRouter();
-  const { logout } = useAuth();
+  const pathname = usePathname();
+  const { user, loading, logout } = useAuth();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const isLoginPage = pathname === '/admin/login';
+  const isLoggedIn = !!user && !loading;
 
   const handleLogout = () => {
     logout();
@@ -17,45 +20,59 @@ export default function AdminHeader() {
   };
 
   const navLink = "text-gray-400 hover:text-primary transition-colors font-medium";
-  const navLinkActive = "text-primary";
 
   return (
     <header className="bg-secondary border-b border-white/10 shadow-lg sticky top-0 z-40 font-sans">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <Link
-            href="/admin/dashboard"
+            href={isLoggedIn ? "/admin/dashboard" : "/admin/login"}
             className="flex items-center gap-2 font-display font-semibold text-white hover:text-primary transition-colors"
           >
             <LayoutDashboard size={22} className="text-primary" />
             Credence Admin
           </Link>
 
-          <nav className="hidden md:flex items-center gap-8">
-            <Link href="/admin/dashboard" className={navLink}>Dashboard</Link>
-            <Link href="/admin/enquiries" className={navLink}>Enquiries</Link>
-            <Link href="/admin/leads" className={navLink}>Leads</Link>
-            <button
-              type="button"
-              onClick={handleLogout}
-              className="flex items-center gap-2 text-gray-400 hover:text-red-400 transition-colors"
-            >
-              <LogOut size={18} />
-              Logout
-            </button>
-          </nav>
+          {!isLoginPage && (
+            <>
+              {isLoggedIn ? (
+                <>
+                  <nav className="hidden md:flex items-center gap-8">
+                    <Link href="/admin/dashboard" className={navLink}>Dashboard</Link>
+                    <Link href="/admin/enquiries" className={navLink}>Enquiries</Link>
+                    <Link href="/admin/leads" className={navLink}>Leads</Link>
+                    <button
+                      type="button"
+                      onClick={handleLogout}
+                      className="flex items-center gap-2 text-gray-400 hover:text-red-400 transition-colors"
+                    >
+                      <LogOut size={18} />
+                      Logout
+                    </button>
+                  </nav>
 
-          <button
-            type="button"
-            className="md:hidden p-2 rounded-lg text-gray-400 hover:bg-white/10 hover:text-primary transition-colors"
-            onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label="Toggle menu"
-          >
-            {mobileOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+                  <button
+                    type="button"
+                    className="md:hidden p-2 rounded-lg text-gray-400 hover:bg-white/10 hover:text-primary transition-colors"
+                    onClick={() => setMobileOpen(!mobileOpen)}
+                    aria-label="Toggle menu"
+                  >
+                    {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+                  </button>
+                </>
+              ) : (
+                <Link
+                  href="/admin/login"
+                  className="text-gray-400 hover:text-primary font-medium transition-colors"
+                >
+                  Login
+                </Link>
+              )}
+            </>
+          )}
         </div>
 
-        {mobileOpen && (
+        {isLoggedIn && mobileOpen && (
           <div className="md:hidden py-4 border-t border-white/10">
             <div className="flex flex-col gap-1">
               <Link href="/admin/dashboard" className="px-3 py-2.5 rounded-lg text-gray-300 hover:bg-white/10 hover:text-primary transition-colors" onClick={() => setMobileOpen(false)}>Dashboard</Link>
