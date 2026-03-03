@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import Cookies from 'js-cookie';
 import { useAuth } from '@/context/AuthContext';
@@ -38,7 +38,7 @@ export default function AdminLeadsPage() {
     if (!authLoading && !user) router.replace('/admin/login');
   }, [user, authLoading, router]);
 
-  const fetchLeads = async () => {
+  const fetchLeads = useCallback(async () => {
     const token = getToken();
     if (!token) return;
     setLoading(true);
@@ -49,15 +49,15 @@ export default function AdminLeadsPage() {
     if (res.ok) {
       const data = await res.json();
       setLeads(data.leads || []);
-      setPagination(data.pagination || pagination);
+      setPagination((prev) => data.pagination || prev);
     }
     setLoading(false);
-  };
+  }, [pagination.page, pagination.pageSize, statusFilter, search]);
 
   useEffect(() => {
     if (!user) return;
     fetchLeads();
-  }, [user, pagination.page, statusFilter, search]);
+  }, [user, fetchLeads]);
 
   const openEdit = (lead) => {
     setModalData(lead);

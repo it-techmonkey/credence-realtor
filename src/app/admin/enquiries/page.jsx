@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import Cookies from 'js-cookie';
 import { useAuth } from '@/context/AuthContext';
@@ -29,7 +29,7 @@ export default function AdminEnquiriesPage() {
     if (!authLoading && !user) router.replace('/admin/login');
   }, [user, authLoading, router]);
 
-  const fetchEnquiries = async () => {
+  const fetchEnquiries = useCallback(async () => {
     const token = getToken();
     if (!token) return;
     setLoading(true);
@@ -40,15 +40,15 @@ export default function AdminEnquiriesPage() {
     if (res.ok) {
       const data = await res.json();
       setEnquiries(data.enquiries || []);
-      setPagination(data.pagination || pagination);
+      setPagination((prev) => data.pagination || prev);
     }
     setLoading(false);
-  };
+  }, [pagination.page, pagination.pageSize, statusFilter, search]);
 
   useEffect(() => {
     if (!user) return;
     fetchEnquiries();
-  }, [user, pagination.page, statusFilter, search]);
+  }, [user, fetchEnquiries]);
 
   const openCreate = () => {
     setModalData(null);

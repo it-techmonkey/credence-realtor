@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import Cookies from 'js-cookie';
 import { useAuth } from '@/context/AuthContext';
@@ -52,7 +52,7 @@ export default function AdminDashboardPage() {
     }
   };
 
-  const fetchLeads = async () => {
+  const fetchLeads = useCallback(async () => {
     const token = getToken();
     if (!token) return;
     const params = new URLSearchParams({ page, pageSize: 10 });
@@ -62,9 +62,9 @@ export default function AdminDashboardPage() {
     if (res.ok) {
       const data = await res.json();
       setLeads(data.leads || []);
-      setPagination(data.pagination || { page: 1, pageSize: 10, total: 0, totalPages: 0 });
+      setPagination((prev) => data.pagination || prev);
     }
-  };
+  }, [page, statusFilter, search]);
 
   useEffect(() => {
     if (!user) return;
@@ -78,7 +78,7 @@ export default function AdminDashboardPage() {
   useEffect(() => {
     if (!user) return;
     fetchLeads();
-  }, [user, statusFilter, search, page]);
+  }, [user, fetchLeads]);
 
   const openEdit = (lead) => {
     setModalData(lead);

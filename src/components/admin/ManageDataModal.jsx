@@ -60,58 +60,62 @@ export default function ManageDataModal({
 
   useEffect(() => {
     if (!show) return;
-    if (data && mode === 'edit') {
-      if (type === 'enquiry') {
-        setForm({
-          first_name: data.first_name ?? '',
-          last_name: data.last_name ?? '',
-          email: data.email ?? '',
-          phone: data.phone ?? '',
-          subject: data.subject ?? '',
-          event: data.event ?? '',
-          message: data.message ?? '',
-          status: data.status ?? 'HOT',
-          job_title: data.job_title ?? '',
-          employer: data.employer ?? '',
-          property_interests: data.property_interests ?? '',
-          notes: data.notes ?? '',
-          client_folder_link: data.client_folder_link ?? '',
-          nationality: data.nationality ?? '',
-          date_of_birth: data.date_of_birth ? (data.date_of_birth.toString?.()?.slice(0, 10) || '') : '',
-          home_address: data.home_address ?? '',
+    const run = () => {
+      if (data && mode === 'edit') {
+        if (type === 'enquiry') {
+          setForm({
+            first_name: data.first_name ?? '',
+            last_name: data.last_name ?? '',
+            email: data.email ?? '',
+            phone: data.phone ?? '',
+            subject: data.subject ?? '',
+            event: data.event ?? '',
+            message: data.message ?? '',
+            status: data.status ?? 'HOT',
+            job_title: data.job_title ?? '',
+            employer: data.employer ?? '',
+            property_interests: data.property_interests ?? '',
+            notes: data.notes ?? '',
+            client_folder_link: data.client_folder_link ?? '',
+            nationality: data.nationality ?? '',
+            date_of_birth: data.date_of_birth ? (data.date_of_birth.toString?.()?.slice(0, 10) || '') : '',
+            home_address: data.home_address ?? '',
+          });
+        } else {
+          setForm({
+            name: data.name ?? '',
+            phone: data.phone ?? '',
+            email: data.email ?? '',
+            project_name: data.project_name ?? '',
+            type: data.type ?? '',
+            price: formatPrice(data.price),
+            status: data.status ?? 'HOT',
+            sales_stage: data.sales_stage ?? 'New Inquiry',
+            job_title: data.job_title ?? '',
+            employer: data.employer ?? '',
+            property_interests: data.property_interests ?? '',
+            notes: data.notes ?? '',
+            client_folder_link: data.client_folder_link ?? '',
+            nationality: data.nationality ?? '',
+            date_of_birth: data.date_of_birth ? (data.date_of_birth.toString?.()?.slice(0, 10) || '') : '',
+            home_address: data.home_address ?? '',
+            intent: data.intent ?? '',
+            event: data.event ?? '',
+          });
+        }
+        setMoveData({
+          projectName: data.project_name ?? '',
+          intent: data.intent ?? '',
+          price: formatPrice(data.price),
+          type: data.type ?? '',
         });
       } else {
-        setForm({
-          name: data.name ?? '',
-          phone: data.phone ?? '',
-          email: data.email ?? '',
-          project_name: data.project_name ?? '',
-          type: data.type ?? '',
-          price: formatPrice(data.price),
-          status: data.status ?? 'HOT',
-          sales_stage: data.sales_stage ?? 'New Inquiry',
-          job_title: data.job_title ?? '',
-          employer: data.employer ?? '',
-          property_interests: data.property_interests ?? '',
-          notes: data.notes ?? '',
-          client_folder_link: data.client_folder_link ?? '',
-          nationality: data.nationality ?? '',
-          date_of_birth: data.date_of_birth ? (data.date_of_birth.toString?.()?.slice(0, 10) || '') : '',
-          home_address: data.home_address ?? '',
-          intent: data.intent ?? '',
-          event: data.event ?? '',
-        });
+        setForm(type === 'enquiry' ? { ...emptyEnquiry } : { ...emptyLead });
+        setMoveData({ projectName: '', intent: '', price: '', type: '' });
       }
-      setMoveData({
-        projectName: data.project_name ?? '',
-        intent: data.intent ?? '',
-        price: formatPrice(data.price),
-        type: data.type ?? '',
-      });
-    } else {
-      setForm(type === 'enquiry' ? { ...emptyEnquiry } : { ...emptyLead });
-      setMoveData({ projectName: '', intent: '', price: '', type: '' });
-    }
+    };
+    const id = setTimeout(run, 0);
+    return () => clearTimeout(id);
   }, [show, data, type, mode]);
 
   const update = (key, value) => setForm((p) => ({ ...p, [key]: value }));
