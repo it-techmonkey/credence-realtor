@@ -81,9 +81,15 @@ const PropertyCard = ({ property, index = 0 }) => {
 
                     {/* Actions */}
                     <div className="flex gap-3 mt-6">
-                        <Link href={`/properties/${property.slug || property.id}`} className="flex-1 border border-gray-200 text-secondary py-3 rounded-full hover:bg-black hover:text-white hover:border-black transition-all text-xs font-bold uppercase tracking-wider text-center flex items-center justify-center">
-                            View Details
-                        </Link>
+                        {((property.slug ?? property.id) != null ? (
+                            <Link href={`/properties/${encodeURIComponent(String(property.slug ?? property.id))}`} className="flex-1 border border-gray-200 text-secondary py-3 rounded-full hover:bg-black hover:text-white hover:border-black transition-all text-xs font-bold uppercase tracking-wider text-center flex items-center justify-center">
+                                View Details
+                            </Link>
+                        ) : (
+                            <span className="flex-1 border border-gray-200 text-gray-400 py-3 rounded-full text-center text-xs font-bold uppercase tracking-wider cursor-not-allowed">
+                                View Details
+                            </span>
+                        ))}
                         <button
                             onClick={() => setIsModalOpen(true)}
                             className="flex-1 bg-[#C5A365] text-white py-3 rounded-full hover:bg-[#b08e55] transition-colors text-xs font-bold uppercase tracking-wider shadow-md hover:shadow-lg flex items-center justify-center gap-2"

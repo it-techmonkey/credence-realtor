@@ -6,7 +6,6 @@ import { usePathname, useSearchParams, useRouter } from 'next/navigation';
 import { ArrowRight, MapPin, ChevronDown, ChevronUp, Star, Phone, MessageCircle, Percent, TrendingUp, Award, ShieldCheck, Users, Building2, Globe, ChevronLeft, ChevronRight } from 'lucide-react';
 import { formatPrice } from '@/lib/properties';
 import Hotspots from '@/components/Hotspots';
-import { openWhatsApp } from '@/utils/whatsappRedirect';
 import { useScrollAnimations } from '@/utils/useScrollAnimation';
 import AnimatedSection from '@/components/AnimatedSection';
 import AnimatedContainer from '@/components/AnimatedContainer';
@@ -218,30 +217,48 @@ const HomeContent = () => {
         });
     };
 
-    const handleContactFormSubmit = (e) => {
+    const [contactSubmitStatus, setContactSubmitStatus] = useState(null); // 'success' | 'error' | null
+
+    const handleContactFormSubmit = async (e) => {
         e.preventDefault();
-
-        const whatsappData = {
-            'Name': contactFormData.name,
-            'Phone': `${contactFormData.countryCode} ${contactFormData.phone}`,
-            'Email': contactFormData.email,
-            'Preferred Date': contactFormData.preferredDate ? formatDate(contactFormData.preferredDate) : 'Not specified',
-            'Preferred Time': contactFormData.preferredTime ? formatTime12Hour(contactFormData.preferredTime) : 'Not specified',
-            'Message': contactFormData.message
-        };
-
-        openWhatsApp(WHATSAPP_NUMBER, whatsappData);
-
-        // Reset form
-        setContactFormData({
-            name: '',
-            countryCode: '+971',
-            phone: '',
-            email: '',
-            preferredDate: '',
-            preferredTime: '',
-            message: ''
-        });
+        setContactSubmitStatus(null);
+        try {
+            const phone = `${contactFormData.countryCode} ${contactFormData.phone}`.trim();
+            const messageLines = [
+                contactFormData.preferredDate ? `Preferred date: ${formatDate(contactFormData.preferredDate)}` : '',
+                contactFormData.preferredTime ? `Preferred time: ${formatTime12Hour(contactFormData.preferredTime)}` : '',
+                contactFormData.message
+            ].filter(Boolean);
+            const res = await fetch('/api/enquiries/submit', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    first_name: contactFormData.name.split(' ')[0] || contactFormData.name,
+                    last_name: contactFormData.name.split(' ').slice(1).join(' ') || '',
+                    email: contactFormData.email,
+                    phone,
+                    subject: 'Website contact form',
+                    message: messageLines.length ? messageLines.join('\n') : 'No message',
+                    event: contactFormData.preferredDate ? `Consultation ${formatDate(contactFormData.preferredDate)}` : undefined
+                })
+            });
+            if (!res.ok) {
+                const err = await res.json().catch(() => ({}));
+                throw new Error(err.error || 'Submission failed');
+            }
+            setContactSubmitStatus('success');
+            setContactFormData({
+                name: '',
+                countryCode: '+971',
+                phone: '',
+                email: '',
+                preferredDate: '',
+                preferredTime: '',
+                message: ''
+            });
+        } catch (err) {
+            setContactSubmitStatus('error');
+        }
     };
 
     return (
@@ -759,6 +776,16 @@ const HomeContent = () => {
                     </div>
 
                     <div className="bg-white p-8 md:p-12 rounded-2xl shadow-sm border border-gray-100">
+                        {contactSubmitStatus === 'success' && (
+                            <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg text-green-700 text-center">
+                                Thank you! Your message has been sent. We&apos;ll get back to you soon.
+                            </div>
+                        )}
+                        {contactSubmitStatus === 'error' && (
+                            <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg text-red-700 text-center">
+                                Something went wrong. Please try again or contact us directly.
+                            </div>
+                        )}
                         <form onSubmit={handleContactFormSubmit} className="space-y-6">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div>
@@ -863,7 +890,7 @@ const HomeContent = () => {
                                     type="submit"
                                     className="bg-[#1A1A1A] text-white px-10 py-4 rounded-full font-bold hover:bg-[#C5A365] transition-all min-w-[200px]"
                                 >
-                                    Send via WhatsApp
+                                    Send message
                                 </button>
                             </div>
                         </form>

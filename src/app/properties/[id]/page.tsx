@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useMemo, useCallback } from 'react';
+import { useState, useEffect, useMemo, useCallback, useRef } from 'react';
 import { useParams } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -12,6 +12,7 @@ import AmenitiesModal from '@/components/property/amenities-modal';
 import { getPropertyById, getRelatedProperties, formatPrice, formatDate, Property } from '@/lib/properties';
 import { translateToEnglish, containsArabic, translateAmenities } from '@/lib/translate';
 import { memo } from 'react';
+import { MapPin, Bed, Bath, Square, Calendar, Building2, ChevronRight, ArrowLeft, Check } from 'lucide-react';
 
 // Memoized Property Details Grid component
 const PropertyDetailsGrid = memo(({ property, onOpenAmenities, translatedDeveloper, translatedLocality }: { property: Property; onOpenAmenities: () => void; translatedDeveloper?: string | null; translatedLocality?: string | null }) => {
@@ -78,7 +79,7 @@ const PropertyDetailsGrid = memo(({ property, onOpenAmenities, translatedDevelop
               {property.amenities.length > 2 && (
                 <button
                   onClick={onOpenAmenities}
-                  className="text-[#C5A365] text-xs md:text-sm hover:text-[#b08e55] hover:underline text-left transition-colors font-semibold"
+                  className="text-primary text-xs md:text-sm hover:underline text-left transition-colors font-semibold"
                 >
                   +{property.amenities.length - 2} more
                 </button>
@@ -126,6 +127,39 @@ const PropertyDetailsGrid = memo(({ property, onOpenAmenities, translatedDevelop
 });
 
 PropertyDetailsGrid.displayName = 'PropertyDetailsGrid';
+
+/** Sticky bar at bottom: price + Enquire, visible after scroll */
+function StickyEnquireBar({ price, title, onEnquire }: { price: number; title: string; onEnquire: () => void }) {
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const onScroll = () => {
+      const y = window.scrollY;
+      setVisible(y > 400);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+  if (!visible) return null;
+  return (
+    <div className="fixed bottom-0 left-0 right-0 z-30 bg-white/95 backdrop-blur-md border-t border-gray-200 shadow-lg safe-area-pb">
+      <div className="container mx-auto px-4 sm:px-6 max-w-7xl py-3 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-6">
+          <p className="font-display font-bold text-lg text-secondary">
+            AED {formatPrice(price)}
+          </p>
+          <p className="text-gray-500 text-sm truncate max-w-[200px] sm:max-w-xs" title={title}>{title}</p>
+        </div>
+        <button
+          onClick={onEnquire}
+          className="w-full sm:w-auto bg-primary text-white px-6 py-3 rounded-full font-bold text-sm uppercase tracking-wider hover:bg-primary/90 transition-colors flex items-center justify-center gap-2 shrink-0"
+        >
+          Enquire now <ChevronRight size={18} />
+        </button>
+      </div>
+    </div>
+  );
+}
 
 export default function PropertyDetailPage() {
   const params = useParams();
@@ -344,28 +378,38 @@ export default function PropertyDetailPage() {
     return plain.length > 200;
   }, [effectiveDescription]);
 
-  // Memoize related properties section
-  const relatedPropertiesSection = useMemo(() => {
-    if (relatedProperties.length === 0) return null;
-    return (
-      <div className="mb-12">
-        <h2 className="font-display font-bold text-3xl md:text-4xl text-secondary mb-8">
-          Other Properties
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {relatedProperties.map((relatedProperty) => (
-            <PropertyCard key={relatedProperty.id} property={relatedProperty} />
-          ))}
-        </div>
-      </div>
-    );
-  }, [relatedProperties]);
+  // Extreme smooth scroll: add class to html when this page mounts
+  useEffect(() => {
+    document.documentElement.classList.add('smooth-scroll-extreme');
+    return () => { document.documentElement.classList.remove('smooth-scroll-extreme'); };
+  }, []);
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-neutral-50 flex items-center justify-center">
-        <div className="text-center">
-          <div className="text-black text-lg md:text-xl font-semibold">Loading...</div>
+      <div className="min-h-screen bg-gray-50/80 flex flex-col pt-[100px] pb-12">
+        <div className="container mx-auto px-4 max-w-7xl flex-1">
+          <div className="h-5 w-32 bg-gray-200 rounded-lg animate-pulse mb-8" />
+          <div className="flex flex-col lg:flex-row gap-8">
+            <div className="flex-1 space-y-4">
+              <div className="aspect-[4/3] max-h-[480px] rounded-2xl bg-gray-200 animate-pulse" />
+              <div className="flex gap-3 overflow-hidden">
+                {[1, 2, 3, 4].map((i) => (
+                  <div key={i} className="w-20 h-14 rounded-xl bg-gray-200 animate-pulse flex-shrink-0" />
+                ))}
+              </div>
+            </div>
+            <div className="lg:w-[400px] space-y-4">
+              <div className="h-8 w-3/4 bg-gray-200 rounded-lg animate-pulse" />
+              <div className="h-4 w-1/2 bg-gray-100 rounded animate-pulse" />
+              <div className="h-20 bg-gray-100 rounded-xl animate-pulse" />
+              <div className="flex gap-2 flex-wrap">
+                {[1, 2, 3].map((i) => (
+                  <div key={i} className="h-8 w-20 bg-gray-200 rounded-full animate-pulse" />
+                ))}
+              </div>
+              <div className="h-12 w-full bg-gray-200 rounded-full animate-pulse mt-6" />
+            </div>
+          </div>
         </div>
       </div>
     );
@@ -373,322 +417,292 @@ export default function PropertyDetailPage() {
 
   if (!property) {
     return (
-      <div className="min-h-screen bg-neutral-50 flex items-center justify-center">
-        <div className="text-center">
-          <div className="text-black text-lg md:text-xl font-semibold mb-4">Property not found</div>
-          <Link href="/properties" className="text-[#1f2462] hover:underline">
-            Back to Properties
+      <div className="min-h-screen bg-gray-50/80 flex items-center justify-center pt-[100px]">
+        <div className="text-center px-4">
+          <p className="text-secondary text-lg font-semibold mb-4">Property not found</p>
+          <Link
+            href="/properties"
+            className="inline-flex items-center gap-2 text-primary hover:text-primary/80 font-semibold transition-colors"
+          >
+            <ArrowLeft size={18} /> Back to Properties
           </Link>
         </div>
       </div>
     );
   }
 
+  const scrollToSection = (id: string) => {
+    const el = document.getElementById(id);
+    el?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
   return (
     <>
-      <main className="bg-gray-50/50 min-h-screen pt-[120px] pb-12">
-        <div className="container mx-auto px-4 max-w-7xl">
+      <main className="smooth-scroll-container bg-gray-50/60 min-h-screen pt-[88px] pb-24">
+        <div className="container mx-auto px-4 sm:px-6 max-w-7xl">
           {/* Breadcrumb */}
-          <div className="mb-8">
-            <Link 
-              href="/properties" 
-              className="text-gray-500 hover:text-secondary text-sm font-medium transition-colors inline-flex items-center gap-2"
+          <div className="py-6">
+            <Link
+              href="/properties"
+              className="inline-flex items-center gap-2 text-gray-500 hover:text-secondary text-sm font-medium transition-colors"
             >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M15 18l-6-6 6-6"/>
-              </svg>
+              <ArrowLeft size={18} />
               Back to Properties
             </Link>
           </div>
 
+          {/* Quick jump nav - smooth scroll to sections */}
+          <nav className="flex flex-wrap gap-2 mb-8 scroll-section" aria-label="Page sections">
+            <button type="button" onClick={() => scrollToSection('section-details')} className="px-4 py-2 rounded-full text-sm font-medium text-gray-600 bg-white border border-gray-200 hover:border-primary hover:text-primary transition-colors">
+              Details
+            </button>
+            {property.amenities && property.amenities.length > 0 && (
+              <button type="button" onClick={() => scrollToSection('section-amenities')} className="px-4 py-2 rounded-full text-sm font-medium text-gray-600 bg-white border border-gray-200 hover:border-primary hover:text-primary transition-colors">
+                Amenities
+              </button>
+            )}
+            {(displayDescription || projectDescription) && (
+              <button type="button" onClick={() => scrollToSection('section-description')} className="px-4 py-2 rounded-full text-sm font-medium text-gray-600 bg-white border border-gray-200 hover:border-primary hover:text-primary transition-colors">
+                Description
+              </button>
+            )}
+            {property.paymentPlan && property.paymentPlan.trim() && (
+              <button type="button" onClick={() => scrollToSection('section-payment')} className="px-4 py-2 rounded-full text-sm font-medium text-gray-600 bg-white border border-gray-200 hover:border-primary hover:text-primary transition-colors">
+                Payment Plan
+              </button>
+            )}
+            {relatedProperties.length > 0 && (
+              <button type="button" onClick={() => scrollToSection('section-related')} className="px-4 py-2 rounded-full text-sm font-medium text-gray-600 bg-white border border-gray-200 hover:border-primary hover:text-primary transition-colors">
+                Similar Properties
+              </button>
+            )}
+          </nav>
+
           {/* Main Content */}
-          <div className="flex flex-col lg:flex-row gap-6 lg:gap-[30px] mb-6 md:mb-8 lg:mb-[30px]">
+          <div className="flex flex-col lg:flex-row gap-8 lg:gap-10 mb-12">
             {/* Left: Image Gallery */}
-            <div className="flex-1 w-full lg:w-auto">
-              <div className="flex flex-col sm:flex-row gap-4 lg:gap-[19px]">
-                {/* Main Image Container */}
-                <div className="w-full sm:flex-1 lg:w-[569px] lg:flex-none">
+            <div className="flex-1 w-full lg:w-auto min-w-0">
+              <div className="flex flex-col sm:flex-row gap-4">
+                <div className="w-full sm:flex-1 lg:max-w-[600px]">
                   {images[selectedImage] && images[selectedImage].trim() !== '' ? (
-                    <div 
-                      className="relative w-full h-[280px] sm:h-[380px] md:h-[420px] lg:h-[443px] rounded-2xl overflow-hidden cursor-pointer bg-gray-100 border border-gray-100 shadow-sm group"
+                    <div
+                      className="relative w-full aspect-[4/3] max-h-[420px] lg:max-h-[500px] rounded-2xl overflow-hidden cursor-pointer bg-gray-100 border border-gray-100 shadow-sm group"
                       onClick={handleOpenImageViewer}
                     >
                       <Image
                         src={images[selectedImage]}
                         alt={displayTitle}
                         fill
-                        className="object-cover transition-transform duration-700 group-hover:scale-105"
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 569px"
+                        className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 55vw, 600px"
                         priority
                         loading="eager"
                       />
-                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors flex items-center justify-center">
-                        <svg className="w-12 h-12 text-white opacity-0 group-hover:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7" />
-                        </svg>
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300 flex items-center justify-center">
+                        <span className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-sm font-medium bg-black/50 px-3 py-2 rounded-full">View gallery</span>
                       </div>
                     </div>
                   ) : (
-                    <div className="relative w-full h-[280px] sm:h-[380px] md:h-[420px] lg:h-[443px] rounded-2xl overflow-hidden bg-gray-200 border border-gray-100 flex items-center justify-center">
-                      <svg className="w-20 h-20 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                      </svg>
+                    <div className="w-full aspect-[4/3] max-h-[420px] rounded-2xl overflow-hidden bg-gray-200 flex items-center justify-center">
+                      <span className="text-gray-400 text-sm">No image</span>
                     </div>
                   )}
                 </div>
-
-                {/* Thumbnails Container */}
                 {images.length > 1 && (
-                  <div className="flex-shrink-0">
-                    {/* Mobile: Horizontal Scrollable Thumbnails */}
-                    <div className="sm:hidden w-full">
-                      <div className="flex flex-row gap-3 overflow-x-auto scrollbar-hide py-1 px-1">
-                        {images.slice(0, 5).map((image, idx) => {
-                          if (!image || image.trim() === '') return null;
-                          
-                          const isSelected = selectedImage === idx;
-                          const isLastWithMore = idx === 4 && images.length > 5 && !isSelected;
-                          
-                          return (
-                            <div
-                              key={idx}
-                              onClick={() => handleThumbnailClick(idx, isLastWithMore)}
-                              className={`relative w-[72px] h-[54px] rounded-lg overflow-hidden cursor-pointer transition-all flex-shrink-0 border ${
-                                isSelected 
-                                  ? 'ring-2 ring-[#C5A365] ring-offset-2 border-[#C5A365]' 
-                                  : 'border-gray-200 opacity-70 hover:opacity-100 hover:border-[#C5A365]'
-                              }`}
-                            >
-                            <Image
-                              src={image}
-                              alt={`Thumbnail ${idx + 1}`}
-                              fill
-                              className="object-cover"
-                              sizes="72px"
-                              loading="lazy"
-                            />
-                              {isLastWithMore && (
-                                <div className="absolute inset-0 bg-black/60 flex items-center justify-center">
-                                  <span className="text-white text-xs font-semibold">
-                                    +{images.length - 5}
-                                  </span>
-                                </div>
-                              )}
+                  <div className="flex sm:flex-col gap-3 flex-shrink-0">
+                    {images.slice(0, 5).map((image, idx) => {
+                      if (!image || image.trim() === '') return null;
+                      const isSelected = selectedImage === idx;
+                      const isLastWithMore = idx === 4 && images.length > 5 && !isSelected;
+                      return (
+                        <div
+                          key={idx}
+                          onClick={() => handleThumbnailClick(idx, isLastWithMore)}
+                          className={`relative w-20 h-14 sm:w-20 sm:h-14 rounded-xl overflow-hidden cursor-pointer transition-all duration-200 flex-shrink-0 border-2 ${
+                            isSelected ? 'border-primary ring-2 ring-primary/30' : 'border-transparent hover:border-gray-300'
+                          }`}
+                        >
+                          <Image src={image} alt="" fill className="object-cover" sizes="80px" loading="lazy" />
+                          {isLastWithMore && (
+                            <div className="absolute inset-0 bg-black/60 flex items-center justify-center">
+                              <span className="text-white text-xs font-semibold">+{images.length - 5}</span>
                             </div>
-                          );
-                        })}
-                      </div>
-                    </div>
-
-                    {/* Tablet & Desktop: Vertical Thumbnails */}
-                    <div className="hidden sm:flex flex-col gap-4 lg:gap-[18px] h-full py-1 px-1">
-                      {images.slice(0, 5).map((image, idx) => {
-                        if (!image || image.trim() === '') return null;
-                        
-                        const isSelected = selectedImage === idx;
-                        const isLastWithMore = idx === 4 && images.length > 5 && !isSelected;
-                        
-                        return (
-                          <div
-                            key={idx}
-                            onClick={() => handleThumbnailClick(idx, isLastWithMore)}
-                            className={`relative w-[94px] lg:w-[96px] h-[66px] lg:h-[70px] rounded-lg overflow-hidden cursor-pointer transition-all flex-shrink-0 border ${
-                              isSelected 
-                                ? 'ring-2 ring-[#C5A365] ring-offset-2 border-[#C5A365]' 
-                                : 'border-gray-200 opacity-70 hover:opacity-100 hover:border-[#C5A365]'
-                            }`}
-                          >
-                            <Image
-                              src={image}
-                              alt={`Thumbnail ${idx + 1}`}
-                              fill
-                              className="object-cover"
-                              sizes="96px"
-                              loading="lazy"
-                            />
-                            {isLastWithMore && (
-                              <div className="absolute inset-0 bg-black/60 flex items-center justify-center">
-                                <span className="text-white text-sm font-semibold">
-                                  +{images.length - 5}
-                                </span>
-                              </div>
-                            )}
-                          </div>
-                        );
-                      })}
-                    </div>
+                          )}
+                        </div>
+                      );
+                    })}
                   </div>
                 )}
               </div>
             </div>
 
-            {/* Right: Property Info */}
-            <div className="flex-1 w-full lg:max-w-[530px] flex flex-col">
-              <div className="bg-white border border-gray-100 rounded-2xl shadow-sm p-5 md:p-6 lg:p-8 flex flex-col gap-6">
-                {/* Title and Location */}
-                <div className="flex flex-col gap-3">
-                  <h1 className="font-display font-bold text-2xl md:text-3xl lg:text-4xl leading-tight text-secondary">
+            {/* Right: Property Info Card */}
+            <div className="flex-shrink-0 w-full lg:max-w-[440px]">
+              <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 lg:p-8 flex flex-col gap-6 sticky top-24">
+                <div>
+                  <h1 className="font-display font-bold text-2xl md:text-3xl leading-tight text-secondary mb-3">
                     {displayTitle}
                   </h1>
                   {displayLocation && (
-                    <p className="text-sm md:text-base leading-normal text-gray-500 flex items-center gap-2">
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-[#C5A365]">
-                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                        <circle cx="12" cy="10" r="3"/>
-                      </svg>
+                    <p className="text-gray-500 text-sm flex items-center gap-2">
+                      <MapPin size={16} className="text-primary shrink-0" />
                       {displayLocation}
                     </p>
                   )}
                 </div>
-
-                {/* Description with Read More - from Alnair look API */}
                 {(displayDescription || isLoadingDescription) && (
-                  <div className="flex-1 min-h-0">
+                  <div>
                     {isLoadingDescription ? (
-                      <p className="text-sm text-gray-400 animate-pulse">Loading project description...</p>
+                      <div className="h-16 bg-gray-100 rounded-xl animate-pulse" />
                     ) : (
-                    <p className="text-sm md:text-base leading-relaxed text-gray-600 line-clamp-3">
-                      {descriptionPreview}
-                      {hasMoreDescription && (
-                        <>
-                          ...{' '}
-                          <button
-                            onClick={handleOpenDescription}
-                            className="text-[#C5A365] hover:text-[#b08e55] hover:underline font-semibold transition-colors"
-                          >
-                            Read more
-                          </button>
-                        </>
-                      )}
-                    </p>
+                      <p className="text-gray-600 text-sm leading-relaxed line-clamp-3">
+                        {descriptionPreview}
+                        {hasMoreDescription && (
+                          <>
+                            ...{' '}
+                            <button onClick={handleOpenDescription} className="text-primary hover:underline font-semibold">
+                              Read more
+                            </button>
+                          </>
+                        )}
+                      </p>
                     )}
                   </div>
                 )}
-
-                {/* Badges */}
-                <div className="flex flex-wrap gap-3">
+                <div className="flex flex-wrap gap-2">
                   {property.type && typeof property.type === 'string' && property.type.trim() !== '' && (
-                    <div className={`text-white text-[10px] font-bold px-3 py-1.5 rounded uppercase tracking-wider ${
-                      property.type === 'Off-Plan' ? 'bg-[#C5A365]' : 'bg-[#00DDAA]'
-                    }`}>
+                    <span className={`text-white text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-wider ${property.type === 'Off-Plan' ? 'bg-primary' : 'bg-emerald-500'}`}>
                       {property.type}
-                    </div>
+                    </span>
                   )}
-                  {property.bedrooms && property.bedrooms > 0 && (
-                    <div className="bg-gray-100 text-secondary text-xs font-semibold px-3 py-1.5 rounded uppercase tracking-wider">
-                      {property.bedrooms} Bedroom{property.bedrooms > 1 ? 's' : ''}
-                    </div>
+                  {property.bedrooms != null && property.bedrooms > 0 && (
+                    <span className="bg-gray-100 text-secondary text-xs font-semibold px-3 py-1.5 rounded-full flex items-center gap-1">
+                      <Bed size={12} /> {property.bedrooms} BR
+                    </span>
                   )}
-                  {property.bathrooms !== undefined && property.bathrooms !== null && property.bathrooms > 0 && (
-                    <div className="bg-gray-100 text-secondary text-xs font-semibold px-3 py-1.5 rounded uppercase tracking-wider">
-                      {property.bathrooms} Bathroom{property.bathrooms > 1 ? 's' : ''}
-                    </div>
+                  {property.bathrooms != null && property.bathrooms > 0 && (
+                    <span className="bg-gray-100 text-secondary text-xs font-semibold px-3 py-1.5 rounded-full flex items-center gap-1">
+                      <Bath size={12} /> {property.bathrooms} BA
+                    </span>
                   )}
-                  {property.area !== undefined && property.area !== null && property.area > 0 && (
-                    <div className="bg-gray-100 text-secondary text-xs font-semibold px-3 py-1.5 rounded uppercase tracking-wider">
-                      {property.areaMax && property.areaMax > property.area 
-                        ? `${property.area.toLocaleString('en-US')} - ${property.areaMax.toLocaleString('en-US')} sqft`
-                        : `${property.area.toLocaleString('en-US')} sqft`}
-                    </div>
+                  {property.area != null && property.area > 0 && (
+                    <span className="bg-gray-100 text-secondary text-xs font-semibold px-3 py-1.5 rounded-full flex items-center gap-1">
+                      <Square size={12} /> {property.areaMax && property.areaMax > property.area ? `${property.area}-${property.areaMax}` : property.area} sqft
+                    </span>
                   )}
                 </div>
-
-                {/* Price Starting from */}
-                <div className="mt-auto pt-6 border-t border-gray-100">
-                  <p className="text-[10px] text-gray-400 uppercase tracking-widest mb-2 font-medium">
-                    Price Starting from
-                  </p>
-                  <p className="font-display font-bold text-3xl md:text-4xl lg:text-3xl leading-tight text-secondary">
+                <div className="pt-4 border-t border-gray-100">
+                  <p className="text-[10px] text-gray-400 uppercase tracking-widest mb-1 font-medium">From</p>
+                  <p className="font-display font-bold text-2xl md:text-3xl text-secondary">
                     AED {formatPrice(property.minPrice ?? property.price)}
                   </p>
                 </div>
-
-                {/* Enquire Button */}
-                <div className="flex gap-3">
-                  <button
-                    onClick={handleOpenInquiry}
-                    className="flex-1 bg-[#C5A365] text-white py-3 md:py-4 rounded-full hover:bg-[#b08e55] transition-colors text-sm font-bold uppercase tracking-wider shadow-md hover:shadow-lg flex items-center justify-center gap-2"
-                  >
-                    Enquire Now
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
-                  </button>
-                </div>
+                <button
+                  onClick={handleOpenInquiry}
+                  className="w-full bg-primary text-white py-3.5 rounded-full font-bold text-sm uppercase tracking-wider hover:bg-primary/90 transition-colors flex items-center justify-center gap-2 shadow-md hover:shadow-lg"
+                >
+                  Enquire now <ChevronRight size={18} />
+                </button>
               </div>
             </div>
           </div>
 
           {/* Property Details Grid */}
-          <PropertyDetailsGrid property={property} onOpenAmenities={handleOpenAmenities} translatedDeveloper={translatedDeveloper} translatedLocality={translatedLocality} />
+          <section id="section-details" className="scroll-section mb-12">
+            <PropertyDetailsGrid property={property} onOpenAmenities={handleOpenAmenities} translatedDeveloper={translatedDeveloper} translatedLocality={translatedLocality} />
+          </section>
 
-          {/* Amenities - from Alnair look API (extracted from description or API) */}
+          {/* Amenities */}
           {property.amenities && property.amenities.length > 0 && (
-            <div className="bg-white border border-gray-100 rounded-2xl shadow-sm p-5 md:p-6 lg:p-8 mb-8">
-              <h2 className="font-display font-bold text-2xl md:text-3xl text-secondary mb-6">
-                Amenities
-              </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4">
-                {property.amenities.map((amenity, index) => (
+            <section id="section-amenities" className="scroll-section mb-12">
+              <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 md:p-8">
+                <h2 className="font-display font-bold text-xl md:text-2xl text-secondary mb-6">
+                  Amenities
+                </h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                  {property.amenities.map((amenity, index) => (
+                    <div
+                      key={index}
+                      className="flex items-center gap-3 p-4 bg-gray-50/80 rounded-xl border border-gray-100 transition-colors hover:border-primary/20"
+                    >
+                      <Check size={18} className="text-primary shrink-0" />
+                      <span className="text-gray-800 text-sm font-medium">{amenity}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </section>
+          )}
+
+          {/* Payment Plan */}
+          {property.paymentPlan && property.paymentPlan.trim() && (
+            <section id="section-payment" className="scroll-section mb-12">
+              <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 md:p-8">
+                <h2 className="font-display font-bold text-xl md:text-2xl text-secondary mb-6">
+                  Payment Plan
+                </h2>
+                {/<[a-z][\s\S]*>/i.test(property.paymentPlan) ? (
                   <div
-                    key={index}
-                    className="flex items-center gap-3 p-3 md:p-4 bg-gray-50 border border-gray-100 rounded-xl"
-                  >
-                    <svg className="w-5 h-5 text-[#C5A365] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="text-gray-800 text-sm md:text-base font-medium">
-                      {amenity}
-                    </span>
+                    className="text-gray-600 text-sm md:text-base leading-relaxed prose prose-p:my-2 prose-ul:my-2 prose-li:my-0 max-w-none"
+                    dangerouslySetInnerHTML={{ __html: property.paymentPlan }}
+                  />
+                ) : (
+                  <p className="text-gray-600 text-sm md:text-base leading-relaxed whitespace-pre-wrap">
+                    {property.paymentPlan}
+                  </p>
+                )}
+              </div>
+            </section>
+          )}
+
+          {/* Project Description */}
+          {(displayDescription || isLoadingDescription) && (
+            <section id="section-description" className="scroll-section mb-12">
+              <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 md:p-8">
+                <h2 className="font-display font-bold text-xl md:text-2xl text-secondary mb-6">
+                  Project Description
+                </h2>
+                {isLoadingDescription ? (
+                  <div className="space-y-3">
+                    <div className="h-4 bg-gray-100 rounded animate-pulse w-full" />
+                    <div className="h-4 bg-gray-100 rounded animate-pulse w-5/6" />
+                    <div className="h-4 bg-gray-100 rounded animate-pulse w-4/6" />
                   </div>
+                ) : effectiveDescription && /<[a-z][\s\S]*>/i.test(effectiveDescription) ? (
+                  <div
+                    className="text-gray-600 text-sm md:text-base leading-relaxed prose prose-p:my-2 prose-ul:my-2 prose-li:my-0 max-w-none"
+                    dangerouslySetInnerHTML={{ __html: effectiveDescription }}
+                  />
+                ) : effectiveDescription ? (
+                  <p className="text-gray-600 text-sm md:text-base leading-relaxed whitespace-pre-wrap">
+                    {effectiveDescription}
+                  </p>
+                ) : null}
+              </div>
+            </section>
+          )}
+
+          {/* Related Properties */}
+          {relatedProperties.length > 0 && (
+            <section id="section-related" className="scroll-section mb-12">
+              <h2 className="font-display font-bold text-xl md:text-2xl text-secondary mb-6">
+                Similar properties
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {relatedProperties.map((relatedProperty) => (
+                  <PropertyCard key={relatedProperty.id} property={relatedProperty} />
                 ))}
               </div>
-            </div>
+            </section>
           )}
-
-          {/* Payment Plan - from Alnair look API */}
-          {property.paymentPlan && property.paymentPlan.trim() && (
-            <div className="bg-white border border-gray-100 rounded-2xl shadow-sm p-5 md:p-6 lg:p-8 mb-8">
-              <h2 className="font-display font-bold text-2xl md:text-3xl text-secondary mb-6">
-                Payment Plan
-              </h2>
-              {/<[a-z][\s\S]*>/i.test(property.paymentPlan) ? (
-                <div
-                  className="text-gray-600 text-sm md:text-base leading-relaxed prose prose-p:my-2 prose-ul:my-2 prose-li:my-0 max-w-none"
-                  dangerouslySetInnerHTML={{ __html: property.paymentPlan }}
-                />
-              ) : (
-                <p className="text-gray-600 text-sm md:text-base leading-relaxed whitespace-pre-wrap">
-                  {property.paymentPlan}
-                </p>
-              )}
-            </div>
-          )}
-
-          {/* Project Description - from Alnair look API (authenticated) */}
-          {(displayDescription || isLoadingDescription) && (
-            <div className="bg-white border border-gray-100 rounded-2xl shadow-sm p-5 md:p-6 lg:p-8 mb-8">
-              <h2 className="font-display font-bold text-2xl md:text-3xl text-secondary mb-6">
-                Project Description
-              </h2>
-              {isLoadingDescription ? (
-                <p className="text-gray-400 animate-pulse">Loading project description from Alnair...</p>
-              ) : effectiveDescription && /<[a-z][\s\S]*>/i.test(effectiveDescription) ? (
-                <div
-                  className="text-gray-600 text-sm md:text-base leading-relaxed prose prose-p:my-2 prose-ul:my-2 prose-li:my-0 max-w-none"
-                  dangerouslySetInnerHTML={{ __html: effectiveDescription }}
-                />
-              ) : effectiveDescription ? (
-                <p className="text-gray-600 text-sm md:text-base leading-relaxed whitespace-pre-wrap">
-                  {effectiveDescription}
-                </p>
-              ) : null}
-            </div>
-          )}
-
-          {/* Related Properties - Memoized */}
-          {relatedPropertiesSection}
         </div>
+
+        {/* Sticky bottom CTA - visible on scroll for easy enquiry */}
+        <StickyEnquireBar
+          price={property.minPrice ?? property.price}
+          title={displayTitle}
+          onEnquire={handleOpenInquiry}
+        />
 
         {/* Modals */}
         <InquiryModal

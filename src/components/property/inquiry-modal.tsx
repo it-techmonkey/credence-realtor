@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
-import { openWhatsApp } from '@/utils/whatsappRedirect'
 
 interface InquiryModalProps {
   isOpen: boolean
@@ -110,25 +109,33 @@ export default function InquiryModal({ isOpen, onClose, propertyId, propertyTitl
     setSubmitStatus(null)
 
     try {
-      // Get the property URL
-      const propertyUrl = `${window.location.origin}/properties/${propertyId}`
+      const fullPhone = `${formData.countryCode} ${formData.phone}`.trim()
+      const messageLines = [
+        `Property: ${propertyTitle}`,
+        `Property link: ${typeof window !== 'undefined' ? `${window.location.origin}/properties/${propertyId}` : ''}`,
+        formData.preferredDate ? `Preferred date: ${formatDate(formData.preferredDate)}` : '',
+        formData.preferredTime ? `Preferred time: ${formatTime12Hour(formData.preferredTime)}` : '',
+        formData.message
+      ].filter(Boolean)
+      const res = await fetch('/api/enquiries/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          first_name: formData.name.split(' ')[0] || formData.name,
+          last_name: formData.name.split(' ').slice(1).join(' ') || '',
+          email: formData.email,
+          phone: fullPhone,
+          subject: `Inquiry: ${propertyTitle}`,
+          message: messageLines.join('\n'),
+          event: formData.preferredDate ? `Visit ${formatDate(formData.preferredDate)}` : undefined
+        })
+      })
 
-      // Prepare data for WhatsApp with formatted date and time
-      const whatsappData = {
-        'Property': propertyTitle,
-        'Property Link': propertyUrl,
-        'Name': formData.name,
-        'Email': formData.email,
-        'Phone': `${formData.countryCode} ${formData.phone}`,
-        'Preferred Date': formData.preferredDate ? formatDate(formData.preferredDate) : 'Not specified',
-        'Preferred Time': formData.preferredTime ? formatTime12Hour(formData.preferredTime) : 'Not specified',
-        'Message': formData.message
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}))
+        throw new Error(err.error || 'Submission failed')
       }
 
-      // Open WhatsApp with pre-filled message
-      openWhatsApp(WHATSAPP_NUMBER, whatsappData)
-
-      // Show success message
       setSubmitStatus('success')
       setFormData({
         name: '',
@@ -193,7 +200,7 @@ export default function InquiryModal({ isOpen, onClose, propertyId, propertyTitl
           {/* Status Messages */}
           {submitStatus === 'success' && (
             <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg text-green-700">
-              WhatsApp opened with your inquiry! Please send the message to complete your request.
+              Thank you! Your inquiry has been submitted. We&apos;ll get back to you soon.
             </div>
           )}
 
