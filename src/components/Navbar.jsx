@@ -18,11 +18,12 @@ const Navbar = () => {
             name: "Properties",
             path: "/properties",
             subItems: [
-                { name: "Off-Plan Properties", path: "/properties" },
-                { name: "Affordable Properties", path: "/properties" },
-                { name: "Luxury Residences", path: "/properties" },
-                { name: "Commercial Properties", path: "/properties?search=Commercial" },
-                { name: "Waterfront Properties", path: "/properties" },
+                { name: "Off-Plan Properties", path: "/properties?category=Off-Plan" },
+                { name: "Affordable Properties", path: "/properties?category=Affordable" },
+                { name: "Luxury Residences", path: "/properties?category=Luxury" },
+                { name: "Commercial Properties", path: "/properties?category=Commercial" },
+                { name: "Office", path: "/properties?category=Office" },
+                { name: "Waterfront Properties", path: "/properties?category=Waterfront" },
                 { name: "Featured Listings", path: "/properties" },
                 { name: "Why Buy in Dubai", path: "/blogs#market" },
                 { name: "Property FAQs", path: "/guide#faqs" }

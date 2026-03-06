@@ -1,6 +1,37 @@
 import { NextRequest, NextResponse } from 'next/server';
-// Import JSON at build time - ensures it works on Vercel (fs.readFileSync can fail in serverless)
 import allDataJson from '@/data/all_data.json';
+import categoriesConfig from '@/data/propertyCategories.config.json';
+import waterfrontSlugs from '@/data/waterfront-slugs.json';
+import officeSlugs from '@/data/office-slugs.json';
+import commercialSlugs from '@/data/commercial-slugs.json';
+
+const AFFORDABLE_MAX = (categoriesConfig as { affordableMaxPriceAED?: number }).affordableMaxPriceAED ?? 1_500_000;
+const LUXURY_DEV_NAMES = (categoriesConfig as { luxuryDeveloperNames?: string[] }).luxuryDeveloperNames ?? [];
+const WATERFRONT_SET = new Set((waterfrontSlugs as string[]).map((s) => s.toLowerCase().trim()));
+const OFFICE_SET = new Set((officeSlugs as string[]).map((s) => s.toLowerCase().trim()));
+const COMMERCIAL_SET = new Set((commercialSlugs as string[]).map((s) => s.toLowerCase().trim()));
+const OFFICE_KEYWORDS = ['office', 'offices', 'مكتب', 'مكاتب'];
+const COMMERCIAL_KEYWORDS = ['commercial', 'retail', 'تجاري', 'تجارة'];
+
+function slugOrTitleMatches(text: string, keywords: string[]): boolean {
+  const t = (text || '').toLowerCase();
+  return keywords.some((k) => t.includes(k.toLowerCase()));
+}
+
+function getProjectCategory(project: any): string {
+  const slug = (project.slug || '').toString().toLowerCase().trim();
+  const title = (project.title || '').toString();
+  const builder = (project.builder || '').toString();
+  const priceFrom = project.statistics?.total?.price_from ?? project.statistics?.total?.price_to ?? 0;
+  if (OFFICE_SET.has(slug)) return 'Office';
+  if (slugOrTitleMatches(slug, OFFICE_KEYWORDS) || slugOrTitleMatches(title, OFFICE_KEYWORDS)) return 'Office';
+  if (COMMERCIAL_SET.has(slug)) return 'Commercial';
+  if (slugOrTitleMatches(slug, COMMERCIAL_KEYWORDS) || slugOrTitleMatches(title, COMMERCIAL_KEYWORDS)) return 'Commercial';
+  if (WATERFRONT_SET.has(slug)) return 'Waterfront';
+  if (LUXURY_DEV_NAMES.some((name) => builder.toLowerCase().includes(name.toLowerCase()) || builder.includes(name))) return 'Luxury';
+  if (priceFrom > 0 && priceFrom <= AFFORDABLE_MAX) return 'Affordable';
+  return 'Off-Plan';
+}
 
 // Transform Alnair project to our Property-like format
 function transformProject(project: any) {
@@ -22,11 +53,14 @@ function transformProject(project: any) {
     if (match) readyDate = `Q${Math.ceil(parseInt(match[2], 10) / 3)} ${match[1]}`;
   }
 
+  const category = getProjectCategory(project);
+
   return {
     id: project.id,
     slug: project.slug,
     title: project.title,
     type: project.type === 'project' || project.type === 'compound' ? 'Off-Plan' : 'Off-Plan',
+    category,
     price: minPrice || maxPrice,
     minPrice,
     maxPrice,

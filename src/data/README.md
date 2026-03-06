@@ -7,6 +7,15 @@ Use these JSON files to drive **Most Recent Launches** and **Our Top Picks** on 
 - **`recent-launches.json`** – array of 4 items (display order: 1 → 4).
 - **`top-picks.json`** – array of 3 items (display order: 1 → 3).
 
+## Category & amenities data
+
+- **`propertyCategories.config.json`** – Affordable max price (1.5M AED), luxury developer names (Binghatti, Emaar, DAMAC, Jacob, Imtiaz), category order.
+- **`waterfront-slugs.json`** – Slugs of island/lagoon projects (Waterfront filter). Add or remove slugs to match your catalog.
+- **`office-slugs.json`** – Slugs of office projects (Office filter, separate from Commercial).
+- **`commercial-slugs.json`** – Slugs of commercial (non-office) projects.
+- **`descriptions.json`** – Map of project slug → HTML description string. When a slug is present here, the app uses this for the property description and **does not call the Alnair look API** for that project (avoids rate limiting). Amenities are parsed from the description text (e.g. "Amenities:" sections and list items); you can still override with `amenities.json` per slug.
+- **`amenities.json`** – Optional map of project slug → amenities array. When present for a slug, it overrides amenities parsed from descriptions. Can be filled by `node scripts/fetch-amenities.js` (uses Alnair API with `--delay 2000` recommended).
+
 ## Shape of each item
 
 Each item in the arrays must have these fields (same as the API property objects used in the cards):

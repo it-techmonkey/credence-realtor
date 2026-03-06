@@ -29,9 +29,9 @@ const PropertyCard = ({ property, index = 0 }) => {
                         {property.type}
                     </div>
 
-                    {/* Top Right Badge (Bedroom count or visual tag) */}
+                    {/* Top Right Badge (Category: Office, Commercial, or bedroom count) */}
                     <div className="absolute top-4 right-4 bg-black/50 backdrop-blur-sm text-white text-[10px] font-bold px-3 py-1.5 rounded uppercase tracking-wider">
-                        {property.category === 'Commercial' ? 'Office' : (property.bedrooms ? `${property.bedrooms} Bedroom` : property.category)}
+                        {property.category === 'Office' || property.category === 'Commercial' ? property.category : (property.bedrooms ? `${property.bedrooms} Bedroom` : (property.category || ''))}
                     </div>
 
                     {/* Price Overlay */}

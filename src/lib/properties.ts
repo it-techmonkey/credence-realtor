@@ -732,6 +732,7 @@ function mapStaticProjectToProperty(data: any): Property {
     title: data.title || 'Untitled',
     description: data.description || '',
     type: data.type || 'Off-Plan',
+    category: data.category || undefined,
     price,
     minPrice: minPrice || undefined,
     maxPrice: maxPrice && maxPrice !== minPrice ? maxPrice : undefined,
@@ -1034,6 +1035,7 @@ async function getPaginatedPropertiesFromStatic(
     if (filters.locality) params.set('locality', filters.locality);
     if (filters.search) params.set('search', filters.search);
     if (filters.developer) params.set('developer', filters.developer);
+    if (filters.category && filters.category !== 'All') params.set('category', filters.category);
     if (filters.minPrice && filters.minPrice > 0) params.set('minPrice', String(filters.minPrice));
     if (filters.maxPrice && filters.maxPrice > 0) params.set('maxPrice', String(filters.maxPrice));
 

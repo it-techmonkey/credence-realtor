@@ -17,6 +17,8 @@ import AnimatedSection from '@/components/AnimatedSection';
 import AnimatedContainer from '@/components/AnimatedContainer';
 import AnimatedItem from '@/components/AnimatedItem';
 
+const VALID_CATEGORIES = ['Affordable', 'Luxury', 'Waterfront', 'Commercial', 'Office', 'Off-Plan'];
+
 function PropertiesContent() {
     const searchParams = useSearchParams();
     const router = useRouter();
@@ -24,7 +26,8 @@ function PropertiesContent() {
     const [searchQuery, setSearchQuery] = useState('');
     const [debouncedSearchQuery, setDebouncedSearchQuery] = useState('');
     const [filters, setFilters] = useState({});
-    const [activeFilter, setActiveFilter] = useState('All');
+    const categoryFromUrl = searchParams.get('category');
+    const [activeFilter, setActiveFilter] = useState(categoryFromUrl && VALID_CATEGORIES.includes(categoryFromUrl) ? categoryFromUrl : 'All');
     const [selectedArea, setSelectedArea] = useState(null);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
@@ -108,8 +111,16 @@ function PropertiesContent() {
         };
     }, [handleApplyFilters, filters]);
 
-    // Filter categories
-    const filterCategories = ['All', 'Off-Plan', 'Affordable', 'Luxury Branded', 'Waterfront'];
+    // Filter categories: API expects Affordable | Waterfront | Luxury | Office | Commercial | Off-Plan
+    const filterCategories = [
+        { value: 'All', label: 'All Properties' },
+        { value: 'Off-Plan', label: 'Off-Plan' },
+        { value: 'Affordable', label: 'Affordable (≤1.5M AED)' },
+        { value: 'Luxury', label: 'Luxury' },
+        { value: 'Waterfront', label: 'Waterfront' },
+        { value: 'Commercial', label: 'Commercial' },
+        { value: 'Office', label: 'Office' },
+    ];
 
     // Property Categories Data
     const categories = [
@@ -260,6 +271,12 @@ function PropertiesContent() {
         if (sortOrderParam) {
             urlFilters.sortOrder = sortOrderParam;
         }
+        const categoryParam = searchParams.get('category');
+        if (categoryParam && VALID_CATEGORIES.includes(categoryParam)) {
+            setActiveFilter(categoryParam);
+        } else if (!categoryParam || !VALID_CATEGORIES.includes(categoryParam)) {
+            setActiveFilter('All');
+        }
 
         if (Object.keys(urlFilters).length > 0) {
             setFilters(urlFilters);
@@ -287,11 +304,15 @@ function PropertiesContent() {
                     apiFilters.search = debouncedSearchQuery.trim();
                 }
 
-                // Note: Category and Type filters removed due to backend Prisma bugs
-                // Active filter buttons (Off-Plan, Luxury Branded, Waterfront, Affordable) 
-                // are kept for UI but don't filter properties
+                // Category from URL (nav link) takes precedence so first load shows correct filter
+                const categoryFromUrl = searchParams.get('category');
+                if (categoryFromUrl && categoryFromUrl !== 'All' && ['Affordable', 'Luxury', 'Waterfront', 'Commercial', 'Office', 'Off-Plan'].includes(categoryFromUrl)) {
+                    apiFilters.category = categoryFromUrl;
+                } else if (activeFilter && activeFilter !== 'All') {
+                    apiFilters.category = activeFilter;
+                }
 
-                // getPaginatedProperties now uses API-based filtering
+                // getPaginatedProperties uses static API with category filter
                 const result = await getPaginatedProperties(apiFilters, currentPage, propertiesPerPage);
 
                 setProperties(result.properties);
@@ -330,7 +351,7 @@ function PropertiesContent() {
         };
 
         loadProperties();
-    }, [filters, debouncedSearchQuery, activeFilter, currentPage, propertiesPerPage]);
+    }, [filters, debouncedSearchQuery, activeFilter, currentPage, propertiesPerPage, searchParams]);
 
     // Reset to page 1 when filters or debounced search change
     useEffect(() => {
@@ -406,22 +427,22 @@ function PropertiesContent() {
 
                     {/* Top Controls - Responsive Update */}
                     <div className="flex flex-col xl:flex-row justify-end items-center mb-8 gap-6">
-                        {/* Main Type Toggle */}
-                        {/* <div className="flex flex-wrap justify-center bg-white rounded-3xl p-1 border border-gray-100 shadow-sm w-full md:w-auto">
+                        {/* Category filter: Affordable, Waterfront, Luxury, Commercial, Office */}
+                        <div className="flex flex-wrap justify-center gap-2 w-full xl:w-auto">
                             {filterCategories.map((filter) => (
                                 <button
-                                    key={filter}
-                                    onClick={() => handleFilterChange(filter)}
-                                    className={`flex-1 md:flex-none px-6 py-2.5 rounded-full text-sm font-medium transition-all whitespace-nowrap ${
-                                        activeFilter === filter
-                                            ? 'bg-black text-white'
-                                            : 'text-gray-500 hover:text-black'
+                                    key={filter.value}
+                                    onClick={() => handleFilterChange(filter.value)}
+                                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all whitespace-nowrap ${
+                                        activeFilter === filter.value
+                                            ? 'bg-secondary text-white'
+                                            : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                                     }`}
                                 >
-                                    {filter === 'All' ? 'All Properties' : filter}
+                                    {filter.label}
                                 </button>
                             ))}
-                        </div> */}
+                        </div>
 
                         {/* Secondary Filters */}
                         <div className="flex flex-wrap justify-center gap-3 w-full md:w-auto">

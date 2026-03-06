@@ -1,0 +1,15 @@
+{
+  "affordableMaxPriceAED": 1500000,
+  "luxuryDeveloperNames": [
+    "binghatti",
+    "emaar",
+    "damac",
+    "imtiaz",
+    "jacob",
+    "إمار",
+    "داماك",
+    "بينغهاتي",
+    "ايمتياز"
+  ],
+  "categoryOrder": ["Affordable", "Waterfront", "Luxury", "Office", "Commercial", "Off-Plan"]
+}
