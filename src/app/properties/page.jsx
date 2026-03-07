@@ -281,7 +281,6 @@ function PropertiesContent() {
         if (sortOrderParam) {
             urlFilters.sortOrder = sortOrderParam;
         }
-        const categoryParam = searchParams.get('category');
         if (categoryParam && VALID_CATEGORIES.includes(categoryParam)) {
             setActiveFilter(categoryParam);
         } else if (!categoryParam || !VALID_CATEGORIES.includes(categoryParam)) {
