@@ -560,6 +560,8 @@ export interface FilterOptions {
   type?: string | string[];
   category?: string;
   developer?: string;
+  /** When set (e.g. Luxury view), only show properties from these developers (case-insensitive partial match) */
+  allowedDevelopers?: string[];
   bedrooms?: number;
   minPrice?: number;
   maxPrice?: number;
@@ -1079,9 +1081,10 @@ export async function getPaginatedProperties(
   limit: number = 9
 ): Promise<PaginatedPropertiesResult> {
   try {
-    // Use static API only when NOT filtering by developer (static data has builder names in Arabic)
+    // Use static API only when NOT filtering by developer or allowedDevelopers (static has no multi-developer filter)
     const hasDeveloperFilter = !!(filters.developer && typeof filters.developer === 'string' && filters.developer.trim() !== '');
-    if (!hasDeveloperFilter) {
+    const hasAllowedDevelopersFilter = !!(filters.allowedDevelopers && filters.allowedDevelopers.length > 0);
+    if (!hasDeveloperFilter && !hasAllowedDevelopersFilter) {
       try {
         const result = await getPaginatedPropertiesFromStatic(filters, page, limit);
         result.properties = await translatePropertiesForDisplay(result.properties);
@@ -1102,6 +1105,7 @@ export async function getPaginatedProperties(
       filters.city ||
       filters.locality ||
       filters.developer ||
+      (filters.allowedDevelopers && filters.allowedDevelopers.length > 0) ||
       (filters.bedrooms !== undefined && filters.bedrooms > 0) ||
       (filters.minPrice !== undefined && filters.minPrice > 0) ||
       (filters.maxPrice !== undefined && filters.maxPrice > 0) ||
@@ -1145,7 +1149,10 @@ export async function getPaginatedProperties(
       filters.locality ||
       filters.city ||
       (filters.bedrooms !== undefined && filters.bedrooms > 0) ||
-      (filters.developer && typeof filters.developer === 'string' && filters.developer.trim() !== '' && !hasDeveloperId)
+      (filters.developer && typeof filters.developer === 'string' && filters.developer.trim() !== '' && !hasDeveloperId) ||
+      (filters.minPrice !== undefined && filters.minPrice > 0) ||
+      (filters.maxPrice !== undefined && filters.maxPrice > 0) ||
+      (filters.allowedDevelopers && filters.allowedDevelopers.length > 0)
     );
     
     // If we need client-side filtering, fetch ALL properties by paginating through API
@@ -1319,6 +1326,41 @@ export async function getPaginatedProperties(
         
         if (process.env.NODE_ENV === 'development') {
           console.log(`City filter (${cityFilter}): ${beforeCount} -> ${properties.length} properties`);
+        }
+      }
+      
+      // Price filters (minPrice / maxPrice) - e.g. Luxury = 7M+ AED
+      if (filters.minPrice !== undefined && filters.minPrice > 0) {
+        const beforeCount = properties.length;
+        properties = properties.filter((p) => {
+          const price = typeof p.price === 'number' ? p.price : (p.minPrice ?? 0);
+          return price >= filters.minPrice!;
+        });
+        if (process.env.NODE_ENV === 'development') {
+          console.log(`Min price filter (>= ${filters.minPrice}): ${beforeCount} -> ${properties.length} properties`);
+        }
+      }
+      if (filters.maxPrice !== undefined && filters.maxPrice > 0) {
+        const beforeCount = properties.length;
+        properties = properties.filter((p) => {
+          const price = typeof p.price === 'number' ? p.price : (p.maxPrice ?? p.minPrice ?? 0);
+          return price <= filters.maxPrice!;
+        });
+        if (process.env.NODE_ENV === 'development') {
+          console.log(`Max price filter (<= ${filters.maxPrice}): ${beforeCount} -> ${properties.length} properties`);
+        }
+      }
+      
+      // Allowed developers (e.g. Luxury = only certain developers)
+      if (filters.allowedDevelopers && filters.allowedDevelopers.length > 0) {
+        const allowed = filters.allowedDevelopers.map((d) => d.toLowerCase().trim()).filter(Boolean);
+        const beforeCount = properties.length;
+        properties = properties.filter((p) => {
+          const dev = (p.developer || '').toLowerCase().trim();
+          return allowed.some((name) => dev.includes(name) || name.includes(dev));
+        });
+        if (process.env.NODE_ENV === 'development') {
+          console.log(`Allowed developers filter (${allowed.length} names): ${beforeCount} -> ${properties.length} properties`);
         }
       }
       

@@ -211,11 +211,16 @@ function PropertiesContent() {
         loadDevelopers();
     }, []);
 
+    // Luxury = 7M+ AED and only these developers
+    const LUXURY_MIN_PRICE = 7_000_000;
+    const LUXURY_DEVELOPERS = ['binghatti', 'bingati', 'damac', 'sobha', 'ellington', 'azizi', 'omniyat', 'imtiyaz', 'emaar'];
+
     // Read all filter params from URL on mount
     useEffect(() => {
         const cityParam = searchParams.get('city');
         const localityParam = searchParams.get('locality');
         const developerParam = searchParams.get('developer');
+        const categoryParam = searchParams.get('category');
         const bedroomsParam = searchParams.get('bedrooms');
         const minPriceParam = searchParams.get('minPrice');
         const maxPriceParam = searchParams.get('maxPrice');
@@ -235,6 +240,11 @@ function PropertiesContent() {
         if (developerParam) {
             urlFilters.developer = developerParam;
         }
+        // Luxury category = only 7M+ properties
+        if (categoryParam && categoryParam.toLowerCase() === 'luxury') {
+            urlFilters.minPrice = LUXURY_MIN_PRICE;
+            setActiveFilter('Luxury Branded');
+        }
         if (bedroomsParam) {
             const bedrooms = parseInt(bedroomsParam);
             if (!isNaN(bedrooms) && bedrooms > 0) {
@@ -244,7 +254,7 @@ function PropertiesContent() {
         if (minPriceParam) {
             const minPrice = parseInt(minPriceParam);
             if (!isNaN(minPrice) && minPrice > 0) {
-                urlFilters.minPrice = minPrice;
+                urlFilters.minPrice = urlFilters.minPrice != null ? Math.max(urlFilters.minPrice, minPrice) : minPrice;
             }
         }
         if (maxPriceParam) {
@@ -299,23 +309,40 @@ function PropertiesContent() {
                     ...filters,
                 };
 
+                // Force 7M+ and luxury developers when Luxury category is in URL
+                const categoryParam = searchParams.get('category');
+                if (categoryParam && categoryParam.toLowerCase() === 'luxury') {
+                    apiFilters.minPrice = Math.max(apiFilters.minPrice || 0, LUXURY_MIN_PRICE);
+                    apiFilters.allowedDevelopers = LUXURY_DEVELOPERS;
+                }
+
                 // Add debounced search to filters if provided
                 if (debouncedSearchQuery.trim()) {
                     apiFilters.search = debouncedSearchQuery.trim();
                 }
 
-                // Category from URL (nav link) takes precedence so first load shows correct filter
+                // Category from URL (nav link) - Luxury uses minPrice+allowedDevelopers above
                 const categoryFromUrl = searchParams.get('category');
-                if (categoryFromUrl && categoryFromUrl !== 'All' && ['Affordable', 'Luxury', 'Waterfront', 'Commercial', 'Office', 'Off-Plan'].includes(categoryFromUrl)) {
-                    apiFilters.category = categoryFromUrl;
+                if (categoryFromUrl && categoryFromUrl !== 'All' && VALID_CATEGORIES.includes(categoryFromUrl)) {
+                    if (categoryFromUrl.toLowerCase() !== 'luxury') apiFilters.category = categoryFromUrl;
                 } else if (activeFilter && activeFilter !== 'All') {
                     apiFilters.category = activeFilter;
                 }
 
-                // getPaginatedProperties uses static API with category filter
                 const result = await getPaginatedProperties(apiFilters, currentPage, propertiesPerPage);
 
-                setProperties(result.properties);
+                // Client-side: Luxury = 7M+ and only allowed developers (safety net)
+                const isLuxuryView = (categoryParam && categoryParam.toLowerCase() === 'luxury') || (filters.minPrice >= LUXURY_MIN_PRICE);
+                const getPropertyPrice = (p) => (typeof p?.price === 'number' ? p.price : p?.minPrice) || 0;
+                const devMatchesLuxury = (p) => {
+                    const dev = (p?.developer || '').toLowerCase();
+                    return LUXURY_DEVELOPERS.some((name) => dev.includes(name));
+                };
+                const list = isLuxuryView
+                    ? result.properties.filter((p) => getPropertyPrice(p) >= LUXURY_MIN_PRICE && devMatchesLuxury(p))
+                    : result.properties;
+
+                setProperties(list);
                 setTotalPages(result.pagination.totalPages);
                 setTotalProperties(result.pagination.total);
 

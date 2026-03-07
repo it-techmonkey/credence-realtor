@@ -125,17 +125,21 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    // Filter by price range
+    // Filter by price range: minPrice = project's minimum unit price (price_from) must be >= minPrice
     if (minPrice !== undefined && minPrice > 0) {
       items = items.filter((p: any) => {
-        const price = p.statistics?.total?.price_from || p.statistics?.total?.price_to || 0;
-        return price >= minPrice;
+        const priceFrom = p.statistics?.total?.price_from ?? 0;
+        const priceTo = p.statistics?.total?.price_to ?? 0;
+        const floorPrice = priceFrom > 0 ? priceFrom : priceTo;
+        return floorPrice >= minPrice;
       });
     }
     if (maxPrice !== undefined && maxPrice > 0) {
       items = items.filter((p: any) => {
-        const price = p.statistics?.total?.price_from || p.statistics?.total?.price_to || 0;
-        return price <= maxPrice;
+        const priceFrom = p.statistics?.total?.price_from ?? 0;
+        const priceTo = p.statistics?.total?.price_to ?? 0;
+        const ceilingPrice = priceTo > 0 ? priceTo : priceFrom;
+        return ceilingPrice <= maxPrice;
       });
     }
 
