@@ -17,7 +17,7 @@ export default function Providers({ children }) {
       ) : (
         <>
           <Navbar />
-          <main className="flex-grow">{children}</main>
+          <main className="flex-grow pt-14">{children}</main>
           <Footer />
           <ScrollButton />
         </>

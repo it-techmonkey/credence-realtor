@@ -26,6 +26,7 @@ import AnimatedSection from '@/components/AnimatedSection';
 import AnimatedContainer from '@/components/AnimatedContainer';
 import AnimatedItem from '@/components/AnimatedItem';
 import { useScrollAnimations } from '@/utils/useScrollAnimation';
+import { TEAM_MEMBERS } from '@/data/team';
 
 const About = () => {
     useScrollAnimations();
@@ -306,25 +307,7 @@ const About = () => {
                                 }
                             `}</style>
                             <div className="flex gap-6 md:gap-8 min-w-max py-2">
-                                {[
-                                    { name: "Ibrahim Bounil", img: "/team/ibrahim-bounil.jpeg", phone: "971589600053" },
-                                    { name: "Esther Hrahsel", img: "/team/esther-hrahsel.jpeg", phone: "971585220775" },
-                                    { name: "Albin PR", img: "/team/albin-pr.jpeg", phone: "971585722955" },
-                                    { name: "Sadia Shaukat", img: "/team/sadia-shaukat.jpeg", phone: "971559787029" },
-                                    { name: "Mai Sari Kozal", img: "/team/mai-sari-kozal.jpeg", phone: "971588919223" },
-                                    { name: "Anita Sisodiya", img: "/team/anita-sisodiya.jpeg", phone: "971588919223" },
-                                    { name: "Naresh Singh", img: "/team/naresh-singh.jpeg", phone: "971588919223" },
-                                    { name: "Muhammed Ali", img: "/team/muhammed-ali.jpeg", phone: "971552151598" },
-                                    { name: "Sameer Mohammad", img: "/team/sameer-mohammad.jpeg", phone: "971588919223" },
-                                    { name: "Mukesh Kumar", img: "/team/mukesh-kumar.jpeg", phone: "971588919223" },
-                                    { name: "Prasad Nag", img: "/team/prasad-nag.jpeg", phone: "971528573241" },
-                                    { name: "Amjad Hussain", img: "/team/amjad-hussain.jpeg", phone: "971585633420" },
-                                    { name: "Pratibha Verma", img: "/team/pratibha-verma.jpeg", phone: "971588919223" },
-                                    { name: "Rohit Shrivastava", img: "/team/rohit-shrivastava.jpeg", phone: "971564081600" },
-                                    { name: "Rahul Kakoti", img: "/team/rahul-kakoti.jpeg", phone: "971585436194" },
-                                    { name: "Neelam Rajput", img: "/team/neelam-rajput.jpeg", phone: "971522457210" },
-                                    { name: "Kanchan Nagpure", img: "/team/kanchan-nagpure.jpeg", phone: "971585569796" }
-                                ].map((member, idx) => (
+                                {TEAM_MEMBERS.map((member, idx) => (
                                     <div key={idx} className="group cursor-pointer flex-shrink-0 w-64 md:w-72">
                                         <div className="overflow-hidden mb-6 bg-[#F9F7F2] rounded-sm p-0 aspect-[3/4] relative">
                                             <img src={member.img} alt={member.name} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
@@ -356,6 +339,11 @@ const About = () => {
                                     </div>
                                 ))}
                             </div>
+                        </div>
+                        <div className="text-center mt-8">
+                            <Link href="/team" className="inline-flex items-center gap-2 text-[#C5A365] font-semibold hover:underline">
+                                View full team <ArrowRight size={18} />
+                            </Link>
                         </div>
                     </div>
                 </div>

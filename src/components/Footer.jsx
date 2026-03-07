@@ -232,7 +232,7 @@ const Footer = () => {
                                     { name: "Who We Are", path: "/about#who-we-are" },
                                     { name: "Our Mission & Vision", path: "/about#mission" },
                                     { name: "Why Choose Credence", path: "/about#choose-us" },
-                                    { name: "Our Team", path: "/about#team" },
+                                    { name: "Our Team", path: "/team" },
                                     { name: "Achievements", path: "/about#achievements" },
                                     { name: "FAQs", path: "/about#faqs" },
                                     { name: "Client Testimonials", path: "/about#testimonials" }
