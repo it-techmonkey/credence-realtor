@@ -12,26 +12,39 @@ const OFFICE_SET = new Set((officeSlugs as string[]).map((s) => s.toLowerCase().
 const COMMERCIAL_SET = new Set((commercialSlugs as string[]).map((s) => s.toLowerCase().trim()));
 
 // Keywords in slug/title to derive Office vs Commercial (all_data has no type field)
-const OFFICE_KEYWORDS = ['office', 'offices', 'مكتب', 'مكاتب'];
-const COMMERCIAL_KEYWORDS = ['commercial', 'retail', 'تجاري', 'تجارة'];
+const OFFICE_KEYWORDS = ['office', 'offices', 'مكتب', 'مكاتب', 'business bay', 'difc'];
+const COMMERCIAL_KEYWORDS = ['commercial', 'retail', 'تجاري', 'تجارة', 'mall'];
+const WATERFRONT_KEYWORDS = [
+  'waterfront', 'marina', 'beach', 'creek', 'palm', 'island', 'lagoon', 'harbour', 'harbor',
+  'jlt', 'jvc', 'jvt', 'bluewaters', 'pearl', 'coast', 'bay', 'sea', 'جميرا', 'مارينا', 'جزيرة', 'شاطئ'
+];
 
-function slugOrTitleMatches(text: string, keywords: string[]): boolean {
+function textContainsAny(text: string, keywords: string[]): boolean {
   const t = (text || '').toLowerCase();
   return keywords.some((k) => t.includes(k.toLowerCase()));
 }
 
+function projectSlugTitleDistrict(project: any): string {
+  const s = (project.slug || '').toString().toLowerCase();
+  const t = (project.title || '').toString().toLowerCase();
+  const d = (project.district?.title || project.district || '').toString().toLowerCase();
+  return `${s} ${t} ${d}`;
+}
+
+
 /** Compute segment/category for filtering and display. Uses slug/title keywords for Office/Commercial when JSON lists are empty. */
 function getProjectCategory(project: any): string {
   const slug = (project.slug || '').toString().toLowerCase().trim();
-  const title = (project.title || '').toString();
+  const combined = projectSlugTitleDistrict(project);
   const builder = (project.builder || '').toString();
   const priceFrom = project.statistics?.total?.price_from ?? project.statistics?.total?.price_to ?? 0;
 
   if (OFFICE_SET.has(slug)) return 'Office';
-  if (slugOrTitleMatches(slug, OFFICE_KEYWORDS) || slugOrTitleMatches(title, OFFICE_KEYWORDS)) return 'Office';
+  if (textContainsAny(combined, OFFICE_KEYWORDS)) return 'Office';
   if (COMMERCIAL_SET.has(slug)) return 'Commercial';
-  if (slugOrTitleMatches(slug, COMMERCIAL_KEYWORDS) || slugOrTitleMatches(title, COMMERCIAL_KEYWORDS)) return 'Commercial';
+  if (textContainsAny(combined, COMMERCIAL_KEYWORDS)) return 'Commercial';
   if (WATERFRONT_SET.has(slug)) return 'Waterfront';
+  if (textContainsAny(combined, WATERFRONT_KEYWORDS)) return 'Waterfront';
   const isLuxury = LUXURY_DEV_NAMES.some((name) => builder.toLowerCase().includes(name.toLowerCase()) || builder.includes(name));
   if (isLuxury) return 'Luxury';
   if (priceFrom > 0 && priceFrom <= AFFORDABLE_MAX) return 'Affordable';
@@ -58,7 +71,7 @@ function transformProject(project: any) {
     if (match) readyDate = `Q${Math.ceil(parseInt(match[2], 10) / 3)} ${match[1]}`;
   }
 
-  const category = getProjectCategory(project);
+  const category = (project as any)._category !== undefined ? (project as any)._category : getProjectCategory(project);
 
   return {
     id: project.id,
@@ -88,15 +101,25 @@ export async function GET(request: NextRequest) {
     const search = searchParams.get('search')?.trim().toLowerCase();
     const developer = searchParams.get('developer')?.trim().toLowerCase();
     const category = searchParams.get('category')?.trim();
-    const minPrice = searchParams.get('minPrice') ? parseInt(searchParams.get('minPrice')!, 10) : undefined;
-    const maxPrice = searchParams.get('maxPrice') ? parseInt(searchParams.get('maxPrice')!, 10) : undefined;
+    let minPrice = searchParams.get('minPrice') ? parseInt(searchParams.get('minPrice')!, 10) : undefined;
+    let maxPrice = searchParams.get('maxPrice') ? parseInt(searchParams.get('maxPrice')!, 10) : undefined;
+
+    // Affordable = only projects <= 1.5M AED (enforce so results always match the filter)
+    if (category && category.toLowerCase() === 'affordable') {
+      const cap = AFFORDABLE_MAX;
+      maxPrice = maxPrice !== undefined && maxPrice > 0 ? Math.min(maxPrice, cap) : cap;
+    }
 
     let items = (allDataJson as any)?.data?.items || [];
 
-    // Filter by category using same getProjectCategory so Office/Commercial come from slug+title keywords when lists empty
+    // Filter by category: single pass to compute and filter (so transformProject can reuse _category and we only call getProjectCategory once per item)
     if (category && category !== 'All') {
       const cat = category.toLowerCase();
-      items = items.filter((p: any) => getProjectCategory(p).toLowerCase() === cat);
+      items = items.filter((p: any) => {
+        const projectCat = getProjectCategory(p);
+        (p as any)._category = projectCat;
+        return projectCat.toLowerCase() === cat;
+      });
     }
 
     // Filter by locality
@@ -108,10 +131,11 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    // Filter by search
+    // Filter by search (slug, title, builder, district)
     if (search) {
       items = items.filter(
         (p: any) =>
+          (p.slug && (p.slug as string).toLowerCase().includes(search)) ||
           p.title?.toLowerCase().includes(search) ||
           p.builder?.toLowerCase().includes(search) ||
           p.district?.title?.toLowerCase().includes(search)
@@ -168,7 +192,7 @@ export async function GET(request: NextRequest) {
       },
       {
         headers: {
-          'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=600',
+          'Cache-Control': 'public, s-maxage=600, stale-while-revalidate=900',
         },
       }
     );

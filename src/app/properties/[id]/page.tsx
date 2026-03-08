@@ -175,6 +175,8 @@ export default function PropertyDetailPage() {
   const [isImageViewerOpen, setIsImageViewerOpen] = useState(false);
   const [isAmenitiesModalOpen, setIsAmenitiesModalOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState(0);
+  const thumbnailStripRef = useRef<HTMLDivElement>(null);
+  const thumbnailRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [translatedDeveloper, setTranslatedDeveloper] = useState<string | null>(null);
   const [translatedDescription, setTranslatedDescription] = useState<string | null>(null);
   const [translatedLocality, setTranslatedLocality] = useState<string | null>(null);
@@ -347,6 +349,7 @@ export default function PropertyDetailPage() {
       handleOpenImageViewer();
     } else {
       handleImageSelect(idx);
+      thumbnailRefs.current[idx]?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
     }
   }, [handleOpenImageViewer, handleImageSelect]);
 
@@ -489,16 +492,16 @@ export default function PropertyDetailPage() {
                       className="relative w-full aspect-[4/3] max-h-[420px] lg:max-h-[500px] rounded-2xl overflow-hidden cursor-pointer bg-gray-100 border border-gray-100 shadow-sm group"
                       onClick={handleOpenImageViewer}
                     >
-                      <Image
+                      {/* Native img for instant switch on thumbnail click; no Next/Image delay */}
+                      <img
+                        key={selectedImage}
                         src={images[selectedImage]}
                         alt={displayTitle}
-                        fill
-                        className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 55vw, 600px"
-                        priority
+                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-200 ease-out group-hover:scale-[1.02] origin-center"
                         loading="eager"
+                        decoding="async"
                       />
-                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300 flex items-center justify-center">
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300 flex items-center justify-center pointer-events-none">
                         <span className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-sm font-medium bg-black/50 px-3 py-2 rounded-full">View gallery</span>
                       </div>
                     </div>
@@ -509,7 +512,11 @@ export default function PropertyDetailPage() {
                   )}
                 </div>
                 {images.length > 1 && (
-                  <div className="flex sm:flex-col gap-3 flex-shrink-0">
+                  <div
+                    ref={thumbnailStripRef}
+                    className="flex sm:flex-col gap-3 flex-shrink-0 overflow-x-auto overflow-y-hidden scroll-smooth py-1 -mx-1 sm:mx-0 sm:overflow-visible"
+                    style={{ scrollbarWidth: 'thin' }}
+                  >
                     {images.slice(0, 5).map((image, idx) => {
                       if (!image || image.trim() === '') return null;
                       const isSelected = selectedImage === idx;
@@ -517,8 +524,9 @@ export default function PropertyDetailPage() {
                       return (
                         <div
                           key={idx}
+                          ref={(el) => { thumbnailRefs.current[idx] = el; }}
                           onClick={() => handleThumbnailClick(idx, isLastWithMore)}
-                          className={`relative w-20 h-14 sm:w-20 sm:h-14 rounded-xl overflow-hidden cursor-pointer transition-all duration-200 flex-shrink-0 border-2 ${
+                          className={`relative w-20 h-14 sm:w-20 sm:h-14 rounded-xl overflow-hidden cursor-pointer transition-all duration-150 flex-shrink-0 border-2 ${
                             isSelected ? 'border-primary ring-2 ring-primary/30' : 'border-transparent hover:border-gray-300'
                           }`}
                         >

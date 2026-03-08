@@ -9,14 +9,14 @@ export default function TeamPage() {
   return (
     <div className="font-sans">
       {/* Hero */}
-      <section className="relative bg-secondary py-24 md:py-32">
+      <section className="relative bg-secondary py-20 sm:py-24 md:py-32">
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 to-black/60" />
         <div className="container mx-auto px-4 max-w-7xl relative z-10 text-center">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/40 bg-primary/10 mb-6">
             <User className="w-4 h-4 text-primary" />
             <span className="text-primary text-xs font-bold uppercase tracking-widest">Our Team</span>
           </div>
-          <h1 className="text-4xl md:text-6xl font-display font-bold text-white mb-4">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl font-display font-bold text-white mb-4">
             Meet Our <span className="text-primary">Team</span>
           </h1>
           <p className="text-gray-300 max-w-2xl mx-auto text-lg">

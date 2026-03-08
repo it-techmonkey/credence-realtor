@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import Image from 'next/image'
 
@@ -14,6 +14,7 @@ interface ImageViewerModalProps {
 
 export default function ImageViewerModal({ isOpen, onClose, images, initialIndex = 0, propertyTitle }: ImageViewerModalProps) {
   const [currentIndex, setCurrentIndex] = useState(initialIndex)
+  const thumbnailRefs = useRef<(HTMLButtonElement | null)[]>([])
 
   useEffect(() => {
     if (isOpen) {
@@ -32,6 +33,11 @@ export default function ImageViewerModal({ isOpen, onClose, images, initialIndex
       setCurrentIndex(initialIndex)
     }
   }, [isOpen, initialIndex])
+
+  useEffect(() => {
+    if (!isOpen) return
+    thumbnailRefs.current[currentIndex]?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })
+  }, [isOpen, currentIndex])
 
   const handleNext = useCallback(() => {
     const validImages = images.filter((img) => img && img.trim() !== '');
@@ -118,16 +124,16 @@ export default function ImageViewerModal({ isOpen, onClose, images, initialIndex
             </button>
           )}
 
-          {/* Image Container */}
+          {/* Image Container - native img for instant change when clicking thumbnails */}
           <div className="relative w-full h-full max-w-6xl max-h-[60vh] md:max-h-[70vh]">
             {validImages[currentIndex] && validImages[currentIndex].trim() !== '' ? (
-              <Image
+              <img
+                key={currentIndex}
                 src={validImages[currentIndex]}
                 alt={`${propertyTitle} - Image ${currentIndex + 1}`}
-                fill
-                className="object-contain"
-                sizes="100vw"
-                priority
+                className="absolute inset-0 w-full h-full object-contain"
+                loading="eager"
+                decoding="async"
               />
             ) : (
               <div className="w-full h-full flex items-center justify-center bg-gray-800">
@@ -155,10 +161,11 @@ export default function ImageViewerModal({ isOpen, onClose, images, initialIndex
         {/* Thumbnail Strip */}
         {validImages.length > 1 && (
           <div className="bg-black/50 backdrop-blur-sm p-2 md:p-4">
-            <div className="flex gap-2 md:gap-3 overflow-x-auto max-w-6xl mx-auto scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-transparent p-1">
+            <div className="flex gap-2 md:gap-3 overflow-x-auto overflow-y-hidden max-w-6xl mx-auto scroll-smooth p-1 scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-transparent">
               {validImages.map((image, idx) => (
                 <button
                   key={idx}
+                  ref={(el) => { thumbnailRefs.current[idx] = el }}
                   onClick={() => setCurrentIndex(idx)}
                   className="relative shrink-0 w-16 h-16 md:w-20 md:h-20 transition-all"
                 >

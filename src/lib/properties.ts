@@ -1148,6 +1148,7 @@ export async function getPaginatedProperties(
       filters.category ||
       filters.locality ||
       filters.city ||
+      (filters.search && typeof filters.search === 'string' && filters.search.trim() !== '') ||
       (filters.bedrooms !== undefined && filters.bedrooms > 0) ||
       (filters.developer && typeof filters.developer === 'string' && filters.developer.trim() !== '' && !hasDeveloperId) ||
       (filters.minPrice !== undefined && filters.minPrice > 0) ||
@@ -1263,6 +1264,25 @@ export async function getPaginatedProperties(
         
         if (process.env.NODE_ENV === 'development') {
           console.log(`Category filter (${categoryFilter}): ${beforeCount} -> ${properties.length} properties`);
+        }
+      }
+      
+      // Search filter - title, developer, location, locality
+      if (filters.search && typeof filters.search === 'string' && filters.search.trim() !== '') {
+        const searchLower = filters.search.trim().toLowerCase();
+        const beforeCount = properties.length;
+        properties = properties.filter((p) => {
+          const title = (p.title || '').toLowerCase();
+          const developer = (p.developer || '').toLowerCase();
+          const location = (p.location || '').toLowerCase();
+          const locality = (p.locality || '').toLowerCase();
+          return title.includes(searchLower) ||
+                 developer.includes(searchLower) ||
+                 location.includes(searchLower) ||
+                 locality.includes(searchLower);
+        });
+        if (process.env.NODE_ENV === 'development') {
+          console.log(`Search filter ("${searchLower}"): ${beforeCount} -> ${properties.length} properties`);
         }
       }
       

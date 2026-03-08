@@ -40,10 +40,10 @@ export default function TeamProfilePage() {
         </div>
       </div>
 
-      <div className="container mx-auto px-4 max-w-4xl py-12 md:py-16">
-        <div className="flex flex-col md:flex-row gap-10 md:gap-14">
+      <div className="container mx-auto px-4 sm:px-6 max-w-4xl py-10 sm:py-12 md:py-16">
+        <div className="flex flex-col md:flex-row gap-8 md:gap-14">
           {/* Photo */}
-          <div className="flex-shrink-0 w-full md:w-80">
+          <div className="flex-shrink-0 w-full md:w-80 max-w-sm md:max-w-none mx-auto md:mx-0">
             <div className="aspect-[3/4] relative rounded-2xl overflow-hidden bg-[#F9F7F2]">
               <Image
                 src={member.img}

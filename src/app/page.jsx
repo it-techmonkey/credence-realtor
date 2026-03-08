@@ -775,15 +775,31 @@ const HomeContent = () => {
                         </p>
                     </div>
 
-                    <div className="bg-white p-8 md:p-12 rounded-2xl shadow-sm border border-gray-100">
+                    <div className="bg-white p-6 sm:p-8 md:p-12 rounded-2xl shadow-sm border border-gray-100">
                         {contactSubmitStatus === 'success' && (
-                            <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg text-green-700 text-center">
-                                Thank you! Your message has been sent. We&apos;ll get back to you soon.
+                            <div className="mb-6 p-5 sm:p-6 flex items-center gap-4 bg-green-600 text-white rounded-xl shadow-sm">
+                                <span className="shrink-0 w-12 h-12 rounded-full bg-white/20 flex items-center justify-center">
+                                    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                </span>
+                                <div className="text-left">
+                                    <p className="font-semibold text-base sm:text-lg">Message sent!</p>
+                                    <p className="text-green-100 text-sm sm:text-base">We&apos;ll get back to you soon.</p>
+                                </div>
                             </div>
                         )}
                         {contactSubmitStatus === 'error' && (
-                            <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg text-red-700 text-center">
-                                Something went wrong. Please try again or contact us directly.
+                            <div className="mb-6 p-5 sm:p-6 flex items-center gap-4 bg-red-600 text-white rounded-xl shadow-sm">
+                                <span className="shrink-0 w-12 h-12 rounded-full bg-white/20 flex items-center justify-center">
+                                    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                </span>
+                                <div className="text-left">
+                                    <p className="font-semibold text-base sm:text-lg">Something went wrong</p>
+                                    <p className="text-red-100 text-sm sm:text-base">Please try again or contact us on WhatsApp.</p>
+                                </div>
                             </div>
                         )}
                         <form onSubmit={handleContactFormSubmit} className="space-y-6">

@@ -115,7 +115,7 @@ function PropertiesContent() {
     const filterCategories = [
         { value: 'All', label: 'All Properties' },
         { value: 'Off-Plan', label: 'Off-Plan' },
-        { value: 'Affordable', label: 'Affordable (≤1.5M AED)' },
+        { value: 'Affordable', label: 'Affordable' },
         { value: 'Luxury', label: 'Luxury' },
         { value: 'Waterfront', label: 'Waterfront' },
         { value: 'Commercial', label: 'Commercial' },
@@ -176,7 +176,7 @@ function PropertiesContent() {
         // Set new timer
         debounceTimerRef.current = setTimeout(() => {
             setDebouncedSearchQuery(searchQuery);
-        }, 500); // 500ms debounce delay
+        }, 300); // 300ms debounce for snappier search
 
         // Cleanup on unmount or when searchQuery changes
         return () => {
@@ -298,8 +298,6 @@ function PropertiesContent() {
             setIsLoading(true);
             setError(null);
 
-            // Minimum loading time to prevent flickering (300ms)
-            const minLoadingTime = 300;
             const startTime = Date.now();
 
             try {
@@ -322,24 +320,34 @@ function PropertiesContent() {
 
                 // Category from URL (nav link) - Luxury uses minPrice+allowedDevelopers above
                 const categoryFromUrl = searchParams.get('category');
-                if (categoryFromUrl && categoryFromUrl !== 'All' && VALID_CATEGORIES.includes(categoryFromUrl)) {
-                    if (categoryFromUrl.toLowerCase() !== 'luxury') apiFilters.category = categoryFromUrl;
-                } else if (activeFilter && activeFilter !== 'All') {
-                    apiFilters.category = activeFilter;
+                const effectiveCategory = (categoryFromUrl && categoryFromUrl !== 'All' && VALID_CATEGORIES.includes(categoryFromUrl))
+                    ? categoryFromUrl
+                    : (activeFilter && activeFilter !== 'All' ? activeFilter : null);
+                if (effectiveCategory && effectiveCategory.toLowerCase() !== 'luxury') {
+                    apiFilters.category = effectiveCategory;
+                }
+                // Affordable = only properties <= 1.5M AED (enforce maxPrice so filter works correctly)
+                const AFFORDABLE_MAX_PRICE = 1_500_000;
+                if (effectiveCategory && effectiveCategory.toLowerCase() === 'affordable') {
+                    apiFilters.maxPrice = apiFilters.maxPrice != null ? Math.min(apiFilters.maxPrice, AFFORDABLE_MAX_PRICE) : AFFORDABLE_MAX_PRICE;
                 }
 
                 const result = await getPaginatedProperties(apiFilters, currentPage, propertiesPerPage);
 
-                // Client-side: Luxury = 7M+ and only allowed developers (safety net)
+                // Client-side: Luxury = 7M+ and only allowed developers (safety net); Affordable = <= 1.5M (safety net)
                 const isLuxuryView = (categoryParam && categoryParam.toLowerCase() === 'luxury') || (filters.minPrice >= LUXURY_MIN_PRICE);
-                const getPropertyPrice = (p) => (typeof p?.price === 'number' ? p.price : p?.minPrice) || 0;
+                const isAffordableView = effectiveCategory && effectiveCategory.toLowerCase() === 'affordable';
+                const getPropertyPrice = (p) => (typeof p?.price === 'number' ? p.price : p?.minPrice ?? p?.maxPrice) || 0;
                 const devMatchesLuxury = (p) => {
                     const dev = (p?.developer || '').toLowerCase();
                     return LUXURY_DEVELOPERS.some((name) => dev.includes(name));
                 };
-                const list = isLuxuryView
-                    ? result.properties.filter((p) => getPropertyPrice(p) >= LUXURY_MIN_PRICE && devMatchesLuxury(p))
-                    : result.properties;
+                let list = result.properties;
+                if (isLuxuryView) {
+                    list = list.filter((p) => getPropertyPrice(p) >= LUXURY_MIN_PRICE && devMatchesLuxury(p));
+                } else if (isAffordableView) {
+                    list = list.filter((p) => getPropertyPrice(p) <= AFFORDABLE_MAX_PRICE);
+                }
 
                 setProperties(list);
                 setTotalPages(result.pagination.totalPages);
@@ -350,14 +358,9 @@ function PropertiesContent() {
                         count: result.properties.length,
                         total: result.pagination.total,
                         page: currentPage,
-                        filters: apiFilters
+                        filters: apiFilters,
+                        ms: Date.now() - startTime
                     });
-                }
-
-                // Ensure minimum loading time
-                const elapsedTime = Date.now() - startTime;
-                if (elapsedTime < minLoadingTime) {
-                    await new Promise(resolve => setTimeout(resolve, minLoadingTime - elapsedTime));
                 }
             } catch (err) {
                 console.error('Error loading properties:', err);
@@ -365,12 +368,6 @@ function PropertiesContent() {
                 setProperties([]);
                 setTotalPages(0);
                 setTotalProperties(0);
-
-                // Ensure minimum loading time even on error
-                const elapsedTime = Date.now() - startTime;
-                if (elapsedTime < minLoadingTime) {
-                    await new Promise(resolve => setTimeout(resolve, minLoadingTime - elapsedTime));
-                }
             } finally {
                 setIsLoading(false);
             }
@@ -391,7 +388,16 @@ function PropertiesContent() {
 
     const handleFilterChange = useCallback((filter) => {
         setActiveFilter(filter);
-    }, []);
+        setCurrentPage(1);
+        const params = new URLSearchParams(searchParams.toString());
+        if (filter && filter !== 'All') {
+            params.set('category', filter);
+        } else {
+            params.delete('category');
+        }
+        params.delete('page'); // reset to page 1
+        router.replace(params.toString() ? `/properties?${params.toString()}` : '/properties', { scroll: false });
+    }, [router, searchParams]);
 
     return (
         <div className="font-sans">

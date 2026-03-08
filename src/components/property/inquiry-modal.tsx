@@ -150,7 +150,7 @@ export default function InquiryModal({ isOpen, onClose, propertyId, propertyTitl
       setTimeout(() => {
         onClose()
         setSubmitStatus(null)
-      }, 2000)
+      }, 3500)
     } catch (error) {
       console.error('Form submission error:', error)
       setSubmitStatus('error')
@@ -195,21 +195,36 @@ export default function InquiryModal({ isOpen, onClose, propertyId, propertyTitl
           </button>
         </div>
 
+        {/* Success/error banner - first thing in content so visible on mobile after submit */}
+        {submitStatus === 'success' && (
+          <div className="flex items-center gap-3 w-full p-4 md:p-5 bg-green-600 text-white shadow-md">
+            <span className="shrink-0 w-10 h-10 rounded-full bg-white/20 flex items-center justify-center" aria-hidden>
+              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+              </svg>
+            </span>
+            <div>
+              <p className="font-semibold text-base md:text-lg">Message sent!</p>
+              <p className="text-green-100 text-sm md:text-base">We&apos;ll get back to you soon.</p>
+            </div>
+          </div>
+        )}
+        {submitStatus === 'error' && (
+          <div className="flex items-center gap-3 w-full p-4 md:p-5 bg-red-600 text-white shadow-md">
+            <span className="shrink-0 w-10 h-10 rounded-full bg-white/20 flex items-center justify-center" aria-hidden>
+              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </span>
+            <div>
+              <p className="font-semibold text-base md:text-lg">Something went wrong</p>
+              <p className="text-red-100 text-sm md:text-base">Please try again or contact us on WhatsApp.</p>
+            </div>
+          </div>
+        )}
+
         {/* Content */}
         <div className="p-4 md:p-6">
-          {/* Status Messages */}
-          {submitStatus === 'success' && (
-            <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg text-green-700">
-              Thank you! Your inquiry has been submitted. We&apos;ll get back to you soon.
-            </div>
-          )}
-
-          {submitStatus === 'error' && (
-            <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg text-red-700">
-              Sorry, there was an error submitting your inquiry. Please try again.
-            </div>
-          )}
-
           {/* Form */}
           <form onSubmit={handleSubmit} className="flex flex-col gap-4">
             {/* Name */}
