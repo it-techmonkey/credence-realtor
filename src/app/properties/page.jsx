@@ -49,37 +49,39 @@ function PropertiesContent() {
     const handleApplyFilters = useCallback((newFilters) => {
         setFilters(newFilters);
         setCurrentPage(1); // Reset to first page when filters change
-        // Update URL params with all filter values without page reload
-        const params = new URLSearchParams();
+        // Start from current URL so we preserve search and other params
+        const params = new URLSearchParams(searchParams.toString());
         if (newFilters.city) params.set('city', newFilters.city);
+        else params.delete('city');
         if (newFilters.locality) params.set('locality', newFilters.locality);
+        else params.delete('locality');
         if (newFilters.developer) params.set('developer', newFilters.developer);
+        else params.delete('developer');
         if (newFilters.bedrooms !== undefined && newFilters.bedrooms > 0) {
             params.set('bedrooms', newFilters.bedrooms.toString());
-        }
+        } else params.delete('bedrooms');
         if (newFilters.minPrice !== undefined && newFilters.minPrice > 0) {
             params.set('minPrice', newFilters.minPrice.toString());
-        }
+        } else params.delete('minPrice');
         if (newFilters.maxPrice !== undefined && newFilters.maxPrice > 0) {
             params.set('maxPrice', newFilters.maxPrice.toString());
-        }
+        } else params.delete('maxPrice');
         if (newFilters.minArea !== undefined && newFilters.minArea > 0) {
             params.set('minArea', newFilters.minArea.toString());
-        }
+        } else params.delete('minArea');
         if (newFilters.maxArea !== undefined && newFilters.maxArea > 0) {
             params.set('maxArea', newFilters.maxArea.toString());
-        }
+        } else params.delete('maxArea');
         if (newFilters.sortBy) params.set('sortBy', newFilters.sortBy);
+        else params.delete('sortBy');
         if (newFilters.sortOrder) params.set('sortOrder', newFilters.sortOrder);
+        else params.delete('sortOrder');
         const queryString = params.toString();
-        // Use replace instead of push to avoid adding to history and prevent reload
-        // scroll: false prevents scrolling to top
         router.replace(queryString ? `/properties?${queryString}` : '/properties', { scroll: false });
-        // Scroll to top of properties section after applying filters
         setTimeout(() => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }, 100);
-    }, [router]);
+    }, [router, searchParams]);
 
     // Listen for area filter events from modal
     useEffect(() => {
@@ -186,6 +188,21 @@ function PropertiesContent() {
         };
     }, [searchQuery]);
 
+    // Keep URL in sync with debounced search so search works with filters and share/back
+    useEffect(() => {
+        const params = new URLSearchParams(searchParams.toString());
+        const trimmed = debouncedSearchQuery.trim();
+        const currentSearch = params.get('search') || '';
+        if (trimmed === currentSearch) return;
+        if (trimmed) {
+            params.set('search', trimmed);
+        } else {
+            params.delete('search');
+        }
+        const queryString = params.toString();
+        router.replace(queryString ? `/properties?${queryString}` : '/properties', { scroll: false });
+    }, [debouncedSearchQuery, searchParams, router]);
+
     // Load developers from static list (no API needed)
     useEffect(() => {
         const loadDevelopers = () => {
@@ -217,6 +234,10 @@ function PropertiesContent() {
 
     // Read all filter params from URL on mount
     useEffect(() => {
+        const searchParam = searchParams.get('search');
+        if (searchParam != null && searchParam !== '') {
+            setSearchQuery(searchParam);
+        }
         const cityParam = searchParams.get('city');
         const localityParam = searchParams.get('locality');
         const developerParam = searchParams.get('developer');

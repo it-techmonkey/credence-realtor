@@ -1081,10 +1081,13 @@ export async function getPaginatedProperties(
   limit: number = 9
 ): Promise<PaginatedPropertiesResult> {
   try {
-    // Use static API only when NOT filtering by developer or allowedDevelopers (static has no multi-developer filter)
+    // Use static API only when NOT filtering by developer, allowedDevelopers, or fields static API doesn't support (bedrooms, area)
     const hasDeveloperFilter = !!(filters.developer && typeof filters.developer === 'string' && filters.developer.trim() !== '');
     const hasAllowedDevelopersFilter = !!(filters.allowedDevelopers && filters.allowedDevelopers.length > 0);
-    if (!hasDeveloperFilter && !hasAllowedDevelopersFilter) {
+    const hasBedroomsFilter = filters.bedrooms !== undefined && filters.bedrooms > 0;
+    const hasAreaFilter = (filters.minArea !== undefined && filters.minArea > 0) || (filters.maxArea !== undefined && filters.maxArea > 0);
+    const useStaticApi = !hasDeveloperFilter && !hasAllowedDevelopersFilter && !hasBedroomsFilter && !hasAreaFilter;
+    if (useStaticApi) {
       try {
         const result = await getPaginatedPropertiesFromStatic(filters, page, limit);
         result.properties = await translatePropertiesForDisplay(result.properties);
@@ -1267,16 +1270,18 @@ export async function getPaginatedProperties(
         }
       }
       
-      // Search filter - title, developer, location, locality
+      // Search filter - title, slug, developer, location, locality
       if (filters.search && typeof filters.search === 'string' && filters.search.trim() !== '') {
         const searchLower = filters.search.trim().toLowerCase();
         const beforeCount = properties.length;
         properties = properties.filter((p) => {
           const title = (p.title || '').toLowerCase();
+          const slug = (p.slug || '').toLowerCase();
           const developer = (p.developer || '').toLowerCase();
           const location = (p.location || '').toLowerCase();
           const locality = (p.locality || '').toLowerCase();
           return title.includes(searchLower) ||
+                 slug.includes(searchLower) ||
                  developer.includes(searchLower) ||
                  location.includes(searchLower) ||
                  locality.includes(searchLower);
@@ -1368,6 +1373,28 @@ export async function getPaginatedProperties(
         });
         if (process.env.NODE_ENV === 'development') {
           console.log(`Max price filter (<= ${filters.maxPrice}): ${beforeCount} -> ${properties.length} properties`);
+        }
+      }
+      
+      // Area filters (minArea / maxArea sq ft)
+      if (filters.minArea !== undefined && filters.minArea > 0) {
+        const beforeCount = properties.length;
+        properties = properties.filter((p) => {
+          const area = p.area ?? p.areaMax ?? p.areaMin ?? 0;
+          return area >= filters.minArea!;
+        });
+        if (process.env.NODE_ENV === 'development') {
+          console.log(`Min area filter (>= ${filters.minArea}): ${beforeCount} -> ${properties.length} properties`);
+        }
+      }
+      if (filters.maxArea !== undefined && filters.maxArea > 0) {
+        const beforeCount = properties.length;
+        properties = properties.filter((p) => {
+          const area = p.area ?? p.areaMin ?? p.areaMax ?? 0;
+          return area > 0 ? area <= filters.maxArea! : true; // include if no area data
+        });
+        if (process.env.NODE_ENV === 'development') {
+          console.log(`Max area filter (<= ${filters.maxArea}): ${beforeCount} -> ${properties.length} properties`);
         }
       }
       
