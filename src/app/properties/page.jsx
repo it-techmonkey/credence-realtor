@@ -41,6 +41,7 @@ function PropertiesContent() {
     const [visibleAreasCount, setVisibleAreasCount] = useState(6);
     const propertiesPerPage = 9;
     const debounceTimerRef = useRef(null);
+    const loadIdRef = useRef(0);
 
     // Initialize scroll animations
     useScrollAnimations();
@@ -228,11 +229,11 @@ function PropertiesContent() {
         loadDevelopers();
     }, []);
 
-    // Luxury = 7M+ AED and only these developers
+    // Luxury = 7M+ AED and only these developers (same list as static API, including Arabic names)
     const LUXURY_MIN_PRICE = 7_000_000;
-    const LUXURY_DEVELOPERS = ['binghatti', 'bingati', 'damac', 'sobha', 'ellington', 'azizi', 'omniyat', 'imtiyaz', 'emaar'];
+    const AFFORDABLE_MAX_PRICE = 1_500_000;
 
-    // Read all filter params from URL on mount
+    // Read all filter params from URL on mount and keep filters in sync with URL (avoids stale category constraints when switching)
     useEffect(() => {
         const searchParam = searchParams.get('search');
         if (searchParam != null && searchParam !== '') {
@@ -252,19 +253,12 @@ function PropertiesContent() {
 
         const urlFilters = {};
         if (localityParam) {
-            // Use locality filter if available (more specific)
             urlFilters.locality = localityParam;
         } else if (cityParam) {
-            // Fallback to city filter
             urlFilters.city = cityParam;
         }
         if (developerParam) {
             urlFilters.developer = developerParam;
-        }
-        // Luxury category = only 7M+ properties
-        if (categoryParam && categoryParam.toLowerCase() === 'luxury') {
-            urlFilters.minPrice = LUXURY_MIN_PRICE;
-            setActiveFilter('Luxury Branded');
         }
         if (bedroomsParam) {
             const bedrooms = parseInt(bedroomsParam);
@@ -275,7 +269,7 @@ function PropertiesContent() {
         if (minPriceParam) {
             const minPrice = parseInt(minPriceParam);
             if (!isNaN(minPrice) && minPrice > 0) {
-                urlFilters.minPrice = urlFilters.minPrice != null ? Math.max(urlFilters.minPrice, minPrice) : minPrice;
+                urlFilters.minPrice = minPrice;
             }
         }
         if (maxPriceParam) {
@@ -302,19 +296,30 @@ function PropertiesContent() {
         if (sortOrderParam) {
             urlFilters.sortOrder = sortOrderParam;
         }
+        // Category-derived price constraints last (so switching category overwrites any previous category rules)
+        if (categoryParam && categoryParam.toLowerCase() === 'luxury') {
+            urlFilters.minPrice = LUXURY_MIN_PRICE;
+            delete urlFilters.maxPrice;
+            setActiveFilter('Luxury Branded');
+        } else if (categoryParam && categoryParam.toLowerCase() === 'affordable') {
+            urlFilters.maxPrice = AFFORDABLE_MAX_PRICE;
+            delete urlFilters.minPrice;
+        }
         if (categoryParam && VALID_CATEGORIES.includes(categoryParam)) {
             setActiveFilter(categoryParam);
         } else if (!categoryParam || !VALID_CATEGORIES.includes(categoryParam)) {
             setActiveFilter('All');
         }
 
-        if (Object.keys(urlFilters).length > 0) {
-            setFilters(urlFilters);
-        }
+        // Always sync filters from URL so switching category (e.g. Luxury -> Affordable) clears stale minPrice/maxPrice
+        setFilters(urlFilters);
     }, [searchParams]);
 
     // Fetch properties from API with filters
     useEffect(() => {
+        const thisLoadId = loadIdRef.current + 1;
+        loadIdRef.current = thisLoadId;
+
         const loadProperties = async () => {
             setIsLoading(true);
             setError(null);
@@ -322,50 +327,58 @@ function PropertiesContent() {
             const startTime = Date.now();
 
             try {
-                // Combine search query with filters - all filtering is done by API
-                const apiFilters = {
-                    ...filters,
-                };
-
-                // Force 7M+ and luxury developers when Luxury category is in URL
-                const categoryParam = searchParams.get('category');
-                if (categoryParam && categoryParam.toLowerCase() === 'luxury') {
-                    apiFilters.minPrice = Math.max(apiFilters.minPrice || 0, LUXURY_MIN_PRICE);
-                    apiFilters.allowedDevelopers = LUXURY_DEVELOPERS;
-                }
-
-                // Add debounced search to filters if provided
-                if (debouncedSearchQuery.trim()) {
-                    apiFilters.search = debouncedSearchQuery.trim();
-                }
-
-                // Category from URL (nav link) - Luxury uses minPrice+allowedDevelopers above
+                // Category from URL or active filter - single source of truth for category
                 const categoryFromUrl = searchParams.get('category');
                 const effectiveCategory = (categoryFromUrl && categoryFromUrl !== 'All' && VALID_CATEGORIES.includes(categoryFromUrl))
                     ? categoryFromUrl
                     : (activeFilter && activeFilter !== 'All' ? activeFilter : null);
-                if (effectiveCategory && effectiveCategory.toLowerCase() !== 'luxury') {
+
+                // Build apiFilters from filters, then apply category rules so switching back and forth never leaves conflicting constraints
+                const apiFilters = { ...filters };
+
+                // Luxury: use only category + minPrice so static API is used (Alnair path often returns no data)
+                if (effectiveCategory && effectiveCategory.toLowerCase() === 'luxury') {
+                    apiFilters.category = 'Luxury';
+                    apiFilters.minPrice = LUXURY_MIN_PRICE;
+                    delete apiFilters.maxPrice;
+                    delete apiFilters.allowedDevelopers;
+                } else if (effectiveCategory && effectiveCategory.toLowerCase() === 'affordable') {
+                    apiFilters.category = 'Affordable';
+                    apiFilters.maxPrice = AFFORDABLE_MAX_PRICE;
+                    delete apiFilters.minPrice;
+                    delete apiFilters.allowedDevelopers;
+                } else if (effectiveCategory) {
                     apiFilters.category = effectiveCategory;
+                    delete apiFilters.minPrice;
+                    delete apiFilters.maxPrice;
+                    delete apiFilters.allowedDevelopers;
+                } else {
+                    // All: clear category-derived constraints so we don't carry over Luxury/Affordable rules
+                    delete apiFilters.minPrice;
+                    delete apiFilters.maxPrice;
+                    delete apiFilters.allowedDevelopers;
                 }
-                // Affordable = only properties <= 1.5M AED (enforce maxPrice so filter works correctly)
-                const AFFORDABLE_MAX_PRICE = 1_500_000;
-                if (effectiveCategory && effectiveCategory.toLowerCase() === 'affordable') {
-                    apiFilters.maxPrice = apiFilters.maxPrice != null ? Math.min(apiFilters.maxPrice, AFFORDABLE_MAX_PRICE) : AFFORDABLE_MAX_PRICE;
+
+                if (debouncedSearchQuery.trim()) {
+                    apiFilters.search = debouncedSearchQuery.trim();
                 }
 
                 const result = await getPaginatedProperties(apiFilters, currentPage, propertiesPerPage);
 
-                // Client-side: Luxury = 7M+ and only allowed developers (safety net); Affordable = <= 1.5M (safety net)
-                const isLuxuryView = (categoryParam && categoryParam.toLowerCase() === 'luxury') || (filters.minPrice >= LUXURY_MIN_PRICE);
+                // Ignore stale response if user changed filters before this request finished
+                if (loadIdRef.current !== thisLoadId) return;
+
+                // Client-side guard: Affordable = cap at 1.5M (server already filters, this is a safety net).
+                // Luxury filtering is fully handled server-side (static API filters by developer name in Arabic + price >= 7M).
+                // We do NOT re-filter luxury by developer name here because translated names (Arabic -> English)
+                // may not exactly match the config list, causing valid properties to be dropped.
+                const isLuxuryView = effectiveCategory && effectiveCategory.toLowerCase() === 'luxury';
                 const isAffordableView = effectiveCategory && effectiveCategory.toLowerCase() === 'affordable';
                 const getPropertyPrice = (p) => (typeof p?.price === 'number' ? p.price : p?.minPrice ?? p?.maxPrice) || 0;
-                const devMatchesLuxury = (p) => {
-                    const dev = (p?.developer || '').toLowerCase();
-                    return LUXURY_DEVELOPERS.some((name) => dev.includes(name));
-                };
                 let list = result.properties;
                 if (isLuxuryView) {
-                    list = list.filter((p) => getPropertyPrice(p) >= LUXURY_MIN_PRICE && devMatchesLuxury(p));
+                    // Only enforce price floor as safety net; developer filter already applied server-side
+                    list = list.filter((p) => getPropertyPrice(p) >= LUXURY_MIN_PRICE);
                 } else if (isAffordableView) {
                     list = list.filter((p) => getPropertyPrice(p) <= AFFORDABLE_MAX_PRICE);
                 }
@@ -384,13 +397,16 @@ function PropertiesContent() {
                     });
                 }
             } catch (err) {
+                if (loadIdRef.current !== thisLoadId) return;
                 console.error('Error loading properties:', err);
                 setError('Failed to load properties. Please try again later.');
                 setProperties([]);
                 setTotalPages(0);
                 setTotalProperties(0);
             } finally {
-                setIsLoading(false);
+                if (loadIdRef.current === thisLoadId) {
+                    setIsLoading(false);
+                }
             }
         };
 

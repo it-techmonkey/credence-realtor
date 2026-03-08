@@ -112,14 +112,29 @@ export async function GET(request: NextRequest) {
 
     let items = (allDataJson as any)?.data?.items || [];
 
-    // Filter by category: single pass to compute and filter (so transformProject can reuse _category and we only call getProjectCategory once per item)
+    // Filter by category
     if (category && category !== 'All') {
       const cat = category.toLowerCase();
-      items = items.filter((p: any) => {
-        const projectCat = getProjectCategory(p);
-        (p as any)._category = projectCat;
-        return projectCat.toLowerCase() === cat;
-      });
+      if (cat === 'luxury') {
+        // Luxury = properties from luxury developers regardless of other category keywords (waterfront, office, etc.)
+        // getProjectCategory checks waterfront/office/commercial BEFORE luxury, causing luxury dev properties to be miscategorised.
+        // Fix: match developer name directly so ALL luxury-developer properties are considered, then let the minPrice filter (7M+) narrow the results.
+        items = items.filter((p: any) => {
+          const builder = (p.builder || '').toString();
+          const isLuxuryDev = LUXURY_DEV_NAMES.some(
+            (name) => builder.toLowerCase().includes(name.toLowerCase()) || builder.includes(name)
+          );
+          (p as any)._category = 'Luxury';
+          return isLuxuryDev;
+        });
+      } else {
+        // Other categories: single pass to compute and filter
+        items = items.filter((p: any) => {
+          const projectCat = getProjectCategory(p);
+          (p as any)._category = projectCat;
+          return projectCat.toLowerCase() === cat;
+        });
+      }
     }
 
     // Filter by locality

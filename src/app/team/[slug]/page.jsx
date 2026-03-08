@@ -82,18 +82,34 @@ export default function TeamProfilePage() {
               <p className="text-gray-600 text-sm mb-4">Latest properties we’re offering — reach out for details.</p>
               <ul className="space-y-4">
                 {latestProperties.map((p) => (
-                  <li key={p.id} className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 p-4 rounded-xl bg-[#F9F7F2] hover:bg-[#F0EDE5] transition-colors">
+                  <li key={p.id} className="rounded-xl bg-[#F9F7F2] hover:bg-[#F0EDE5] transition-colors overflow-hidden">
                     <Link
                       href={`/properties/${p.id}`}
-                      className="text-secondary font-medium hover:text-primary transition-colors flex items-center gap-2"
+                      className="flex flex-col sm:flex-row sm:items-center gap-3 p-3"
                     >
-                      {p.title}
-                      <ArrowRight size={14} />
+                      {/* Thumbnail */}
+                      {p.mainImage && (
+                        <div className="relative w-full sm:w-24 h-32 sm:h-16 rounded-lg overflow-hidden flex-shrink-0 bg-gray-200">
+                          <Image
+                            src={p.mainImage}
+                            alt={p.title}
+                            fill
+                            className="object-cover"
+                            sizes="(max-width: 640px) 100vw, 96px"
+                          />
+                        </div>
+                      )}
+                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 sm:gap-2 flex-1 min-w-0">
+                        <span className="text-secondary font-medium hover:text-primary transition-colors flex items-center gap-2 truncate">
+                          {p.title}
+                          <ArrowRight size={14} className="flex-shrink-0" />
+                        </span>
+                        <span className="text-sm text-gray-600 whitespace-nowrap">
+                          AED {formatPrice(p.price)}
+                          {p.readyDate && ` · ${p.readyDate}`}
+                        </span>
+                      </div>
                     </Link>
-                    <span className="text-sm text-gray-600">
-                      AED {formatPrice(p.price)}
-                      {p.readyDate && ` · ${p.readyDate}`}
-                    </span>
                   </li>
                 ))}
               </ul>

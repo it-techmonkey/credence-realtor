@@ -2,14 +2,26 @@
   "affordableMaxPriceAED": 1500000,
   "luxuryDeveloperNames": [
     "binghatti",
+    "bingati",
     "emaar",
     "damac",
     "imtiaz",
+    "imtiyaz",
     "jacob",
+    "sobha",
+    "ellington",
+    "azizi",
+    "omniyat",
     "إمار",
     "داماك",
     "بينغهاتي",
-    "ايمتياز"
+    "ايمتياز",
+    "امتياز",
+    "سوبها",
+    "أومنيات",
+    "الدار",
+    "عزيزي",
+    "إلينغتون"
   ],
   "categoryOrder": ["Affordable", "Waterfront", "Luxury", "Office", "Commercial", "Off-Plan"]
 }
