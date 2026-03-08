@@ -485,6 +485,13 @@ async function fetchPropertyByIdFromNewApi(alnairId: string | number): Promise<A
     });
 
     if (!response.ok) {
+      // 404 is expected when the property doesn't exist in Alnair; avoid noisy logs
+      if (response.status === 404) {
+        if (process.env.NODE_ENV === 'development') {
+          console.info(`Property not found (404): ${apiUrl}`);
+        }
+        return null;
+      }
       console.error(`API route error: ${response.status} ${response.statusText}`);
       const errorData = await response.json().catch(() => ({ message: 'Unknown error' }));
       console.error('Error response:', errorData);

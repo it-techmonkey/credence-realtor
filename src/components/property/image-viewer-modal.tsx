@@ -15,12 +15,20 @@ interface ImageViewerModalProps {
 export default function ImageViewerModal({ isOpen, onClose, images, initialIndex = 0, propertyTitle }: ImageViewerModalProps) {
   const [currentIndex, setCurrentIndex] = useState(initialIndex)
   const thumbnailRefs = useRef<(HTMLButtonElement | null)[]>([])
+  const savedScrollY = useRef(0)
 
   useEffect(() => {
     if (isOpen) {
+      savedScrollY.current = typeof window !== 'undefined' ? window.scrollY : 0
       document.body.style.overflow = 'hidden'
+      requestAnimationFrame(() => {
+        window.scrollTo(0, savedScrollY.current)
+      })
     } else {
       document.body.style.overflow = 'unset'
+      if (typeof window !== 'undefined') {
+        window.scrollTo(0, savedScrollY.current)
+      }
     }
 
     return () => {
@@ -36,7 +44,9 @@ export default function ImageViewerModal({ isOpen, onClose, images, initialIndex
 
   useEffect(() => {
     if (!isOpen) return
-    thumbnailRefs.current[currentIndex]?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })
+    if (typeof window !== 'undefined' && window.innerWidth >= 640) {
+      thumbnailRefs.current[currentIndex]?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })
+    }
   }, [isOpen, currentIndex])
 
   const handleNext = useCallback(() => {

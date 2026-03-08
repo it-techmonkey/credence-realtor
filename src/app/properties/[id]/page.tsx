@@ -343,13 +343,15 @@ export default function PropertyDetailPage() {
   const handleCloseAmenities = useCallback(() => setIsAmenitiesModalOpen(false), []);
   const handleImageSelect = useCallback((index: number) => setSelectedImage(index), []);
   
-  // Memoize thumbnail click handlers
+  // Memoize thumbnail click handlers (skip scrollIntoView on mobile to prevent page scrolling down)
   const handleThumbnailClick = useCallback((idx: number, isLastWithMore: boolean) => {
     if (isLastWithMore) {
       handleOpenImageViewer();
     } else {
       handleImageSelect(idx);
-      thumbnailRefs.current[idx]?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      if (typeof window !== 'undefined' && window.innerWidth >= 640) {
+        thumbnailRefs.current[idx]?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      }
     }
   }, [handleOpenImageViewer, handleImageSelect]);
 
