@@ -1,15 +1,21 @@
 /**
  * Translate Arabic text to English via /api/translate.
  * Returns the original text if it doesn't contain Arabic or if translation fails.
+ * Uses module-level cache to avoid repeated API calls for same strings (speeds up property list).
  */
 export function containsArabic(text: string): boolean {
   if (!text || typeof text !== 'string') return false;
   return /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF]/.test(text);
 }
 
+const translationCache: Record<string, string> = {};
+const CACHE_MAX = 500;
+
 export async function translateToEnglish(text: string): Promise<string> {
   if (!text || typeof text !== 'string' || !text.trim()) return text || '';
   if (!containsArabic(text)) return text;
+  const key = text.trim();
+  if (translationCache[key]) return translationCache[key];
   try {
     const res = await fetch('/api/translate', {
       method: 'POST',
@@ -18,7 +24,9 @@ export async function translateToEnglish(text: string): Promise<string> {
     });
     const data = await res.json();
     if (res.ok && typeof data?.translated === 'string' && data.translated) {
-      return data.translated;
+      const translated = data.translated;
+      if (Object.keys(translationCache).length < CACHE_MAX) translationCache[key] = translated;
+      return translated;
     }
   } catch (_) {
     // ignore

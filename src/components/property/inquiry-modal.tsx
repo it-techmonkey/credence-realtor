@@ -163,6 +163,38 @@ export default function InquiryModal({ isOpen, onClose, propertyId, propertyTitl
 
   const modalContent = (
     <div className="fixed inset-0 z-[10000] flex items-center justify-center p-4">
+      {/* Mobile-only: side toast so user clearly sees "sent" without confusion */}
+      {(submitStatus === 'success' || submitStatus === 'error') && (
+        <div
+          className="md:hidden fixed right-4 top-20 left-4 sm:left-auto z-[10002] w-auto sm:w-[min(280px,calc(100vw-2rem))] p-4 rounded-xl shadow-xl border border-white/20 animate-slide-in-right"
+          style={{
+            background: submitStatus === 'success' ? '#16a34a' : '#dc2626',
+            color: 'white',
+          }}
+          role="alert"
+          aria-live="polite"
+        >
+          <div className="flex items-center gap-3">
+            <span className="shrink-0 w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
+              {submitStatus === 'success' ? (
+                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              ) : (
+                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              )}
+            </span>
+            <div>
+              <p className="font-semibold text-sm">{submitStatus === 'success' ? 'Message sent!' : 'Something went wrong'}</p>
+              <p className="text-white/90 text-xs mt-0.5">
+                {submitStatus === 'success' ? "We'll get back to you soon." : 'Try again or contact us on WhatsApp.'}
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
       {/* Backdrop */}
       <div
         className="absolute inset-0 bg-black/70 backdrop-blur-sm"
@@ -195,9 +227,9 @@ export default function InquiryModal({ isOpen, onClose, propertyId, propertyTitl
           </button>
         </div>
 
-        {/* Success/error banner - first thing in content so visible on mobile after submit */}
+        {/* Success/error: on mobile show side toast only; on desktop show inline banner */}
         {submitStatus === 'success' && (
-          <div className="flex items-center gap-3 w-full p-4 md:p-5 bg-green-600 text-white shadow-md">
+          <div className="hidden md:flex items-center gap-3 w-full p-4 md:p-5 bg-green-600 text-white shadow-md">
             <span className="shrink-0 w-10 h-10 rounded-full bg-white/20 flex items-center justify-center" aria-hidden>
               <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
@@ -210,7 +242,7 @@ export default function InquiryModal({ isOpen, onClose, propertyId, propertyTitl
           </div>
         )}
         {submitStatus === 'error' && (
-          <div className="flex items-center gap-3 w-full p-4 md:p-5 bg-red-600 text-white shadow-md">
+          <div className="hidden md:flex items-center gap-3 w-full p-4 md:p-5 bg-red-600 text-white shadow-md">
             <span className="shrink-0 w-10 h-10 rounded-full bg-white/20 flex items-center justify-center" aria-hidden>
               <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />

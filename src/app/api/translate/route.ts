@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 const MYMEMORY_URL = 'https://api.mymemory.translated.net/get';
+const CACHE_MAX = 1000;
+const serverCache = new Map<string, string>();
 const MAX_CHUNK = 400; // MyMemory recommends ~500 bytes; 400 chars is safe for UTF-8
 
 function containsArabic(text: string): boolean {
@@ -50,7 +52,10 @@ export async function POST(request: NextRequest) {
     if (!containsArabic(text)) {
       return NextResponse.json({ translated: text }, { status: 200 });
     }
+    const cached = serverCache.get(text);
+    if (cached) return NextResponse.json({ translated: cached }, { status: 200 });
     const translated = await translateLongText(text);
+    if (serverCache.size < CACHE_MAX) serverCache.set(text, translated);
     return NextResponse.json({ translated }, { status: 200 });
   } catch (error) {
     console.error('Translate API error:', error);

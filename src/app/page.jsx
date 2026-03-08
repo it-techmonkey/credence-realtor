@@ -219,6 +219,13 @@ const HomeContent = () => {
 
     const [contactSubmitStatus, setContactSubmitStatus] = useState(null); // 'success' | 'error' | null
 
+    // Auto-dismiss mobile toast after 4s so it doesn't stay forever
+    useEffect(() => {
+        if (!contactSubmitStatus) return;
+        const t = setTimeout(() => setContactSubmitStatus(null), 4000);
+        return () => clearTimeout(t);
+    }, [contactSubmitStatus]);
+
     const handleContactFormSubmit = async (e) => {
         e.preventDefault();
         setContactSubmitStatus(null);
@@ -776,8 +783,9 @@ const HomeContent = () => {
                     </div>
 
                     <div className="bg-white p-6 sm:p-8 md:p-12 rounded-2xl shadow-sm border border-gray-100">
+                        {/* Desktop: inline success/error; Mobile: side toast only (see below) */}
                         {contactSubmitStatus === 'success' && (
-                            <div className="mb-6 p-5 sm:p-6 flex items-center gap-4 bg-green-600 text-white rounded-xl shadow-sm">
+                            <div className="hidden md:flex mb-6 p-5 sm:p-6 items-center gap-4 bg-green-600 text-white rounded-xl shadow-sm">
                                 <span className="shrink-0 w-12 h-12 rounded-full bg-white/20 flex items-center justify-center">
                                     <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
@@ -790,7 +798,7 @@ const HomeContent = () => {
                             </div>
                         )}
                         {contactSubmitStatus === 'error' && (
-                            <div className="mb-6 p-5 sm:p-6 flex items-center gap-4 bg-red-600 text-white rounded-xl shadow-sm">
+                            <div className="hidden md:flex mb-6 p-5 sm:p-6 items-center gap-4 bg-red-600 text-white rounded-xl shadow-sm">
                                 <span className="shrink-0 w-12 h-12 rounded-full bg-white/20 flex items-center justify-center">
                                     <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -799,6 +807,35 @@ const HomeContent = () => {
                                 <div className="text-left">
                                     <p className="font-semibold text-base sm:text-lg">Something went wrong</p>
                                     <p className="text-red-100 text-sm sm:text-base">Please try again or contact us on WhatsApp.</p>
+                                </div>
+                            </div>
+                        )}
+                        {/* Mobile-only: side notification so user clearly sees "sent" */}
+                        {(contactSubmitStatus === 'success' || contactSubmitStatus === 'error') && (
+                            <div
+                                className="md:hidden fixed right-4 top-20 left-4 sm:left-auto z-[9999] w-auto sm:w-[min(280px,calc(100vw-2rem))] p-4 rounded-xl shadow-xl border border-white/20 animate-slide-in-right text-white"
+                                style={{ background: contactSubmitStatus === 'success' ? '#16a34a' : '#dc2626' }}
+                                role="alert"
+                                aria-live="polite"
+                            >
+                                <div className="flex items-center gap-3">
+                                    <span className="shrink-0 w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
+                                        {contactSubmitStatus === 'success' ? (
+                                            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                                            </svg>
+                                        ) : (
+                                            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                                <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                            </svg>
+                                        )}
+                                    </span>
+                                    <div>
+                                        <p className="font-semibold text-sm">{contactSubmitStatus === 'success' ? 'Message sent!' : 'Something went wrong'}</p>
+                                        <p className="text-white/90 text-xs mt-0.5">
+                                            {contactSubmitStatus === 'success' ? "We'll get back to you soon." : 'Try again or contact us on WhatsApp.'}
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         )}
