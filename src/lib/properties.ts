@@ -189,6 +189,7 @@ export async function getPropertyById(id: string | number): Promise<Property | n
     if (slug) {
       lookData = await fetchProjectLookData(slug);
       description = lookData.description;
+      if (description && containsArabic(description)) description = await translateToEnglish(description);
       amenities = lookData.amenities.length > 0 ? await translateAmenities(lookData.amenities) : lookData.amenities;
     }
     const property = mapStaticProjectToProperty({
@@ -218,7 +219,7 @@ export async function getRelatedProperties(
     const excludeIdStr = typeof excludeId === 'number' ? excludeId.toString() : excludeId;
     
     // Filter client-side: exclude current property and optionally filter by type
-    const filtered = properties
+    return properties
       .filter((p) => {
         const pId = typeof p.id === 'number' ? p.id.toString() : p.id;
         if (pId === excludeIdStr) return false;
@@ -226,8 +227,6 @@ export async function getRelatedProperties(
         return true;
       })
       .slice(0, limit);
-    
-    return await translatePropertiesForDisplay(filtered);
   } catch (error) {
     console.error('Error fetching related properties:', error);
     return [];
@@ -464,7 +463,6 @@ export async function getPaginatedProperties(
 ): Promise<PaginatedPropertiesResult> {
   try {
     const result = await getPaginatedPropertiesFromStatic(filters, page, limit);
-    result.properties = await translatePropertiesForDisplay(result.properties);
     return result;
   } catch (error) {
     console.error('Error fetching paginated properties:', error);

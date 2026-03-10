@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
-import allDataJson from '@/data/all_data.json';
+import allDataJson from '@/data/all_data_uae_en.json';
 import categoriesConfig from '@/data/propertyCategories.config.json';
 import officeSlugs from '@/data/office-slugs.json';
 import commercialSlugs from '@/data/commercial-slugs.json';
 import {
-  UAE_CITY_IDS,
+  isProjectInAllowedCities,
   getCityName,
   getCityIdFromParam,
   getProjectType,
@@ -21,54 +21,118 @@ const COMMERCIAL_SET = new Set((commercialSlugs as string[]).map((s) => s.toLowe
 const OFFICE_KEYWORDS = ['office', 'offices', 'مكتب', 'مكاتب', 'business bay', 'difc'];
 const COMMERCIAL_KEYWORDS = ['commercial', 'retail', 'تجاري', 'تجارة', 'mall'];
 
-/** Map normalized developer name (from filter) to possible builder values in all_data (English + Arabic). Ensures filter by "Emaar" matches builder "إمار". */
-const DEVELOPER_SEARCH_TERMS: Record<string, string[]> = {
-  emaar: ['emaar', 'إمار'],
-  nakheel: ['nakheel', 'نخيل'],
-  meraas: ['meraas', 'ميراس'],
-  damac: ['damac', 'داماك'],
-  binghatti: ['binghatti', 'بينغهاتي', 'bingati'],
-  azizi: ['azizi', 'عزيزي'],
-  sobha: ['sobha', 'سوبها', 'سوبا'],
-  ellington: ['ellington', 'إلينغتون'],
-  omniyat: ['omniyat', 'أومنيات', 'الدار'],
-  imtiaz: ['imtiaz', 'ايمتياز', 'imtiyaz', 'امتياز'],
-  aldar: ['aldar', 'الدار'],
-  dubai: ['dubai properties', 'دبي'],
-  select: ['select group', 'سيلكت'],
-  majid: ['majid al futtaim', 'ماجد الفطيم'],
-  jacob: ['jacob', 'جاكوب'],
+/** Normalize developer/builder for comparison: lowercase, drop common suffixes. */
+function normalizeDeveloperName(name: string): string {
+  return (name || '')
+    .trim()
+    .toLowerCase()
+    .replace(/\s+(properties|development|group|holding|holdings|llc|llc\.?)$/i, '')
+    .trim();
+}
+
+/**
+ * Builder strings as they appear in all_data.json (Arabic/Urdu/English) per developer.
+ * Search by these names so filter works without relying on translation.
+ */
+const BUILDERS_BY_DEVELOPER: Record<string, string[]> = {
+  emaar: ['إمار', 'امار', 'emaar', 'Emaar'],
+  nakheel: ['نخيلهيل', 'نخيل', 'nakheel', 'Nakheel'],
+  meraas: ['مراس', 'ميراس', 'meraas', 'Meraas'],
+  'dubai properties': ['مجموعة دبي للعقارات', 'دبي الجنوب للعقارات دي دبليو سي ش.ذ.م.م', 'دبي الجنوب', 'مجموعة دبي', 'Dubai Properties'],
+  damac: ['داماك', 'damac', 'Damac', 'DAMAC'],
+  sobha: ['سوبها', 'سوبا', 'sobha', 'Sobha', 'SOBHA'],
+  aldar: ['الدار', 'aldar', 'Aldar', 'ALDAR'],
+  azizi: ['عزيزي', 'azizi', 'Azizi', 'AZIZI'],
+  ellington: ['إلينغتون', 'الينغتون', 'ellington', 'Ellington'],
+  'majid al futtaim': ['ماجد للتطوير', 'ماجد الفطيم', 'ماجد', 'Majid Al Futtaim', 'majid al futtaim'],
 };
 
-function developerFilterMatches(developerParam: string, builder: string | undefined): boolean {
-  if (!builder || typeof builder !== 'string') return false;
-  const b = builder.trim();
+/** Normalize Arabic/Urdu for fuzzy match: collapse alef/ya variants so إمار and امار both match. */
+function normalizeArabicForMatch(s: string): string {
+  return (s || '')
+    .trim()
+    .replace(/\u0640/g, '')
+    .replace(/[\u0622\u0623\u0625\u0627\u0671]/g, '\u0627')
+    .replace(/\u0649/g, '\u064a')
+    .replace(/\s+/g, ' ')
+    .toLowerCase();
+}
+
+function getBuilderAliasesForDeveloper(developerParam: string): string[] {
+  const paramNorm = normalizeDeveloperName(developerParam);
+  const firstWord = paramNorm.split(/\s+/)[0] || paramNorm;
+  const list = BUILDERS_BY_DEVELOPER[paramNorm] ?? BUILDERS_BY_DEVELOPER[firstWord] ?? [];
+  return list.map((b) => b.trim()).filter(Boolean);
+}
+
+/** Match filter param against builder: exact/alias list (Urdu/Arabic/English) OR translated name. */
+function developerFilterMatches(
+  developerParam: string,
+  rawBuilder: string,
+  translatedBuilder: string
+): boolean {
+  if (!rawBuilder || typeof rawBuilder !== 'string') return false;
+  const b = rawBuilder.trim();
   if (!b) return false;
-  const paramNorm = developerParam.trim().toLowerCase().replace(/\s+(properties|development|group|holding|holdings|llc|llc\.?)$/i, '');
-  const key = paramNorm.split(/\s+/)[0] || paramNorm;
-  const terms = DEVELOPER_SEARCH_TERMS[key] || [developerParam.trim(), paramNorm];
-  return terms.some(
-    (term) => b.toLowerCase().includes(term.toLowerCase()) || b.includes(term)
+  const paramNorm = normalizeDeveloperName(developerParam);
+  const aliases = getBuilderAliasesForDeveloper(developerParam);
+  const bNorm = normalizeArabicForMatch(b);
+  if (aliases.length > 0) {
+    for (const alias of aliases) {
+      if (b === alias || b.includes(alias) || alias.includes(b)) return true;
+      if (bNorm && normalizeArabicForMatch(alias) && (bNorm.includes(normalizeArabicForMatch(alias)) || normalizeArabicForMatch(alias).includes(bNorm))) return true;
+    }
+  }
+  const displayNorm = normalizeDeveloperName(translatedBuilder || b);
+  if (!displayNorm || !paramNorm) return false;
+  const paramFirst = paramNorm.split(/\s+/)[0] || paramNorm;
+  const displayFirst = displayNorm.split(/\s+/)[0] || displayNorm;
+  return (
+    displayNorm.includes(paramNorm) ||
+    paramNorm.includes(displayNorm) ||
+    displayNorm.includes(paramFirst) ||
+    paramNorm.includes(displayFirst)
   );
 }
 
-/** Unit type codes in statistics.units: 110=Studio(0), 111=1BR, 112=2BR, 113=3BR, 114=4BR, 115=5BR, 116=6BR, 117=7BR */
+/**
+ * Unit type codes: statistics.units / .villas / .transactions use these keys.
+ * 110=Studio(0), 111=1BR, 112=2BR, 113=3BR, 114=4BR, 115=5BR, 116=6BR, 117=7BR.
+ * 164=penthouse (count as 0 for min filter), 462=villa (count as 2 for safety).
+ */
 const UNIT_CODE_TO_BEDROOMS: Record<string, number> = {
   '110': 0, '111': 1, '112': 2, '113': 3, '114': 4, '115': 5, '116': 6, '117': 7,
+  '164': 0, '462': 2,
 };
+
+/** Returns max bedroom count from statistics (units, villas, or transactions). So "1 Bedroom" = show projects with max >= 1. */
 function getProjectBedrooms(project: any): number {
-  const units = project?.statistics?.units || {};
   let maxBedrooms = 0;
-  for (const key of Object.keys(units)) {
-    const br = UNIT_CODE_TO_BEDROOMS[key];
-    if (br !== undefined && br > maxBedrooms) maxBedrooms = br;
-  }
-  const villas = project?.statistics?.villas || {};
-  for (const key of Object.keys(villas)) {
-    const br = UNIT_CODE_TO_BEDROOMS[key];
-    if (br !== undefined && br > maxBedrooms) maxBedrooms = br;
-  }
+  const consider = (obj: Record<string, unknown> | null | undefined) => {
+    if (!obj || typeof obj !== 'object') return;
+    for (const key of Object.keys(obj)) {
+      const br = UNIT_CODE_TO_BEDROOMS[key];
+      if (br !== undefined && br > maxBedrooms) maxBedrooms = br;
+    }
+  };
+  consider(project?.statistics?.units);
+  consider(project?.statistics?.villas);
+  consider(project?.statistics?.transactions);
   return maxBedrooms;
+}
+
+/** Returns true if project has at least one unit type with this many bedrooms (for exact "1 BR only" style filter). */
+function projectHasBedroomOption(project: any, minBedrooms: number): boolean {
+  if (minBedrooms < 0) return true;
+  const consider = (obj: Record<string, unknown> | null | undefined) => {
+    if (!obj || typeof obj !== 'object') return false;
+    for (const key of Object.keys(obj)) {
+      const br = UNIT_CODE_TO_BEDROOMS[key];
+      if (br !== undefined && br >= minBedrooms) return true;
+    }
+    return false;
+  };
+  return consider(project?.statistics?.units) || consider(project?.statistics?.villas) || consider(project?.statistics?.transactions);
 }
 
 function textContainsAny(text: string, keywords: string[]): boolean {
@@ -166,7 +230,8 @@ export async function GET(request: NextRequest) {
     const developer = searchParams.get('developer')?.trim().toLowerCase();
     const category = searchParams.get('category')?.trim();
     const bedroomsParam = searchParams.get('bedrooms');
-    const minBedrooms = bedroomsParam ? parseInt(bedroomsParam, 10) : undefined;
+    const minBedroomsNum = bedroomsParam ? parseInt(bedroomsParam, 10) : NaN;
+    const minBedrooms = Number.isNaN(minBedroomsNum) || minBedroomsNum < 0 ? undefined : minBedroomsNum;
     let minPrice = searchParams.get('minPrice') ? parseInt(searchParams.get('minPrice')!, 10) : undefined;
     let maxPrice = searchParams.get('maxPrice') ? parseInt(searchParams.get('maxPrice')!, 10) : undefined;
 
@@ -177,11 +242,8 @@ export async function GET(request: NextRequest) {
 
     let items: any[] = (allDataJson as any)?.data?.items || [];
 
-    // 1. UAE only
-    items = items.filter((p: any) => {
-      const cid = p.city_id != null ? (typeof p.city_id === 'string' ? parseInt(p.city_id, 10) : p.city_id) : null;
-      return cid != null && !isNaN(cid) && UAE_CITY_IDS.has(cid);
-    });
+    // 1. Only allowed cities (1,2,3,5,7,14,52); if coords present they must be in UAE
+    items = items.filter((p: any) => isProjectInAllowedCities(p));
 
     // 2. Remove 0 AED (price_from === 0 && price_to === 0)
     items = items.filter((p: any) => {
@@ -190,7 +252,7 @@ export async function GET(request: NextRequest) {
       return from > 0 || to > 0;
     });
 
-    // 3. City filter
+    // 3. City filter (by city_id in data — for UI filter; location still determined by lat/long)
     const filterCityId = getCityIdFromParam(cityParam ?? undefined);
     if (filterCityId !== null) {
       items = items.filter((p: any) => {
@@ -245,11 +307,15 @@ export async function GET(request: NextRequest) {
     }
 
     if (developer) {
-      items = items.filter((p: any) => developerFilterMatches(developer, p.builder));
+      items = items.filter((p: any) => {
+        const b = p.builder && typeof p.builder === 'string' ? p.builder.trim() : '';
+        if (!b) return false;
+        return developerFilterMatches(developer, b, b);
+      });
     }
 
-    if (minBedrooms !== undefined && minBedrooms > 0) {
-      items = items.filter((p: any) => getProjectBedrooms(p) >= minBedrooms);
+    if (minBedrooms !== undefined && minBedrooms >= 0) {
+      items = items.filter((p: any) => projectHasBedroomOption(p, minBedrooms));
     }
 
     if (minPrice !== undefined && minPrice > 0) {

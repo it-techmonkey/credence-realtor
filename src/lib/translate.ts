@@ -1,5 +1,6 @@
 /**
- * Translate Arabic/Urdu text to English via /api/translate.
+ * Translate Arabic/Urdu text to English (meaning) via /api/translate.
+ * e.g. text that means "Momentum Properties" in Arabic/Urdu will show as "Momentum Properties".
  * Returns the original text if it doesn't contain Arabic/Urdu script or if translation fails.
  * Uses module-level cache to avoid repeated API calls for same strings (speeds up property list).
  */
@@ -34,7 +35,7 @@ export async function translateToEnglish(text: string): Promise<string> {
   return text;
 }
 
-/** Translate an array of amenity strings from Arabic to English (only items that contain Arabic). */
+/** Translate amenity strings from Arabic/Urdu to English meaning (only items that contain Arabic/Urdu). */
 export async function translateAmenities(amenities: string[]): Promise<string[]> {
   if (!Array.isArray(amenities) || amenities.length === 0) return amenities;
   const stringsToTranslate = new Set<string>();

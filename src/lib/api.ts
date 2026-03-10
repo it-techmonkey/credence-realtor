@@ -1,3 +1,4 @@
+// Alnair API client (legacy). Property listing/detail use static data (/api/projects/static, /api/project/static).
 // Call Alnair API directly from browser (bypasses Cloudflare server-side blocking)
 const ALNAIR_API_URL = 'https://api.alnair.ae/project/find';
 

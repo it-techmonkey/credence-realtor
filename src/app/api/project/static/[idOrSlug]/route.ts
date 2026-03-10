@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
-import allDataJson from '@/data/all_data.json';
+import allDataJson from '@/data/all_data_uae_en.json';
 import categoriesConfig from '@/data/propertyCategories.config.json';
 import officeSlugs from '@/data/office-slugs.json';
 import commercialSlugs from '@/data/commercial-slugs.json';
 import {
-  UAE_CITY_IDS,
+  isProjectInAllowedCities,
   getCityName,
   getProjectType,
   getMainImage,
@@ -137,10 +137,7 @@ export async function GET(
       );
     }
 
-    const cityId = project.city_id != null
-      ? (typeof project.city_id === 'string' ? parseInt(project.city_id, 10) : project.city_id)
-      : null;
-    if (cityId == null || isNaN(cityId) || !UAE_CITY_IDS.has(cityId)) {
+    if (!isProjectInAllowedCities(project)) {
       return NextResponse.json(
         { success: false, message: 'Project not found', data: null },
         { status: 404 }

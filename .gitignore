@@ -34,3 +34,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# translation intermediates (use all_data_uae_en.json)
+translated_data_uae.json
+
+# scratch/test scripts
+script.js

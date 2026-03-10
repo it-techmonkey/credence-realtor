@@ -6,12 +6,17 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "translate-projects": "node scripts/translate_projects.js",
+    "filter-uae": "node scripts/filter_uae_projects.js",
+    "translate-uae": "node scripts/translate_projects.js all_data_uae",
+    "translate-uae-batch": "node scripts/translate_projects_batch.js all_data_uae"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.0.2",
     "bcryptjs": "^3.0.3",
     "dotenv": "^17.3.1",
+    "google-translate-api-x": "^10.7.2",
     "js-cookie": "^3.0.5",
     "jsonwebtoken": "^9.0.3",
     "leaflet": "^1.9.4",
