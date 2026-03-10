@@ -3,15 +3,13 @@
 import React, { useState, useEffect, useMemo, useCallback, useRef, Suspense } from 'react';
 import Link from 'next/link';
 import { useSearchParams, useRouter } from 'next/navigation';
-import { Search, MapPin, BedDouble, Bath, Square, Phone, MessageCircle, Check, ArrowRight, Filter, ChevronDown, ChevronUp, Shield, Brain, Tag, Headphones, Globe, TrendingUp, Users, Home, Building2 } from 'lucide-react';
+import { Search, MapPin, BedDouble, Bath, Square, Phone, MessageCircle, Check, ArrowRight, Filter, ChevronDown, ChevronUp, Shield, Brain, Tag, Headphones, Globe, Users, Home, Building2 } from 'lucide-react';
 import PropertyCard from '@/components/PropertyCard';
 import ContactDropdown from '@/components/ContactDropdown';
-import AreaDetailsModal from '@/components/AreaDetailsModal';
 import FilterModal from '@/components/FilterModal';
 import Hotspots from '@/components/Hotspots';
 import { getPaginatedProperties } from '@/lib/properties';
 import { getAllDevelopers, DEVELOPERS } from '@/utils/developerMapping';
-import { allAreas } from './areaData';
 import { useScrollAnimations } from '@/utils/useScrollAnimation';
 import AnimatedSection from '@/components/AnimatedSection';
 import AnimatedContainer from '@/components/AnimatedContainer';
@@ -28,7 +26,6 @@ function PropertiesContent() {
     const [filters, setFilters] = useState({});
     const categoryFromUrl = searchParams.get('category');
     const [activeFilter, setActiveFilter] = useState(categoryFromUrl && VALID_CATEGORIES.includes(categoryFromUrl) ? categoryFromUrl : 'All');
-    const [selectedArea, setSelectedArea] = useState(null);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
     const [totalProperties, setTotalProperties] = useState(0);
@@ -38,7 +35,6 @@ function PropertiesContent() {
     const [developers, setDevelopers] = useState([]);
     const [isLoadingDevelopers, setIsLoadingDevelopers] = useState(true);
     const [totalProjects, setTotalProjects] = useState(0);
-    const [visibleAreasCount, setVisibleAreasCount] = useState(6);
     const propertiesPerPage = 9;
     const debounceTimerRef = useRef(null);
     const loadIdRef = useRef(0);
@@ -83,36 +79,6 @@ function PropertiesContent() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }, 100);
     }, [router, searchParams]);
-
-    // Listen for area filter events from modal
-    useEffect(() => {
-        const handleAreaFilter = (event) => {
-            const { locality } = event.detail;
-            if (locality) {
-                console.log('=== Area Filter Applied ===');
-                console.log('Locality:', locality);
-                console.log('Current filters before:', filters);
-                // Clear all other filters and only set locality to avoid conflicts
-                // This ensures we're only filtering by the selected area
-                handleApplyFilters({ locality });
-                setCurrentPage(1);
-                // Scroll to properties grid section after a short delay
-                setTimeout(() => {
-                    const propertiesSection = document.querySelector('.py-12.bg-gray-50\\/50');
-                    if (propertiesSection) {
-                        propertiesSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    } else {
-                        window.scrollTo({ top: 800, behavior: 'smooth' });
-                    }
-                }, 100);
-            }
-        };
-
-        window.addEventListener('applyAreaFilter', handleAreaFilter);
-        return () => {
-            window.removeEventListener('applyAreaFilter', handleAreaFilter);
-        };
-    }, [handleApplyFilters, filters]);
 
     // Filter categories: API expects Affordable | Waterfront | Luxury | Office | Commercial | Off-Plan
     const filterCategories = [
@@ -650,7 +616,7 @@ function PropertiesContent() {
                 </div>
             </section>
 
-            {/* 3. Explore by Area Section */}
+            {/* 3. Interactive Map */}
             <AnimatedSection className="py-24 bg-white relative overflow-hidden">
                 <div className="container mx-auto px-4 max-w-7xl relative z-10">
                     <div className="text-center mb-16">
@@ -658,21 +624,19 @@ function PropertiesContent() {
                             Location Guide
                         </span>
                         <h2 className="text-4xl md:text-5xl font-display text-secondary mt-6 mb-4">
-                            Explore Properties by <span className="text-[#C5A365]">Area</span>
+                            Explore Properties by <span className="text-[#C5A365]">Location</span>
                         </h2>
                         <p className="text-gray-500 max-w-2xl mx-auto">
                             Discover Dubai's most sought-after neighborhoods and find your perfect investment opportunity.
                         </p>
                     </div>
-
-                    {/* Interactive Map Section */}
-                    <div className="mb-16">
+                    <div className="rounded-[3rem] overflow-hidden shadow-lg border border-gray-100">
                         <Hotspots
                             title=""
                             showTitle={false}
                             showFilters={true}
                             filterOptions={["All", "Villa", "2 BHK", "3 BHK", "1 BHK"]}
-                            className="px-0 py-0 rounded-[3rem] overflow-hidden shadow-lg border border-gray-100"
+                            className="px-0 py-0"
                             mapFilters={{
                                 category: activeFilter && activeFilter !== 'All' ? activeFilter : undefined,
                                 developer: filters.developer,
@@ -683,69 +647,7 @@ function PropertiesContent() {
                             }}
                         />
                     </div>
-
-                    {/* Area Cards Grid */}
-                    <AnimatedContainer 
-                        key={`areas-${visibleAreasCount}`}
-                        className="grid grid-cols-1 md:grid-cols-3 gap-8"
-                    >
-                        {allAreas.slice(0, visibleAreasCount).map((area, i) => (
-                            <AnimatedItem key={i} className="group rounded-2xl overflow-hidden border border-gray-100 hover:shadow-xl transition-all duration-300 bg-white">
-                                <div className="h-64 relative overflow-hidden">
-                                    <img src={area.img} alt={area.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-                                    <div className="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1 rounded text-xs font-bold flex items-center gap-1 text-green-700">
-                                        <TrendingUp size={12} /> {area.roi}
-                                    </div>
-                                    <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/80 to-transparent p-6 pt-12">
-                                        <h3 className="text-xl font-bold text-white">{area.name}</h3>
-                                    </div>
-                                </div>
-                                <div className="p-6">
-                                    <p className="text-gray-500 text-sm mb-4 leading-relaxed line-clamp-2">{area.desc}</p>
-                                    <div className="flex flex-wrap gap-2 mb-6">
-                                        {area.features.map(f => (
-                                            <span key={f} className="px-2 py-1 bg-gray-50 border border-gray-100 rounded text-[10px] uppercase font-bold text-gray-400">
-                                                {f}
-                                            </span>
-                                        ))}
-                                    </div>
-                                    <div className="flex items-center justify-between pt-4 border-t border-gray-50">
-                                        <div className="text-xs">
-                                            <span className="text-gray-400 block mb-0.5">Starting from</span>
-                                            <span className="font-bold text-secondary">{area.price}</span>
-                                        </div>
-                                        <button
-                                            onClick={(e) => {
-                                                e.preventDefault();
-                                                setSelectedArea(area);
-                                            }}
-                                            className="text-[#C5A365] text-xs font-bold uppercase flex items-center gap-1 hover:gap-2 transition-all"
-                                        >
-                                            View Properties <ArrowRight size={12} />
-                                        </button>
-                                    </div>
-                                </div>
-                            </AnimatedItem>
-                        ))}
-                    </AnimatedContainer>
-
-                    {/* Load More Button */}
-                    {visibleAreasCount < allAreas.length && (
-                        <div className="flex justify-center mt-12">
-                            <button
-                                onClick={() => setVisibleAreasCount(prev => Math.min(prev + 6, allAreas.length))}
-                                className="px-8 py-3 bg-secondary text-white rounded-full font-bold uppercase text-sm hover:bg-secondary/90 transition-all shadow-lg hover:shadow-xl flex items-center gap-2"
-                            >
-                                Load More Areas <ChevronDown size={16} />
-                            </button>
-                        </div>
-                    )}
                 </div>
-                <AreaDetailsModal
-                    isOpen={!!selectedArea}
-                    onClose={() => setSelectedArea(null)}
-                    area={selectedArea}
-                />
             </AnimatedSection>
 
             {/* 4. Explore by Developer */}
