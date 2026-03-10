@@ -1,23 +1,75 @@
 import { NextRequest, NextResponse } from 'next/server';
 import allDataJson from '@/data/all_data.json';
 import categoriesConfig from '@/data/propertyCategories.config.json';
-import waterfrontSlugs from '@/data/waterfront-slugs.json';
 import officeSlugs from '@/data/office-slugs.json';
 import commercialSlugs from '@/data/commercial-slugs.json';
+import {
+  UAE_CITY_IDS,
+  getCityName,
+  getCityIdFromParam,
+  getProjectType,
+  getMainImage,
+  hasStoredDescription,
+  descriptionContainsWaterfrontOrLagoon,
+} from '@/lib/staticPropertyData';
 
 const AFFORDABLE_MAX = (categoriesConfig as { affordableMaxPriceAED?: number }).affordableMaxPriceAED ?? 1_500_000;
 const LUXURY_DEV_NAMES = (categoriesConfig as { luxuryDeveloperNames?: string[] }).luxuryDeveloperNames ?? [];
-const WATERFRONT_SET = new Set((waterfrontSlugs as string[]).map((s) => s.toLowerCase().trim()));
 const OFFICE_SET = new Set((officeSlugs as string[]).map((s) => s.toLowerCase().trim()));
 const COMMERCIAL_SET = new Set((commercialSlugs as string[]).map((s) => s.toLowerCase().trim()));
 
-// Keywords in slug/title to derive Office vs Commercial (all_data has no type field)
 const OFFICE_KEYWORDS = ['office', 'offices', 'مكتب', 'مكاتب', 'business bay', 'difc'];
 const COMMERCIAL_KEYWORDS = ['commercial', 'retail', 'تجاري', 'تجارة', 'mall'];
-const WATERFRONT_KEYWORDS = [
-  'waterfront', 'marina', 'beach', 'creek', 'palm', 'island', 'lagoon', 'harbour', 'harbor',
-  'jlt', 'jvc', 'jvt', 'bluewaters', 'pearl', 'coast', 'bay', 'sea', 'جميرا', 'مارينا', 'جزيرة', 'شاطئ'
-];
+
+/** Map normalized developer name (from filter) to possible builder values in all_data (English + Arabic). Ensures filter by "Emaar" matches builder "إمار". */
+const DEVELOPER_SEARCH_TERMS: Record<string, string[]> = {
+  emaar: ['emaar', 'إمار'],
+  nakheel: ['nakheel', 'نخيل'],
+  meraas: ['meraas', 'ميراس'],
+  damac: ['damac', 'داماك'],
+  binghatti: ['binghatti', 'بينغهاتي', 'bingati'],
+  azizi: ['azizi', 'عزيزي'],
+  sobha: ['sobha', 'سوبها', 'سوبا'],
+  ellington: ['ellington', 'إلينغتون'],
+  omniyat: ['omniyat', 'أومنيات', 'الدار'],
+  imtiaz: ['imtiaz', 'ايمتياز', 'imtiyaz', 'امتياز'],
+  aldar: ['aldar', 'الدار'],
+  dubai: ['dubai properties', 'دبي'],
+  select: ['select group', 'سيلكت'],
+  majid: ['majid al futtaim', 'ماجد الفطيم'],
+  jacob: ['jacob', 'جاكوب'],
+};
+
+function developerFilterMatches(developerParam: string, builder: string | undefined): boolean {
+  if (!builder || typeof builder !== 'string') return false;
+  const b = builder.trim();
+  if (!b) return false;
+  const paramNorm = developerParam.trim().toLowerCase().replace(/\s+(properties|development|group|holding|holdings|llc|llc\.?)$/i, '');
+  const key = paramNorm.split(/\s+/)[0] || paramNorm;
+  const terms = DEVELOPER_SEARCH_TERMS[key] || [developerParam.trim(), paramNorm];
+  return terms.some(
+    (term) => b.toLowerCase().includes(term.toLowerCase()) || b.includes(term)
+  );
+}
+
+/** Unit type codes in statistics.units: 110=Studio(0), 111=1BR, 112=2BR, 113=3BR, 114=4BR, 115=5BR, 116=6BR, 117=7BR */
+const UNIT_CODE_TO_BEDROOMS: Record<string, number> = {
+  '110': 0, '111': 1, '112': 2, '113': 3, '114': 4, '115': 5, '116': 6, '117': 7,
+};
+function getProjectBedrooms(project: any): number {
+  const units = project?.statistics?.units || {};
+  let maxBedrooms = 0;
+  for (const key of Object.keys(units)) {
+    const br = UNIT_CODE_TO_BEDROOMS[key];
+    if (br !== undefined && br > maxBedrooms) maxBedrooms = br;
+  }
+  const villas = project?.statistics?.villas || {};
+  for (const key of Object.keys(villas)) {
+    const br = UNIT_CODE_TO_BEDROOMS[key];
+    if (br !== undefined && br > maxBedrooms) maxBedrooms = br;
+  }
+  return maxBedrooms;
+}
 
 function textContainsAny(text: string, keywords: string[]): boolean {
   const t = (text || '').toLowerCase();
@@ -31,8 +83,6 @@ function projectSlugTitleDistrict(project: any): string {
   return `${s} ${t} ${d}`;
 }
 
-
-/** Compute segment/category for filtering and display. Uses slug/title keywords for Office/Commercial when JSON lists are empty. */
 function getProjectCategory(project: any): string {
   const slug = (project.slug || '').toString().toLowerCase().trim();
   const combined = projectSlugTitleDistrict(project);
@@ -43,24 +93,20 @@ function getProjectCategory(project: any): string {
   if (textContainsAny(combined, OFFICE_KEYWORDS)) return 'Office';
   if (COMMERCIAL_SET.has(slug)) return 'Commercial';
   if (textContainsAny(combined, COMMERCIAL_KEYWORDS)) return 'Commercial';
-  if (WATERFRONT_SET.has(slug)) return 'Waterfront';
-  if (textContainsAny(combined, WATERFRONT_KEYWORDS)) return 'Waterfront';
+  // Waterfront: only projects whose stored description contains "waterfront" or "lagoon"
+  if (descriptionContainsWaterfrontOrLagoon(project.slug)) return 'Waterfront';
   const isLuxury = LUXURY_DEV_NAMES.some((name) => builder.toLowerCase().includes(name.toLowerCase()) || builder.includes(name));
   if (isLuxury) return 'Luxury';
   if (priceFrom > 0 && priceFrom <= AFFORDABLE_MAX) return 'Affordable';
   return 'Off-Plan';
 }
 
-// Transform Alnair project to our Property-like format
 function transformProject(project: any) {
   const stats = project.statistics?.total || {};
   const minPrice = stats.price_from || 0;
   const maxPrice = stats.price_to || 0;
   const photos = Array.isArray(project.photos) ? project.photos : [];
-  const coverSrc = typeof project.cover === 'string' ? project.cover : (project.cover?.src || project.cover?.logo);
-  const logoSrc = typeof project.logo === 'string' ? project.logo : (project.logo?.src || project.logo?.logo);
-  const firstPhotoSrc = photos[0] && (typeof photos[0] === 'string' ? photos[0] : (photos[0].src || photos[0].logo));
-  const mainImage = coverSrc || logoSrc || firstPhotoSrc || null;
+  const mainImage = getMainImage(project);
   const gallery = photos
     .map((p: any) => (typeof p === 'string' ? p : (p?.src || p?.logo)))
     .filter((src: string) => src && src !== mainImage);
@@ -72,24 +118,40 @@ function transformProject(project: any) {
   }
 
   const category = (project as any)._category !== undefined ? (project as any)._category : getProjectCategory(project);
+  const cityId = project.city_id;
+  const lat = project.latitude;
+  const lng = project.longitude;
+  const bedrooms = getProjectBedrooms(project);
 
   return {
     id: project.id,
     slug: project.slug,
     title: project.title,
-    type: project.type === 'project' || project.type === 'compound' ? 'Off-Plan' : 'Off-Plan',
+    type: getProjectType(project),
     category,
     price: minPrice || maxPrice,
     minPrice,
     maxPrice,
-    mainImage,
+    mainImage: mainImage ?? null,
     gallery,
     location: (project.district?.title || project.district || '') || '',
     locality: (project.district?.title || project.district || '') || '',
-    city: 'Dubai',
+    city: getCityName(cityId),
     developer: project.builder || '',
     readyDate: readyDate || null,
+    latitude: lat != null && !isNaN(Number(lat)) ? Number(lat) : null,
+    longitude: lng != null && !isNaN(Number(lng)) ? Number(lng) : null,
+    bedrooms,
   };
+}
+
+/** Normalize type query: "ready" | "off-plan" | "off plan" */
+function normalizeTypeParam(typeParam: string | null): 'Ready' | 'Off-Plan' | null {
+  if (!typeParam || typeof typeParam !== 'string') return null;
+  const t = typeParam.trim().toLowerCase().replace(/\s+/g, '-');
+  if (t === 'ready') return 'Ready';
+  if (t === 'off-plan' || t === 'offplan') return 'Off-Plan';
+  return null;
 }
 
 export async function GET(request: NextRequest) {
@@ -97,28 +159,56 @@ export async function GET(request: NextRequest) {
     const searchParams = request.nextUrl.searchParams;
     const page = Math.max(1, parseInt(searchParams.get('page') || '1', 10));
     const limit = Math.min(100, Math.max(1, parseInt(searchParams.get('limit') || '9', 10)));
+    const cityParam = searchParams.get('city')?.trim();
+    const typeParam = searchParams.get('type')?.trim();
     const locality = searchParams.get('locality')?.trim().toLowerCase();
     const search = searchParams.get('search')?.trim().toLowerCase();
     const developer = searchParams.get('developer')?.trim().toLowerCase();
     const category = searchParams.get('category')?.trim();
+    const bedroomsParam = searchParams.get('bedrooms');
+    const minBedrooms = bedroomsParam ? parseInt(bedroomsParam, 10) : undefined;
     let minPrice = searchParams.get('minPrice') ? parseInt(searchParams.get('minPrice')!, 10) : undefined;
     let maxPrice = searchParams.get('maxPrice') ? parseInt(searchParams.get('maxPrice')!, 10) : undefined;
 
-    // Affordable = only projects <= 1.5M AED (enforce so results always match the filter)
     if (category && category.toLowerCase() === 'affordable') {
       const cap = AFFORDABLE_MAX;
       maxPrice = maxPrice !== undefined && maxPrice > 0 ? Math.min(maxPrice, cap) : cap;
     }
 
-    let items = (allDataJson as any)?.data?.items || [];
+    let items: any[] = (allDataJson as any)?.data?.items || [];
 
-    // Filter by category
+    // 1. UAE only
+    items = items.filter((p: any) => {
+      const cid = p.city_id != null ? (typeof p.city_id === 'string' ? parseInt(p.city_id, 10) : p.city_id) : null;
+      return cid != null && !isNaN(cid) && UAE_CITY_IDS.has(cid);
+    });
+
+    // 2. Remove 0 AED (price_from === 0 && price_to === 0)
+    items = items.filter((p: any) => {
+      const from = p.statistics?.total?.price_from ?? 0;
+      const to = p.statistics?.total?.price_to ?? 0;
+      return from > 0 || to > 0;
+    });
+
+    // 3. City filter
+    const filterCityId = getCityIdFromParam(cityParam ?? undefined);
+    if (filterCityId !== null) {
+      items = items.filter((p: any) => {
+        const cid = p.city_id != null ? (typeof p.city_id === 'string' ? parseInt(p.city_id, 10) : p.city_id) : null;
+        return cid === filterCityId;
+      });
+    }
+
+    // 4. Type filter (ready / off-plan)
+    const filterType = normalizeTypeParam(typeParam ?? null);
+    if (filterType !== null) {
+      items = items.filter((p: any) => getProjectType(p) === filterType);
+    }
+
+    // 5. Remaining filters: category, locality, search, developer, minPrice, maxPrice
     if (category && category !== 'All') {
       const cat = category.toLowerCase();
       if (cat === 'luxury') {
-        // Luxury = properties from luxury developers regardless of other category keywords (waterfront, office, etc.)
-        // getProjectCategory checks waterfront/office/commercial BEFORE luxury, causing luxury dev properties to be miscategorised.
-        // Fix: match developer name directly so ALL luxury-developer properties are considered, then let the minPrice filter (7M+) narrow the results.
         items = items.filter((p: any) => {
           const builder = (p.builder || '').toString();
           const isLuxuryDev = LUXURY_DEV_NAMES.some(
@@ -128,7 +218,6 @@ export async function GET(request: NextRequest) {
           return isLuxuryDev;
         });
       } else {
-        // Other categories: single pass to compute and filter
         items = items.filter((p: any) => {
           const projectCat = getProjectCategory(p);
           (p as any)._category = projectCat;
@@ -137,7 +226,6 @@ export async function GET(request: NextRequest) {
       }
     }
 
-    // Filter by locality
     if (locality) {
       items = items.filter(
         (p: any) =>
@@ -146,7 +234,6 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    // Filter by search (slug, title, builder, district)
     if (search) {
       items = items.filter(
         (p: any) =>
@@ -157,14 +244,14 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    // Filter by developer
     if (developer) {
-      items = items.filter(
-        (p: any) => p.builder?.toLowerCase().includes(developer)
-      );
+      items = items.filter((p: any) => developerFilterMatches(developer, p.builder));
     }
 
-    // Filter by price range: minPrice = project's minimum unit price (price_from) must be >= minPrice
+    if (minBedrooms !== undefined && minBedrooms > 0) {
+      items = items.filter((p: any) => getProjectBedrooms(p) >= minBedrooms);
+    }
+
     if (minPrice !== undefined && minPrice > 0) {
       items = items.filter((p: any) => {
         const priceFrom = p.statistics?.total?.price_from ?? 0;
@@ -182,7 +269,7 @@ export async function GET(request: NextRequest) {
       });
     }
 
-    // Dedupe by canonical project name (e.g. "Azizi Venice 1", "Azizi Venice 2" -> keep one "Azizi Venice")
+    // Dedupe by canonical project name
     const canonicalTitle = (t: string) => (t || '').replace(/\s+\d+$/, '').trim() || (t || '');
     const seen = new Set<string>();
     items = items.filter((p: any) => {
@@ -190,6 +277,15 @@ export async function GET(request: NextRequest) {
       if (seen.has(can)) return false;
       seen.add(can);
       return true;
+    });
+
+    // 6. Description-based sort: projects with stored description first
+    items.sort((a: any, b: any) => {
+      const slugA = (a.slug || '').toString().trim();
+      const slugB = (b.slug || '').toString().trim();
+      const hasA = hasStoredDescription(slugA) ? 1 : 0;
+      const hasB = hasStoredDescription(slugB) ? 1 : 0;
+      return hasB - hasA;
     });
 
     const total = items.length;

@@ -162,6 +162,31 @@ export default function FilterModal({ isOpen, onClose, filters, onApplyFilters }
               />
             </div>
 
+            {/* Bedrooms */}
+            <div>
+              <label className="block text-black text-sm md:text-base font-medium mb-2">
+                Min Bedrooms
+              </label>
+              <select
+                value={localFilters.bedrooms ?? ''}
+                onChange={(e) => {
+                  const v = e.target.value;
+                  setLocalFilters({
+                    ...localFilters,
+                    bedrooms: v ? parseInt(v, 10) : undefined,
+                  });
+                }}
+                className="w-full py-2.5 md:py-3 px-3 rounded-[4px] border border-[#dddddd] text-black bg-white focus:outline-none focus:ring-2 focus:ring-[#1f2462] focus:border-transparent"
+              >
+                <option value="">Any</option>
+                <option value="1">1+</option>
+                <option value="2">2+</option>
+                <option value="3">3+</option>
+                <option value="4">4+</option>
+                <option value="5">5+</option>
+              </select>
+            </div>
+
             {/* Price Range */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>

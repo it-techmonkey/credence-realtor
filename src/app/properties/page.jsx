@@ -353,9 +353,7 @@ function PropertiesContent() {
                     delete apiFilters.maxPrice;
                     delete apiFilters.allowedDevelopers;
                 } else {
-                    // All: clear category-derived constraints so we don't carry over Luxury/Affordable rules
-                    delete apiFilters.minPrice;
-                    delete apiFilters.maxPrice;
+                    // All: keep user's minPrice/maxPrice from filter modal; only clear category-specific state
                     delete apiFilters.allowedDevelopers;
                 }
 
@@ -675,6 +673,14 @@ function PropertiesContent() {
                             showFilters={true}
                             filterOptions={["All", "Villa", "2 BHK", "3 BHK", "1 BHK"]}
                             className="px-0 py-0 rounded-[3rem] overflow-hidden shadow-lg border border-gray-100"
+                            mapFilters={{
+                                category: activeFilter && activeFilter !== 'All' ? activeFilter : undefined,
+                                developer: filters.developer,
+                                bedrooms: filters.bedrooms,
+                                minPrice: filters.minPrice,
+                                maxPrice: filters.maxPrice,
+                                locality: filters.locality,
+                            }}
                         />
                     </div>
 

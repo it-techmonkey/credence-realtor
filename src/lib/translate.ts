@@ -1,6 +1,6 @@
 /**
- * Translate Arabic text to English via /api/translate.
- * Returns the original text if it doesn't contain Arabic or if translation fails.
+ * Translate Arabic/Urdu text to English via /api/translate.
+ * Returns the original text if it doesn't contain Arabic/Urdu script or if translation fails.
  * Uses module-level cache to avoid repeated API calls for same strings (speeds up property list).
  */
 export function containsArabic(text: string): boolean {

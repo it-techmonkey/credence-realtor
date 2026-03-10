@@ -5,14 +5,17 @@ const CACHE_MAX = 1000;
 const serverCache = new Map<string, string>();
 const MAX_CHUNK = 400; // MyMemory recommends ~500 bytes; 400 chars is safe for UTF-8
 
-function containsArabic(text: string): boolean {
+/** Arabic and Urdu script (Arabic script used for Urdu, etc.) */
+function containsArabicOrUrdu(text: string): boolean {
+  if (!text || typeof text !== 'string') return false;
   return /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF]/.test(text);
 }
 
-async function translateChunk(q: string): Promise<string> {
+/** Try Urdu first (ur|en), then Arabic (ar|en) - Urdu uses Arabic script so ur|en often works for both. */
+async function translateChunk(q: string, langPair: 'ur|en' | 'ar|en' = 'ur|en'): Promise<string> {
   const params = new URLSearchParams({
     q,
-    langpair: 'ar|en',
+    langpair: langPair,
   });
   const res = await fetch(`${MYMEMORY_URL}?${params.toString()}`, {
     headers: { Accept: 'application/json' },
@@ -25,8 +28,8 @@ async function translateChunk(q: string): Promise<string> {
 }
 
 /** Chunk long text and translate each part, then join with space. */
-async function translateLongText(text: string): Promise<string> {
-  if (text.length <= MAX_CHUNK) return translateChunk(text);
+async function translateLongText(text: string, langPair: 'ur|en' | 'ar|en' = 'ur|en'): Promise<string> {
+  if (text.length <= MAX_CHUNK) return translateChunk(text, langPair);
   const parts: string[] = [];
   let start = 0;
   while (start < text.length) {
@@ -36,7 +39,7 @@ async function translateLongText(text: string): Promise<string> {
       if (lastSpace > start) end = lastSpace;
     }
     const chunk = text.slice(start, end).trim();
-    if (chunk) parts.push(await translateChunk(chunk));
+    if (chunk) parts.push(await translateChunk(chunk, langPair));
     start = end;
   }
   return parts.join(' ');
@@ -49,12 +52,21 @@ export async function POST(request: NextRequest) {
     if (!text) {
       return NextResponse.json({ translated: '' }, { status: 200 });
     }
-    if (!containsArabic(text)) {
+    if (!containsArabicOrUrdu(text)) {
       return NextResponse.json({ translated: text }, { status: 200 });
     }
     const cached = serverCache.get(text);
     if (cached) return NextResponse.json({ translated: cached }, { status: 200 });
-    const translated = await translateLongText(text);
+    let translated: string;
+    try {
+      translated = await translateLongText(text, 'ur|en');
+    } catch {
+      try {
+        translated = await translateLongText(text, 'ar|en');
+      } catch {
+        translated = text;
+      }
+    }
     if (serverCache.size < CACHE_MAX) serverCache.set(text, translated);
     return NextResponse.json({ translated }, { status: 200 });
   } catch (error) {
