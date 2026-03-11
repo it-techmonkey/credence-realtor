@@ -252,6 +252,9 @@ export async function GET(request: NextRequest) {
       return from > 0 || to > 0;
     });
 
+    // 2b. Only show properties that have a stored description
+    items = items.filter((p: any) => hasStoredDescription(p.slug));
+
     // 3. City filter (by city_id in data — for UI filter; location still determined by lat/long)
     const filterCityId = getCityIdFromParam(cityParam ?? undefined);
     if (filterCityId !== null) {
