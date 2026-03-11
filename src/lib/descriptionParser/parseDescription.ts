@@ -12,8 +12,8 @@ import type { NormalizedDescription } from './types';
 function cleanDescriptionHtml(html: string): string {
   if (!html || typeof html !== 'string') return '';
   let out = html
-    .replace(/<p>\s*<strong>\s*Amenities?:\s*<\/strong>.*?<\/ul>/gis, '')
-    .replace(/<p>\s*Amenities?:\s*<\/p>.*?<\/ul>/gis, '')
+    .replace(/<p>\s*<strong>\s*Amenities?:\s*<\/strong>[\s\S]*?<\/ul>/gi, '')
+    .replace(/<p>\s*Amenities?:\s*<\/p>[\s\S]*?<\/ul>/gi, '')
     .replace(/<ul[^>]*>[\s\S]*?<\/ul>/gi, (m) => (/\b(pool|gym|spa|bbq|amenit)\b/i.test(m) ? '' : m));
   out = out.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
   return out;
