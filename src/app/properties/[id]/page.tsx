@@ -163,7 +163,7 @@ export default function PropertyDetailPage() {
   const [isAmenitiesModalOpen, setIsAmenitiesModalOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState(0);
   const thumbnailStripRef = useRef<HTMLDivElement>(null);
-  const thumbnailRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const thumbnailRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const [translatedDeveloper, setTranslatedDeveloper] = useState<string | null>(null);
   const [translatedDescription, setTranslatedDescription] = useState<string | null>(null);
   const [translatedLocality, setTranslatedLocality] = useState<string | null>(null);
@@ -622,9 +622,9 @@ export default function PropertyDetailPage() {
                         </button>
                       )}
                     </p>
-                    {normalizedDescription?.lifestyle_tags?.length > 0 && (
+                    {(normalizedDescription?.lifestyle_tags?.length ?? 0) > 0 && (
                       <div className="flex flex-wrap gap-2 mt-4 pt-4 border-t border-gray-100">
-                        {normalizedDescription.lifestyle_tags.map((tag) => (
+                        {(normalizedDescription?.lifestyle_tags ?? []).map((tag) => (
                           <span key={tag} className="text-xs font-medium px-3 py-1 rounded-full bg-secondary/5 text-secondary">{tag}</span>
                         ))}
                       </div>
