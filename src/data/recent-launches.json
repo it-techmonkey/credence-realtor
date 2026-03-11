@@ -1,29 +1,38 @@
 [
   {
-    "id": 5910,
-    "title": "Emaar Expo City Terra woods",
-    "developer": "Emaar Properties",
-    "location": "Expo City",
-    "mainImage": "https://files.alnair.ae/uploads/gallery_photo/2026/2/75/63/7563e228adb49ecac5bc1dc70b714222.jpg",
-    "price": 1600000,
-    "readyDate": "Q1 2030"
+    "id": 3869,
+    "title": "Olivia Residence Gardens",
+    "developer": "Sigrix",
+    "location": "Al Satwa",
+    "mainImage": "https://files.alnair.ae/uploads/2025/3/85/97/8597d3cedde9db988a082b6525987b7d.jpg",
+    "price": 1716883,
+    "readyDate": "Q2 2027"
   },
   {
-    "id": 1721,
-    "title": "Binghatti City Mercedes meydan",
-    "developer": "Binghatti Developers",
-    "location": "Downtown Dubai",
-    "mainImage": "https://files.alnair.ae/uploads/gallery_photo/2024/1/61/68/61689fad3c7fa73971dc52a5611953f7.jpg",
-    "price": 10100000,
+    "id": 2587,
+    "title": "Enso Amber",
+    "developer": "ENSO",
+    "location": "Al Satwa",
+    "mainImage": "https://files.alnair.ae/uploads/2025/7/56/a2/56a25461e08b5ab6a085bcf8a7789da9.jpg",
+    "price": 1520000,
     "readyDate": "Q4 2026"
   },
   {
-    "id": 5895,
-    "title": "Damac Lagoon - Valencia Tower",
-    "developer": "Damac Properties",
-    "location": "Damac Lagoons",
-    "mainImage": "https://files.alnair.ae/uploads/gallery_photo/2026/2/90/c2/90c227ed555209b0aaa3ddd931cd9660.jpg",
-    "price": 725000,
-    "readyDate": "Q1 2029"
+    "id": 3363,
+    "title": "Sea Legend One",
+    "developer": "MVS Real Estate Development LLC",
+    "location": "Dubai Islands",
+    "mainImage": "https://files.alnair.ae/uploads/2025/5/a8/c1/a8c10c5c8b806e53620b06fd33837e08.jpg",
+    "price": 2501635,
+    "readyDate": "Q2 2027"
+  },
+  {
+    "id": 1573,
+    "title": "Dear Venice",
+    "developer": "Azizi",
+    "location": "Dubai South",
+    "mainImage": "https://files.alnair.ae/uploads/2023/12/3b/ce/3bce3fcd5f2a0c8d4de605f6195daf4e.jpg",
+    "price": 655000,
+    "readyDate": "Q1 2027"
   }
 ]
