@@ -1,56 +1,22 @@
 import { NextRequest, NextResponse } from 'next/server';
-import storedAmenitiesData from '@/data/amenities.json';
-import { getStoredDescriptions, hasStoredDescription } from '@/lib/staticPropertyData';
-
-const storedAmenities = (storedAmenitiesData || {}) as Record<string, string[]>;
-
-/** Strip HTML to plain text for amenity parsing (keeps list structure via newlines). */
-function htmlToPlainText(html: string): string {
-  if (!html || typeof html !== 'string') return '';
-  return html
-    .replace(/<li[^>]*>/gi, ' ')
-    .replace(/<\/li>/gi, '\n')
-    .replace(/<[^>]+>/g, ' ')
-    .replace(/&amp;/g, '&')
-    .replace(/&nbsp;/g, ' ')
-    .replace(/\s+/g, (m) => (m.includes('\n') ? '\n' : ' '))
-    .trim();
-}
-
-/** Parse amenities from description text (e.g. "Amenities: Pool, Gym" or bullet list) */
-function extractAmenitiesFromDescription(description: string): string[] {
-  if (!description || typeof description !== 'string') return [];
-  const text = description.trim();
-  const results: string[] = [];
-  const sectionRegex = /(?:Amenities|Features|Facilities|AMENITIES|وسائل الراحة|المرافق|المميزات)\s*[:\-]\s*([\s\S]*?)(?=\n\n|\n#|\n\*{2,}|$)/gi;
-  let m: RegExpExecArray | null;
-  const seen = new Set<string>();
-  while ((m = sectionRegex.exec(text)) !== null) {
-    const block = m[1].trim();
-    const parts = block.split(/\n|[,،]|\s+and\s+|\s+&\s+/gi).map((s) => s.replace(/^[\s\-*•·]\s*/, '').trim()).filter(Boolean);
-    for (const p of parts) {
-      const item = p.replace(/\s+/g, ' ').trim();
-      if (item.length > 1 && item.length < 120 && !seen.has(item.toLowerCase())) {
-        seen.add(item.toLowerCase());
-        results.push(item);
-      }
-    }
-  }
-  const bulletRegex = /^[\s]*[\-*•·]\s+(.+)$/gm;
-  while ((m = bulletRegex.exec(text)) !== null) {
-    const item = m[1].trim().replace(/\s+/g, ' ');
-    if (item.length > 1 && item.length < 120 && !seen.has(item.toLowerCase())) {
-      seen.add(item.toLowerCase());
-      results.push(item);
-    }
-  }
-  return results;
-}
+import {
+  getStoredDescriptions,
+  hasStoredDescription,
+  getStoredAmenitiesWithLabels,
+  getStoredPaymentPlan,
+  getStoredPaymentPlanBreakdown,
+  getStoredPaymentPlanSections,
+  stripAmenitiesFromDescriptionHtml,
+} from '@/lib/staticPropertyData';
 
 const EMPTY_PAYLOAD = {
   description: '',
-  amenities: [] as string[],
+  amenities: [] as { id: string; label: string }[],
   payment_plan: null as string | null,
+  payment_plan_breakdown: undefined as Record<string, unknown> | undefined,
+  payment_plan_sections: undefined as { on_booking?: string | number; on_construction?: string | number; on_handover?: string | number; post_handover?: string | number } | undefined,
+  /** When true, client should fetch payment plan from Alnair in the browser and POST back to save. */
+  fetch_payment_plan_from_client: false as boolean,
   planned_at: null as string | null,
   construction_inspection_date: null as string | null,
   statistics: null,
@@ -74,13 +40,25 @@ export async function GET(
 
     const slugKey = slug.trim();
 
-    // If the slug does NOT have a stored description, return empty payload immediately. Do NOT call external API.
+    // Payment plan: only from store (no server-side Alnair call). Client fetches from Alnair in browser when missing.
+    const storedPaymentPlan = getStoredPaymentPlan(slugKey);
+    const storedPaymentPlanBreakdown = getStoredPaymentPlanBreakdown(slugKey) ?? undefined;
+    const paymentPlanSections = getStoredPaymentPlanSections(slugKey) ?? undefined;
+    const fetchPaymentPlanFromClient = !storedPaymentPlan && !paymentPlanSections;
+
+    // If the slug does NOT have a stored description, return empty payload (but still include payment plan).
     if (!hasStoredDescription(slugKey)) {
       return NextResponse.json(
         {
           success: true,
           message: 'No stored description',
-          data: { ...EMPTY_PAYLOAD },
+          data: {
+            ...EMPTY_PAYLOAD,
+            payment_plan: storedPaymentPlan,
+            payment_plan_breakdown: storedPaymentPlanBreakdown ?? undefined,
+            payment_plan_sections: paymentPlanSections,
+            fetch_payment_plan_from_client: fetchPaymentPlanFromClient,
+          },
         },
         {
           headers: {
@@ -93,14 +71,14 @@ export async function GET(
     const slugKeyLower = slugKey.toLowerCase();
     const storedDescriptions = getStoredDescriptions();
     const storedDesc = storedDescriptions[slugKey] ?? storedDescriptions[slugKeyLower] ?? '';
-    const description = typeof storedDesc === 'string' && storedDesc.trim() !== '' ? storedDesc.trim() : '';
+    const rawDescription = typeof storedDesc === 'string' && storedDesc.trim() !== '' ? storedDesc.trim() : '';
 
-    if (!description) {
+    if (!rawDescription) {
       return NextResponse.json(
         {
           success: true,
           message: 'No stored description',
-          data: { ...EMPTY_PAYLOAD },
+          data: { ...EMPTY_PAYLOAD, payment_plan: storedPaymentPlan, payment_plan_breakdown: storedPaymentPlanBreakdown ?? undefined, payment_plan_sections: paymentPlanSections, fetch_payment_plan_from_client: fetchPaymentPlanFromClient },
         },
         {
           headers: {
@@ -110,11 +88,8 @@ export async function GET(
       );
     }
 
-    let amenities: string[] = (storedAmenities[slugKey] ?? storedAmenities[slugKeyLower] ?? []) as string[];
-    if (amenities.length === 0) {
-      const plainText = htmlToPlainText(description);
-      amenities = extractAmenitiesFromDescription(plainText);
-    }
+    const description = stripAmenitiesFromDescriptionHtml(rawDescription);
+    const amenities = getStoredAmenitiesWithLabels(slugKey);
 
     return NextResponse.json(
       {
@@ -123,7 +98,10 @@ export async function GET(
         data: {
           description,
           amenities,
-          payment_plan: null,
+          payment_plan: storedPaymentPlan,
+          payment_plan_breakdown: storedPaymentPlanBreakdown ?? undefined,
+          payment_plan_sections: paymentPlanSections,
+          fetch_payment_plan_from_client: fetchPaymentPlanFromClient,
           planned_at: null,
           construction_inspection_date: null,
           statistics: null,

@@ -2,15 +2,18 @@
 
 import { useEffect } from 'react'
 import { createPortal } from 'react-dom'
+import { getAmenityIcon } from '@/lib/amenityIcons'
 
 interface AmenitiesModalProps {
   isOpen: boolean
   onClose: () => void
   amenities: string[]
+  /** When provided, shows icons per amenity (from look API). */
+  amenitiesWithIds?: { id: string; label: string }[]
   propertyTitle: string
 }
 
-export default function AmenitiesModal({ isOpen, onClose, amenities, propertyTitle }: AmenitiesModalProps) {
+export default function AmenitiesModal({ isOpen, onClose, amenities, amenitiesWithIds, propertyTitle }: AmenitiesModalProps) {
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose()
@@ -29,32 +32,27 @@ export default function AmenitiesModal({ isOpen, onClose, amenities, propertyTit
 
   if (!isOpen) return null
 
+  const items = (amenitiesWithIds && amenitiesWithIds.length > 0)
+    ? amenitiesWithIds
+    : amenities.map((label) => ({ id: '', label }))
+
   const modalContent = (
     <div className="fixed inset-0 z-[10000] flex items-center justify-center p-4">
-      {/* Backdrop */}
-      <div 
-        className="absolute inset-0 bg-black/70 backdrop-blur-sm"
-        onClick={onClose}
-      />
-      
-      {/* Modal */}
-      <div 
-        className="relative bg-white rounded-lg w-full max-w-2xl max-h-[90vh] overflow-y-auto shadow-xl"
+      <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" onClick={onClose} />
+      <div
+        className="relative bg-white rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto shadow-2xl border border-gray-100"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Header */}
-        <div className="sticky top-0 bg-white border-b border-[#e5e5e5] p-4 md:p-6 flex items-start justify-between z-10">
+        <div className="sticky top-0 bg-white border-b border-gray-100 px-5 md:px-6 py-5 flex items-start justify-between z-10">
           <div className="flex-1 min-w-0 pr-4">
-            <h2 className="text-black text-lg md:text-xl lg:text-2xl font-semibold leading-normal">
-              All Amenities
+            <h2 className="text-secondary text-lg md:text-xl font-bold">
+              Amenities
             </h2>
-            <p className="text-[#61656e] text-xs md:text-sm lg:text-base mt-1 truncate">
-              {propertyTitle}
-            </p>
+            <p className="text-gray-500 text-sm mt-0.5 truncate">{propertyTitle}</p>
           </div>
           <button
             onClick={onClose}
-            className="text-[#61656e] hover:text-black transition-colors shrink-0"
+            className="text-gray-400 hover:text-secondary transition-colors shrink-0 p-1 rounded-lg hover:bg-gray-100"
             aria-label="Close modal"
           >
             <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -63,30 +61,29 @@ export default function AmenitiesModal({ isOpen, onClose, amenities, propertyTit
           </button>
         </div>
 
-        {/* Content */}
-        <div className="p-4 md:p-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 md:gap-3">
-            {amenities.map((amenity, index) => (
-              <div 
-                key={index}
-                className="flex items-center gap-3 p-3 bg-neutral-50 border border-[#e5e5e5] rounded-lg"
-              >
-                <svg className="w-5 h-5 text-[#1f2462] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
-                <span className="text-black text-sm md:text-base">
-                  {amenity}
-                </span>
-              </div>
-            ))}
+        <div className="p-5 md:p-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {items.map((item, index) => {
+              const Icon = getAmenityIcon(item.id)
+              return (
+                <div
+                  key={item.id || index}
+                  className="flex items-center gap-3 p-4 rounded-xl bg-gray-50/80 border border-gray-100 hover:border-primary/20 hover:bg-primary/5 transition-colors"
+                >
+                  <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                    <Icon className="w-5 h-5 text-primary" strokeWidth={2} />
+                  </div>
+                  <span className="text-gray-800 text-sm font-medium">{item.label}</span>
+                </div>
+              )
+            })}
           </div>
         </div>
 
-        {/* Footer */}
-        <div className="sticky bottom-0 bg-white border-t border-[#e5e5e5] p-4 md:p-6 flex justify-end">
+        <div className="sticky bottom-0 bg-white border-t border-gray-100 px-5 md:px-6 py-4 flex justify-end">
           <button
             onClick={onClose}
-            className="bg-[#C5A365] text-white px-4 md:px-6 py-2.5 md:py-3 rounded-[4px] font-medium hover:bg-[#C5A365] transition-colors text-sm md:text-base"
+            className="bg-primary text-white px-5 py-2.5 rounded-full font-semibold text-sm hover:bg-primary/90 transition-colors"
           >
             Close
           </button>

@@ -16,6 +16,8 @@ export interface Property {
   minPrice?: number;
   maxPrice?: number;
   bedrooms?: number;
+  /** Range of bedrooms offered (e.g. "Studio – 2" or "1 – 3") from project units (111=1BR, 112=2BR, etc.). */
+  bedroomRange?: string | null;
   bathrooms?: number;
   area?: number;
   areaMin?: number;
@@ -41,6 +43,13 @@ export interface Property {
     onConstruction?: number;
     onHandover?: number;
     postHandover?: number;
+  };
+  /** Structured phases: on booking, on construction, on handover, post handover (from API). */
+  paymentPlanSections?: {
+    on_booking?: string | number;
+    on_construction?: string | number;
+    on_handover?: string | number;
+    post_handover?: string | number;
   };
   roi?: {
     firstYear: number;
@@ -104,6 +113,12 @@ export interface ProjectLookData {
     onHandover?: number;
     postHandover?: number;
   } | null;
+  paymentPlanSections?: {
+    on_booking?: string | number;
+    on_construction?: string | number;
+    on_handover?: string | number;
+    post_handover?: string | number;
+  } | null;
 }
 async function fetchProjectLookData(slug: string): Promise<ProjectLookData> {
   try {
@@ -116,11 +131,19 @@ async function fetchProjectLookData(slug: string): Promise<ProjectLookData> {
     const paymentPlan =
       (typeof data?.payment_plan === 'string' && data.payment_plan.trim()) || null;
     const paymentPlanBreakdown = data?.payment_plan_breakdown ?? null;
+    const paymentPlanSections = data?.payment_plan_sections && typeof data.payment_plan_sections === 'object' ? data.payment_plan_sections : null;
+    const rawAmenities = Array.isArray(data?.amenities) ? data.amenities : [];
+    const amenities: string[] = rawAmenities.map((a: unknown) =>
+      a && typeof a === 'object' && 'label' in (a as object) && typeof (a as { label: string }).label === 'string'
+        ? (a as { label: string }).label
+        : String(a ?? '')
+    ).filter(Boolean);
     return {
       description: data?.description || '',
-      amenities: Array.isArray(data?.amenities) ? data.amenities : [],
+      amenities,
       paymentPlan: paymentPlan || null,
       paymentPlanBreakdown: paymentPlanBreakdown || null,
+      paymentPlanSections: paymentPlanSections || null,
     };
   } catch {
     return { description: '', amenities: [], paymentPlan: null, paymentPlanBreakdown: null };
@@ -162,6 +185,7 @@ function mapStaticProjectToProperty(data: any): Property {
   if (data.latitude != null && !isNaN(Number(data.latitude))) prop.latitude = Number(data.latitude);
   if (data.longitude != null && !isNaN(Number(data.longitude))) prop.longitude = Number(data.longitude);
   if (data.bedrooms !== undefined && typeof data.bedrooms === 'number' && data.bedrooms >= 0) prop.bedrooms = data.bedrooms;
+  if (data.bedroomRange !== undefined && data.bedroomRange != null && String(data.bedroomRange).trim()) prop.bedroomRange = String(data.bedroomRange).trim();
   return prop;
 }
 
@@ -190,7 +214,8 @@ export async function getPropertyById(id: string | number): Promise<Property | n
       lookData = await fetchProjectLookData(slug);
       description = lookData.description;
       if (description && containsArabic(description)) description = await translateToEnglish(description);
-      amenities = lookData.amenities.length > 0 ? await translateAmenities(lookData.amenities) : lookData.amenities;
+      // Amenities from look API are enum labels (already in display language)
+      amenities = lookData.amenities;
     }
     const property = mapStaticProjectToProperty({
       ...baseData,
@@ -200,6 +225,10 @@ export async function getPropertyById(id: string | number): Promise<Property | n
     if (amenities.length > 0) property.amenities = amenities;
     if (lookData?.paymentPlan) property.paymentPlan = lookData.paymentPlan;
     if (lookData?.paymentPlanBreakdown) property.paymentPlanBreakdown = lookData.paymentPlanBreakdown;
+    if (lookData?.paymentPlanSections) property.paymentPlanSections = lookData.paymentPlanSections;
+    if (baseData.payment_plan_sections && typeof baseData.payment_plan_sections === 'object' && Object.keys(baseData.payment_plan_sections).length > 0) {
+      property.paymentPlanSections = baseData.payment_plan_sections as Property['paymentPlanSections'];
+    }
     return property;
   } catch (e) {
     if (process.env.NODE_ENV === 'development') console.warn('Static project fetch failed:', e);
@@ -207,18 +236,15 @@ export async function getPropertyById(id: string | number): Promise<Property | n
   }
 }
 
-// Fetch related properties
+// Fetch related properties (legacy — filter by type only)
 export async function getRelatedProperties(
   excludeId: string | number,
   type?: string,
   limit: number = 4
 ): Promise<Property[]> {
   try {
-    // Fetch all properties
     const properties = await getAllProperties(1, 100);
     const excludeIdStr = typeof excludeId === 'number' ? excludeId.toString() : excludeId;
-    
-    // Filter client-side: exclude current property and optionally filter by type
     return properties
       .filter((p) => {
         const pId = typeof p.id === 'number' ? p.id.toString() : p.id;
@@ -230,6 +256,61 @@ export async function getRelatedProperties(
   } catch (error) {
     console.error('Error fetching related properties:', error);
     return [];
+  }
+}
+
+/** Score a candidate property for similarity to the current one (higher = more similar). */
+function scoreSimilarity(current: Property, candidate: Property): number {
+  let score = 0;
+  const curPrice = current.minPrice ?? current.price;
+  const candPrice = candidate.minPrice ?? candidate.price;
+  const localityMatch = current.locality && candidate.locality &&
+    String(current.locality).toLowerCase().trim() === String(candidate.locality).toLowerCase().trim();
+  const developerMatch = current.developer && candidate.developer &&
+    String(current.developer).toLowerCase().trim() === String(candidate.developer).toLowerCase().trim();
+  const typeMatch = current.type && candidate.type &&
+    String(current.type).toLowerCase() === String(candidate.type).toLowerCase();
+  if (localityMatch) score += 3;
+  if (developerMatch) score += 2;
+  if (typeMatch) score += 1;
+  if (curPrice > 0 && candPrice > 0) {
+    const ratio = candPrice / curPrice;
+    if (ratio >= 0.5 && ratio <= 1.5) score += 2;
+    else if (ratio >= 0.3 && ratio <= 2) score += 1;
+  }
+  return score;
+}
+
+/** Suggested similar properties: scored by locality, developer, type, price range. */
+export async function getSuggestedSimilarProperties(
+  currentProperty: Property,
+  limit: number = 6
+): Promise<Property[]> {
+  try {
+    const properties = await getAllProperties(1, 150);
+    const excludeIdStr = currentProperty.id != null ? String(currentProperty.id) : '';
+    const scored = properties
+      .filter((p) => {
+        const pId = typeof p.id === 'number' ? p.id.toString() : p.id;
+        return pId !== excludeIdStr && pId != null;
+      })
+      .map((p) => ({ property: p, score: scoreSimilarity(currentProperty, p) }))
+      .filter((s) => s.score > 0)
+      .sort((a, b) => b.score - a.score)
+      .slice(0, limit)
+      .map((s) => s.property);
+    if (scored.length >= limit) return scored;
+    const fallback = await getRelatedProperties(excludeIdStr, currentProperty.type, limit);
+    const fallbackIds = new Set(scored.map((p) => (typeof p.id === 'number' ? p.id.toString() : p.id)));
+    for (const p of fallback) {
+      const id = typeof p.id === 'number' ? p.id.toString() : p.id;
+      if (!fallbackIds.has(id)) { scored.push(p); fallbackIds.add(id); }
+      if (scored.length >= limit) break;
+    }
+    return scored;
+  } catch (error) {
+    console.error('Error fetching suggested properties:', error);
+    return getRelatedProperties(currentProperty.id ?? '', currentProperty.type, limit);
   }
 }
 

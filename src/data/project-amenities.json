@@ -1,0 +1,3996 @@
+{
+  "azizi-venice": [
+    "swimming_pool",
+    "gym",
+    "bbq_area",
+    "concierge",
+    "proximity_medical",
+    "malls_nearby",
+    "close_to_airport"
+  ],
+  "697102a325136-azizi-venice-16": [
+    "swimming_pool",
+    "gym",
+    "bbq_area",
+    "concierge",
+    "proximity_medical",
+    "malls_nearby",
+    "close_to_airport"
+  ],
+  "696a4bc1289b1-azizi-venice-15": [
+    "swimming_pool",
+    "gym",
+    "bbq_area",
+    "concierge",
+    "proximity_medical",
+    "malls_nearby",
+    "close_to_airport"
+  ],
+  "6942beae3423b-azizi-venice-12": [
+    "swimming_pool",
+    "gym",
+    "bbq_area",
+    "concierge",
+    "proximity_medical",
+    "malls_nearby",
+    "close_to_airport"
+  ],
+  "69660dbd3452e-azizi-venice-14": [
+    "swimming_pool",
+    "gym",
+    "bbq_area",
+    "concierge",
+    "proximity_medical",
+    "malls_nearby",
+    "close_to_airport"
+  ],
+  "695258c542b00-azizi-venice-13": [
+    "swimming_pool",
+    "gym",
+    "bbq_area",
+    "concierge",
+    "proximity_medical",
+    "malls_nearby",
+    "close_to_airport"
+  ],
+  "olivia-gardens-residence": [
+    "swimming_pool",
+    "gym",
+    "kids_play_area",
+    "bbq_area",
+    "cinema",
+    "garden"
+  ],
+  "sea-legend-one": [
+    "swimming_pool",
+    "spa_area",
+    "jacuzzi",
+    "kids_play_area",
+    "gym",
+    "bbq_area",
+    "cinema",
+    "concierge",
+    "parking",
+    "ev_charging"
+  ],
+  "amber-by-enso": [
+    "swimming_pool",
+    "kids_pool",
+    "bbq_area",
+    "gym",
+    "garden",
+    "kids_play_area",
+    "ev_charging"
+  ],
+  "verde-by-vision": [
+    "swimming_pool",
+    "gym",
+    "kids_play_area",
+    "cinema",
+    "yoga_wellness",
+    "bbq_area",
+    "party_hall"
+  ],
+  "luz-ora-residences": [
+    "swimming_pool",
+    "gym",
+    "furniture_packages",
+    "smart_home_system",
+    "parking",
+    "ev_charging"
+  ],
+  "colibri-views": [
+    "swimming_pool",
+    "jacuzzi",
+    "gym",
+    "spa_area",
+    "garden",
+    "bbq_area",
+    "kids_play_area",
+    "yoga_wellness",
+    "co_working",
+    "cinema"
+  ],
+  "golf-terrace": [
+    "swimming_pool",
+    "gym",
+    "yoga_wellness",
+    "kids_play_area",
+    "running_track",
+    "garden"
+  ],
+  "artistry-residences-2": [
+    "swimming_pool",
+    "kids_pool",
+    "gym",
+    "kids_play_area",
+    "padel_court",
+    "rooftop",
+    "spa_area"
+  ],
+  "the-grandala": [
+    "gym",
+    "swimming_pool",
+    "concierge",
+    "close_to_airport"
+  ],
+  "capital-horizon-terraces": [
+    "garden",
+    "furniture_packages"
+  ],
+  "the-residences-at-sheraton-al-marjan-island-resort": [
+    "beach_access",
+    "furniture_packages"
+  ],
+  "dream-life-residence": [
+    "spa_area",
+    "concierge",
+    "smart_home_system",
+    "marina"
+  ],
+  "amaris-tower": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "jacuzzi"
+  ],
+  "casa-altia": [
+    "spa_area",
+    "parking",
+    "rooftop"
+  ],
+  "binghatti-etherea": [
+    "yoga_wellness",
+    "spa_area"
+  ],
+  "noore": [
+    "spa_area"
+  ],
+  "serenz-by-danube": [
+    "swimming_pool",
+    "spa_area",
+    "garden",
+    "smart_home_system",
+    "furniture_packages"
+  ],
+  "joud-tower": [
+    "spa_area",
+    "parking",
+    "concierge",
+    "malls_nearby",
+    "smart_home_system",
+    "marina",
+    "close_to_airport"
+  ],
+  "697b5158882f3-jw-marriott-residences": [
+    "malls_nearby",
+    "beach_access",
+    "marina",
+    "proximity_medical"
+  ],
+  "binghatti-luxuria": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "jacuzzi",
+    "kids_play_area",
+    "malls_nearby",
+    "kids_pool"
+  ],
+  "arthouse-hills-arjan": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "kids_play_area",
+    "garden",
+    "cafe_restro",
+    "smart_home_system",
+    "rooftop",
+    "kids_pool",
+    "furniture_packages"
+  ],
+  "barari-palace": [
+    "spa_area"
+  ],
+  "project-maybach": [
+    "spa_area",
+    "parking",
+    "malls_nearby"
+  ],
+  "maybach-ultimate-luxury": [
+    "parking",
+    "malls_nearby"
+  ],
+  "aristo": [
+    "spa_area",
+    "close_to_airport"
+  ],
+  "sanctuary": [
+    "swimming_pool",
+    "spa_area",
+    "jacuzzi",
+    "bbq_area",
+    "cinema",
+    "kids_play_area",
+    "garden",
+    "cafe_restro",
+    "kids_pool"
+  ],
+  "artistry-residences": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "kids_play_area",
+    "cafe_restro",
+    "parking",
+    "concierge"
+  ],
+  "bararigate-by-ade": [
+    "swimming_pool",
+    "gym",
+    "yoga_wellness",
+    "spa_area",
+    "jacuzzi",
+    "kids_play_area",
+    "malls_nearby",
+    "smart_home_system",
+    "padel_court",
+    "close_to_airport"
+  ],
+  "haus-of-tenet": [
+    "spa_area",
+    "cafe_restro"
+  ],
+  "09-life-residences": [
+    "spa_area",
+    "furniture_packages"
+  ],
+  "greencrest": [
+    "spa_area"
+  ],
+  "evelyn": [
+    "spa_area",
+    "garden",
+    "malls_nearby"
+  ],
+  "east": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "bbq_area",
+    "kids_play_area",
+    "garden",
+    "concierge"
+  ],
+  "city-walk-crestlane-5": [
+    "swimming_pool",
+    "yoga_wellness",
+    "spa_area",
+    "cafe_restro",
+    "beach_access"
+  ],
+  "ab-hills": [
+    "swimming_pool",
+    "spa_area",
+    "kids_play_area",
+    "garden",
+    "malls_nearby"
+  ],
+  "citywalk-crestlane-4": [
+    "swimming_pool",
+    "yoga_wellness",
+    "spa_area",
+    "cafe_restro",
+    "beach_access"
+  ],
+  "vista-ridge": [
+    "spa_area",
+    "garden"
+  ],
+  "grove-ridge": [
+    "yoga_wellness",
+    "spa_area",
+    "garden"
+  ],
+  "aura-prestige": [
+    "spa_area",
+    "garden",
+    "cafe_restro",
+    "concierge"
+  ],
+  "chapter-02": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "kids_play_area",
+    "cafe_restro",
+    "smart_home_system"
+  ],
+  "maybach-6": [
+    "spa_area",
+    "malls_nearby"
+  ],
+  "parkgreen-residences": [
+    "gym",
+    "spa_area",
+    "kids_play_area",
+    "garden",
+    "co_working"
+  ],
+  "the-pinnacle": [
+    "swimming_pool",
+    "spa_area",
+    "cinema",
+    "kids_play_area",
+    "marina"
+  ],
+  "riviera-residences-by-mered": [
+    "swimming_pool",
+    "spa_area",
+    "garden",
+    "cafe_restro",
+    "malls_nearby",
+    "marina",
+    "padel_court"
+  ],
+  "sunvale": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "kids_play_area",
+    "garden",
+    "cafe_restro",
+    "parking",
+    "malls_nearby",
+    "running_track"
+  ],
+  "kingdom-gate": [
+    "swimming_pool",
+    "gym",
+    "garden",
+    "parking",
+    "concierge",
+    "furniture_packages"
+  ],
+  "divine-elements": [
+    "swimming_pool",
+    "yoga_wellness",
+    "spa_area",
+    "cinema",
+    "garden",
+    "cafe_restro",
+    "malls_nearby",
+    "rooftop"
+  ],
+  "siera": [
+    "swimming_pool",
+    "gym",
+    "yoga_wellness",
+    "spa_area",
+    "garden",
+    "cafe_restro",
+    "malls_nearby",
+    "running_track",
+    "beach_access"
+  ],
+  "villa-del-garda": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "cafe_restro",
+    "beach_access",
+    "furniture_packages"
+  ],
+  "marquis-horizon": [
+    "swimming_pool",
+    "gym",
+    "yoga_wellness",
+    "spa_area",
+    "bbq_area",
+    "parking",
+    "running_track",
+    "close_to_airport"
+  ],
+  "oasis-merath": [
+    "marina"
+  ],
+  "nura": [
+    "garden",
+    "malls_nearby"
+  ],
+  "kanyon": [
+    "swimming_pool",
+    "yoga_wellness",
+    "spa_area",
+    "kids_play_area",
+    "garden",
+    "cafe_restro"
+  ],
+  "boulevard-park-2": [
+    "spa_area",
+    "bbq_area",
+    "kids_play_area",
+    "garden",
+    "cafe_restro",
+    "malls_nearby",
+    "running_track"
+  ],
+  "skyvue-altier": [
+    "spa_area",
+    "malls_nearby"
+  ],
+  "sports-view-2": [
+    "swimming_pool",
+    "gym",
+    "bbq_area",
+    "garden",
+    "smart_home_system",
+    "rooftop",
+    "close_to_airport",
+    "party_hall"
+  ],
+  "aykon-city-3": [
+    "malls_nearby"
+  ],
+  "sensi": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "kids_play_area",
+    "garden",
+    "parking",
+    "malls_nearby",
+    "beach_access",
+    "marina"
+  ],
+  "creek-bay": [
+    "spa_area",
+    "garden",
+    "marina"
+  ],
+  "avarra-by-palace": [
+    "spa_area",
+    "proximity_medical"
+  ],
+  "creek-haven": [
+    "spa_area",
+    "garden",
+    "malls_nearby",
+    "marina"
+  ],
+  "hilton-residence": [
+    "swimming_pool",
+    "spa_area",
+    "jacuzzi",
+    "cinema",
+    "kids_play_area",
+    "garden",
+    "cafe_restro",
+    "rooftop",
+    "marina"
+  ],
+  "solaya-46": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "cinema",
+    "cafe_restro",
+    "beach_access"
+  ],
+  "lateral-one": [
+    "spa_area",
+    "malls_nearby",
+    "close_to_airport"
+  ],
+  "kaia-residences": [
+    "swimming_pool",
+    "gym",
+    "yoga_wellness",
+    "spa_area",
+    "kids_play_area",
+    "garden",
+    "cafe_restro",
+    "concierge",
+    "rooftop",
+    "beach_access",
+    "marina",
+    "kids_pool"
+  ],
+  "the-tides": [
+    "spa_area",
+    "garden",
+    "marina",
+    "proximity_medical"
+  ],
+  "tiger-downtown": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "kids_play_area",
+    "cafe_restro",
+    "concierge",
+    "malls_nearby",
+    "beach_access"
+  ],
+  "binghatti-cullinan": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "kids_play_area",
+    "malls_nearby",
+    "smart_home_system",
+    "rooftop",
+    "padel_court"
+  ],
+  "leaf-tower": [
+    "spa_area",
+    "furniture_packages"
+  ],
+  "vue-dore": [
+    "swimming_pool",
+    "gym",
+    "yoga_wellness",
+    "spa_area",
+    "jacuzzi",
+    "kids_play_area",
+    "garden",
+    "running_track",
+    "marina",
+    "padel_court"
+  ],
+  "241-waterside-residences": [
+    "spa_area"
+  ],
+  "mirdad-towers": [
+    "swimming_pool",
+    "gym",
+    "yoga_wellness",
+    "spa_area",
+    "cinema",
+    "kids_play_area",
+    "garden"
+  ],
+  "shahrukhz-by-danube": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "garden",
+    "cafe_restro",
+    "parking",
+    "ev_charging",
+    "padel_court"
+  ],
+  "31-above": [
+    "gym",
+    "yoga_wellness",
+    "spa_area",
+    "garden",
+    "cafe_restro",
+    "parking",
+    "malls_nearby"
+  ],
+  "verdana-9": [
+    "spa_area",
+    "malls_nearby"
+  ],
+  "verdana-8": [
+    "spa_area",
+    "malls_nearby",
+    "marina"
+  ],
+  "the-edit-at-d3": [
+    "garden",
+    "marina"
+  ],
+  "eltiera-views-2": [
+    "swimming_pool",
+    "yoga_wellness",
+    "spa_area",
+    "kids_play_area",
+    "garden",
+    "cafe_restro",
+    "padel_court"
+  ],
+  "boulevard-park": [
+    "spa_area",
+    "bbq_area",
+    "kids_play_area",
+    "garden",
+    "cafe_restro",
+    "malls_nearby",
+    "running_track"
+  ],
+  "stellar-by-elie-saab": [
+    "beach_access",
+    "marina"
+  ],
+  "opal-by-crystal": [
+    "spa_area"
+  ],
+  "carmel-residence": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "parking",
+    "concierge"
+  ],
+  "cybele-by-wadan": [
+    "swimming_pool",
+    "yoga_wellness",
+    "spa_area",
+    "co_working"
+  ],
+  "the-mirage": [
+    "gym",
+    "yoga_wellness",
+    "spa_area",
+    "cafe_restro",
+    "malls_nearby",
+    "rooftop"
+  ],
+  "the-symphony-by-imtiaz": [
+    "spa_area",
+    "malls_nearby"
+  ],
+  "azizi-farishta-ii": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "cinema",
+    "kids_play_area",
+    "garden",
+    "cafe_restro",
+    "parking",
+    "concierge",
+    "rooftop"
+  ],
+  "azizi-gabriel": [
+    "spa_area",
+    "cinema",
+    "cafe_restro",
+    "malls_nearby"
+  ],
+  "expo-valley-views": [
+    "swimming_pool",
+    "gym",
+    "yoga_wellness",
+    "spa_area",
+    "bbq_area",
+    "garden"
+  ],
+  "rabdan-gardens": [
+    "swimming_pool",
+    "kids_play_area",
+    "garden",
+    "parking"
+  ],
+  "rabdan-square": [
+    "spa_area",
+    "garden"
+  ],
+  "allegro-park": [
+    "spa_area",
+    "beach_access",
+    "marina",
+    "close_to_airport"
+  ],
+  "the-caden": [
+    "swimming_pool",
+    "spa_area",
+    "cinema",
+    "garden",
+    "co_working",
+    "cafe_restro",
+    "parking",
+    "malls_nearby",
+    "rooftop"
+  ],
+  "sakura-gardens": [
+    "swimming_pool",
+    "gym",
+    "yoga_wellness",
+    "spa_area",
+    "jacuzzi",
+    "garden",
+    "co_working",
+    "cafe_restro",
+    "parking",
+    "ev_charging",
+    "concierge",
+    "malls_nearby",
+    "smart_home_system",
+    "running_track",
+    "rooftop",
+    "marina",
+    "padel_court",
+    "furniture_packages",
+    "close_to_airport"
+  ],
+  "the-gate-5": [
+    "gym",
+    "spa_area",
+    "garden",
+    "malls_nearby",
+    "smart_home_system"
+  ],
+  "solva-beach-residences": [
+    "swimming_pool",
+    "gym",
+    "yoga_wellness",
+    "spa_area",
+    "malls_nearby",
+    "rooftop",
+    "beach_access",
+    "marina",
+    "furniture_packages"
+  ],
+  "celia-homes": [
+    "swimming_pool",
+    "gym",
+    "yoga_wellness",
+    "spa_area",
+    "jacuzzi",
+    "bbq_area",
+    "cinema",
+    "kids_play_area",
+    "cafe_restro",
+    "running_track",
+    "furniture_packages"
+  ],
+  "zyra-hills": [
+    "swimming_pool",
+    "yoga_wellness",
+    "spa_area",
+    "garden",
+    "cafe_restro"
+  ],
+  "reef-996": [
+    "swimming_pool",
+    "gym",
+    "yoga_wellness",
+    "cinema",
+    "kids_play_area",
+    "garden",
+    "cafe_restro",
+    "padel_court",
+    "kids_pool"
+  ],
+  "il-vento": [
+    "spa_area",
+    "marina"
+  ],
+  "infinity-tower": [
+    "swimming_pool",
+    "gym",
+    "malls_nearby",
+    "marina",
+    "close_to_airport"
+  ],
+  "terra-gardens": [
+    "yoga_wellness",
+    "spa_area",
+    "garden"
+  ],
+  "portside-square": [
+    "spa_area",
+    "garden",
+    "cafe_restro",
+    "malls_nearby",
+    "marina"
+  ],
+  "le-blanc": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "bbq_area",
+    "kids_play_area",
+    "marina",
+    "furniture_packages",
+    "close_to_airport"
+  ],
+  "meriden-beach-residences": [
+    "swimming_pool",
+    "gym",
+    "yoga_wellness",
+    "spa_area",
+    "jacuzzi",
+    "bbq_area",
+    "kids_play_area",
+    "rooftop",
+    "beach_access",
+    "furniture_packages"
+  ],
+  "aquacrest": [
+    "spa_area",
+    "beach_access"
+  ],
+  "xenia-residence": [
+    "swimming_pool",
+    "parking"
+  ],
+  "samana-boulevard-heights": [
+    "swimming_pool",
+    "spa_area"
+  ],
+  "stax": [
+    "swimming_pool",
+    "spa_area",
+    "cafe_restro",
+    "malls_nearby",
+    "rooftop",
+    "marina"
+  ],
+  "binghatti-titania": [
+    "swimming_pool",
+    "gym",
+    "yoga_wellness",
+    "spa_area",
+    "kids_play_area",
+    "garden"
+  ],
+  "skyparks": [
+    "spa_area",
+    "garden"
+  ],
+  "the-collective": [
+    "spa_area",
+    "malls_nearby",
+    "rooftop",
+    "furniture_packages"
+  ],
+  "oceana": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "bbq_area",
+    "beach_access",
+    "close_to_airport"
+  ],
+  "golf-hills-2": [
+    "swimming_pool",
+    "gym",
+    "bbq_area",
+    "garden",
+    "cafe_restro"
+  ],
+  "golf-hills": [
+    "swimming_pool",
+    "spa_area",
+    "bbq_area",
+    "garden"
+  ],
+  "golden-woods-albab-views": [
+    "swimming_pool",
+    "gym",
+    "yoga_wellness",
+    "spa_area",
+    "jacuzzi",
+    "bbq_area",
+    "kids_play_area",
+    "garden",
+    "cafe_restro",
+    "running_track",
+    "kids_pool",
+    "close_to_airport"
+  ],
+  "azizi-leily": [
+    "malls_nearby"
+  ],
+  "sunset-bay-grand": [
+    "swimming_pool",
+    "spa_area",
+    "garden",
+    "cafe_restro",
+    "rooftop",
+    "marina"
+  ],
+  "cascada-2-at-waada": [
+    "spa_area",
+    "malls_nearby",
+    "proximity_medical"
+  ],
+  "flora-shore-beachfront-residences": [
+    "swimming_pool",
+    "spa_area",
+    "co_working",
+    "cafe_restro",
+    "malls_nearby",
+    "beach_access",
+    "marina",
+    "close_to_airport"
+  ],
+  "marea-residences": [
+    "spa_area",
+    "jacuzzi",
+    "marina",
+    "proximity_medical"
+  ],
+  "binghatti-hillcrest": [
+    "swimming_pool",
+    "yoga_wellness",
+    "spa_area",
+    "kids_play_area",
+    "garden",
+    "malls_nearby",
+    "smart_home_system",
+    "running_track"
+  ],
+  "nasim-al-bahr-residences": [
+    "swimming_pool",
+    "spa_area",
+    "kids_play_area",
+    "cafe_restro",
+    "concierge",
+    "beach_access",
+    "marina",
+    "furniture_packages"
+  ],
+  "vista-by-vision": [
+    "kids_play_area",
+    "malls_nearby"
+  ],
+  "riverside-views-azure-2": [
+    "gym",
+    "spa_area",
+    "cinema",
+    "co_working",
+    "cafe_restro",
+    "malls_nearby",
+    "close_to_airport"
+  ],
+  "nourelle": [
+    "spa_area",
+    "malls_nearby",
+    "beach_access",
+    "close_to_airport"
+  ],
+  "symbolic-altus": [
+    "spa_area",
+    "garden",
+    "rooftop",
+    "furniture_packages"
+  ],
+  "skygate-tower": [
+    "swimming_pool",
+    "spa_area",
+    "garden",
+    "malls_nearby",
+    "furniture_packages",
+    "close_to_airport"
+  ],
+  "eywa-the-way-of-water": [
+    "swimming_pool",
+    "yoga_wellness",
+    "spa_area",
+    "cinema",
+    "concierge"
+  ],
+  "wadi-hills": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "cafe_restro",
+    "concierge"
+  ],
+  "lyvia-by-palace": [
+    "spa_area",
+    "garden",
+    "malls_nearby"
+  ],
+  "purvanchal-triana-residences": [
+    "swimming_pool",
+    "spa_area",
+    "garden",
+    "cafe_restro",
+    "parking",
+    "rooftop"
+  ],
+  "elmora": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "jacuzzi",
+    "garden",
+    "co_working",
+    "cafe_restro",
+    "concierge",
+    "running_track",
+    "furniture_packages",
+    "close_to_airport"
+  ],
+  "bond-living": [
+    "malls_nearby",
+    "proximity_medical"
+  ],
+  "derby-heights": [
+    "spa_area",
+    "garden"
+  ],
+  "la-perla": [
+    "spa_area",
+    "garden"
+  ],
+  "lumena-alta": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "co_working",
+    "cafe_restro",
+    "malls_nearby"
+  ],
+  "sky-line": [
+    "swimming_pool",
+    "gym",
+    "yoga_wellness",
+    "spa_area",
+    "kids_play_area",
+    "garden",
+    "concierge",
+    "malls_nearby",
+    "close_to_airport"
+  ],
+  "helvetia-marine": [
+    "swimming_pool",
+    "gym",
+    "yoga_wellness",
+    "spa_area",
+    "garden",
+    "concierge",
+    "malls_nearby",
+    "rooftop",
+    "beach_access",
+    "close_to_airport"
+  ],
+  "tonino-lamborghini-residences-2": [
+    "gym",
+    "yoga_wellness",
+    "spa_area",
+    "garden"
+  ],
+  "azizi-noura": [
+    "swimming_pool",
+    "spa_area",
+    "garden"
+  ],
+  "floarea-breeze": [
+    "swimming_pool",
+    "gym",
+    "yoga_wellness",
+    "spa_area",
+    "bbq_area",
+    "kids_play_area",
+    "cafe_restro",
+    "malls_nearby",
+    "rooftop",
+    "beach_access",
+    "kids_pool"
+  ],
+  "aurea": [
+    "swimming_pool",
+    "spa_area",
+    "garden",
+    "cafe_restro",
+    "malls_nearby",
+    "marina"
+  ],
+  "helvetia-verde": [
+    "swimming_pool",
+    "gym",
+    "yoga_wellness",
+    "spa_area",
+    "kids_play_area",
+    "garden",
+    "cafe_restro",
+    "concierge",
+    "malls_nearby",
+    "running_track",
+    "beach_access"
+  ],
+  "the-tranquil": [
+    "gym",
+    "yoga_wellness",
+    "spa_area",
+    "malls_nearby",
+    "rooftop"
+  ],
+  "wellness-estate": [
+    "swimming_pool",
+    "yoga_wellness",
+    "spa_area",
+    "garden"
+  ],
+  "samana-hills-south-3": [
+    "spa_area",
+    "garden",
+    "parking",
+    "concierge"
+  ],
+  "aqua-maya": [
+    "spa_area",
+    "garden"
+  ],
+  "enta": [
+    "swimming_pool",
+    "spa_area",
+    "bbq_area",
+    "cafe_restro",
+    "rooftop",
+    "marina",
+    "furniture_packages"
+  ],
+  "368-park-ln": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "bbq_area",
+    "cinema",
+    "kids_play_area",
+    "garden",
+    "cafe_restro",
+    "concierge",
+    "rooftop"
+  ],
+  "elar1s-sky": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "kids_play_area",
+    "garden",
+    "cafe_restro",
+    "malls_nearby",
+    "smart_home_system"
+  ],
+  "soulever-towers": [
+    "swimming_pool",
+    "gym",
+    "yoga_wellness",
+    "spa_area",
+    "kids_play_area",
+    "garden",
+    "cafe_restro",
+    "parking",
+    "malls_nearby",
+    "proximity_medical"
+  ],
+  "elle-residences": [
+    "marina"
+  ],
+  "creek-beach-canopy-moor": [
+    "swimming_pool",
+    "spa_area",
+    "garden",
+    "beach_access",
+    "marina"
+  ],
+  "palace-beach-residence": [
+    "beach_access",
+    "close_to_airport"
+  ],
+  "azizi-lina": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "cinema",
+    "parking",
+    "malls_nearby"
+  ],
+  "casagrand-hermina": [
+    "swimming_pool",
+    "gym",
+    "yoga_wellness",
+    "spa_area",
+    "jacuzzi",
+    "cinema",
+    "marina",
+    "furniture_packages",
+    "close_to_airport"
+  ],
+  "elevia-residences-2": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "kids_play_area"
+  ],
+  "ramada-residences": [
+    "spa_area"
+  ],
+  "mirasol-2": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "kids_play_area",
+    "garden",
+    "concierge",
+    "malls_nearby"
+  ],
+  "grove-uptown-views": [
+    "malls_nearby"
+  ],
+  "palazzo-tissoli": [
+    "swimming_pool",
+    "spa_area",
+    "garden",
+    "cafe_restro",
+    "marina",
+    "furniture_packages",
+    "proximity_medical"
+  ],
+  "villa-dellarte": [
+    "swimming_pool",
+    "bbq_area",
+    "cinema",
+    "cafe_restro",
+    "malls_nearby",
+    "rooftop",
+    "marina"
+  ],
+  "divine-al-barari": [
+    "swimming_pool",
+    "spa_area",
+    "cafe_restro",
+    "malls_nearby"
+  ],
+  "avida-residences": [
+    "spa_area",
+    "beach_access",
+    "proximity_medical"
+  ],
+  "rise-by-athlon-2": [
+    "yoga_wellness",
+    "spa_area"
+  ],
+  "rise-by-athlon-1": [
+    "yoga_wellness",
+    "spa_area"
+  ],
+  "sera-1": [
+    "swimming_pool",
+    "spa_area",
+    "garden",
+    "cafe_restro",
+    "marina"
+  ],
+  "elar1s-rise": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "cafe_restro",
+    "malls_nearby",
+    "rooftop"
+  ],
+  "palace-residences-hillside": [
+    "swimming_pool",
+    "gym",
+    "yoga_wellness",
+    "bbq_area",
+    "garden",
+    "malls_nearby",
+    "rooftop",
+    "padel_court",
+    "proximity_medical"
+  ],
+  "damac-riverside-views-indigo-2": [
+    "gym",
+    "spa_area",
+    "cinema",
+    "co_working",
+    "cafe_restro",
+    "malls_nearby",
+    "close_to_airport"
+  ],
+  "damac-riverside-views-indigo-1": [
+    "gym",
+    "spa_area",
+    "cinema",
+    "co_working",
+    "cafe_restro",
+    "malls_nearby",
+    "close_to_airport"
+  ],
+  "merge-residences": [
+    "spa_area"
+  ],
+  "hq-by-rove": [
+    "spa_area",
+    "co_working",
+    "cafe_restro",
+    "parking",
+    "concierge",
+    "furniture_packages",
+    "proximity_medical"
+  ],
+  "breez-by-danube": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "marina",
+    "furniture_packages"
+  ],
+  "damac-district": [
+    "gym",
+    "yoga_wellness",
+    "garden",
+    "cafe_restro"
+  ],
+  "imperial-garden": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "garden"
+  ],
+  "villa-del-brunello": [
+    "malls_nearby",
+    "beach_access",
+    "close_to_airport"
+  ],
+  "veda-by-aum-development": [
+    "spa_area",
+    "garden"
+  ],
+  "pearlside-marina-residences": [
+    "garden",
+    "marina"
+  ],
+  "livia-residences": [
+    "swimming_pool",
+    "gym",
+    "yoga_wellness",
+    "spa_area",
+    "bbq_area",
+    "cinema",
+    "kids_play_area",
+    "garden",
+    "co_working",
+    "cafe_restro",
+    "malls_nearby",
+    "running_track",
+    "kids_pool"
+  ],
+  "chapter-01": [
+    "swimming_pool",
+    "spa_area",
+    "kids_play_area",
+    "cafe_restro",
+    "parking",
+    "malls_nearby"
+  ],
+  "riverton-house": [
+    "spa_area",
+    "cafe_restro",
+    "rooftop",
+    "marina"
+  ],
+  "azizi-wares": [
+    "malls_nearby"
+  ],
+  "wynwood-horizon": [
+    "spa_area",
+    "cafe_restro",
+    "beach_access",
+    "marina"
+  ],
+  "sera-2": [
+    "swimming_pool",
+    "gym",
+    "yoga_wellness",
+    "spa_area",
+    "garden",
+    "malls_nearby",
+    "marina"
+  ],
+  "azizi-david": [
+    "swimming_pool",
+    "gym",
+    "cinema",
+    "kids_play_area",
+    "close_to_airport"
+  ],
+  "pearl-house-iv": [
+    "spa_area"
+  ],
+  "beverly-park": [
+    "spa_area"
+  ],
+  "the-haven-3": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "kids_play_area",
+    "garden",
+    "cafe_restro"
+  ],
+  "v-suites-by-anax": [
+    "spa_area"
+  ],
+  "verdan1a-3": [
+    "swimming_pool",
+    "gym",
+    "yoga_wellness",
+    "spa_area",
+    "garden",
+    "cafe_restro",
+    "rooftop",
+    "furniture_packages"
+  ],
+  "avant-garde-residences-2": [
+    "spa_area",
+    "kids_play_area",
+    "garden",
+    "parking"
+  ],
+  "the-serene": [
+    "gym",
+    "yoga_wellness",
+    "spa_area",
+    "cinema",
+    "cafe_restro",
+    "malls_nearby",
+    "rooftop",
+    "proximity_medical"
+  ],
+  "saddlewood-park": [
+    "swimming_pool",
+    "yoga_wellness",
+    "spa_area",
+    "cinema",
+    "garden",
+    "cafe_restro",
+    "rooftop"
+  ],
+  "azizi-abraham": [
+    "spa_area",
+    "malls_nearby"
+  ],
+  "arka-enclave-residences": [
+    "swimming_pool",
+    "gym",
+    "yoga_wellness",
+    "spa_area",
+    "bbq_area",
+    "kids_play_area",
+    "garden",
+    "cafe_restro",
+    "parking",
+    "concierge",
+    "malls_nearby",
+    "smart_home_system",
+    "rooftop",
+    "beach_access",
+    "marina",
+    "close_to_airport"
+  ],
+  "riviera-60": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "bbq_area",
+    "kids_play_area",
+    "garden",
+    "parking",
+    "concierge",
+    "cafe_restro",
+    "malls_nearby",
+    "beach_access"
+  ],
+  "whitestone-residence": [
+    "spa_area",
+    "garden"
+  ],
+  "oasis-residences": [
+    "swimming_pool",
+    "yoga_wellness",
+    "spa_area",
+    "bbq_area",
+    "garden",
+    "cafe_restro",
+    "parking",
+    "concierge",
+    "running_track",
+    "furniture_packages",
+    "close_to_airport"
+  ],
+  "riviera-66": [
+    "swimming_pool",
+    "spa_area",
+    "kids_play_area"
+  ],
+  "riviera-58": [
+    "swimming_pool",
+    "spa_area",
+    "kids_play_area"
+  ],
+  "riviera-56": [
+    "swimming_pool",
+    "spa_area",
+    "kids_play_area"
+  ],
+  "the-elysian-residence": [
+    "swimming_pool",
+    "spa_area",
+    "garden",
+    "cafe_restro",
+    "rooftop",
+    "beach_access"
+  ],
+  "passo": [
+    "swimming_pool",
+    "spa_area",
+    "kids_play_area",
+    "garden",
+    "cafe_restro",
+    "beach_access",
+    "marina",
+    "kids_pool"
+  ],
+  "montiva-by-vida": [
+    "spa_area",
+    "marina",
+    "close_to_airport"
+  ],
+  "blue-marina-residence": [
+    "spa_area",
+    "garden",
+    "parking",
+    "cafe_restro",
+    "malls_nearby",
+    "marina"
+  ],
+  "reef-997": [
+    "swimming_pool",
+    "gym",
+    "yoga_wellness",
+    "spa_area",
+    "jacuzzi",
+    "bbq_area",
+    "cinema",
+    "kids_play_area",
+    "garden",
+    "beach_access",
+    "kids_pool"
+  ],
+  "bliss-tower": [
+    "swimming_pool",
+    "gym",
+    "yoga_wellness",
+    "spa_area",
+    "garden"
+  ],
+  "baystar-by-vida": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "kids_play_area",
+    "garden",
+    "malls_nearby",
+    "marina",
+    "close_to_airport"
+  ],
+  "vedaire-residences": [
+    "swimming_pool",
+    "yoga_wellness",
+    "spa_area",
+    "cinema",
+    "kids_play_area",
+    "cafe_restro",
+    "malls_nearby",
+    "rooftop",
+    "beach_access"
+  ],
+  "binghatti-flare": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "kids_play_area",
+    "cafe_restro",
+    "malls_nearby",
+    "running_track",
+    "beach_access",
+    "marina"
+  ],
+  "four-seasons-private-residences-saadiyat-island": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "cafe_restro",
+    "beach_access",
+    "padel_court"
+  ],
+  "mayfair-nexus-by-seven-mayfair": [
+    "spa_area"
+  ],
+  "ashley-hills": [
+    "swimming_pool",
+    "gym",
+    "bbq_area",
+    "parking",
+    "concierge",
+    "running_track",
+    "rooftop",
+    "beach_access"
+  ],
+  "maak-residence": [
+    "spa_area",
+    "malls_nearby",
+    "close_to_airport"
+  ],
+  "california-residences": [
+    "gym",
+    "spa_area",
+    "garden",
+    "parking",
+    "concierge",
+    "malls_nearby"
+  ],
+  "rivo": [
+    "swimming_pool",
+    "gym",
+    "kids_play_area",
+    "rooftop"
+  ],
+  "house-of-well": [
+    "spa_area"
+  ],
+  "saray-prime-residences": [
+    "gym",
+    "spa_area",
+    "parking",
+    "smart_home_system"
+  ],
+  "arib-collection": [
+    "gym",
+    "spa_area",
+    "kids_play_area",
+    "parking",
+    "malls_nearby"
+  ],
+  "canalside-marina-residences": [
+    "marina",
+    "furniture_packages"
+  ],
+  "ocean-bay": [
+    "spa_area",
+    "malls_nearby",
+    "marina"
+  ],
+  "zenith-by-amber": [
+    "spa_area",
+    "malls_nearby"
+  ],
+  "hygge-hotel": [
+    "swimming_pool",
+    "rooftop"
+  ],
+  "mawjan-residence": [
+    "swimming_pool",
+    "gym",
+    "malls_nearby",
+    "marina"
+  ],
+  "talea": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "bbq_area",
+    "kids_play_area",
+    "garden"
+  ],
+  "alta-v1ew": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "garden",
+    "cafe_restro",
+    "malls_nearby",
+    "furniture_packages",
+    "proximity_medical"
+  ],
+  "velos-residences": [
+    "spa_area"
+  ],
+  "the-willows-residences": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "garden",
+    "cafe_restro",
+    "concierge"
+  ],
+  "mas-barsha-residency": [
+    "swimming_pool",
+    "gym",
+    "yoga_wellness",
+    "spa_area",
+    "cinema",
+    "co_working",
+    "cafe_restro",
+    "malls_nearby",
+    "furniture_packages"
+  ],
+  "norah-residence": [
+    "swimming_pool",
+    "garden",
+    "malls_nearby",
+    "rooftop"
+  ],
+  "ahs-tower": [
+    "spa_area",
+    "parking"
+  ],
+  "tomorrow-commercial-tower": [
+    "spa_area",
+    "malls_nearby"
+  ],
+  "residences-du-port-autograph-collection": [
+    "swimming_pool",
+    "yoga_wellness",
+    "spa_area",
+    "cinema",
+    "co_working",
+    "cafe_restro",
+    "beach_access",
+    "marina"
+  ],
+  "reem-by-vision": [
+    "spa_area"
+  ],
+  "berkeley-square": [
+    "swimming_pool",
+    "gym",
+    "yoga_wellness",
+    "spa_area",
+    "bbq_area",
+    "kids_play_area",
+    "cafe_restro",
+    "malls_nearby",
+    "smart_home_system",
+    "padel_court"
+  ],
+  "silva": [
+    "swimming_pool",
+    "yoga_wellness",
+    "malls_nearby",
+    "running_track",
+    "marina"
+  ],
+  "the-beach-house-fahid": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "kids_play_area",
+    "garden",
+    "malls_nearby",
+    "beach_access"
+  ],
+  "seamont-autograph-collection-by-marriott": [
+    "spa_area",
+    "cinema"
+  ],
+  "lumena": [
+    "spa_area"
+  ],
+  "sierra": [
+    "spa_area",
+    "garden"
+  ],
+  "aspirz-by-danube": [
+    "spa_area",
+    "parking",
+    "rooftop",
+    "furniture_packages"
+  ],
+  "avana-residences": [
+    "gym",
+    "spa_area",
+    "kids_play_area",
+    "malls_nearby"
+  ],
+  "the-source-terraces": [
+    "gym",
+    "yoga_wellness",
+    "spa_area",
+    "garden"
+  ],
+  "icon-tower-2": [
+    "swimming_pool",
+    "gym",
+    "kids_play_area",
+    "parking",
+    "malls_nearby",
+    "marina"
+  ],
+  "binghatti-twilight": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "kids_play_area",
+    "garden",
+    "malls_nearby",
+    "marina"
+  ],
+  "the-eden": [
+    "gym",
+    "yoga_wellness",
+    "spa_area",
+    "cinema",
+    "cafe_restro",
+    "malls_nearby",
+    "rooftop",
+    "proximity_medical"
+  ],
+  "south-square": [
+    "spa_area",
+    "kids_play_area",
+    "malls_nearby",
+    "close_to_airport"
+  ],
+  "riviera-50": [
+    "kids_play_area",
+    "garden",
+    "malls_nearby",
+    "beach_access"
+  ],
+  "akala-residences": [
+    "spa_area"
+  ],
+  "acacia-by-fashion-tv": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "garden",
+    "cafe_restro"
+  ],
+  "oystra": [
+    "swimming_pool",
+    "spa_area",
+    "cafe_restro",
+    "beach_access",
+    "marina"
+  ],
+  "dwtn-residences": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "cinema",
+    "kids_play_area",
+    "co_working",
+    "cafe_restro",
+    "concierge",
+    "party_hall"
+  ],
+  "manam-pearl": [
+    "spa_area",
+    "cafe_restro",
+    "rooftop"
+  ],
+  "miraggio": [
+    "swimming_pool",
+    "gym",
+    "yoga_wellness",
+    "spa_area",
+    "garden",
+    "malls_nearby",
+    "running_track",
+    "marina",
+    "padel_court",
+    "furniture_packages",
+    "close_to_airport"
+  ],
+  "chelsea-residences-2": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "beach_access",
+    "close_to_airport"
+  ],
+  "rimal-4": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "garden",
+    "concierge",
+    "malls_nearby",
+    "marina",
+    "proximity_medical"
+  ],
+  "treppan-serenique-residences": [
+    "beach_access"
+  ],
+  "auresta": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "kids_play_area",
+    "garden",
+    "parking",
+    "concierge",
+    "cafe_restro",
+    "malls_nearby",
+    "marina",
+    "proximity_medical"
+  ],
+  "burj-capital": [
+    "spa_area",
+    "cafe_restro",
+    "parking",
+    "malls_nearby"
+  ],
+  "lazord-by-lapis-2": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "jacuzzi",
+    "bbq_area",
+    "cinema",
+    "kids_play_area",
+    "garden",
+    "parking",
+    "concierge",
+    "malls_nearby",
+    "smart_home_system",
+    "running_track",
+    "furniture_packages"
+  ],
+  "al-hamra-greens": [
+    "spa_area"
+  ],
+  "future-residence": [
+    "swimming_pool",
+    "gym",
+    "yoga_wellness",
+    "bbq_area",
+    "cinema",
+    "kids_play_area",
+    "malls_nearby",
+    "smart_home_system",
+    "kids_pool",
+    "furniture_packages"
+  ],
+  "jumeirah-residences-emirates-towers": [
+    "swimming_pool",
+    "spa_area",
+    "garden",
+    "cafe_restro",
+    "marina",
+    "proximity_medical"
+  ],
+  "the-orchard-place-solena": [
+    "swimming_pool",
+    "gym",
+    "yoga_wellness",
+    "spa_area",
+    "bbq_area",
+    "kids_play_area",
+    "garden",
+    "cafe_restro",
+    "malls_nearby",
+    "rooftop",
+    "marina",
+    "padel_court"
+  ],
+  "bling-avenue-1": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "bbq_area",
+    "garden",
+    "marina",
+    "close_to_airport"
+  ],
+  "provenza-residences": [
+    "swimming_pool",
+    "gym",
+    "jacuzzi",
+    "cinema",
+    "garden",
+    "cafe_restro",
+    "smart_home_system",
+    "rooftop"
+  ],
+  "urban-park-residences-2": [
+    "swimming_pool",
+    "gym",
+    "yoga_wellness",
+    "spa_area",
+    "bbq_area",
+    "concierge",
+    "malls_nearby",
+    "marina",
+    "furniture_packages"
+  ],
+  "marquis-vista": [
+    "swimming_pool",
+    "spa_area",
+    "cafe_restro",
+    "marina",
+    "close_to_airport"
+  ],
+  "the-horizon": [
+    "gym",
+    "yoga_wellness",
+    "spa_area",
+    "cinema",
+    "cafe_restro",
+    "malls_nearby",
+    "rooftop",
+    "proximity_medical"
+  ],
+  "antalya": [
+    "spa_area"
+  ],
+  "riviera-49": [
+    "spa_area",
+    "kids_play_area",
+    "garden",
+    "malls_nearby",
+    "beach_access"
+  ],
+  "altan": [
+    "yoga_wellness",
+    "spa_area",
+    "kids_play_area",
+    "garden",
+    "cafe_restro",
+    "malls_nearby",
+    "rooftop",
+    "marina"
+  ],
+  "isolana-residences": [
+    "swimming_pool",
+    "garden",
+    "beach_access",
+    "marina"
+  ],
+  "forest-city-2": [
+    "spa_area",
+    "garden",
+    "running_track"
+  ],
+  "reef-998": [
+    "spa_area",
+    "cinema",
+    "co_working",
+    "rooftop"
+  ],
+  "trio-isle-by-missoni": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "kids_play_area",
+    "garden",
+    "cafe_restro",
+    "beach_access"
+  ],
+  "s1lva-park-living": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "garden",
+    "malls_nearby",
+    "smart_home_system",
+    "rooftop"
+  ],
+  "la-vue": [
+    "spa_area",
+    "garden"
+  ],
+  "beverly-grande": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "cinema",
+    "kids_play_area",
+    "garden",
+    "cafe_restro",
+    "running_track"
+  ],
+  "binghatti-aquarise": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "garden",
+    "malls_nearby",
+    "marina",
+    "padel_court"
+  ],
+  "weybridge-gardens-5": [
+    "swimming_pool",
+    "spa_area",
+    "jacuzzi",
+    "garden",
+    "rooftop"
+  ],
+  "sparklz": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "garden",
+    "malls_nearby",
+    "smart_home_system"
+  ],
+  "vestoria-bay": [
+    "malls_nearby",
+    "beach_access",
+    "marina"
+  ],
+  "fairmont-marina-residences": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "cafe_restro",
+    "beach_access",
+    "marina"
+  ],
+  "aquino": [
+    "spa_area",
+    "beach_access",
+    "marina",
+    "furniture_packages"
+  ],
+  "ir1dian-park-2-2": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "bbq_area",
+    "garden",
+    "cafe_restro",
+    "malls_nearby"
+  ],
+  "bab-al-qasr-canal-view-residence-22": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "kids_play_area",
+    "parking",
+    "concierge",
+    "malls_nearby",
+    "proximity_medical"
+  ],
+  "the-mural": [
+    "gym",
+    "yoga_wellness",
+    "spa_area",
+    "kids_play_area",
+    "garden",
+    "co_working",
+    "cafe_restro",
+    "concierge",
+    "marina",
+    "party_hall"
+  ],
+  "hadley-heights-2-olympic-edition": [
+    "gym",
+    "running_track",
+    "rooftop",
+    "marina",
+    "close_to_airport"
+  ],
+  "playa-viva": [
+    "swimming_pool",
+    "spa_area",
+    "parking",
+    "concierge",
+    "smart_home_system",
+    "furniture_packages"
+  ],
+  "v1stara-house-2": [
+    "swimming_pool",
+    "yoga_wellness",
+    "spa_area",
+    "malls_nearby",
+    "kids_pool",
+    "furniture_packages"
+  ],
+  "vista-1": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "garden",
+    "malls_nearby"
+  ],
+  "w-residences-by-dalands": [
+    "gym",
+    "spa_area",
+    "cafe_restro",
+    "beach_access",
+    "proximity_medical"
+  ],
+  "island-heights": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "beach_access",
+    "marina"
+  ],
+  "golf-verge": [
+    "gym",
+    "spa_area",
+    "kids_play_area",
+    "close_to_airport"
+  ],
+  "rabdan-gates": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "cinema",
+    "kids_play_area"
+  ],
+  "tulip-oasis-11": [
+    "spa_area"
+  ],
+  "verdan1a-2": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "bbq_area",
+    "garden",
+    "malls_nearby"
+  ],
+  "barajeel-towers": [
+    "spa_area",
+    "beach_access",
+    "proximity_medical",
+    "close_to_airport"
+  ],
+  "al-mamsha-nama-4": [
+    "swimming_pool",
+    "spa_area",
+    "garden",
+    "malls_nearby"
+  ],
+  "distrikt": [
+    "swimming_pool",
+    "gym",
+    "yoga_wellness",
+    "spa_area",
+    "cinema",
+    "garden",
+    "co_working",
+    "cafe_restro"
+  ],
+  "luxury-canal-residences": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "garden",
+    "cafe_restro",
+    "concierge",
+    "marina"
+  ],
+  "skyvue-spectra": [
+    "spa_area"
+  ],
+  "sol-levante": [
+    "swimming_pool",
+    "gym",
+    "yoga_wellness",
+    "spa_area",
+    "jacuzzi",
+    "bbq_area",
+    "cinema",
+    "kids_play_area",
+    "garden",
+    "co_working",
+    "malls_nearby",
+    "running_track",
+    "furniture_packages"
+  ],
+  "lume-residences": [
+    "spa_area",
+    "marina"
+  ],
+  "trussardi-residences-2-2": [
+    "swimming_pool",
+    "spa_area",
+    "garden",
+    "malls_nearby",
+    "furniture_packages"
+  ],
+  "district-one-naya-residences": [
+    "spa_area"
+  ],
+  "celesto-tower": [
+    "swimming_pool",
+    "gym",
+    "yoga_wellness",
+    "kids_play_area",
+    "smart_home_system",
+    "rooftop",
+    "furniture_packages"
+  ],
+  "cove-boulevard": [
+    "spa_area",
+    "jacuzzi",
+    "cafe_restro",
+    "malls_nearby",
+    "furniture_packages",
+    "proximity_medical",
+    "close_to_airport"
+  ],
+  "marlin-2": [
+    "swimming_pool",
+    "gym",
+    "kids_play_area",
+    "malls_nearby",
+    "marina"
+  ],
+  "ir1dian-park-2": [
+    "swimming_pool",
+    "gym",
+    "spa_area"
+  ],
+  "vida-residences-hillside": [
+    "spa_area"
+  ],
+  "celeste": [
+    "spa_area"
+  ],
+  "binghatti-hillside": [
+    "swimming_pool",
+    "gym",
+    "yoga_wellness",
+    "spa_area",
+    "bbq_area",
+    "cafe_restro",
+    "malls_nearby",
+    "smart_home_system"
+  ],
+  "skyhills-astra": [
+    "swimming_pool",
+    "gym",
+    "yoga_wellness",
+    "spa_area",
+    "beach_access",
+    "padel_court",
+    "proximity_medical"
+  ],
+  "la-cle": [
+    "spa_area"
+  ],
+  "serenia-district-west": [
+    "swimming_pool",
+    "gym",
+    "yoga_wellness",
+    "spa_area",
+    "jacuzzi",
+    "bbq_area",
+    "garden",
+    "malls_nearby",
+    "rooftop"
+  ],
+  "almaan-101": [
+    "swimming_pool",
+    "yoga_wellness",
+    "spa_area",
+    "garden",
+    "parking",
+    "malls_nearby",
+    "running_track",
+    "padel_court"
+  ],
+  "the-element-at-sobha-one": [
+    "spa_area"
+  ],
+  "agua-residences": [
+    "swimming_pool",
+    "spa_area",
+    "kids_play_area",
+    "garden",
+    "cafe_restro",
+    "marina",
+    "furniture_packages",
+    "close_to_airport"
+  ],
+  "riverside-views-royal-1": [
+    "gym",
+    "spa_area",
+    "cinema",
+    "co_working",
+    "cafe_restro",
+    "malls_nearby",
+    "close_to_airport"
+  ],
+  "golf-grove-by-regent": [
+    "spa_area",
+    "smart_home_system"
+  ],
+  "damac-lagoon-views-12": [
+    "swimming_pool",
+    "gym",
+    "yoga_wellness",
+    "spa_area",
+    "bbq_area",
+    "cinema",
+    "garden",
+    "malls_nearby",
+    "running_track",
+    "beach_access",
+    "marina"
+  ],
+  "woodlandterraces": [
+    "spa_area"
+  ],
+  "safa-1": [
+    "malls_nearby",
+    "smart_home_system",
+    "padel_court"
+  ],
+  "greygate-residences": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "garden",
+    "malls_nearby",
+    "smart_home_system"
+  ],
+  "majestique-residence": [
+    "kids_play_area",
+    "furniture_packages"
+  ],
+  "the-eighty-three": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "garden",
+    "parking",
+    "concierge",
+    "malls_nearby",
+    "rooftop",
+    "marina",
+    "close_to_airport"
+  ],
+  "flora-isle-beachfront-residences": [
+    "spa_area",
+    "malls_nearby",
+    "beach_access",
+    "marina",
+    "proximity_medical"
+  ],
+  "mamsha-palm": [
+    "spa_area",
+    "malls_nearby",
+    "beach_access"
+  ],
+  "park-lane-2-by-heilbronn": [
+    "swimming_pool",
+    "gym",
+    "yoga_wellness",
+    "spa_area",
+    "jacuzzi",
+    "bbq_area",
+    "cinema",
+    "kids_play_area",
+    "garden",
+    "cafe_restro",
+    "rooftop",
+    "beach_access",
+    "padel_court",
+    "party_hall"
+  ],
+  "estrella-by-nexus": [
+    "swimming_pool",
+    "spa_area",
+    "bbq_area",
+    "kids_play_area",
+    "cafe_restro",
+    "parking",
+    "malls_nearby",
+    "smart_home_system",
+    "close_to_airport"
+  ],
+  "the-autograph-i-series": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "cafe_restro",
+    "malls_nearby",
+    "rooftop"
+  ],
+  "coastline-beach-residences": [
+    "swimming_pool",
+    "spa_area",
+    "kids_play_area",
+    "beach_access",
+    "furniture_packages"
+  ],
+  "marriott-residences-jlt": [
+    "swimming_pool",
+    "gym",
+    "yoga_wellness",
+    "spa_area",
+    "bbq_area",
+    "cafe_restro",
+    "malls_nearby",
+    "running_track",
+    "beach_access",
+    "marina"
+  ],
+  "olfah": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "bbq_area",
+    "kids_play_area",
+    "garden",
+    "close_to_airport"
+  ],
+  "verdan1a-1": [
+    "swimming_pool",
+    "gym",
+    "yoga_wellness",
+    "spa_area",
+    "furniture_packages"
+  ],
+  "stamn-yuni": [
+    "spa_area",
+    "garden",
+    "malls_nearby"
+  ],
+  "orise": [
+    "malls_nearby"
+  ],
+  "the-gate-4": [
+    "gym",
+    "spa_area",
+    "malls_nearby",
+    "smart_home_system"
+  ],
+  "the-boulevard": [
+    "swimming_pool",
+    "spa_area",
+    "cafe_restro",
+    "rooftop"
+  ],
+  "reef-999": [
+    "swimming_pool",
+    "spa_area",
+    "jacuzzi",
+    "kids_play_area",
+    "garden",
+    "malls_nearby"
+  ],
+  "weybridge-gardens-4": [
+    "swimming_pool",
+    "gym",
+    "yoga_wellness",
+    "spa_area",
+    "jacuzzi",
+    "bbq_area",
+    "cinema",
+    "garden",
+    "co_working",
+    "cafe_restro",
+    "parking",
+    "rooftop",
+    "beach_access",
+    "marina",
+    "close_to_airport"
+  ],
+  "tetr1s-tower": [
+    "swimming_pool",
+    "gym",
+    "yoga_wellness",
+    "spa_area",
+    "bbq_area",
+    "cinema",
+    "cafe_restro",
+    "concierge",
+    "malls_nearby",
+    "running_track",
+    "kids_pool",
+    "proximity_medical"
+  ],
+  "guzel-towers": [
+    "swimming_pool",
+    "spa_area"
+  ],
+  "park-five": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "bbq_area",
+    "kids_play_area",
+    "garden",
+    "co_working",
+    "rooftop",
+    "proximity_medical"
+  ],
+  "aria-heights": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "malls_nearby"
+  ],
+  "essenl1fe": [
+    "swimming_pool",
+    "spa_area",
+    "malls_nearby",
+    "smart_home_system",
+    "furniture_packages"
+  ],
+  "arian": [
+    "swimming_pool",
+    "gym",
+    "cinema",
+    "malls_nearby"
+  ],
+  "hotel-london": [
+    "swimming_pool",
+    "rooftop"
+  ],
+  "the-hillgate": [
+    "spa_area",
+    "garden",
+    "malls_nearby"
+  ],
+  "amazonia": [
+    "spa_area",
+    "kids_play_area",
+    "cafe_restro",
+    "malls_nearby",
+    "smart_home_system",
+    "furniture_packages"
+  ],
+  "binghatti-starlight": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "garden",
+    "malls_nearby",
+    "marina"
+  ],
+  "forest-city-tower": [
+    "gym",
+    "spa_area",
+    "bbq_area",
+    "malls_nearby",
+    "marina",
+    "furniture_packages"
+  ],
+  "binghatti-pinnacle": [
+    "swimming_pool",
+    "gym",
+    "garden",
+    "cafe_restro",
+    "parking",
+    "malls_nearby",
+    "furniture_packages"
+  ],
+  "vitalia-palm-jumeirah-residences": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "concierge",
+    "cafe_restro",
+    "malls_nearby",
+    "smart_home_system",
+    "beach_access"
+  ],
+  "aquamarine-beach-residences": [
+    "spa_area",
+    "garden",
+    "beach_access",
+    "furniture_packages"
+  ],
+  "raffi": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "malls_nearby"
+  ],
+  "brand-centro": [
+    "swimming_pool",
+    "gym",
+    "garden",
+    "cafe_restro",
+    "concierge",
+    "malls_nearby",
+    "rooftop",
+    "close_to_airport"
+  ],
+  "stamn-one": [
+    "swimming_pool",
+    "gym",
+    "yoga_wellness",
+    "spa_area",
+    "cinema",
+    "garden",
+    "cafe_restro",
+    "parking",
+    "smart_home_system",
+    "beach_access"
+  ],
+  "the-beach-vista": [
+    "spa_area",
+    "beach_access",
+    "marina"
+  ],
+  "aurel1a-residence": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "cafe_restro",
+    "malls_nearby",
+    "smart_home_system",
+    "running_track"
+  ],
+  "samana-rome": [
+    "swimming_pool",
+    "gym",
+    "garden",
+    "malls_nearby",
+    "proximity_medical"
+  ],
+  "coraline-beach-residences": [
+    "beach_access",
+    "furniture_packages"
+  ],
+  "verdana-10-residences": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "kids_play_area",
+    "garden",
+    "malls_nearby"
+  ],
+  "parkway": [
+    "spa_area",
+    "smart_home_system",
+    "furniture_packages"
+  ],
+  "saas-hills": [
+    "swimming_pool",
+    "spa_area",
+    "cinema",
+    "kids_play_area"
+  ],
+  "vanguard-by-fransk-muller": [
+    "gym",
+    "spa_area",
+    "cafe_restro",
+    "malls_nearby",
+    "marina"
+  ],
+  "verdana-vii-residences": [
+    "malls_nearby"
+  ],
+  "pier-point": [
+    "yoga_wellness",
+    "spa_area",
+    "bbq_area",
+    "garden",
+    "cafe_restro",
+    "malls_nearby",
+    "marina"
+  ],
+  "porto-view": [
+    "malls_nearby",
+    "marina"
+  ],
+  "v1stara-house": [
+    "spa_area",
+    "malls_nearby",
+    "furniture_packages"
+  ],
+  "reef-1000": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "jacuzzi",
+    "bbq_area",
+    "cinema",
+    "garden",
+    "cafe_restro",
+    "running_track",
+    "rooftop"
+  ],
+  "saria": [
+    "marina"
+  ],
+  "il-teatro-2": [
+    "cafe_restro",
+    "smart_home_system"
+  ],
+  "binghatti-ivory": [
+    "swimming_pool",
+    "spa_area",
+    "malls_nearby",
+    "smart_home_system",
+    "furniture_packages"
+  ],
+  "playa-del-sol": [
+    "spa_area"
+  ],
+  "zephyra-residences": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "bbq_area",
+    "kids_play_area",
+    "garden",
+    "cafe_restro",
+    "parking",
+    "concierge",
+    "beach_access",
+    "marina",
+    "close_to_airport"
+  ],
+  "beach-walk-3": [
+    "swimming_pool",
+    "spa_area",
+    "garden",
+    "beach_access",
+    "marina"
+  ],
+  "bayz-102": [
+    "cafe_restro",
+    "malls_nearby",
+    "marina"
+  ],
+  "sobha-solis": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "cinema",
+    "garden",
+    "co_working",
+    "malls_nearby",
+    "furniture_packages"
+  ],
+  "barari-parkview": [
+    "swimming_pool",
+    "yoga_wellness",
+    "spa_area",
+    "cinema",
+    "garden",
+    "malls_nearby",
+    "smart_home_system",
+    "running_track",
+    "rooftop",
+    "close_to_airport"
+  ],
+  "south-garden": [
+    "swimming_pool",
+    "gym",
+    "kids_play_area",
+    "garden",
+    "concierge"
+  ],
+  "legado": [
+    "swimming_pool",
+    "spa_area"
+  ],
+  "waref-residences": [
+    "spa_area",
+    "malls_nearby"
+  ],
+  "evora-residence": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "garden",
+    "malls_nearby"
+  ],
+  "isola-bella": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "cinema",
+    "co_working",
+    "cafe_restro",
+    "parking",
+    "ev_charging",
+    "furniture_packages"
+  ],
+  "fairmont-residences-solara-tower": [
+    "swimming_pool",
+    "spa_area",
+    "malls_nearby",
+    "rooftop"
+  ],
+  "riviera-lodge": [
+    "swimming_pool",
+    "gym",
+    "yoga_wellness",
+    "spa_area",
+    "malls_nearby",
+    "smart_home_system",
+    "furniture_packages"
+  ],
+  "al-haseen-residences-3": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "kids_play_area",
+    "garden",
+    "co_working",
+    "parking",
+    "cafe_restro",
+    "malls_nearby",
+    "close_to_airport"
+  ],
+  "dugasta-warsan": [
+    "spa_area",
+    "malls_nearby"
+  ],
+  "7-seasons": [
+    "swimming_pool",
+    "jacuzzi",
+    "parking",
+    "malls_nearby"
+  ],
+  "ab-cavalier-2": [
+    "swimming_pool",
+    "spa_area",
+    "malls_nearby"
+  ],
+  "la-mer-by-elie-saab": [
+    "kids_play_area",
+    "furniture_packages"
+  ],
+  "gharbi-i-residences": [
+    "swimming_pool",
+    "garden",
+    "malls_nearby",
+    "smart_home_system",
+    "furniture_packages",
+    "close_to_airport"
+  ],
+  "the-arthouse": [
+    "spa_area",
+    "garden",
+    "rooftop"
+  ],
+  "riverside-views-marine-1": [
+    "gym",
+    "spa_area",
+    "cinema",
+    "co_working",
+    "cafe_restro",
+    "malls_nearby",
+    "close_to_airport"
+  ],
+  "alba-tower-2": [
+    "swimming_pool",
+    "gym",
+    "bbq_area",
+    "garden",
+    "parking",
+    "malls_nearby"
+  ],
+  "one-residence": [
+    "spa_area",
+    "cafe_restro",
+    "malls_nearby"
+  ],
+  "ghaff-land-residence": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "kids_play_area",
+    "malls_nearby",
+    "rooftop",
+    "furniture_packages",
+    "proximity_medical",
+    "close_to_airport"
+  ],
+  "anantara-south-palm-jumeirah-2": [
+    "garden"
+  ],
+  "skyscape-altius": [
+    "cafe_restro",
+    "marina"
+  ],
+  "the-autograph-s-series": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "garden"
+  ],
+  "bayshore-at-creek-beach": [
+    "swimming_pool",
+    "beach_access"
+  ],
+  "11-hills-park": [
+    "proximity_medical"
+  ],
+  "takaya": [
+    "spa_area",
+    "garden",
+    "malls_nearby"
+  ],
+  "ellington-house": [
+    "cafe_restro"
+  ],
+  "next-coral": [
+    "malls_nearby",
+    "proximity_medical",
+    "close_to_airport"
+  ],
+  "milos": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "cinema",
+    "malls_nearby",
+    "close_to_airport"
+  ],
+  "binghatti-apex": [
+    "swimming_pool",
+    "gym",
+    "yoga_wellness",
+    "spa_area",
+    "kids_play_area",
+    "malls_nearby",
+    "running_track",
+    "marina",
+    "close_to_airport"
+  ],
+  "verdes": [
+    "yoga_wellness",
+    "spa_area",
+    "concierge"
+  ],
+  "elo-3": [
+    "spa_area"
+  ],
+  "the-bay-residence-ii": [
+    "spa_area",
+    "marina"
+  ],
+  "parkside-blvd": [
+    "spa_area",
+    "smart_home_system"
+  ],
+  "me-do-re-2": [
+    "swimming_pool",
+    "gym",
+    "yoga_wellness",
+    "spa_area",
+    "jacuzzi",
+    "kids_play_area",
+    "parking",
+    "ev_charging",
+    "concierge",
+    "kids_pool"
+  ],
+  "one-b-tower": [
+    "spa_area",
+    "malls_nearby"
+  ],
+  "jardin-astral": [
+    "spa_area",
+    "garden",
+    "beach_access",
+    "close_to_airport"
+  ],
+  "kempinski-marina-residences": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "kids_play_area",
+    "garden",
+    "cafe_restro",
+    "malls_nearby",
+    "beach_access",
+    "marina",
+    "padel_court"
+  ],
+  "sealine-residence": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "garden",
+    "malls_nearby",
+    "beach_access"
+  ],
+  "edgewater-residences": [
+    "swimming_pool",
+    "marina"
+  ],
+  "anantara-sharjah-residences": [
+    "furniture_packages"
+  ],
+  "jade-tower": [
+    "swimming_pool",
+    "kids_play_area"
+  ],
+  "azura-residences": [
+    "spa_area",
+    "beach_access",
+    "marina",
+    "proximity_medical"
+  ],
+  "port-de-la-mer-la-cote": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "cafe_restro",
+    "malls_nearby",
+    "beach_access",
+    "marina",
+    "close_to_airport"
+  ],
+  "binghatti-hills": [
+    "swimming_pool",
+    "gym",
+    "yoga_wellness",
+    "spa_area",
+    "jacuzzi",
+    "kids_play_area",
+    "garden",
+    "malls_nearby",
+    "running_track",
+    "close_to_airport"
+  ],
+  "riviera-69": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "malls_nearby",
+    "running_track",
+    "beach_access"
+  ],
+  "the-waterway": [
+    "malls_nearby"
+  ],
+  "rixos-dubai-islands": [
+    "swimming_pool",
+    "spa_area",
+    "cafe_restro",
+    "beach_access",
+    "marina"
+  ],
+  "nouran-living": [
+    "spa_area",
+    "beach_access"
+  ],
+  "electra": [
+    "swimming_pool",
+    "spa_area"
+  ],
+  "binghatti-phoenix": [
+    "spa_area"
+  ],
+  "binghatti-avenue": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "kids_play_area",
+    "cafe_restro",
+    "parking"
+  ],
+  "south-living": [
+    "cafe_restro",
+    "parking",
+    "malls_nearby"
+  ],
+  "living-legends-phase-5": [
+    "smart_home_system",
+    "rooftop"
+  ],
+  "eleve": [
+    "garden",
+    "cafe_restro",
+    "malls_nearby",
+    "marina"
+  ],
+  "lucky-oasis-residence": [
+    "furniture_packages"
+  ],
+  "the-alba-residences": [
+    "spa_area"
+  ],
+  "bliss-homes": [
+    "spa_area",
+    "malls_nearby"
+  ],
+  "nesba-2": [
+    "kids_play_area",
+    "malls_nearby"
+  ],
+  "nobu-residences-al-marjan-island": [
+    "garden"
+  ],
+  "squarex-residence": [
+    "swimming_pool",
+    "gym",
+    "garden"
+  ],
+  "rove-home-marasi-drive": [
+    "cafe_restro"
+  ],
+  "faradis-tower": [
+    "swimming_pool",
+    "gym",
+    "cafe_restro",
+    "furniture_packages"
+  ],
+  "rixos-residences": [
+    "spa_area",
+    "malls_nearby",
+    "furniture_packages"
+  ],
+  "riviera-67": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "garden",
+    "cafe_restro",
+    "malls_nearby",
+    "running_track",
+    "beach_access"
+  ],
+  "manarat-living-2": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "garden",
+    "parking",
+    "concierge",
+    "cafe_restro",
+    "beach_access"
+  ],
+  "the-east-crest-by-meteora": [
+    "spa_area"
+  ],
+  "binghatti-rose": [
+    "marina"
+  ],
+  "habtoor-grande-residence": [
+    "swimming_pool",
+    "gym",
+    "kids_play_area",
+    "concierge",
+    "cafe_restro",
+    "rooftop",
+    "marina"
+  ],
+  "serene-gardens-ii": [
+    "garden",
+    "smart_home_system",
+    "furniture_packages"
+  ],
+  "aeternitas": [
+    "swimming_pool",
+    "cinema",
+    "kids_play_area",
+    "cafe_restro",
+    "marina"
+  ],
+  "iconic-tower": [
+    "spa_area"
+  ],
+  "quattro-del-mar": [
+    "spa_area",
+    "beach_access"
+  ],
+  "views-v": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "garden",
+    "malls_nearby"
+  ],
+  "ag-9ine": [
+    "swimming_pool",
+    "gym",
+    "yoga_wellness",
+    "spa_area",
+    "bbq_area",
+    "kids_play_area",
+    "smart_home_system"
+  ],
+  "360-riverside-crescent": [
+    "garden",
+    "beach_access",
+    "close_to_airport"
+  ],
+  "vela-viento": [
+    "swimming_pool",
+    "gym",
+    "yoga_wellness",
+    "spa_area",
+    "cafe_restro",
+    "marina"
+  ],
+  "rosso-bay-residences": [
+    "beach_access"
+  ],
+  "nikki-beach-residences-2": [
+    "spa_area",
+    "malls_nearby",
+    "beach_access",
+    "marina",
+    "furniture_packages",
+    "proximity_medical"
+  ],
+  "oasis-tower": [
+    "cafe_restro",
+    "malls_nearby",
+    "beach_access",
+    "marina",
+    "furniture_packages",
+    "proximity_medical"
+  ],
+  "ajman-creek-towers": [
+    "spa_area",
+    "party_hall"
+  ],
+  "moonstone": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "kids_play_area"
+  ],
+  "oak-yard": [
+    "spa_area",
+    "garden"
+  ],
+  "samana-california-2": [
+    "spa_area"
+  ],
+  "the-first-collection-dubai-sports-city": [
+    "malls_nearby"
+  ],
+  "48-parkside": [
+    "swimming_pool",
+    "spa_area",
+    "garden",
+    "concierge",
+    "rooftop",
+    "kids_pool"
+  ],
+  "310-riverside-crescent": [
+    "spa_area",
+    "beach_access",
+    "marina"
+  ],
+  "the-central-downtown": [
+    "garden",
+    "malls_nearby",
+    "rooftop"
+  ],
+  "elara": [
+    "spa_area",
+    "beach_access"
+  ],
+  "aqua-dimore": [
+    "swimming_pool",
+    "spa_area",
+    "co_working",
+    "cafe_restro",
+    "malls_nearby"
+  ],
+  "izzzilife-mint": [
+    "furniture_packages"
+  ],
+  "floarea-residence-2": [
+    "spa_area",
+    "garden"
+  ],
+  "porto-playa": [
+    "beach_access"
+  ],
+  "weybridge-gardens": [
+    "spa_area",
+    "garden",
+    "proximity_medical"
+  ],
+  "oceanz": [
+    "swimming_pool",
+    "spa_area"
+  ],
+  "vyb-2": [
+    "spa_area"
+  ],
+  "bloom-arjaan-by-rotana": [
+    "spa_area",
+    "beach_access",
+    "furniture_packages"
+  ],
+  "rove-home-downtown": [
+    "swimming_pool",
+    "gym",
+    "yoga_wellness",
+    "spa_area",
+    "co_working",
+    "concierge",
+    "furniture_packages"
+  ],
+  "tranquil-wellness-residences": [
+    "spa_area",
+    "proximity_medical"
+  ],
+  "samana-golf-views": [
+    "spa_area"
+  ],
+  "binghatti-orchid": [
+    "spa_area"
+  ],
+  "riviera-65": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "cinema",
+    "malls_nearby",
+    "running_track",
+    "beach_access"
+  ],
+  "pearl-house-ii": [
+    "malls_nearby"
+  ],
+  "luma-park-views": [
+    "malls_nearby"
+  ],
+  "kyoto": [
+    "garden",
+    "malls_nearby"
+  ],
+  "elitz-2": [
+    "spa_area",
+    "malls_nearby"
+  ],
+  "lucky-royale-residence": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "cafe_restro",
+    "malls_nearby",
+    "furniture_packages"
+  ],
+  "royal-regency": [
+    "swimming_pool",
+    "spa_area",
+    "jacuzzi",
+    "malls_nearby"
+  ],
+  "aras-heights": [
+    "smart_home_system"
+  ],
+  "jawaher-residences": [
+    "spa_area",
+    "beach_access",
+    "marina"
+  ],
+  "q-gardens-lofts": [
+    "garden",
+    "parking",
+    "ev_charging"
+  ],
+  "north-43": [
+    "concierge",
+    "proximity_medical"
+  ],
+  "society-house": [
+    "spa_area"
+  ],
+  "bugatti-residences": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "cafe_restro",
+    "parking",
+    "concierge",
+    "beach_access"
+  ],
+  "binghatti-house-2": [
+    "malls_nearby"
+  ],
+  "thyme": [
+    "spa_area",
+    "garden",
+    "cafe_restro"
+  ],
+  "alef-noon-residence": [
+    "swimming_pool",
+    "gym",
+    "parking",
+    "ev_charging",
+    "malls_nearby"
+  ],
+  "ivy-gardens": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "garden",
+    "close_to_airport"
+  ],
+  "creek-waters-2": [
+    "malls_nearby"
+  ],
+  "design-quarter": [
+    "malls_nearby"
+  ],
+  "como-residences": [
+    "swimming_pool",
+    "spa_area",
+    "marina"
+  ],
+  "intercontinental-dubai": [
+    "proximity_medical"
+  ],
+  "fashionz": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "cafe_restro",
+    "malls_nearby"
+  ],
+  "the-quayside": [
+    "swimming_pool",
+    "spa_area"
+  ],
+  "marina-living": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "kids_play_area",
+    "cafe_restro",
+    "malls_nearby",
+    "rooftop",
+    "beach_access",
+    "marina"
+  ],
+  "mar-casa": [
+    "spa_area"
+  ],
+  "liv-lux": [
+    "spa_area",
+    "marina"
+  ],
+  "canal-heights-2": [
+    "cafe_restro",
+    "malls_nearby",
+    "marina"
+  ],
+  "399-hills-park": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "bbq_area",
+    "kids_play_area",
+    "garden",
+    "rooftop",
+    "marina"
+  ],
+  "damac-bay": [
+    "swimming_pool",
+    "spa_area",
+    "parking",
+    "marina"
+  ],
+  "elvira": [
+    "spa_area",
+    "malls_nearby",
+    "proximity_medical",
+    "close_to_airport"
+  ],
+  "house-iv": [
+    "cafe_restro"
+  ],
+  "verde": [
+    "spa_area"
+  ],
+  "neva-residences": [
+    "kids_play_area",
+    "malls_nearby",
+    "furniture_packages"
+  ],
+  "seahaven": [
+    "marina"
+  ],
+  "mag-330": [
+    "malls_nearby",
+    "beach_access",
+    "proximity_medical",
+    "close_to_airport"
+  ],
+  "uh": [
+    "spa_area"
+  ],
+  "ocean-house": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "cinema",
+    "beach_access",
+    "marina"
+  ],
+  "the-cove-ll": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "bbq_area",
+    "cinema",
+    "kids_play_area",
+    "malls_nearby",
+    "beach_access",
+    "marina"
+  ],
+  "uniestate-supreme-residence": [
+    "spa_area"
+  ],
+  "the-paragon": [
+    "swimming_pool",
+    "gym",
+    "yoga_wellness",
+    "spa_area",
+    "cinema",
+    "co_working",
+    "cafe_restro"
+  ],
+  "the-palm-tower": [
+    "swimming_pool",
+    "spa_area",
+    "cafe_restro",
+    "rooftop",
+    "furniture_packages"
+  ],
+  "majestique-residence-2": [
+    "swimming_pool",
+    "spa_area",
+    "malls_nearby",
+    "rooftop",
+    "furniture_packages"
+  ],
+  "volare": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "jacuzzi",
+    "bbq_area",
+    "kids_play_area",
+    "garden",
+    "cafe_restro",
+    "parking",
+    "malls_nearby",
+    "proximity_medical"
+  ],
+  "jenna-and-warda-apartments": [
+    "spa_area",
+    "garden",
+    "malls_nearby"
+  ],
+  "the-nook": [
+    "spa_area"
+  ],
+  "the-grand": [
+    "swimming_pool",
+    "gym",
+    "cafe_restro",
+    "malls_nearby"
+  ],
+  "marina-shores": [
+    "marina"
+  ],
+  "sunrise-bay": [
+    "beach_access",
+    "marina"
+  ],
+  "stella-maris": [
+    "parking",
+    "marina"
+  ],
+  "the-crest": [
+    "garden",
+    "malls_nearby",
+    "beach_access",
+    "marina"
+  ],
+  "six-senses-residences": [
+    "swimming_pool",
+    "yoga_wellness",
+    "spa_area",
+    "malls_nearby",
+    "furniture_packages"
+  ],
+  "silicon-heights": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "parking",
+    "furniture_packages"
+  ],
+  "golf-views-seven-city": [
+    "spa_area",
+    "furniture_packages"
+  ],
+  "reva-residences": [
+    "malls_nearby"
+  ],
+  "port-de-la-mer-la-sirene": [
+    "spa_area",
+    "cafe_restro",
+    "malls_nearby",
+    "beach_access",
+    "marina"
+  ],
+  "peninsula-two": [
+    "spa_area",
+    "marina"
+  ],
+  "pearlz": [
+    "malls_nearby"
+  ],
+  "park-point": [
+    "spa_area",
+    "kids_play_area",
+    "garden"
+  ],
+  "paramount-tower-hotel-residences": [
+    "swimming_pool",
+    "spa_area",
+    "rooftop",
+    "furniture_packages"
+  ],
+  "one-canal": [
+    "swimming_pool",
+    "spa_area"
+  ],
+  "o10": [
+    "spa_area",
+    "furniture_packages"
+  ],
+  "muraba-dia": [
+    "spa_area"
+  ],
+  "mr-c-residences-jumeirah": [
+    "swimming_pool",
+    "gym",
+    "cinema",
+    "garden",
+    "smart_home_system",
+    "rooftop",
+    "marina"
+  ],
+  "lake-terrace": [
+    "garden",
+    "beach_access",
+    "marina"
+  ],
+  "lake-city-tower": [
+    "kids_play_area",
+    "garden",
+    "cafe_restro",
+    "malls_nearby",
+    "marina",
+    "close_to_airport"
+  ],
+  "jumeirah-living-business-bay": [
+    "marina"
+  ],
+  "joya-blanca-residences": [
+    "spa_area",
+    "garden",
+    "malls_nearby"
+  ],
+  "hills-park": [
+    "furniture_packages"
+  ],
+  "grandeur-residences": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "garden",
+    "parking",
+    "concierge",
+    "beach_access",
+    "marina"
+  ],
+  "gemini-splendor": [
+    "spa_area",
+    "garden"
+  ],
+  "equiti-arcade": [
+    "swimming_pool",
+    "gym",
+    "garden",
+    "parking",
+    "malls_nearby"
+  ],
+  "emirates-garden-1-gardenia": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "bbq_area",
+    "kids_play_area",
+    "garden",
+    "cafe_restro",
+    "malls_nearby"
+  ],
+  "kiara": [
+    "spa_area",
+    "cafe_restro",
+    "malls_nearby",
+    "furniture_packages",
+    "proximity_medical"
+  ],
+  "creek-rise": [
+    "marina"
+  ],
+  "creek-edge": [
+    "garden",
+    "beach_access",
+    "marina"
+  ],
+  "celadon": [
+    "swimming_pool",
+    "spa_area",
+    "malls_nearby",
+    "running_track"
+  ],
+  "burj-view-residence": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "jacuzzi",
+    "kids_play_area",
+    "garden",
+    "parking",
+    "concierge",
+    "malls_nearby",
+    "proximity_medical",
+    "close_to_airport"
+  ],
+  "burj-khalifa": [
+    "swimming_pool",
+    "spa_area",
+    "cafe_restro",
+    "malls_nearby"
+  ],
+  "burj-crown": [
+    "spa_area"
+  ],
+  "bloom-heights": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "parking",
+    "malls_nearby",
+    "smart_home_system",
+    "running_track"
+  ],
+  "binghatti-canal": [
+    "swimming_pool",
+    "spa_area",
+    "kids_play_area",
+    "garden"
+  ],
+  "beach-isle": [
+    "beach_access",
+    "marina"
+  ],
+  "bay-central-west-central-towers": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "malls_nearby",
+    "beach_access",
+    "marina",
+    "proximity_medical"
+  ],
+  "riviera-41": [
+    "swimming_pool",
+    "gym",
+    "yoga_wellness",
+    "spa_area",
+    "kids_play_area",
+    "garden",
+    "parking",
+    "malls_nearby",
+    "close_to_airport"
+  ],
+  "riviera-36": [
+    "swimming_pool",
+    "gym",
+    "yoga_wellness",
+    "spa_area",
+    "cinema",
+    "kids_play_area",
+    "parking",
+    "malls_nearby",
+    "proximity_medical",
+    "close_to_airport"
+  ],
+  "riviera-34": [
+    "malls_nearby",
+    "marina"
+  ],
+  "riviera-20": [
+    "swimming_pool",
+    "gym",
+    "yoga_wellness",
+    "spa_area",
+    "kids_play_area",
+    "garden",
+    "malls_nearby",
+    "marina",
+    "close_to_airport"
+  ],
+  "riviera-13": [
+    "malls_nearby",
+    "marina"
+  ],
+  "avalon-tower": [
+    "swimming_pool",
+    "gym",
+    "cafe_restro",
+    "rooftop",
+    "close_to_airport"
+  ],
+  "al-jazi": [
+    "swimming_pool",
+    "spa_area",
+    "beach_access",
+    "marina",
+    "proximity_medical",
+    "close_to_airport"
+  ],
+  "address-harbour-point": [
+    "swimming_pool",
+    "gym",
+    "spa_area",
+    "kids_play_area",
+    "cafe_restro"
+  ],
+  "aces-chateau": [
+    "swimming_pool",
+    "spa_area",
+    "bbq_area",
+    "garden",
+    "cafe_restro",
+    "malls_nearby",
+    "rooftop"
+  ],
+  "acacia-at-park-heights": [
+    "cafe_restro",
+    "malls_nearby"
+  ],
+  "tomorrow-gem-harbor": [
+    "furniture_packages"
+  ],
+  "arthouse-residences-tower-a-by-aviaan": [
+    "spa_area",
+    "cafe_restro",
+    "malls_nearby"
+  ],
+  "al-waleed-ws-1": [
+    "swimming_pool",
+    "spa_area",
+    "kids_play_area",
+    "garden",
+    "cafe_restro",
+    "concierge",
+    "malls_nearby"
+  ],
+  "muraba-veil": [
+    "parking"
+  ],
+  "cloud-towers": [
+    "swimming_pool",
+    "spa_area",
+    "parking",
+    "malls_nearby",
+    "furniture_packages"
+  ]
+}

@@ -9,6 +9,10 @@ import {
   getProjectType,
   getMainImage,
   descriptionContainsWaterfrontOrLagoon,
+  getStoredPaymentPlan,
+  getStoredPaymentPlanBreakdown,
+  getStoredPaymentPlanSections,
+  getPaymentPlanSectionsByDeveloper,
 } from '@/lib/staticPropertyData';
 
 const AFFORDABLE_MAX = (categoriesConfig as { affordableMaxPriceAED?: number }).affordableMaxPriceAED ?? 1_500_000;
@@ -40,6 +44,28 @@ function getProjectBedrooms(project: any): number {
     if (br !== undefined && br > maxBedrooms) maxBedrooms = br;
   }
   return maxBedrooms;
+}
+
+/** Returns bedroom range string from units: 110=Studio, 111=1BR, 112=2BR, etc. e.g. "Studio – 2" or "1 – 3". */
+function getProjectBedroomRange(project: any): string | null {
+  const units = project?.statistics?.units || {};
+  const villas = project?.statistics?.villas || {};
+  const allKeys = [...Object.keys(units), ...Object.keys(villas)];
+  if (allKeys.length === 0) return null;
+  let minBr = Infinity;
+  let maxBr = -Infinity;
+  for (const key of allKeys) {
+    const br = UNIT_CODE_TO_BEDROOMS[key];
+    if (br !== undefined) {
+      if (br < minBr) minBr = br;
+      if (br > maxBr) maxBr = br;
+    }
+  }
+  if (minBr === Infinity || maxBr === -Infinity) return null;
+  const minStr = minBr === 0 ? 'Studio' : `${minBr}`;
+  const maxStr = maxBr === 0 ? 'Studio' : `${maxBr}`;
+  if (minStr === maxStr) return minStr;
+  return `${minStr} – ${maxStr}`;
 }
 
 function getProjectCategory(project: any): string {
@@ -78,6 +104,7 @@ function transformProject(project: any) {
   const lat = project.latitude;
   const lng = project.longitude;
   const bedrooms = getProjectBedrooms(project);
+  const bedroomRange = getProjectBedroomRange(project);
 
   return {
     id: project.id,
@@ -98,8 +125,24 @@ function transformProject(project: any) {
     latitude: lat != null && !isNaN(Number(lat)) ? Number(lat) : null,
     longitude: lng != null && !isNaN(Number(lng)) ? Number(lng) : null,
     bedrooms,
+    bedroomRange,
     statistics: project.statistics,
     district: project.district,
+  };
+}
+
+function withPaymentPlan<T extends { slug?: string | null; developer?: string | null }>(transformed: T): T & { payment_plan?: string | null; payment_plan_breakdown?: Record<string, unknown>; payment_plan_sections?: { on_booking?: string | number; on_construction?: string | number; on_handover?: string | number; post_handover?: string | number } } {
+  const slug = transformed.slug;
+  const developer = transformed.developer;
+  const payment_plan = slug && typeof slug === 'string' ? getStoredPaymentPlan(slug) : null;
+  const payment_plan_breakdown = slug && typeof slug === 'string' ? getStoredPaymentPlanBreakdown(slug) : null;
+  let payment_plan_sections = (slug && typeof slug === 'string' ? getStoredPaymentPlanSections(slug) : null) ?? (developer ? getPaymentPlanSectionsByDeveloper(developer) : null);
+  if (!payment_plan && !payment_plan_breakdown && !payment_plan_sections) return transformed as T & { payment_plan?: string | null; payment_plan_breakdown?: Record<string, unknown>; payment_plan_sections?: { on_booking?: string | number; on_construction?: string | number; on_handover?: string | number; post_handover?: string | number } };
+  return {
+    ...transformed,
+    ...(payment_plan != null && { payment_plan }),
+    ...(payment_plan_breakdown && { payment_plan_breakdown }),
+    ...(payment_plan_sections && { payment_plan_sections }),
   };
 }
 
@@ -145,9 +188,10 @@ export async function GET(
     }
 
     const transformed = transformProject(project);
+    const dataWithPaymentPlan = withPaymentPlan(transformed);
 
     return NextResponse.json(
-      { success: true, message: 'Project found', data: transformed },
+      { success: true, message: 'Project found', data: dataWithPaymentPlan },
       {
         headers: {
           'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=600',
