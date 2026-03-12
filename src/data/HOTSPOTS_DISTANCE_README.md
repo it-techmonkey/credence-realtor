@@ -2,7 +2,7 @@
 
 ## Data file
 
-- **hotspots-distance.json** — For each project (keyed by `slug`), distances in km to three hotspots.
+- **hotspots-distance.json** — For each project (keyed by `slug`), distances in km to five hotspots.
 
 ## How distance is calculated
 
@@ -23,6 +23,8 @@ Property coordinates come from **all_data_uae_en.json** (`latitude`, `longitude`
 - **Dubai Mall:** 25.197370022081568, 55.27972320239539  
 - **Palm Jumeirah:** 25.122538324435176, 55.13069276013228  
 - **Dubai Airport:** 25.25304319313163, 55.36793713040664  
+- **Dubai Marina:** 25.07785267911982, 55.13868211663433  
+- **Al Maktoum International Airport:** 24.886171239916422, 55.15869167895984  
 
 To regenerate:  
 `node scripts/build-hotspots-distance.js`

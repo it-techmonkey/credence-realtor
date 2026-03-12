@@ -12,18 +12,22 @@
 
 import hotspotsDistanceData from '@/data/hotspots-distance.json';
 
-export type HotspotKey = 'dubai_mall' | 'palm_jumeirah' | 'dubai_airport';
+export type HotspotKey = 'dubai_mall' | 'palm_jumeirah' | 'dubai_airport' | 'dubai_marina' | 'al_maktoum_airport';
 
 export interface HotspotDistances {
   dubai_mall_km: number;
   palm_jumeirah_km: number;
   dubai_airport_km: number;
+  dubai_marina_km: number;
+  al_maktoum_airport_km: number;
 }
 
 const HOTSPOT_LABELS: Record<HotspotKey, string> = {
   dubai_mall: 'Dubai Mall',
   palm_jumeirah: 'Palm Jumeirah',
   dubai_airport: 'Dubai Airport',
+  dubai_marina: 'Dubai Marina',
+  al_maktoum_airport: 'Al Maktoum International Airport',
 };
 
 const data = hotspotsDistanceData as Record<string, HotspotDistances>;
@@ -53,7 +57,7 @@ export function getHotspotDistances(slugOrId: string | undefined | null): Hotspo
   const key = slugOrId.trim();
   if (!key) return null;
   const entry = data[key] ?? data[key.toLowerCase()];
-  return entry && typeof entry.dubai_mall_km === 'number' ? entry : null;
+  return entry && typeof (entry as HotspotDistances).dubai_mall_km === 'number' ? (entry as HotspotDistances) : null;
 }
 
 /**
@@ -82,8 +86,13 @@ export function matchHotspot(placeName: string): HotspotKey | null {
   const n = placeName.toLowerCase().trim();
   if (n.includes('dubai mall') || n === 'dubai mall') return 'dubai_mall';
   if (n.includes('palm jumeirah') || n.includes('palm jumeriah') || n === 'palm') return 'palm_jumeirah';
-  if (n.includes('dubai airport') || n.includes('dxb') || (n.includes('airport') && n.includes('dubai'))) return 'dubai_airport';
+  if (n.includes('dubai airport') || n.includes('dxb') || (n.includes('airport') && n.includes('dubai') && !n.includes('maktoum'))) return 'dubai_airport';
+  if (n.includes('dubai marina') || n === 'dubai marina') return 'dubai_marina';
+  if (n.includes('maktoum') || n.includes('al maktoum')) return 'al_maktoum_airport';
   return null;
 }
+
+/** All hotspot keys in display order. */
+export const HOTSPOT_KEYS: HotspotKey[] = ['dubai_mall', 'palm_jumeirah', 'dubai_airport', 'dubai_marina', 'al_maktoum_airport'];
 
 export { HOTSPOT_LABELS };

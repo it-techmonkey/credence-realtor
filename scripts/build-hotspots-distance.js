@@ -4,6 +4,8 @@
  * - Dubai Mall: 25.197370022081568, 55.27972320239539
  * - Palm Jumeirah: 25.122538324435176, 55.13069276013228
  * - Dubai Airport: 25.25304319313163, 55.36793713040664
+ * - Dubai Marina: 25.07785267911982, 55.13868211663433
+ * - Al Maktoum International Airport: 24.886171239916422, 55.15869167895984
  *
  * Usage: node scripts/build-hotspots-distance.js
  * Output: src/data/hotspots-distance.json
@@ -16,6 +18,8 @@ const HOTSPOTS = {
   dubai_mall: { lat: 25.197370022081568, lng: 55.27972320239539 },
   palm_jumeirah: { lat: 25.122538324435176, lng: 55.13069276013228 },
   dubai_airport: { lat: 25.25304319313163, lng: 55.36793713040664 },
+  dubai_marina: { lat: 25.07785267911982, lng: 55.13868211663433 },
+  al_maktoum_airport: { lat: 24.886171239916422, lng: 55.15869167895984 },
 };
 
 function haversineKm(lat1, lng1, lat2, lng2) {
@@ -52,6 +56,8 @@ for (const item of items) {
     dubai_mall_km: round2(haversineKm(lat, lng, HOTSPOTS.dubai_mall.lat, HOTSPOTS.dubai_mall.lng)),
     palm_jumeirah_km: round2(haversineKm(lat, lng, HOTSPOTS.palm_jumeirah.lat, HOTSPOTS.palm_jumeirah.lng)),
     dubai_airport_km: round2(haversineKm(lat, lng, HOTSPOTS.dubai_airport.lat, HOTSPOTS.dubai_airport.lng)),
+    dubai_marina_km: round2(haversineKm(lat, lng, HOTSPOTS.dubai_marina.lat, HOTSPOTS.dubai_marina.lng)),
+    al_maktoum_airport_km: round2(haversineKm(lat, lng, HOTSPOTS.al_maktoum_airport.lat, HOTSPOTS.al_maktoum_airport.lng)),
   };
 }
 

@@ -14,9 +14,9 @@ import { translateToEnglish, containsArabic } from '@/lib/translate';
 import { getAmenityIcon } from '@/lib/amenityIcons';
 import { normalizePropertyDescription } from '@/lib/descriptionParser';
 import type { NormalizedDescription } from '@/lib/descriptionParser';
-import { getHotspotDistances, getHotspotDistanceKm, distanceToDriveTime, matchHotspot, getHotspotLabel, type HotspotKey } from '@/lib/hotspots';
+import { getHotspotDistances, getHotspotDistanceKm, getHotspotLabel, HOTSPOT_KEYS } from '@/lib/hotspots';
 import { memo } from 'react';
-import { MapPin, Bed, Bath, Square, Calendar, Building2, ChevronRight, ArrowLeft, User, MapPinned, Home, Clock, Navigation, CreditCard, HardHat, KeyRound, Car } from 'lucide-react';
+import { MapPin, Bed, Bath, Square, Calendar, Building2, ChevronRight, ArrowLeft, User, MapPinned, Home, CreditCard, HardHat, KeyRound, Car } from 'lucide-react';
 
 /** Format payment phase value for display (add % if numeric). */
 function formatPaymentPhaseValue(val: string | number | undefined): string {
@@ -749,71 +749,29 @@ export default function PropertyDetailPage() {
                   </div>
                 )}
 
-                {(normalizedDescription && (normalizedDescription.nearby.length > 0 || Object.keys(normalizedDescription.distances).length > 0)) || hotspotDistances ? (
+                {hotspotDistances && (
                   <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 sm:p-6">
                     <p className="text-[11px] uppercase tracking-[0.2em] text-gray-400 font-medium mb-2">Location</p>
-                    <p className="font-display font-bold text-lg text-secondary mb-4">Nearby & distance</p>
-
-                    {normalizedDescription && (normalizedDescription.nearby.length > 0 || Object.keys(normalizedDescription.distances).length > 0) && (
-                      <div className="mb-6">
-                        <p className="text-xs font-semibold text-gray-600 mb-3">Nearby</p>
-                        <div className="space-y-2">
-                          {normalizedDescription.nearby.length > 0 && normalizedDescription.nearby.map((n, idx) => {
-                            const hotspotKey = matchHotspot(n);
-                            const km = hotspotKey ? getHotspotDistanceKm(hotspotDistances, hotspotKey) : undefined;
-                            const timeLabel = km != null ? distanceToDriveTime(km) : idx < 3 ? '10–15 mins' : idx < 6 ? '20–30 mins' : '40–45 mins';
-                            return (
-                              <div key={`${n}-${idx}`} className="flex items-center justify-between gap-3 py-2.5 px-3 rounded-xl bg-gray-50/80 border border-gray-100">
-                                <div className="flex items-center gap-2.5 min-w-0">
-                                  <Navigation size={16} className="text-primary shrink-0" />
-                                  <span className="text-gray-800 text-sm font-medium">{n}</span>
-                                </div>
-                                <span className="shrink-0 text-xs font-medium text-gray-500 tabular-nums">{timeLabel}</span>
+                    <p className="font-display font-bold text-lg text-secondary mb-4">Distance from hotspots</p>
+                    <div className="space-y-2">
+                      {HOTSPOT_KEYS.map((key) => {
+                        const km = getHotspotDistanceKm(hotspotDistances, key);
+                        if (km == null) return null;
+                        return (
+                          <div key={key} className="flex items-center justify-between gap-3 py-3 px-4 rounded-xl bg-secondary/5 border border-secondary/10">
+                            <div className="flex items-center gap-3 min-w-0">
+                              <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-secondary/10 flex items-center justify-center">
+                                <Car className="w-5 h-5 text-secondary" strokeWidth={2} />
                               </div>
-                            );
-                          })}
-                          {Object.keys(normalizedDescription.distances).length > 0 && Object.entries(normalizedDescription.distances).map(([place, value], idx) => {
-                            const hotspotKey = matchHotspot(place);
-                            const km = hotspotKey ? getHotspotDistanceKm(hotspotDistances, hotspotKey) : undefined;
-                            const timeLabel = km != null ? distanceToDriveTime(km) : idx < 3 ? '10–15 mins' : idx < 6 ? '20–30 mins' : '40–45 mins';
-                            return (
-                              <div key={place} className="flex items-center justify-between gap-3 py-2.5 px-3 rounded-xl bg-gray-50/80 border border-gray-100">
-                                <div className="flex items-center gap-2.5 min-w-0">
-                                  <Clock size={16} className="text-primary shrink-0" />
-                                  <span className="text-gray-800 text-sm font-medium">{value} to {place}</span>
-                                </div>
-                                <span className="shrink-0 text-xs font-medium text-gray-500 tabular-nums">{timeLabel}</span>
-                              </div>
-                            );
-                          })}
-                        </div>
-                      </div>
-                    )}
-
-                    {hotspotDistances && (
-                      <>
-                        <p className="text-xs font-semibold text-gray-600 mb-3">Distance from hotspots</p>
-                        <div className="space-y-2">
-                          {(['dubai_mall', 'palm_jumeirah', 'dubai_airport'] as HotspotKey[]).map((key) => {
-                            const km = getHotspotDistanceKm(hotspotDistances, key);
-                            if (km == null) return null;
-                            return (
-                              <div key={key} className="flex items-center justify-between gap-3 py-3 px-4 rounded-xl bg-secondary/5 border border-secondary/10">
-                                <div className="flex items-center gap-3 min-w-0">
-                                  <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-secondary/10 flex items-center justify-center">
-                                    <Car className="w-5 h-5 text-secondary" strokeWidth={2} />
-                                  </div>
-                                  <span className="font-semibold text-secondary text-sm">{getHotspotLabel(key)}</span>
-                                </div>
-                                <span className="shrink-0 text-sm font-display font-bold text-gray-800 tabular-nums">{km} km</span>
-                              </div>
-                            );
-                          })}
-                        </div>
-                      </>
-                    )}
+                              <span className="font-semibold text-secondary text-sm">{getHotspotLabel(key)}</span>
+                            </div>
+                            <span className="shrink-0 text-sm font-display font-bold text-gray-800 tabular-nums">{km} km</span>
+                          </div>
+                        );
+                      })}
+                    </div>
                   </div>
-                ) : null}
+                )}
               </div>
             </aside>
           </div>
