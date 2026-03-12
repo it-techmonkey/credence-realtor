@@ -109,7 +109,7 @@ export default function Hotspots({
   title = "Choose from Top Developers",
   showTitle = true,
   showFilters = true,
-  filterOptions = ["All", "Villa", "2 BHK", "3 BHK", "1 BHK"],
+  filterOptions = ["All", "Apartment", "Villa"],
   className = "",
   developerFilters,
   showDeveloperFilters = false,
@@ -194,14 +194,10 @@ export default function Hotspots({
 
         let mapped: Property[] = items.map((item, index) => mapStaticProjectToHotspotProperty(item, index));
 
-        if (propertyType === "1 BHK") {
-          mapped = mapped.filter((p) => p.bedrooms === 1);
-        } else if (propertyType === "2 BHK") {
-          mapped = mapped.filter((p) => p.bedrooms === 2);
-        } else if (propertyType === "3 BHK") {
-          mapped = mapped.filter((p) => p.bedrooms === 3);
+        if (propertyType === "Apartment") {
+          mapped = mapped.filter((p) => (p.bedrooms ?? 0) <= 3);
         } else if (propertyType === "Villa") {
-          mapped = mapped.filter((p) => (p.title || "").toLowerCase().includes("villa"));
+          mapped = mapped.filter((p) => (p.bedrooms ?? 0) >= 4);
         }
 
         if (selectedArea && selectedArea !== "All") {

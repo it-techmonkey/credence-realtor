@@ -635,7 +635,7 @@ function PropertiesContent() {
                             title=""
                             showTitle={false}
                             showFilters={true}
-                            filterOptions={["All", "Villa", "2 BHK", "3 BHK", "1 BHK"]}
+                            filterOptions={["All", "Apartment", "Villa"]}
                             className="px-0 py-0"
                             mapFilters={{
                                 category: activeFilter && activeFilter !== 'All' ? activeFilter : undefined,

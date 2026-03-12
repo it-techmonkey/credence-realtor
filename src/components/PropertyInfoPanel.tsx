@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { X } from "lucide-react";
 import { formatPrice } from "@/utils/formatPrice";
+import { getUnitTypeFromBedrooms } from "@/lib/properties";
 
 interface Property {
   propertyId: number;
@@ -68,11 +69,20 @@ export default function PropertyInfoPanel({ property, onClose }: Props) {
 
         {/* Price */}
         <div className="mb-6">
-          <p className="text-sm text-gray-500 mb-1">Starting from</p>
           <p className="text-3xl font-bold text-[#C5A365]">
             AED {formatPrice(property.price)}
           </p>
         </div>
+
+        {/* Unit type (Apartment / Villa from bedrooms) */}
+        {getUnitTypeFromBedrooms(property.bedrooms) && (
+          <div className="mb-4">
+            <p className="text-sm text-gray-500 mb-1">Unit type</p>
+            <p className="text-base font-medium text-gray-900">
+              {getUnitTypeFromBedrooms(property.bedrooms)}
+            </p>
+          </div>
+        )}
 
         {/* Developer */}
         {property.developer && (

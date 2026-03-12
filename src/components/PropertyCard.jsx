@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { Bed, Bath, Square, MapPin, Phone, MessageCircle, Building2, ArrowRight } from 'lucide-react';
-import { formatPrice } from '@/lib/properties';
+import { formatPrice, getUnitTypeFromBedrooms } from '@/lib/properties';
 import InquiryModal from '@/components/property/inquiry-modal';
 import { useScrollAnimation } from '@/utils/useScrollAnimation';
 
@@ -29,14 +29,15 @@ const PropertyCard = ({ property, index = 0 }) => {
                         {property.type}
                     </div>
 
-                    {/* Top Right Badge (Category: Office, Commercial, or bedroom count) */}
+                    {/* Top Right Badge: Office/Commercial or Apartment/Villa from bedrooms */}
                     <div className="absolute top-4 right-4 bg-black/50 backdrop-blur-sm text-white text-[10px] font-bold px-3 py-1.5 rounded uppercase tracking-wider">
-                        {property.category === 'Office' || property.category === 'Commercial' ? property.category : (property.bedrooms ? `${property.bedrooms} Bedroom` : (property.category || ''))}
+                        {property.category === 'Office' || property.category === 'Commercial'
+                            ? property.category
+                            : (getUnitTypeFromBedrooms(property.bedrooms) || property.category || '')}
                     </div>
 
                     {/* Price Overlay */}
                     <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent p-5 pt-16">
-                        <p className="text-[10px] text-gray-300 uppercase tracking-widest mb-1 font-medium">Starting From</p>
                         <p className="text-white text-2xl font-display font-bold tracking-tight">
                             AED {typeof property.price === 'number' ? formatPrice(property.price) : property.price}
                         </p>
@@ -61,6 +62,12 @@ const PropertyCard = ({ property, index = 0 }) => {
 
                     {/* Features */}
                     <div className="flex items-center gap-4 border-t border-gray-100 pt-4 mb-5 text-sm text-gray-600">
+                        {getUnitTypeFromBedrooms(property.bedrooms) && (
+                            <div className="flex items-center">
+                                <Bed size={16} className="mr-1.5 text-gray-400" />
+                                <span className="font-medium text-secondary">{getUnitTypeFromBedrooms(property.bedrooms)}</span>
+                            </div>
+                        )}
                         {property.bedrooms !== undefined && property.bedrooms > 0 && (
                             <div className="flex items-center">
                                 <Bed size={16} className="mr-1.5 text-gray-400" />

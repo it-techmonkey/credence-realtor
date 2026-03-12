@@ -9,7 +9,7 @@ import InquiryModal from '@/components/property/inquiry-modal';
 import DescriptionModal from '@/components/property/description-modal';
 import ImageViewerModal from '@/components/property/image-viewer-modal';
 import AmenitiesModal from '@/components/property/amenities-modal';
-import { getPropertyById, getSuggestedSimilarProperties, formatPrice, formatDate, Property } from '@/lib/properties';
+import { getPropertyById, getSuggestedSimilarProperties, formatPrice, formatDate, getUnitTypeFromBedrooms, Property } from '@/lib/properties';
 import { translateToEnglish, containsArabic } from '@/lib/translate';
 import { getAmenityIcon } from '@/lib/amenityIcons';
 import { normalizePropertyDescription } from '@/lib/descriptionParser';
@@ -72,6 +72,9 @@ const PropertyDetailsGrid = memo(({ property, translatedDeveloper, translatedLoc
       )}
       {localityDisplay && typeof localityDisplay === 'string' && localityDisplay.trim() !== '' && (
         <DetailRow icon={MapPinned} label="Locality" value={localityDisplay} />
+      )}
+      {getUnitTypeFromBedrooms(property.bedrooms) && (
+        <DetailRow icon={Home} label="Unit type" value={getUnitTypeFromBedrooms(property.bedrooms)} />
       )}
       {(property.bedroomRange != null && property.bedroomRange.trim() !== '' || (property.bedrooms != null && property.bedrooms > 0)) && (
         <DetailRow icon={Bed} label="Bedrooms" value={property.bedroomRange?.trim() || property.bedrooms} />
@@ -582,7 +585,6 @@ export default function PropertyDetailPage() {
               {/* Mobile only: Price + Request info right after gallery (hidden on desktop; sidebar has it) */}
               <div className="lg:hidden rounded-2xl overflow-hidden border border-gray-100 bg-white shadow-md">
                 <div className="bg-secondary px-5 py-4">
-                  <p className="text-[10px] uppercase tracking-[0.25em] text-white/70 font-medium">Price from</p>
                   <p className="font-display font-bold text-2xl text-white tracking-tight">AED {formatPrice(property.minPrice ?? property.price)}</p>
                 </div>
                 <div className="p-5">
@@ -682,7 +684,6 @@ export default function PropertyDetailPage() {
                 {/* Price + CTA card — desktop only (mobile has it after gallery in left column) */}
                 <div className="hidden lg:block rounded-2xl overflow-hidden border border-gray-100 bg-white shadow-md">
                   <div className="bg-secondary px-5 py-4 sm:px-6 sm:py-5">
-                    <p className="text-[10px] uppercase tracking-[0.25em] text-white/70 font-medium">Price from</p>
                     <p className="font-display font-bold text-2xl sm:text-3xl text-white tracking-tight">AED {formatPrice(property.minPrice ?? property.price)}</p>
                   </div>
                   <div className="p-5 sm:p-6">

@@ -314,6 +314,14 @@ export async function getSuggestedSimilarProperties(
   }
 }
 
+/** 1–3 bedrooms (or studio) → Apartment; 4+ → Villa. */
+export function getUnitTypeFromBedrooms(bedrooms: number | undefined | null): 'Apartment' | 'Villa' | null {
+  if (bedrooms === undefined || bedrooms === null) return null;
+  const n = Number(bedrooms);
+  if (isNaN(n) || n < 0) return null;
+  return n >= 4 ? 'Villa' : 'Apartment';
+}
+
 // Format price for display
 export function formatPrice(price: number): string {
   if (price >= 1000000000) {

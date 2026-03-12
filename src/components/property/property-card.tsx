@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { memo } from 'react';
-import { formatPrice } from '../../lib/properties';
+import { formatPrice, getUnitTypeFromBedrooms } from '../../lib/properties';
 
 interface Property {
   id?: string | number;
@@ -63,18 +63,17 @@ function PropertyCard({ property }: PropertyCardProps) {
             {title}
           </h3>
 
-          {/* Badges */}
+          {/* Badges: Unit type (Apartment/Villa) from bedrooms, then type if present */}
           <div className="flex flex-wrap gap-2">
-            {bedrooms && bedrooms > 0 && (
+            {getUnitTypeFromBedrooms(bedrooms) && (
               <div className="bg-[#e5e7ff] flex gap-1.5 items-center px-2.5 py-1.5 rounded-[28px]">
                 <div className="w-4.5 h-4.5 flex items-center justify-center">
-                  <svg width="16" height="12" viewBox="0 0 22 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="1" y="7.078" width="18" height="12" rx="2" stroke="black" strokeWidth="2"/>
-                    <path d="M7 7.078V5.078C7 3.97343 7.89543 3.078 9 3.078H13C14.1046 3.078 15 3.97343 15 5.078V7.078" stroke="black" strokeWidth="2"/>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3 9L12 2L21 9V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9Z" stroke="black" strokeWidth="2"/>
                   </svg>
                 </div>
                 <span className="font-medium text-xs leading-normal text-black">
-                  {bedrooms}-bedroom
+                  {getUnitTypeFromBedrooms(bedrooms)}
                 </span>
               </div>
             )}
