@@ -1,16 +1,22 @@
 /**
  * Hotspot distances and drive-time estimates.
  *
- * DISTANCE: Haversine formula (great-circle distance between two lat/lng points).
- *   - Earth radius R = 6371 km
- *   - Converts lat/lng to radians, then: a = sin²(Δlat/2) + cos(lat1)·cos(lat2)·sin²(Δlng/2); c = 2·atan2(√a, √(1−a)); d = R·c
+ * DISTANCE: Stored values are straight-line (Haversine) in km. Road distance is estimated as
+ *   straight_line_km × ROAD_DISTANCE_FACTOR (1.15) — a typical urban factor (roads are longer than straight line).
  *
- * DRIVE TIME: Estimated from distance assuming average speed 40 km/h (Dubai urban/suburban).
- *   - time_minutes = (distance_km / 40) * 60 = distance_km * 1.5
- *   - Displayed as a range band for clarity (e.g. "10–15 mins").
+ * DRIVE TIME: Based on estimated road distance at 40 km/h average.
  */
 
 import hotspotsDistanceData from '@/data/hotspots-distance.json';
+
+/** Factor to convert straight-line distance to estimated road distance (by car). Typical urban 1.2–1.4; 1.15 is conservative. */
+export const ROAD_DISTANCE_FACTOR = 1.15;
+
+/** Convert straight-line distance (km) to estimated road distance (km) for display / drive time. */
+export function straightLineToRoadKm(straightLineKm: number): number {
+  if (!Number.isFinite(straightLineKm) || straightLineKm < 0) return 0;
+  return Math.round(straightLineKm * ROAD_DISTANCE_FACTOR * 10) / 10;
+}
 
 export type HotspotKey = 'dubai_mall' | 'palm_jumeirah' | 'dubai_airport' | 'dubai_marina' | 'al_maktoum_airport';
 

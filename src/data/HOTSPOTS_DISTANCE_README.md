@@ -2,11 +2,15 @@
 
 ## Data file
 
-- **hotspots-distance.json** — For each project (keyed by `slug`), distances in km to five hotspots.
+- **hotspots-distance.json** — For each project (keyed by `slug`), **straight-line** distances in km to five hotspots (Haversine).
 
 ## How distance is calculated
 
-**Haversine formula** (great-circle distance between two lat/lng points on Earth):
+**Stored value:** straight-line (Haversine) distance.
+
+**Displayed value (by car):** estimated **road distance** = straight-line × **1.15**. Roads are longer than a straight line; 1.15 is a conservative urban factor (typical range 1.2–1.4). The UI shows this as e.g. "~3.5 km".
+
+**Haversine formula** (great-circle distance between two points on Earth):
 
 1. Earth radius: **R = 6,371 km**
 2. Convert latitude/longitude differences to radians:  
