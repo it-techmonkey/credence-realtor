@@ -9,7 +9,7 @@ import InquiryModal from '@/components/property/inquiry-modal';
 import DescriptionModal from '@/components/property/description-modal';
 import ImageViewerModal from '@/components/property/image-viewer-modal';
 import AmenitiesModal from '@/components/property/amenities-modal';
-import { getPropertyById, getSuggestedSimilarProperties, formatDate, getUnitTypeFromBedrooms, Property } from '@/lib/properties';
+import { getPropertyById, getSuggestedSimilarProperties, formatDate, getUnitTypeLabelsFromBedrooms, Property } from '@/lib/properties';
 import { translateToEnglish, containsArabic } from '@/lib/translate';
 import { getAmenityIcon } from '@/lib/amenityIcons';
 import { normalizePropertyDescription } from '@/lib/descriptionParser';
@@ -73,8 +73,8 @@ const PropertyDetailsGrid = memo(({ property, translatedDeveloper, translatedLoc
       {localityDisplay && typeof localityDisplay === 'string' && localityDisplay.trim() !== '' && (
         <DetailRow icon={MapPinned} label="Locality" value={localityDisplay} />
       )}
-      {getUnitTypeFromBedrooms(property.bedrooms) && (
-        <DetailRow icon={Home} label="Unit type" value={getUnitTypeFromBedrooms(property.bedrooms)} />
+      {getUnitTypeLabelsFromBedrooms(property.bedrooms).length > 0 && (
+        <DetailRow icon={Home} label="Unit type" value={getUnitTypeLabelsFromBedrooms(property.bedrooms).join(' · ')} />
       )}
       {(property.bedroomRange != null && property.bedroomRange.trim() !== '' || (property.bedrooms != null && property.bedrooms > 0)) && (
         <DetailRow icon={Bed} label="Bedrooms" value={property.bedroomRange?.trim() || property.bedrooms} />
@@ -531,10 +531,9 @@ export default function PropertyDetailPage() {
                   {property.type}
                 </span>
               )}
-              {getUnitTypeFromBedrooms(property.bedrooms) && (
+              {getUnitTypeLabelsFromBedrooms(property.bedrooms).length > 0 && (
                 <span className="text-white/95 font-semibold text-base sm:text-lg">
-                  {getUnitTypeFromBedrooms(property.bedrooms)}
-                  {property.bedrooms != null && property.bedrooms > 0 && ` · ${property.bedrooms} BR`}
+                  {getUnitTypeLabelsFromBedrooms(property.bedrooms).join(' · ')}
                 </span>
               )}
             </div>

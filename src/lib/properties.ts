@@ -322,6 +322,15 @@ export function getUnitTypeFromBedrooms(bedrooms: number | undefined | null): 'A
   return n >= 4 ? 'Villa' : 'Apartment';
 }
 
+/** When project has 1–4 BR (max >= 4), show both Apartment and Villa; otherwise single type. For display only. */
+export function getUnitTypeLabelsFromBedrooms(bedrooms: number | undefined | null): ('Apartment' | 'Villa')[] {
+  if (bedrooms === undefined || bedrooms === null) return [];
+  const n = Number(bedrooms);
+  if (isNaN(n) || n < 0) return [];
+  if (n >= 4) return ['Apartment', 'Villa'];
+  return ['Apartment'];
+}
+
 // Format price for display
 export function formatPrice(price: number): string {
   if (price >= 1000000000) {

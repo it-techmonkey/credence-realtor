@@ -4,7 +4,6 @@ import React, { useState, useEffect, Suspense } from 'react';
 import Link from 'next/link';
 import { usePathname, useSearchParams, useRouter } from 'next/navigation';
 import { ArrowRight, MapPin, ChevronDown, ChevronUp, Star, Phone, MessageCircle, Percent, TrendingUp, Award, ShieldCheck, Users, Building2, Globe, ChevronLeft, ChevronRight } from 'lucide-react';
-import { formatPrice } from '@/lib/properties';
 import Hotspots from '@/components/Hotspots';
 import { useScrollAnimations } from '@/utils/useScrollAnimation';
 import AnimatedSection from '@/components/AnimatedSection';
@@ -378,8 +377,8 @@ const HomeContent = () => {
                                         />
                                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                                         <div className="absolute bottom-4 left-4 text-white">
-                                            <p className="text-xs uppercase tracking-wider mb-1 opacity-90">
-                                                Developer: {item.developer || 'N/A'}
+                                            <p className="text-xs font-semibold uppercase tracking-wider mb-1 text-white/95">
+                                                {item.developer || 'Developer'}
                                             </p>
                                             <h3 className="text-lg font-bold">{item.title}</h3>
                                             <div className="flex items-center text-xs opacity-80 mt-1">
@@ -388,19 +387,11 @@ const HomeContent = () => {
                                         </div>
                                     </div>
                                     <div className="p-5">
-                                        <div className="flex justify-between items-end mb-4 border-b border-gray-100 pb-4">
-                                            <div>
-                                                <p className="text-xs text-gray-400 uppercase">Delivery Date</p>
-                                                <p className="text-secondary font-semibold text-sm">
-                                                    {item.readyDate && String(item.readyDate).trim() ? String(item.readyDate).trim() : 'TBA'}
-                                                </p>
-                                            </div>
-                                            <div className="text-right">
-                                                <p className="text-xs text-gray-400 uppercase">Starting From</p>
-                                                <p className="text-primary font-bold text-lg">
-                                                    AED {formatPrice(item.price)}
-                                                </p>
-                                            </div>
+                                        <div className="mb-4 border-b border-gray-100 pb-4">
+                                            <p className="text-xs text-gray-400 uppercase">Delivery Date</p>
+                                            <p className="text-secondary font-semibold text-sm">
+                                                {item.readyDate && String(item.readyDate).trim() ? String(item.readyDate).trim() : 'TBA'}
+                                            </p>
                                         </div>
                                         <Link
                                             href={`/properties/${item.id}`}
@@ -560,15 +551,15 @@ const HomeContent = () => {
                                         <div className="absolute top-4 left-4 bg-primary text-black text-xs font-bold px-3 py-1 rounded">Top Pick</div>
                                     </div>
                                     <div className="p-6">
-                                        <p className="text-xs text-gray-400 uppercase mb-1">
-                                            Developer: {item.developer || 'N/A'}
+                                        <p className="text-xs font-semibold uppercase tracking-wider mb-1 text-primary">
+                                            {item.developer || 'Developer'}
                                         </p>
                                         <h3 className="text-xl font-bold mb-4">{item.title}</h3>
 
-                                        <div className="grid grid-cols-2 gap-4 mb-6 text-sm">
+                                        <div className="grid grid-cols-2 gap-4 text-sm">
                                             <div>
                                                 <span className="block text-gray-500 text-xs">Location</span>
-                                                {item.location}
+                                                {item.location || '—'}
                                             </div>
                                             <div>
                                                 <span className="block text-gray-500 text-xs">Handover</span>
@@ -576,20 +567,12 @@ const HomeContent = () => {
                                             </div>
                                         </div>
 
-                                        <div className="flex items-center justify-between pt-4 border-t border-white/10">
-                                            <div>
-                                                <span className="block text-gray-500 text-xs">Starting From</span>
-                                                <span className="text-primary font-bold text-lg">
-                                                    AED {formatPrice(item.price)}
-                                                </span>
-                                            </div>
-                                            <Link
-                                                href={`/properties/${item.id}`}
-                                                className="px-6 py-2 bg-white text-black font-bold rounded hover:bg-primary transition-colors text-sm"
-                                            >
-                                                Inquire
-                                            </Link>
-                                        </div>
+                                        <Link
+                                            href={`/properties/${item.id}`}
+                                            className="block w-full mt-6 pt-4 border-t border-white/10 text-center py-3 bg-white text-black font-bold rounded hover:bg-primary transition-colors text-sm"
+                                        >
+                                            Inquire
+                                        </Link>
                                     </div>
                                 </AnimatedItem>
                             ))}
@@ -616,11 +599,22 @@ const HomeContent = () => {
                                 With transparent regulations, escrow protections, and a stable economy backed by diversification beyond oil, Dubai remains one of the safest and most lucrative real estate markets worldwide.
                             </p>
 
-                            {/* Trusted By Section based on image */}
+                            {/* Trusted By Section - avatar images */}
                             <div className="flex items-center gap-4">
-                                <div className="flex -space-x-4">
-                                    {[1, 2, 3, 4].map(n => (
-                                        <div key={n} className="w-12 h-12 rounded-full border-2 border-white bg-gray-200" />
+                                <div className="flex -space-x-3">
+                                    {[
+                                        'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=96&h=96&fit=crop&crop=face',
+                                        'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=96&h=96&fit=crop&crop=face',
+                                        'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=96&h=96&fit=crop&crop=face',
+                                        'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=96&h=96&fit=crop&crop=face',
+                                        'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=96&h=96&fit=crop&crop=face',
+                                    ].map((src, i) => (
+                                        <img
+                                            key={i}
+                                            src={src}
+                                            alt=""
+                                            className="w-12 h-12 rounded-full border-2 border-white object-cover shadow-sm"
+                                        />
                                     ))}
                                 </div>
                                 <div>

@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { memo } from 'react';
-import { getUnitTypeFromBedrooms } from '../../lib/properties';
+import { getUnitTypeLabelsFromBedrooms } from '../../lib/properties';
 
 interface Property {
   id?: string | number;
@@ -61,17 +61,12 @@ function PropertyCard({ property }: PropertyCardProps) {
             {title}
           </h3>
 
-          {/* Badges: Unit type (Apartment/Villa) from bedrooms, then type if present */}
+          {/* Badges: Unit type (Apartment · Villa when 1-4), then type if present */}
           <div className="flex flex-wrap gap-2">
-            {getUnitTypeFromBedrooms(bedrooms) && (
+            {getUnitTypeLabelsFromBedrooms(bedrooms).length > 0 && (
               <div className="bg-[#e5e7ff] flex gap-1.5 items-center px-2.5 py-1.5 rounded-[28px]">
-                <div className="w-4.5 h-4.5 flex items-center justify-center">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M3 9L12 2L21 9V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9Z" stroke="black" strokeWidth="2"/>
-                  </svg>
-                </div>
                 <span className="font-medium text-xs leading-normal text-black">
-                  {getUnitTypeFromBedrooms(bedrooms)}
+                  {getUnitTypeLabelsFromBedrooms(bedrooms).join(' · ')}
                 </span>
               </div>
             )}

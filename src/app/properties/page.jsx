@@ -170,33 +170,15 @@ function PropertiesContent() {
         router.replace(queryString ? `/properties?${queryString}` : '/properties', { scroll: false });
     }, [debouncedSearchQuery, searchParams, router]);
 
-    // Load developers from static list (no API needed)
+    // Developer names for "Explore by Developer" section (display only — no filtering)
     useEffect(() => {
-        const loadDevelopers = () => {
-            setIsLoadingDevelopers(true);
-            try {
-                // Get all developers from static list
-                const allDevs = getAllDevelopers();
-                const developersList = allDevs.slice(0, 6).map((dev) => ({
-                    id: dev.id,
-                    name: dev.name,
-                    developerId: dev.id,
-                }));
-
-                setDevelopers(developersList);
-            } catch (err) {
-                console.error('Error loading developers:', err);
-                setDevelopers([]);
-            } finally {
-                setIsLoadingDevelopers(false);
-            }
-        };
-
-        loadDevelopers();
+        const list = getAllDevelopers()
+            .slice(0, 12)
+            .map((dev) => ({ id: dev.id, name: dev.name, developerId: dev.id }));
+        setDevelopers(list);
+        setIsLoadingDevelopers(false);
     }, []);
 
-    // Luxury = 7M+ AED and only these developers (same list as static API, including Arabic names)
-    const LUXURY_MIN_PRICE = 7_000_000;
     const AFFORDABLE_MAX_PRICE = 1_500_000;
 
     // Read all filter params from URL on mount and keep filters in sync with URL (avoids stale category constraints when switching)
@@ -262,11 +244,9 @@ function PropertiesContent() {
         if (sortOrderParam) {
             urlFilters.sortOrder = sortOrderParam;
         }
-        // Category-derived price constraints last (so switching category overwrites any previous category rules)
+        // Category-derived price constraints (Luxury = developer list only, no price filter)
         if (categoryParam && categoryParam.toLowerCase() === 'luxury') {
-            urlFilters.minPrice = LUXURY_MIN_PRICE;
-            delete urlFilters.maxPrice;
-            setActiveFilter('Luxury Branded');
+            setActiveFilter('Luxury');
         } else if (categoryParam && categoryParam.toLowerCase() === 'affordable') {
             urlFilters.maxPrice = AFFORDABLE_MAX_PRICE;
             delete urlFilters.minPrice;
@@ -279,6 +259,11 @@ function PropertiesContent() {
 
         // Always sync filters from URL so switching category (e.g. Luxury -> Affordable) clears stale minPrice/maxPrice
         setFilters(urlFilters);
+
+        // Sync page from URL so back/refresh keeps the same page
+        const pageParam = searchParams.get('page');
+        const pageNum = parseInt(pageParam || '1', 10);
+        setCurrentPage(!isNaN(pageNum) && pageNum >= 1 ? pageNum : 1);
     }, [searchParams]);
 
     // Fetch properties from API with filters
@@ -302,10 +287,10 @@ function PropertiesContent() {
                 // Build apiFilters from filters, then apply category rules so switching back and forth never leaves conflicting constraints
                 const apiFilters = { ...filters };
 
-                // Luxury: use only category + minPrice so static API is used (Alnair path often returns no data)
+                // Luxury: developer list only (no price filter)
                 if (effectiveCategory && effectiveCategory.toLowerCase() === 'luxury') {
                     apiFilters.category = 'Luxury';
-                    apiFilters.minPrice = LUXURY_MIN_PRICE;
+                    delete apiFilters.minPrice;
                     delete apiFilters.maxPrice;
                     delete apiFilters.allowedDevelopers;
                 } else if (effectiveCategory && effectiveCategory.toLowerCase() === 'affordable') {
@@ -333,17 +318,11 @@ function PropertiesContent() {
                 if (loadIdRef.current !== thisLoadId) return;
 
                 // Client-side guard: Affordable = cap at 1.5M (server already filters, this is a safety net).
-                // Luxury filtering is fully handled server-side (static API filters by developer name in Arabic + price >= 7M).
-                // We do NOT re-filter luxury by developer name here because translated names (Arabic -> English)
-                // may not exactly match the config list, causing valid properties to be dropped.
-                const isLuxuryView = effectiveCategory && effectiveCategory.toLowerCase() === 'luxury';
+                // Luxury is developer-only (no price filter); server returns only listed luxury developers.
                 const isAffordableView = effectiveCategory && effectiveCategory.toLowerCase() === 'affordable';
                 const getPropertyPrice = (p) => (typeof p?.price === 'number' ? p.price : p?.minPrice ?? p?.maxPrice) || 0;
                 let list = result.properties;
-                if (isLuxuryView) {
-                    // Only enforce price floor as safety net; developer filter already applied server-side
-                    list = list.filter((p) => getPropertyPrice(p) >= LUXURY_MIN_PRICE);
-                } else if (isAffordableView) {
+                if (isAffordableView) {
                     list = list.filter((p) => getPropertyPrice(p) <= AFFORDABLE_MAX_PRICE);
                 }
 
@@ -384,8 +363,12 @@ function PropertiesContent() {
 
     const handlePageChange = useCallback((page) => {
         setCurrentPage(page);
+        const params = new URLSearchParams(searchParams.toString());
+        if (page <= 1) params.delete('page');
+        else params.set('page', String(page));
+        router.replace(params.toString() ? `/properties?${params.toString()}` : '/properties', { scroll: false });
         window.scrollTo({ top: 0, behavior: 'smooth' });
-    }, []);
+    }, [router, searchParams]);
 
     const handleFilterChange = useCallback((filter) => {
         setActiveFilter(filter);
@@ -673,80 +656,40 @@ function PropertiesContent() {
                         />
                     </div>
 
-                    <AnimatedContainer className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4">
-                        <AnimatedItem
-                            onClick={(e) => {
-                                e.preventDefault();
-                                setFilters({});
-                                setCurrentPage(1);
-                                window.history.pushState({}, '', '/properties');
-                                window.scrollTo({ top: 0, behavior: 'smooth' });
-                            }}
-                            className="bg-[#1A1A1A] text-white rounded-xl p-4 flex items-center justify-between col-span-2 md:col-span-2 lg:col-span-1 border border-transparent shadow-lg cursor-pointer hover:bg-gray-900 transition-colors"
-                        >
-                            <span className="font-bold">All Developers</span>
-                            <Check size={16} className="text-[#C5A365]" />
-                        </AnimatedItem>
+                    <AnimatedContainer className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-3">
                         {isLoadingDevelopers ? (
-                            // Loading skeleton
-                            Array.from({ length: 6 }).map((_, i) => (
+                            Array.from({ length: 8 }).map((_, i) => (
                                 <AnimatedItem
                                     key={i}
-                                    className="bg-white rounded-xl p-4 flex flex-col items-center justify-center border border-gray-100 h-24 animate-pulse"
+                                    className="bg-white rounded-xl p-4 flex items-center justify-center border border-gray-100 h-14 animate-pulse"
                                 >
-                                    <div className="h-4 w-20 bg-gray-200 rounded mb-2"></div>
-                                    <div className="h-3 w-16 bg-gray-200 rounded"></div>
+                                    <div className="h-4 w-24 bg-gray-200 rounded" />
                                 </AnimatedItem>
                             ))
                         ) : developers.length > 0 ? (
                             developers.map((dev) => (
-                                <AnimatedItem
+                                <Link
                                     key={dev.id || dev.name}
-                                    onClick={(e) => {
-                                        e.preventDefault();
-                                        setFilters({ developer: dev.name });
-                                        setCurrentPage(1);
-                                        const params = new URLSearchParams();
-                                        params.set('developer', dev.name);
-                                        window.history.pushState({}, '', `/properties?${params.toString()}`);
-                                        window.scrollTo({ top: 0, behavior: 'smooth' });
-                                    }}
-                                    className="bg-white rounded-xl p-4 flex flex-col items-center justify-center border border-gray-100 hover:border-[#C5A365] hover:shadow-lg transition-all cursor-pointer group h-24"
+                                    href="/developers"
+                                    className="block"
                                 >
-                                    <span className="font-bold text-gray-700 group-hover:text-secondary mb-1 text-center text-sm">
-                                        {dev.name.toUpperCase()}
-                                    </span>
-                                    <span className="text-[10px] text-gray-400">
-                                        {dev.projectCount} {dev.projectCount === 1 ? 'project' : 'projects'}
-                                    </span>
-                                </AnimatedItem>
+                                    <AnimatedItem
+                                        className="bg-white rounded-xl p-4 flex items-center justify-center border border-gray-100 hover:border-[#C5A365] hover:shadow-md transition-all group h-14"
+                                    >
+                                        <span className="font-semibold text-gray-700 group-hover:text-secondary text-center text-sm truncate w-full px-1">
+                                            {dev.name}
+                                        </span>
+                                    </AnimatedItem>
+                                </Link>
                             ))
                         ) : (
-                            // Fallback to top 10 developers if API fails
-                            (() => {
-                                const top10DeveloperIds = [6, 442, 89, 988, 64, 335, 510, 55, 69, 536];
-                                const top10Developers = top10DeveloperIds
-                                    .map(id => DEVELOPERS.find(d => d.id === id))
-                                    .filter(Boolean);
-                                return top10Developers.map((dev, i) => (
-                                    <AnimatedItem
-                                        key={i}
-                                        onClick={(e) => {
-                                            e.preventDefault();
-                                            setFilters({ developer: dev.name.toUpperCase() });
-                                            setCurrentPage(1);
-                                            const params = new URLSearchParams();
-                                            params.set('developer', dev.name.toUpperCase());
-                                            window.history.pushState({}, '', `/properties?${params.toString()}`);
-                                            window.scrollTo({ top: 0, behavior: 'smooth' });
-                                        }}
-                                        className="bg-white rounded-xl p-4 flex flex-col items-center justify-center border border-gray-100 hover:border-[#C5A365] hover:shadow-lg transition-all cursor-pointer group h-24"
-                                    >
-                                        <span className="font-bold text-gray-700 group-hover:text-secondary mb-1">{dev.name.toUpperCase()}</span>
-                                        <span className="text-[10px] text-gray-400">Loading...</span>
+                            getAllDevelopers().slice(0, 8).map((dev, i) => (
+                                <Link key={i} href="/developers" className="block">
+                                    <AnimatedItem className="bg-white rounded-xl p-4 flex items-center justify-center border border-gray-100 hover:border-[#C5A365] hover:shadow-md transition-all group h-14">
+                                        <span className="font-semibold text-gray-700 group-hover:text-secondary text-sm truncate w-full">{dev.name}</span>
                                     </AnimatedItem>
-                                ));
-                            })()
+                                </Link>
+                            ))
                         )}
                     </AnimatedContainer>
 

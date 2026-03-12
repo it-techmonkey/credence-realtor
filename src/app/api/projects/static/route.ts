@@ -35,7 +35,7 @@ function normalizeDeveloperName(name: string): string {
  * Search by these names so filter works without relying on translation.
  */
 const BUILDERS_BY_DEVELOPER: Record<string, string[]> = {
-  emaar: ['إمار', 'امار', 'emaar', 'Emaar'],
+  emaar: ['إمار', 'امار', 'emaar', 'Emaar', 'Emaar Properties'],
   nakheel: ['نخيلهيل', 'نخيل', 'nakheel', 'Nakheel'],
   meraas: ['مراس', 'ميراس', 'meraas', 'Meraas'],
   'dubai properties': ['مجموعة دبي للعقارات', 'دبي الجنوب للعقارات دي دبليو سي ش.ذ.م.م', 'دبي الجنوب', 'مجموعة دبي', 'Dubai Properties'],
@@ -45,6 +45,19 @@ const BUILDERS_BY_DEVELOPER: Record<string, string[]> = {
   azizi: ['عزيزي', 'azizi', 'Azizi', 'AZIZI'],
   ellington: ['إلينغتون', 'الينغتون', 'ellington', 'Ellington'],
   'majid al futtaim': ['ماجد للتطوير', 'ماجد الفطيم', 'ماجد', 'Majid Al Futtaim', 'majid al futtaim'],
+  binghatti: ['بينغهاتي', 'binghatti', 'Binghatti', 'bingati'],
+  imtiaz: ['ايمتياز', 'امتياز', 'imtiaz', 'Imtiaz', 'imtiyaz'],
+  omniyat: ['أومنيات', 'omniyat', 'Omniyat'],
+  'hre development': ['HRE Development', 'HRE', 'hre development'],
+  arada: ['arada', 'ARADA', 'Arada'],
+  beyond: ['beyond', 'Beyond'],
+  danube: ['danube', 'Danube'],
+  'dubai south': ['Dubai South', 'dubai south'],
+  'expo city': ['Expo City', 'expo city'],
+  reportage: ['reportage', 'Reportage'],
+  'select group': ['Select Group', 'select group'],
+  'union properties': ['Union Properties', 'union properties'],
+  nabni: ['nabni', 'Nabni'],
 };
 
 /** Normalize Arabic/Urdu for fuzzy match: collapse alef/ya variants so إمار and امار both match. */
@@ -159,8 +172,9 @@ function getProjectCategory(project: any): string {
   if (textContainsAny(combined, COMMERCIAL_KEYWORDS)) return 'Commercial';
   // Waterfront: only projects whose stored description contains "waterfront" or "lagoon"
   if (descriptionContainsWaterfrontOrLagoon(project.slug)) return 'Waterfront';
-  const isLuxury = LUXURY_DEV_NAMES.some((name) => builder.toLowerCase().includes(name.toLowerCase()) || builder.includes(name));
-  if (isLuxury) return 'Luxury';
+  // Luxury: only developers in the configured list (Binghatti, Emaar, Damac, Imtiaz, Jacob, Sobha, Ellington, Azizi, Omniyat, Aldar)
+  const isLuxuryDev = LUXURY_DEV_NAMES.some((name) => builder.toLowerCase().includes(name.toLowerCase()) || builder.includes(name));
+  if (isLuxuryDev) return 'Luxury';
   if (priceFrom > 0 && priceFrom <= AFFORDABLE_MAX) return 'Affordable';
   return 'Off-Plan';
 }

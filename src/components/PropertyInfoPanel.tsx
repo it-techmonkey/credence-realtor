@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { X } from "lucide-react";
-import { getUnitTypeFromBedrooms } from "@/lib/properties";
+import { getUnitTypeLabelsFromBedrooms } from "@/lib/properties";
 
 interface Property {
   propertyId: number;
@@ -67,12 +67,11 @@ export default function PropertyInfoPanel({ property, onClose }: Props) {
         </p>
 
         {/* Unit type (Apartment / Villa from bedrooms) + Bedrooms */}
-        {getUnitTypeFromBedrooms(property.bedrooms) && (
+        {getUnitTypeLabelsFromBedrooms(property.bedrooms).length > 0 && (
           <div className="mb-4">
             <p className="text-sm text-gray-500 mb-1">Unit type</p>
             <p className="text-base font-medium text-gray-900">
-              {getUnitTypeFromBedrooms(property.bedrooms)}
-              {property.bedrooms != null && property.bedrooms > 0 && ` · ${property.bedrooms} BR`}
+              {getUnitTypeLabelsFromBedrooms(property.bedrooms).join(' · ')}
             </p>
           </div>
         )}
