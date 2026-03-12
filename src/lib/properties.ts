@@ -73,6 +73,8 @@ export interface FilterOptions {
   /** When set (e.g. Luxury view), only show properties from these developers (case-insensitive partial match) */
   allowedDevelopers?: string[];
   bedrooms?: number;
+  /** Apartment = 1-3 BR, Villa = 4+ BR */
+  unitType?: 'Apartment' | 'Villa';
   minPrice?: number;
   maxPrice?: number;
   minArea?: number;
@@ -534,6 +536,7 @@ async function getPaginatedPropertiesFromStatic(
   if (filters.developer) params.set('developer', filters.developer);
   if (filters.category && filters.category !== 'All') params.set('category', filters.category);
   if (filters.bedrooms !== undefined && filters.bedrooms > 0) params.set('bedrooms', String(filters.bedrooms));
+  if (filters.unitType) params.set('unitType', filters.unitType);
   if (filters.minPrice && filters.minPrice > 0) params.set('minPrice', String(filters.minPrice));
   if (filters.maxPrice && filters.maxPrice > 0) params.set('maxPrice', String(filters.maxPrice));
 

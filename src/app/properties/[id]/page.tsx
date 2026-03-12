@@ -752,11 +752,16 @@ export default function PropertyDetailPage() {
                         <div>
                           <p className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-2">Nearby</p>
                           <ul className="space-y-1.5">
-                            {normalizedDescription.nearby.map((n) => (
-                              <li key={n} className="text-gray-700 text-sm flex items-center gap-2">
-                                <Navigation size={14} className="text-primary shrink-0" /> {n}
-                              </li>
-                            ))}
+                            {normalizedDescription.nearby.map((n, idx) => {
+                              const timeLabel = idx < 3 ? '10–15 mins' : idx < 6 ? '20–30 mins' : '40–45 mins';
+                              return (
+                                <li key={`${n}-${idx}`} className="text-gray-700 text-sm flex items-center gap-2">
+                                  <Navigation size={14} className="text-primary shrink-0" />
+                                  <span>{n}</span>
+                                  <span className="text-gray-500 text-xs">— {timeLabel}</span>
+                                </li>
+                              );
+                            })}
                           </ul>
                         </div>
                       )}
@@ -764,11 +769,16 @@ export default function PropertyDetailPage() {
                         <div>
                           <p className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-2">Distances</p>
                           <ul className="space-y-1.5">
-                            {Object.entries(normalizedDescription.distances).map(([place, value]) => (
-                              <li key={place} className="text-gray-700 text-sm flex items-center gap-2">
-                                <Clock size={14} className="text-primary shrink-0" /> {value} to {place}
-                              </li>
-                            ))}
+                            {Object.entries(normalizedDescription.distances).map(([place, value], idx) => {
+                              const timeLabel = idx < 3 ? '10–15 mins' : idx < 6 ? '20–30 mins' : '40–45 mins';
+                              return (
+                                <li key={place} className="text-gray-700 text-sm flex items-center gap-2">
+                                  <Clock size={14} className="text-primary shrink-0" />
+                                  <span>{value} to {place}</span>
+                                  <span className="text-gray-500 text-xs">— {timeLabel}</span>
+                                </li>
+                              );
+                            })}
                           </ul>
                         </div>
                       )}

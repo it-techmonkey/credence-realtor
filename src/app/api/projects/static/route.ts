@@ -246,6 +246,8 @@ export async function GET(request: NextRequest) {
     const bedroomsParam = searchParams.get('bedrooms');
     const minBedroomsNum = bedroomsParam ? parseInt(bedroomsParam, 10) : NaN;
     const minBedrooms = Number.isNaN(minBedroomsNum) || minBedroomsNum < 0 ? undefined : minBedroomsNum;
+    const unitTypeParam = searchParams.get('unitType')?.trim().toLowerCase();
+    const unitType = unitTypeParam === 'apartment' || unitTypeParam === 'villa' ? unitTypeParam : undefined;
     let minPrice = searchParams.get('minPrice') ? parseInt(searchParams.get('minPrice')!, 10) : undefined;
     let maxPrice = searchParams.get('maxPrice') ? parseInt(searchParams.get('maxPrice')!, 10) : undefined;
 
@@ -333,6 +335,12 @@ export async function GET(request: NextRequest) {
 
     if (minBedrooms !== undefined && minBedrooms >= 0) {
       items = items.filter((p: any) => projectHasBedroomOption(p, minBedrooms));
+    }
+
+    if (unitType === 'apartment') {
+      items = items.filter((p: any) => getProjectBedrooms(p) <= 3);
+    } else if (unitType === 'villa') {
+      items = items.filter((p: any) => getProjectBedrooms(p) >= 4);
     }
 
     if (minPrice !== undefined && minPrice > 0) {

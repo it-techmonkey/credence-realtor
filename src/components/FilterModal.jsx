@@ -52,7 +52,7 @@ const FilterModal = ({ isOpen, onClose, filters, onApplyFilters }) => {
                         </label>
                         <div className="flex flex-wrap gap-3">
                             {(() => {
-                                const top10DeveloperIds = [6, 442, 89, 988, 64, 335, 510, 55, 69, 536];
+                                const top10DeveloperIds = [6, 442, 89, 988, 64, 335, 510, 55, 69, 536, 75];
                                 const top10Developers = top10DeveloperIds
                                     .map(id => DEVELOPERS.find(d => d.id === id))
                                     .filter(Boolean);
@@ -81,28 +81,28 @@ const FilterModal = ({ isOpen, onClose, filters, onApplyFilters }) => {
                         </div>
                     </div>
 
-                    {/* Bedrooms */}
+                    {/* Unit Type (Apartment / Villa) */}
                     <div>
                         <label className="block text-sm font-semibold text-secondary mb-3">
-                            Bedrooms
+                            Unit Type
                         </label>
                         <div className="flex flex-wrap gap-3">
-                            {[1, 2, 3, 4, 5, 6].map((bedrooms) => (
+                            {['Apartment', 'Villa'].map((unitType) => (
                                 <button
-                                    key={bedrooms}
+                                    key={unitType}
                                     onClick={() => {
                                         setLocalFilters(prev => ({
                                             ...prev,
-                                            bedrooms: prev.bedrooms === bedrooms ? undefined : bedrooms
+                                            unitType: prev.unitType === unitType ? undefined : unitType
                                         }));
                                     }}
                                     className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
-                                        localFilters.bedrooms === bedrooms
+                                        localFilters.unitType === unitType
                                             ? 'bg-black text-white'
                                             : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                                     }`}
                                 >
-                                    {bedrooms} {bedrooms === 1 ? 'Bed' : 'Beds'}
+                                    {unitType}
                                 </button>
                             ))}
                         </div>

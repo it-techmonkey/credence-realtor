@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useMemo, useCallback, useRef, Suspense } from 'react';
 import Link from 'next/link';
 import { useSearchParams, useRouter } from 'next/navigation';
-import { Search, MapPin, BedDouble, Bath, Square, Phone, MessageCircle, Check, ArrowRight, Filter, ChevronDown, ChevronUp, Shield, Brain, Tag, Headphones, Globe, Users, Home, Building2 } from 'lucide-react';
+import { Search, MapPin, BedDouble, Bath, Square, Phone, MessageCircle, Check, ArrowRight, Filter, ChevronDown, ChevronUp, Shield, Brain, Tag, Headphones, Globe, Users, Home, Building2, X } from 'lucide-react';
 import PropertyCard from '@/components/PropertyCard';
 import ContactDropdown from '@/components/ContactDropdown';
 import FilterModal from '@/components/FilterModal';
@@ -57,6 +57,8 @@ function PropertiesContent() {
         if (newFilters.bedrooms !== undefined && newFilters.bedrooms > 0) {
             params.set('bedrooms', newFilters.bedrooms.toString());
         } else params.delete('bedrooms');
+        if (newFilters.unitType) params.set('unitType', newFilters.unitType);
+        else params.delete('unitType');
         if (newFilters.minPrice !== undefined && newFilters.minPrice > 0) {
             params.set('minPrice', newFilters.minPrice.toString());
         } else params.delete('minPrice');
@@ -207,6 +209,10 @@ function PropertiesContent() {
         }
         if (developerParam) {
             urlFilters.developer = developerParam;
+        }
+        const unitTypeParam = searchParams.get('unitType');
+        if (unitTypeParam && (unitTypeParam === 'Apartment' || unitTypeParam === 'Villa')) {
+            urlFilters.unitType = unitTypeParam;
         }
         if (bedroomsParam) {
             const bedrooms = parseInt(bedroomsParam);
@@ -493,8 +499,83 @@ function PropertiesContent() {
 
                     {/* Properties Count */}
                     {!isLoading && !error && (
-                        <div className="mb-8 text-secondary font-medium">
+                        <div className="mb-4 text-secondary font-medium">
                             <span className="font-bold">{totalProperties}</span> properties found
+                        </div>
+                    )}
+
+                    {/* Active filters: Results for ... with X to clear */}
+                    {!isLoading && !error && (activeFilter && activeFilter !== 'All' || filters.developer || filters.unitType || filters.city || filters.locality || (filters.minPrice && filters.minPrice > 0) || (filters.maxPrice && filters.maxPrice > 0) || debouncedSearchQuery.trim()) && (
+                        <div className="mb-6 flex flex-wrap items-center gap-2">
+                            <span className="text-sm text-gray-500 mr-1">Results for:</span>
+                            {activeFilter && activeFilter !== 'All' && (
+                                <span className="inline-flex items-center gap-1.5 bg-gray-100 text-gray-800 px-3 py-1.5 rounded-full text-sm font-medium">
+                                    {activeFilter}
+                                    <button
+                                        type="button"
+                                        onClick={() => { handleFilterChange('All'); }}
+                                        className="p-0.5 hover:bg-gray-200 rounded-full"
+                                        aria-label="Remove category filter"
+                                    >
+                                        <X size={14} />
+                                    </button>
+                                </span>
+                            )}
+                            {filters.developer && (
+                                <span className="inline-flex items-center gap-1.5 bg-gray-100 text-gray-800 px-3 py-1.5 rounded-full text-sm font-medium">
+                                    {filters.developer}
+                                    <button type="button" onClick={() => handleApplyFilters({ ...filters, developer: undefined })} className="p-0.5 hover:bg-gray-200 rounded-full" aria-label="Remove developer"><X size={14} /></button>
+                                </span>
+                            )}
+                            {filters.unitType && (
+                                <span className="inline-flex items-center gap-1.5 bg-gray-100 text-gray-800 px-3 py-1.5 rounded-full text-sm font-medium">
+                                    {filters.unitType}
+                                    <button type="button" onClick={() => handleApplyFilters({ ...filters, unitType: undefined })} className="p-0.5 hover:bg-gray-200 rounded-full" aria-label="Remove unit type"><X size={14} /></button>
+                                </span>
+                            )}
+                            {filters.city && (
+                                <span className="inline-flex items-center gap-1.5 bg-gray-100 text-gray-800 px-3 py-1.5 rounded-full text-sm font-medium">
+                                    {filters.city}
+                                    <button type="button" onClick={() => handleApplyFilters({ ...filters, city: undefined })} className="p-0.5 hover:bg-gray-200 rounded-full" aria-label="Remove city"><X size={14} /></button>
+                                </span>
+                            )}
+                            {filters.locality && (
+                                <span className="inline-flex items-center gap-1.5 bg-gray-100 text-gray-800 px-3 py-1.5 rounded-full text-sm font-medium">
+                                    {filters.locality}
+                                    <button type="button" onClick={() => handleApplyFilters({ ...filters, locality: undefined })} className="p-0.5 hover:bg-gray-200 rounded-full" aria-label="Remove locality"><X size={14} /></button>
+                                </span>
+                            )}
+                            {(filters.minPrice && filters.minPrice > 0) && (
+                                <span className="inline-flex items-center gap-1.5 bg-gray-100 text-gray-800 px-3 py-1.5 rounded-full text-sm font-medium">
+                                    Min AED {(filters.minPrice / 1e6).toFixed(1)}M
+                                    <button type="button" onClick={() => handleApplyFilters({ ...filters, minPrice: undefined })} className="p-0.5 hover:bg-gray-200 rounded-full" aria-label="Remove min price"><X size={14} /></button>
+                                </span>
+                            )}
+                            {(filters.maxPrice && filters.maxPrice > 0) && (
+                                <span className="inline-flex items-center gap-1.5 bg-gray-100 text-gray-800 px-3 py-1.5 rounded-full text-sm font-medium">
+                                    Max AED {(filters.maxPrice / 1e6).toFixed(1)}M
+                                    <button type="button" onClick={() => handleApplyFilters({ ...filters, maxPrice: undefined })} className="p-0.5 hover:bg-gray-200 rounded-full" aria-label="Remove max price"><X size={14} /></button>
+                                </span>
+                            )}
+                            {debouncedSearchQuery.trim() && (
+                                <span className="inline-flex items-center gap-1.5 bg-gray-100 text-gray-800 px-3 py-1.5 rounded-full text-sm font-medium">
+                                    &quot;{debouncedSearchQuery.trim().slice(0, 20)}{debouncedSearchQuery.trim().length > 20 ? '…' : ''}&quot;
+                                    <button
+                                        type="button"
+                                        onClick={() => {
+                                            setSearchQuery('');
+                                            setDebouncedSearchQuery('');
+                                            const params = new URLSearchParams(searchParams.toString());
+                                            params.delete('search');
+                                            router.replace(params.toString() ? `/properties?${params.toString()}` : '/properties', { scroll: false });
+                                        }}
+                                        className="p-0.5 hover:bg-gray-200 rounded-full"
+                                        aria-label="Clear search"
+                                    >
+                                        <X size={14} />
+                                    </button>
+                                </span>
+                            )}
                         </div>
                     )}
 

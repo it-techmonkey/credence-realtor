@@ -33,7 +33,7 @@ const Navbar = () => {
             name: "Developers",
             path: "/developers",
             subItems: (() => {
-                const top10DeveloperIds = [6, 442, 89, 988, 64, 335, 510, 55, 69, 536];
+                const top10DeveloperIds = [6, 442, 89, 988, 64, 335, 510, 55, 69, 536, 75];
                 const top10Developers = top10DeveloperIds
                     .map(id => DEVELOPERS.find(d => d.id === id))
                     .filter(Boolean);
