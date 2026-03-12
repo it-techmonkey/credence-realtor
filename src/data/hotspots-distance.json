@@ -1,0 +1,6467 @@
+{
+  "olivia-gardens-residence": {
+    "dubai_mall_km": 3.08,
+    "palm_jumeirah_km": 18.56,
+    "dubai_airport_km": 9.72
+  },
+  "amber-by-enso": {
+    "dubai_mall_km": 3.02,
+    "palm_jumeirah_km": 18.78,
+    "dubai_airport_km": 9.46
+  },
+  "sea-legend-one": {
+    "dubai_mall_km": 11.5,
+    "palm_jumeirah_km": 25.86,
+    "dubai_airport_km": 8.78
+  },
+  "the-grandala": {
+    "dubai_mall_km": 2.34,
+    "palm_jumeirah_km": 17.89,
+    "dubai_airport_km": 10.23
+  },
+  "azizi-venice": {
+    "dubai_mall_km": 42.35,
+    "palm_jumeirah_km": 31.63,
+    "dubai_airport_km": 51.53
+  },
+  "capital-horizon-terraces": {
+    "dubai_mall_km": 11.89,
+    "palm_jumeirah_km": 27.09,
+    "dubai_airport_km": 7.28
+  },
+  "colibri-views": {
+    "dubai_mall_km": 75.68,
+    "palm_jumeirah_km": 92.18,
+    "dubai_airport_km": 65.12
+  },
+  "luz-ora-residences": {
+    "dubai_mall_km": 11.96,
+    "palm_jumeirah_km": 27.16,
+    "dubai_airport_km": 7.31
+  },
+  "verde-by-vision": {
+    "dubai_mall_km": 19.13,
+    "palm_jumeirah_km": 13.75,
+    "dubai_airport_km": 28.43
+  },
+  "treppan-living-prive": {
+    "dubai_mall_km": 11.39,
+    "palm_jumeirah_km": 25.68,
+    "dubai_airport_km": 8.87
+  },
+  "radisson-blu-rak-central": {
+    "dubai_mall_km": 75.6,
+    "palm_jumeirah_km": 92.1,
+    "dubai_airport_km": 65.04
+  },
+  "sobha-sanctuary-the-willows": {
+    "dubai_mall_km": 26.62,
+    "palm_jumeirah_km": 32.04,
+    "dubai_airport_km": 29.51
+  },
+  "amwaj-tower": {
+    "dubai_mall_km": 26.54,
+    "palm_jumeirah_km": 42.51,
+    "dubai_airport_km": 16.94
+  },
+  "terra-woods": {
+    "dubai_mall_km": 28.91,
+    "palm_jumeirah_km": 17.29,
+    "dubai_airport_km": 38.85
+  },
+  "jaddaf-beach-oasis": {
+    "dubai_mall_km": 6.03,
+    "palm_jumeirah_km": 23.18,
+    "dubai_airport_km": 4.89
+  },
+  "artistry-residences-2": {
+    "dubai_mall_km": 2.6,
+    "palm_jumeirah_km": 19.02,
+    "dubai_airport_km": 9.49
+  },
+  "dusit-thani-residences": {
+    "dubai_mall_km": 29.79,
+    "palm_jumeirah_km": 45.65,
+    "dubai_airport_km": 20.18
+  },
+  "tresora-by-wadan": {
+    "dubai_mall_km": 17.8,
+    "palm_jumeirah_km": 10.96,
+    "dubai_airport_km": 27.67
+  },
+  "verdana-new-phase": {
+    "dubai_mall_km": 25.6,
+    "palm_jumeirah_km": 16.02,
+    "dubai_airport_km": 35.25
+  },
+  "a1la-residence": {
+    "dubai_mall_km": 117.97,
+    "palm_jumeirah_km": 101.31,
+    "dubai_airport_km": 128.72
+  },
+  "inaura-hotels-residences": {
+    "dubai_mall_km": 0.9,
+    "palm_jumeirah_km": 16.82,
+    "dubai_airport_km": 11.28
+  },
+  "binghatti-skyflame": {
+    "dubai_mall_km": 12.59,
+    "palm_jumeirah_km": 19.49,
+    "dubai_airport_km": 18.68
+  },
+  "arthouse-private-residences": {
+    "dubai_mall_km": 10.14,
+    "palm_jumeirah_km": 22.24,
+    "dubai_airport_km": 13.43
+  },
+  "ones-residences": {
+    "dubai_mall_km": 118.25,
+    "palm_jumeirah_km": 101.56,
+    "dubai_airport_km": 129.01
+  },
+  "the-residences-at-sheraton-al-marjan-island-resort": {
+    "dubai_mall_km": 70.92,
+    "palm_jumeirah_km": 87.21,
+    "dubai_airport_km": 60.49
+  },
+  "the-row-saadiyat": {
+    "dubai_mall_km": 114.57,
+    "palm_jumeirah_km": 97.78,
+    "dubai_airport_km": 125.35
+  },
+  "sol-luxe": {
+    "dubai_mall_km": 1.61,
+    "palm_jumeirah_km": 17.43,
+    "dubai_airport_km": 10.56
+  },
+  "azizi-milan-18": {
+    "dubai_mall_km": 12.72,
+    "palm_jumeirah_km": 20.46,
+    "dubai_airport_km": 18.18
+  },
+  "wyndham-residences-al-marjan-island": {
+    "dubai_mall_km": 71.18,
+    "palm_jumeirah_km": 87.43,
+    "dubai_airport_km": 60.79
+  },
+  "reef-995": {
+    "dubai_mall_km": 15.6,
+    "palm_jumeirah_km": 25.61,
+    "dubai_airport_km": 17.89
+  },
+  "masdar": {
+    "dubai_mall_km": 108.82,
+    "palm_jumeirah_km": 93.22,
+    "dubai_airport_km": 119.22
+  },
+  "69930d184c992-belmont": {
+    "dubai_mall_km": 20.82,
+    "palm_jumeirah_km": 20.02,
+    "dubai_airport_km": 28.23
+  },
+  "karl-lagerfeld-beach-residences": {
+    "dubai_mall_km": 70.5,
+    "palm_jumeirah_km": 86.81,
+    "dubai_airport_km": 60.07
+  },
+  "at-85-residences": {
+    "dubai_mall_km": 26.07,
+    "palm_jumeirah_km": 11.47,
+    "dubai_airport_km": 36.67
+  },
+  "new-project-by-grid-properties": {
+    "dubai_mall_km": 16.35,
+    "palm_jumeirah_km": 12.62,
+    "dubai_airport_km": 25.73
+  },
+  "valencia": {
+    "dubai_mall_km": 21.22,
+    "palm_jumeirah_km": 15.46,
+    "dubai_airport_km": 30.3
+  },
+  "floarea-lakes": {
+    "dubai_mall_km": 19.79,
+    "palm_jumeirah_km": 11.68,
+    "dubai_airport_km": 29.66
+  },
+  "vision-avtr": {
+    "dubai_mall_km": 5.78,
+    "palm_jumeirah_km": 20.04,
+    "dubai_airport_km": 10.76
+  },
+  "vision-simplex": {
+    "dubai_mall_km": 5.78,
+    "palm_jumeirah_km": 20.05,
+    "dubai_airport_km": 10.76
+  },
+  "le-chateau": {
+    "dubai_mall_km": 72.52,
+    "palm_jumeirah_km": 88.94,
+    "dubai_airport_km": 62.01
+  },
+  "dar-al-aiham-one": {
+    "dubai_mall_km": 12.89,
+    "palm_jumeirah_km": 26.59,
+    "dubai_airport_km": 12.35
+  },
+  "698303b3d07a5-the-residences": {
+    "dubai_mall_km": 1.86,
+    "palm_jumeirah_km": 18.67,
+    "dubai_airport_km": 9.28
+  },
+  "golf-terrace": {
+    "dubai_mall_km": 20.89,
+    "palm_jumeirah_km": 12.47,
+    "dubai_airport_km": 30.69
+  },
+  "timber-terrace": {
+    "dubai_mall_km": 28.62,
+    "palm_jumeirah_km": 20.58,
+    "dubai_airport_km": 37.6
+  },
+  "peace-avenue": {
+    "dubai_mall_km": 31.65,
+    "palm_jumeirah_km": 17.34,
+    "dubai_airport_km": 42.09
+  },
+  "zen-lagoons": {
+    "dubai_mall_km": 4.99,
+    "palm_jumeirah_km": 20.78,
+    "dubai_airport_km": 8.93
+  },
+  "inara-residence-by-imtiaz": {
+    "dubai_mall_km": 28.94,
+    "palm_jumeirah_km": 21.7,
+    "dubai_airport_km": 37.65
+  },
+  "nirvana-1": {
+    "dubai_mall_km": 19.42,
+    "palm_jumeirah_km": 11.82,
+    "dubai_airport_km": 29.22
+  },
+  "radiant-wave": {
+    "dubai_mall_km": 116.51,
+    "palm_jumeirah_km": 99.8,
+    "dubai_airport_km": 127.27
+  },
+  "694bca07e40b5-azure-park-residences": {
+    "dubai_mall_km": 13.79,
+    "palm_jumeirah_km": 12.84,
+    "dubai_airport_km": 23.04
+  },
+  "verdan1a-5": {
+    "dubai_mall_km": 14.6,
+    "palm_jumeirah_km": 24.54,
+    "dubai_airport_km": 17.4
+  },
+  "sofitel-branded-residences": {
+    "dubai_mall_km": 1.22,
+    "palm_jumeirah_km": 15.93,
+    "dubai_airport_km": 12.03
+  },
+  "flu1d-one": {
+    "dubai_mall_km": 10.61,
+    "palm_jumeirah_km": 25.36,
+    "dubai_airport_km": 7.94
+  },
+  "vibe-arsenal-east": {
+    "dubai_mall_km": 2.88,
+    "palm_jumeirah_km": 18.09,
+    "dubai_airport_km": 10.18
+  },
+  "arlington-park-2": {
+    "dubai_mall_km": 15.83,
+    "palm_jumeirah_km": 25.51,
+    "dubai_airport_km": 18.33
+  },
+  "pearl-beach-view": {
+    "dubai_mall_km": 110.48,
+    "palm_jumeirah_km": 94.58,
+    "dubai_airport_km": 120.99
+  },
+  "celesto-3": {
+    "dubai_mall_km": 14.72,
+    "palm_jumeirah_km": 24.75,
+    "dubai_airport_km": 17.38
+  },
+  "the-central-uptown": {
+    "dubai_mall_km": 16.36,
+    "palm_jumeirah_km": 12.95,
+    "dubai_airport_km": 25.66
+  },
+  "bearau-lamar-commercial-tower": {
+    "dubai_mall_km": 1.66,
+    "palm_jumeirah_km": 15.64,
+    "dubai_airport_km": 12.41
+  },
+  "rove-home-meydan-horizon": {
+    "dubai_mall_km": 4.71,
+    "palm_jumeirah_km": 20.24,
+    "dubai_airport_km": 9.44
+  },
+  "paradise-view-ii": {
+    "dubai_mall_km": 11.77,
+    "palm_jumeirah_km": 19.02,
+    "dubai_airport_km": 18.06
+  },
+  "binghatti-sky-terraces": {
+    "dubai_mall_km": 17.45,
+    "palm_jumeirah_km": 12.95,
+    "dubai_airport_km": 26.82
+  },
+  "al-haseen-residences-6": {
+    "dubai_mall_km": 40,
+    "palm_jumeirah_km": 26.24,
+    "dubai_airport_km": 50.17
+  },
+  "garnet-by-siroya": {
+    "dubai_mall_km": 28.05,
+    "palm_jumeirah_km": 21.59,
+    "dubai_airport_km": 36.58
+  },
+  "magnolia": {
+    "dubai_mall_km": 15.39,
+    "palm_jumeirah_km": 4.19,
+    "dubai_airport_km": 26.15
+  },
+  "wave": {
+    "dubai_mall_km": 11.53,
+    "palm_jumeirah_km": 25.9,
+    "dubai_airport_km": 8.76
+  },
+  "the-royal-yacht": {
+    "dubai_mall_km": 15.63,
+    "palm_jumeirah_km": 4.33,
+    "dubai_airport_km": 26.39
+  },
+  "coralis": {
+    "dubai_mall_km": 3.54,
+    "palm_jumeirah_km": 18.24,
+    "dubai_airport_km": 11
+  },
+  "solaya-57": {
+    "dubai_mall_km": 4.25,
+    "palm_jumeirah_km": 17.46,
+    "dubai_airport_km": 11.41
+  },
+  "breva-by-ays": {
+    "dubai_mall_km": 10.63,
+    "palm_jumeirah_km": 25.56,
+    "dubai_airport_km": 7.62
+  },
+  "ryze-by-aum": {
+    "dubai_mall_km": 12.27,
+    "palm_jumeirah_km": 27.54,
+    "dubai_airport_km": 9.45
+  },
+  "metropoint": {
+    "dubai_mall_km": 31.77,
+    "palm_jumeirah_km": 17.49,
+    "dubai_airport_km": 42.2
+  },
+  "empire-gardens": {
+    "dubai_mall_km": 14.58,
+    "palm_jumeirah_km": 24.66,
+    "dubai_airport_km": 17.26
+  },
+  "amra": {
+    "dubai_mall_km": 51.04,
+    "palm_jumeirah_km": 66.79,
+    "dubai_airport_km": 41.12
+  },
+  "azra-residence": {
+    "dubai_mall_km": 15.86,
+    "palm_jumeirah_km": 25.73,
+    "dubai_airport_km": 18.17
+  },
+  "celesto-2-tower": {
+    "dubai_mall_km": 14.48,
+    "palm_jumeirah_km": 24.55,
+    "dubai_airport_km": 17.22
+  },
+  "ventone": {
+    "dubai_mall_km": 10.14,
+    "palm_jumeirah_km": 24.9,
+    "dubai_airport_km": 7.93
+  },
+  "al-haseen-residences-5": {
+    "dubai_mall_km": 43.6,
+    "palm_jumeirah_km": 29.36,
+    "dubai_airport_km": 53.84
+  },
+  "new-project-by-empire": {
+    "dubai_mall_km": 18.2,
+    "palm_jumeirah_km": 11.29,
+    "dubai_airport_km": 28.03
+  },
+  "urban-horizon": {
+    "dubai_mall_km": 16.44,
+    "palm_jumeirah_km": 12,
+    "dubai_airport_km": 25.99
+  },
+  "aum-99-residences": {
+    "dubai_mall_km": 15.8,
+    "palm_jumeirah_km": 25.42,
+    "dubai_airport_km": 18.36
+  },
+  "elar1s-axis": {
+    "dubai_mall_km": 20.86,
+    "palm_jumeirah_km": 10.76,
+    "dubai_airport_km": 31
+  },
+  "nexara-tower": {
+    "dubai_mall_km": 16.88,
+    "palm_jumeirah_km": 10.82,
+    "dubai_airport_km": 26.73
+  },
+  "aquora": {
+    "dubai_mall_km": 11.88,
+    "palm_jumeirah_km": 27.34,
+    "dubai_airport_km": 6.74
+  },
+  "evergr1n-house-4": {
+    "dubai_mall_km": 3,
+    "palm_jumeirah_km": 18.74,
+    "dubai_airport_km": 9.48
+  },
+  "raiha-at-waada": {
+    "dubai_mall_km": 43.74,
+    "palm_jumeirah_km": 32.23,
+    "dubai_airport_km": 53.15
+  },
+  "fairmont-residences-al-marjan-island": {
+    "dubai_mall_km": 71.24,
+    "palm_jumeirah_km": 87.44,
+    "dubai_airport_km": 60.88
+  },
+  "1wood-residence-2": {
+    "dubai_mall_km": 16.6,
+    "palm_jumeirah_km": 10.31,
+    "dubai_airport_km": 26.55
+  },
+  "armas-by-zenith": {
+    "dubai_mall_km": 28.98,
+    "palm_jumeirah_km": 21.48,
+    "dubai_airport_km": 37.77
+  },
+  "sea-mirror-residences": {
+    "dubai_mall_km": 4.3,
+    "palm_jumeirah_km": 13.48,
+    "dubai_airport_km": 14.61
+  },
+  "casa-ahs": {
+    "dubai_mall_km": 3.57,
+    "palm_jumeirah_km": 13.67,
+    "dubai_airport_km": 14.27
+  },
+  "bayview-boulevard": {
+    "dubai_mall_km": 10.79,
+    "palm_jumeirah_km": 25.91,
+    "dubai_airport_km": 7.26
+  },
+  "tivano-1": {
+    "dubai_mall_km": 10.83,
+    "palm_jumeirah_km": 25.78,
+    "dubai_airport_km": 7.62
+  },
+  "piazza-roma": {
+    "dubai_mall_km": 20.92,
+    "palm_jumeirah_km": 15.44,
+    "dubai_airport_km": 29.98
+  },
+  "the-winslow": {
+    "dubai_mall_km": 5.02,
+    "palm_jumeirah_km": 20.6,
+    "dubai_airport_km": 9.24
+  },
+  "royal-yacht-club-residence": {
+    "dubai_mall_km": 9.88,
+    "palm_jumeirah_km": 24.5,
+    "dubai_airport_km": 8.16
+  },
+  "bottega-33": {
+    "dubai_mall_km": 12.65,
+    "palm_jumeirah_km": 19.06,
+    "dubai_airport_km": 19.02
+  },
+  "the-one-by-rabdan": {
+    "dubai_mall_km": 1.97,
+    "palm_jumeirah_km": 17.63,
+    "dubai_airport_km": 10.43
+  },
+  "69982532426c8-manchester-city-yas-residences-by-ohana": {
+    "dubai_mall_km": 104.05,
+    "palm_jumeirah_km": 88.26,
+    "dubai_airport_km": 114.53
+  },
+  "the-wilds-residences": {
+    "dubai_mall_km": 13.84,
+    "palm_jumeirah_km": 17.95,
+    "dubai_airport_km": 20.98
+  },
+  "isla-private-residences": {
+    "dubai_mall_km": 11.7,
+    "palm_jumeirah_km": 26.2,
+    "dubai_airport_km": 8.57
+  },
+  "manchester-city-yas-residences-by-ohana": {
+    "dubai_mall_km": 104.48,
+    "palm_jumeirah_km": 88.72,
+    "dubai_airport_km": 114.95
+  },
+  "dream-life-residence": {
+    "dubai_mall_km": 10.81,
+    "palm_jumeirah_km": 25.64,
+    "dubai_airport_km": 7.83
+  },
+  "seacliff-by-imtiaz": {
+    "dubai_mall_km": 10.97,
+    "palm_jumeirah_km": 26.01,
+    "dubai_airport_km": 7.44
+  },
+  "amaris-tower": {
+    "dubai_mall_km": 18.32,
+    "palm_jumeirah_km": 11.48,
+    "dubai_airport_km": 28.11
+  },
+  "casa-altia": {
+    "dubai_mall_km": 24.17,
+    "palm_jumeirah_km": 11.4,
+    "dubai_airport_km": 34.55
+  },
+  "binghatti-etherea": {
+    "dubai_mall_km": 15.92,
+    "palm_jumeirah_km": 10.79,
+    "dubai_airport_km": 25.75
+  },
+  "noore": {
+    "dubai_mall_km": 10.98,
+    "palm_jumeirah_km": 22.79,
+    "dubai_airport_km": 13.98
+  },
+  "hilton-residences-dubai-jlt": {
+    "dubai_mall_km": 19.55,
+    "palm_jumeirah_km": 5.64,
+    "dubai_airport_km": 30.26
+  },
+  "serenz-by-danube": {
+    "dubai_mall_km": 18.23,
+    "palm_jumeirah_km": 10.4,
+    "dubai_airport_km": 28.24
+  },
+  "joud-tower": {
+    "dubai_mall_km": 15.38,
+    "palm_jumeirah_km": 31.57,
+    "dubai_airport_km": 6.73
+  },
+  "sharjah-garden-city-phase-5": {
+    "dubai_mall_km": 36.01,
+    "palm_jumeirah_km": 51.41,
+    "dubai_airport_km": 28.21
+  },
+  "697b5158882f3-jw-marriott-residences": {
+    "dubai_mall_km": 11.71,
+    "palm_jumeirah_km": 26.24,
+    "dubai_airport_km": 8.53
+  },
+  "palmiera-collective": {
+    "dubai_mall_km": 22.33,
+    "palm_jumeirah_km": 14.74,
+    "dubai_airport_km": 31.77
+  },
+  "binghatti-luxuria": {
+    "dubai_mall_km": 19.46,
+    "palm_jumeirah_km": 10.69,
+    "dubai_airport_km": 29.5
+  },
+  "cresswell-plaza": {
+    "dubai_mall_km": 29.5,
+    "palm_jumeirah_km": 22.52,
+    "dubai_airport_km": 38.08
+  },
+  "arthouse-hills-arjan": {
+    "dubai_mall_km": 15.13,
+    "palm_jumeirah_km": 13.27,
+    "dubai_airport_km": 24.27
+  },
+  "sobha-sanctuary-phase-1-the-green": {
+    "dubai_mall_km": 26.58,
+    "palm_jumeirah_km": 32.46,
+    "dubai_airport_km": 29.15
+  },
+  "sobha-sanctuary-phase-1-the-brooks": {
+    "dubai_mall_km": 26.59,
+    "palm_jumeirah_km": 32.76,
+    "dubai_airport_km": 28.95
+  },
+  "barari-palace": {
+    "dubai_mall_km": 12.06,
+    "palm_jumeirah_km": 18.46,
+    "dubai_airport_km": 18.72
+  },
+  "project-maybach": {
+    "dubai_mall_km": 5.77,
+    "palm_jumeirah_km": 20.05,
+    "dubai_airport_km": 10.76
+  },
+  "6973423ff3d07-sobha-sanctuary": {
+    "dubai_mall_km": 26.98,
+    "palm_jumeirah_km": 33.02,
+    "dubai_airport_km": 29.36
+  },
+  "maybach-ultimate-luxury": {
+    "dubai_mall_km": 5.78,
+    "palm_jumeirah_km": 20.05,
+    "dubai_airport_km": 10.75
+  },
+  "serro-2-the-heights": {
+    "dubai_mall_km": 26.52,
+    "palm_jumeirah_km": 21.93,
+    "dubai_airport_km": 34.54
+  },
+  "serro-the-heights": {
+    "dubai_mall_km": 26.86,
+    "palm_jumeirah_km": 22.29,
+    "dubai_airport_km": 34.84
+  },
+  "al-ghaf": {
+    "dubai_mall_km": 16.1,
+    "palm_jumeirah_km": 32.47,
+    "dubai_airport_km": 6.84
+  },
+  "aristo": {
+    "dubai_mall_km": 29.11,
+    "palm_jumeirah_km": 21.97,
+    "dubai_airport_km": 37.77
+  },
+  "sanctuary": {
+    "dubai_mall_km": 5.55,
+    "palm_jumeirah_km": 21.47,
+    "dubai_airport_km": 8.44
+  },
+  "artistry-residences": {
+    "dubai_mall_km": 2.65,
+    "palm_jumeirah_km": 19.1,
+    "dubai_airport_km": 9.4
+  },
+  "bararigate-by-ade": {
+    "dubai_mall_km": 12.45,
+    "palm_jumeirah_km": 19.55,
+    "dubai_airport_km": 18.49
+  },
+  "sukoon": {
+    "dubai_mall_km": 32.91,
+    "palm_jumeirah_km": 49.04,
+    "dubai_airport_km": 24.21
+  },
+  "haus-of-tenet": {
+    "dubai_mall_km": 2.36,
+    "palm_jumeirah_km": 15.28,
+    "dubai_airport_km": 12.94
+  },
+  "09-life-residences": {
+    "dubai_mall_km": 14.56,
+    "palm_jumeirah_km": 24.51,
+    "dubai_airport_km": 17.37
+  },
+  "greencrest": {
+    "dubai_mall_km": 7.56,
+    "palm_jumeirah_km": 13.42,
+    "dubai_airport_km": 17.15
+  },
+  "evelyn": {
+    "dubai_mall_km": 20.97,
+    "palm_jumeirah_km": 20.21,
+    "dubai_airport_km": 28.34
+  },
+  "east": {
+    "dubai_mall_km": 19.72,
+    "palm_jumeirah_km": 6.32,
+    "dubai_airport_km": 30.38
+  },
+  "city-walk-crestlane-5": {
+    "dubai_mall_km": 2.5,
+    "palm_jumeirah_km": 15.87,
+    "dubai_airport_km": 12.21
+  },
+  "ab-hills": {
+    "dubai_mall_km": 44.11,
+    "palm_jumeirah_km": 28.27,
+    "dubai_airport_km": 54.74
+  },
+  "house ii": {
+    "dubai_mall_km": 9.15,
+    "palm_jumeirah_km": 12.88,
+    "dubai_airport_km": 18.68
+  },
+  "citywalk-crestlane-4": {
+    "dubai_mall_km": 2.5,
+    "palm_jumeirah_km": 15.87,
+    "dubai_airport_km": 12.21
+  },
+  "haia-villa": {
+    "dubai_mall_km": 5.4,
+    "palm_jumeirah_km": 18.34,
+    "dubai_airport_km": 11.22
+  },
+  "vista-ridge": {
+    "dubai_mall_km": 39.81,
+    "palm_jumeirah_km": 29.32,
+    "dubai_airport_km": 48.99
+  },
+  "grove-ridge": {
+    "dubai_mall_km": 39.81,
+    "palm_jumeirah_km": 29.26,
+    "dubai_airport_km": 49.01
+  },
+  "aura-prestige": {
+    "dubai_mall_km": 14.67,
+    "palm_jumeirah_km": 27.16,
+    "dubai_airport_km": 14.78
+  },
+  "chapter-02": {
+    "dubai_mall_km": 13.36,
+    "palm_jumeirah_km": 27.24,
+    "dubai_airport_km": 12.28
+  },
+  "maybach-6": {
+    "dubai_mall_km": 5.78,
+    "palm_jumeirah_km": 20.05,
+    "dubai_airport_km": 10.76
+  },
+  "parkgreen-residences": {
+    "dubai_mall_km": 13.94,
+    "palm_jumeirah_km": 24.07,
+    "dubai_airport_km": 16.88
+  },
+  "the-pinnacle": {
+    "dubai_mall_km": 21.15,
+    "palm_jumeirah_km": 6.84,
+    "dubai_airport_km": 31.85
+  },
+  "al-wasl-gate": {
+    "dubai_mall_km": 26.24,
+    "palm_jumeirah_km": 11.71,
+    "dubai_airport_km": 36.83
+  },
+  "riviera-residences-by-mered": {
+    "dubai_mall_km": 116.6,
+    "palm_jumeirah_km": 99.91,
+    "dubai_airport_km": 127.36
+  },
+  "sunvale": {
+    "dubai_mall_km": 23.42,
+    "palm_jumeirah_km": 10.48,
+    "dubai_airport_km": 33.87
+  },
+  "kingdom-gate": {
+    "dubai_mall_km": 23.35,
+    "palm_jumeirah_km": 10.39,
+    "dubai_airport_km": 33.81
+  },
+  "divine-elements": {
+    "dubai_mall_km": 28.44,
+    "palm_jumeirah_km": 21.55,
+    "dubai_airport_km": 37.07
+  },
+  "siera": {
+    "dubai_mall_km": 13.56,
+    "palm_jumeirah_km": 28.64,
+    "dubai_airport_km": 8.11
+  },
+  "villa-del-garda": {
+    "dubai_mall_km": 12.08,
+    "palm_jumeirah_km": 27.32,
+    "dubai_airport_km": 7.26
+  },
+  "masaar-3-sedra": {
+    "dubai_mall_km": 37.14,
+    "palm_jumeirah_km": 53.86,
+    "dubai_airport_km": 27.37
+  },
+  "marquis-horizon": {
+    "dubai_mall_km": 28.55,
+    "palm_jumeirah_km": 21.73,
+    "dubai_airport_km": 37.15
+  },
+  "oasis-merath": {
+    "dubai_mall_km": 117.01,
+    "palm_jumeirah_km": 100.29,
+    "dubai_airport_km": 127.77
+  },
+  "nura": {
+    "dubai_mall_km": 80.4,
+    "palm_jumeirah_km": 96.92,
+    "dubai_airport_km": 69.83
+  },
+  "kanyon": {
+    "dubai_mall_km": 9.15,
+    "palm_jumeirah_km": 21.86,
+    "dubai_airport_km": 10.89
+  },
+  "boulevard-park-2": {
+    "dubai_mall_km": 26.05,
+    "palm_jumeirah_km": 11.31,
+    "dubai_airport_km": 36.67
+  },
+  "skyvue-altier": {
+    "dubai_mall_km": 5.1,
+    "palm_jumeirah_km": 20.41,
+    "dubai_airport_km": 9.6
+  },
+  "sports-view-2": {
+    "dubai_mall_km": 13.09,
+    "palm_jumeirah_km": 26.92,
+    "dubai_airport_km": 12.24
+  },
+  "aykon-city-3": {
+    "dubai_mall_km": 3.26,
+    "palm_jumeirah_km": 13.9,
+    "dubai_airport_km": 14.08
+  },
+  "baia-2": {
+    "dubai_mall_km": 107.51,
+    "palm_jumeirah_km": 91.79,
+    "dubai_airport_km": 117.97
+  },
+  "sensi": {
+    "dubai_mall_km": 113.79,
+    "palm_jumeirah_km": 97.08,
+    "dubai_airport_km": 124.55
+  },
+  "creek-bay": {
+    "dubai_mall_km": 6.72,
+    "palm_jumeirah_km": 23.36,
+    "dubai_airport_km": 6.29
+  },
+  "avarra-by-palace": {
+    "dubai_mall_km": 2.03,
+    "palm_jumeirah_km": 15.13,
+    "dubai_airport_km": 12.82
+  },
+  "creek-haven": {
+    "dubai_mall_km": 6.83,
+    "palm_jumeirah_km": 23.44,
+    "dubai_airport_km": 6.3
+  },
+  "hilton-residence": {
+    "dubai_mall_km": 8.54,
+    "palm_jumeirah_km": 21.68,
+    "dubai_airport_km": 10.37
+  },
+  "solaya-46": {
+    "dubai_mall_km": 4.16,
+    "palm_jumeirah_km": 17.37,
+    "dubai_airport_km": 11.45
+  },
+  "lateral-one": {
+    "dubai_mall_km": 14.74,
+    "palm_jumeirah_km": 24.86,
+    "dubai_airport_km": 17.31
+  },
+  "avelia-the-valley": {
+    "dubai_mall_km": 25.82,
+    "palm_jumeirah_km": 32.65,
+    "dubai_airport_km": 27.84
+  },
+  "kaia-residences": {
+    "dubai_mall_km": 10.97,
+    "palm_jumeirah_km": 25.97,
+    "dubai_airport_km": 7.54
+  },
+  "the-tides": {
+    "dubai_mall_km": 10.58,
+    "palm_jumeirah_km": 25.36,
+    "dubai_airport_km": 7.91
+  },
+  "tiger-downtown": {
+    "dubai_mall_km": 36.92,
+    "palm_jumeirah_km": 53.93,
+    "dubai_airport_km": 26.12
+  },
+  "binghatti-cullinan": {
+    "dubai_mall_km": 4.9,
+    "palm_jumeirah_km": 22.06,
+    "dubai_airport_km": 5.96
+  },
+  "leaf-tower": {
+    "dubai_mall_km": 118.36,
+    "palm_jumeirah_km": 101.63,
+    "dubai_airport_km": 129.12
+  },
+  "vue-dore": {
+    "dubai_mall_km": 11.92,
+    "palm_jumeirah_km": 27,
+    "dubai_airport_km": 7.52
+  },
+  "241-waterside-residences": {
+    "dubai_mall_km": 11.46,
+    "palm_jumeirah_km": 26.6,
+    "dubai_airport_km": 7.32
+  },
+  "ovelle-the-valley": {
+    "dubai_mall_km": 25.85,
+    "palm_jumeirah_km": 32.92,
+    "dubai_airport_km": 27.68
+  },
+  "mirdad-towers": {
+    "dubai_mall_km": 17.31,
+    "palm_jumeirah_km": 12.79,
+    "dubai_airport_km": 26.71
+  },
+  "shahrukhz-by-danube": {
+    "dubai_mall_km": 14.15,
+    "palm_jumeirah_km": 5.13,
+    "dubai_airport_km": 24.89
+  },
+  "31-above": {
+    "dubai_mall_km": 7.71,
+    "palm_jumeirah_km": 21.16,
+    "dubai_airport_km": 10.06
+  },
+  "nad-al-sheba-gardens-phase-11": {
+    "dubai_mall_km": 7.26,
+    "palm_jumeirah_km": 16.45,
+    "dubai_airport_km": 15.27
+  },
+  "verdana-9": {
+    "dubai_mall_km": 25.18,
+    "palm_jumeirah_km": 14.86,
+    "dubai_airport_km": 35.03
+  },
+  "verdana-8": {
+    "dubai_mall_km": 25.26,
+    "palm_jumeirah_km": 14.98,
+    "dubai_airport_km": 35.1
+  },
+  "the-edit-at-d3": {
+    "dubai_mall_km": 2.38,
+    "palm_jumeirah_km": 18.77,
+    "dubai_airport_km": 9.69
+  },
+  "kaa": {
+    "dubai_mall_km": 5.43,
+    "palm_jumeirah_km": 18.59,
+    "dubai_airport_km": 10.99
+  },
+  "eltiera-views-2": {
+    "dubai_mall_km": 20.2,
+    "palm_jumeirah_km": 6.6,
+    "dubai_airport_km": 30.86
+  },
+  "boulevard-park": {
+    "dubai_mall_km": 26.01,
+    "palm_jumeirah_km": 11.15,
+    "dubai_airport_km": 36.65
+  },
+  "stellar-by-elie-saab": {
+    "dubai_mall_km": 107.61,
+    "palm_jumeirah_km": 91.77,
+    "dubai_airport_km": 118.1
+  },
+  "opal-by-crystal": {
+    "dubai_mall_km": 17.41,
+    "palm_jumeirah_km": 9.79,
+    "dubai_airport_km": 27.49
+  },
+  "carmel-residence": {
+    "dubai_mall_km": 17.75,
+    "palm_jumeirah_km": 11.18,
+    "dubai_airport_km": 27.57
+  },
+  "cybele-by-wadan": {
+    "dubai_mall_km": 15.01,
+    "palm_jumeirah_km": 24.74,
+    "dubai_airport_km": 17.81
+  },
+  "the-mirage": {
+    "dubai_mall_km": 21.16,
+    "palm_jumeirah_km": 6.85,
+    "dubai_airport_km": 31.85
+  },
+  "the-symphony-by-imtiaz": {
+    "dubai_mall_km": 4.78,
+    "palm_jumeirah_km": 20.41,
+    "dubai_airport_km": 9.28
+  },
+  "azizi-farishta-ii": {
+    "dubai_mall_km": 5.77,
+    "palm_jumeirah_km": 22.92,
+    "dubai_airport_km": 5.2
+  },
+  "azizi-gabriel": {
+    "dubai_mall_km": 33.65,
+    "palm_jumeirah_km": 19.29,
+    "dubai_airport_km": 44.07
+  },
+  "expo-valley-views": {
+    "dubai_mall_km": 28.08,
+    "palm_jumeirah_km": 18.4,
+    "dubai_airport_km": 37.58
+  },
+  "rabdan-gardens": {
+    "dubai_mall_km": 3.46,
+    "palm_jumeirah_km": 19.12,
+    "dubai_airport_km": 9.22
+  },
+  "rabdan-square": {
+    "dubai_mall_km": 5.06,
+    "palm_jumeirah_km": 16.18,
+    "dubai_airport_km": 13.78
+  },
+  "allegro-park": {
+    "dubai_mall_km": 10.59,
+    "palm_jumeirah_km": 25.42,
+    "dubai_airport_km": 7.82
+  },
+  "the-caden": {
+    "dubai_mall_km": 5.1,
+    "palm_jumeirah_km": 20.83,
+    "dubai_airport_km": 8.98
+  },
+  "sakura-gardens": {
+    "dubai_mall_km": 12.65,
+    "palm_jumeirah_km": 20.86,
+    "dubai_airport_km": 17.82
+  },
+  "the-gate-5": {
+    "dubai_mall_km": 22.72,
+    "palm_jumeirah_km": 39.83,
+    "dubai_airport_km": 11.9
+  },
+  "solva-beach-residences": {
+    "dubai_mall_km": 71.13,
+    "palm_jumeirah_km": 87.36,
+    "dubai_airport_km": 60.75
+  },
+  "celia-homes": {
+    "dubai_mall_km": 15.04,
+    "palm_jumeirah_km": 25.2,
+    "dubai_airport_km": 17.44
+  },
+  "zyra-hills": {
+    "dubai_mall_km": 12.53,
+    "palm_jumeirah_km": 26.48,
+    "dubai_airport_km": 11.85
+  },
+  "reef-996": {
+    "dubai_mall_km": 19.47,
+    "palm_jumeirah_km": 11.9,
+    "dubai_airport_km": 29.26
+  },
+  "il-vento": {
+    "dubai_mall_km": 7.69,
+    "palm_jumeirah_km": 21.27,
+    "dubai_airport_km": 9.91
+  },
+  "infinity-tower": {
+    "dubai_mall_km": 36.87,
+    "palm_jumeirah_km": 53.99,
+    "dubai_airport_km": 26.05
+  },
+  "terra-gardens": {
+    "dubai_mall_km": 28.81,
+    "palm_jumeirah_km": 17.18,
+    "dubai_airport_km": 38.75
+  },
+  "nasim-al-bahr-villas": {
+    "dubai_mall_km": 72.02,
+    "palm_jumeirah_km": 88.24,
+    "dubai_airport_km": 61.64
+  },
+  "bloom-living-malaga-2": {
+    "dubai_mall_km": 109.44,
+    "palm_jumeirah_km": 94.16,
+    "dubai_airport_km": 119.73
+  },
+  "portside-square": {
+    "dubai_mall_km": 6.9,
+    "palm_jumeirah_km": 21.5,
+    "dubai_airport_km": 8.71
+  },
+  "masaar-3-laura": {
+    "dubai_mall_km": 36.6,
+    "palm_jumeirah_km": 53.34,
+    "dubai_airport_km": 26.8
+  },
+  "le-blanc": {
+    "dubai_mall_km": 15.95,
+    "palm_jumeirah_km": 25.46,
+    "dubai_airport_km": 18.55
+  },
+  "meriden-beach-residences": {
+    "dubai_mall_km": 10.9,
+    "palm_jumeirah_km": 25.95,
+    "dubai_airport_km": 7.42
+  },
+  "aquacrest": {
+    "dubai_mall_km": 53.27,
+    "palm_jumeirah_km": 68.94,
+    "dubai_airport_km": 43.39
+  },
+  "xenia-residence": {
+    "dubai_mall_km": 17.91,
+    "palm_jumeirah_km": 11.25,
+    "dubai_airport_km": 27.72
+  },
+  "samana-boulevard-heights": {
+    "dubai_mall_km": 15.69,
+    "palm_jumeirah_km": 25.79,
+    "dubai_airport_km": 17.87
+  },
+  "stax": {
+    "dubai_mall_km": 17.22,
+    "palm_jumeirah_km": 10.38,
+    "dubai_airport_km": 27.18
+  },
+  "binghatti-titania": {
+    "dubai_mall_km": 12.93,
+    "palm_jumeirah_km": 18.99,
+    "dubai_airport_km": 19.38
+  },
+  "veranda-collection-1": {
+    "dubai_mall_km": 17.83,
+    "palm_jumeirah_km": 11.67,
+    "dubai_airport_km": 27.55
+  },
+  "skyparks": {
+    "dubai_mall_km": 2.49,
+    "palm_jumeirah_km": 14.67,
+    "dubai_airport_km": 13.29
+  },
+  "the-collective": {
+    "dubai_mall_km": 29.34,
+    "palm_jumeirah_km": 21.84,
+    "dubai_airport_km": 38.1
+  },
+  "oceana": {
+    "dubai_mall_km": 116.12,
+    "palm_jumeirah_km": 133.18,
+    "dubai_airport_km": 105.57
+  },
+  "golf-hills-2": {
+    "dubai_mall_km": 40.32,
+    "palm_jumeirah_km": 29.31,
+    "dubai_airport_km": 49.66
+  },
+  "golf-hills": {
+    "dubai_mall_km": 40.24,
+    "palm_jumeirah_km": 29.21,
+    "dubai_airport_km": 49.59
+  },
+  "golden-woods-albab-views": {
+    "dubai_mall_km": 28.61,
+    "palm_jumeirah_km": 21.88,
+    "dubai_airport_km": 37.17
+  },
+  "azizi-leily": {
+    "dubai_mall_km": 5.25,
+    "palm_jumeirah_km": 22.36,
+    "dubai_airport_km": 5.89
+  },
+  "sunset-bay-grand": {
+    "dubai_mall_km": 10.39,
+    "palm_jumeirah_km": 25.29,
+    "dubai_airport_km": 7.66
+  },
+  "altura-2-at-waada": {
+    "dubai_mall_km": 44.72,
+    "palm_jumeirah_km": 33.4,
+    "dubai_airport_km": 54.04
+  },
+  "cascada-2-at-waada": {
+    "dubai_mall_km": 44.33,
+    "palm_jumeirah_km": 33,
+    "dubai_airport_km": 53.66
+  },
+  "flora-shore-beachfront-residences": {
+    "dubai_mall_km": 11.57,
+    "palm_jumeirah_km": 25.96,
+    "dubai_airport_km": 8.73
+  },
+  "marea-residences": {
+    "dubai_mall_km": 11.68,
+    "palm_jumeirah_km": 26.17,
+    "dubai_airport_km": 8.6
+  },
+  "binghatti-hillcrest": {
+    "dubai_mall_km": 15.25,
+    "palm_jumeirah_km": 12.12,
+    "dubai_airport_km": 24.73
+  },
+  "khalid-bin-sultan-city": {
+    "dubai_mall_km": 38.42,
+    "palm_jumeirah_km": 55.13,
+    "dubai_airport_km": 28.64
+  },
+  "nasim-al-bahr-residences": {
+    "dubai_mall_km": 72.02,
+    "palm_jumeirah_km": 88.24,
+    "dubai_airport_km": 61.64
+  },
+  "vista-by-vision": {
+    "dubai_mall_km": 19.84,
+    "palm_jumeirah_km": 11.01,
+    "dubai_airport_km": 29.84
+  },
+  "riverside-views-azure-2": {
+    "dubai_mall_km": 25.13,
+    "palm_jumeirah_km": 19.01,
+    "dubai_airport_km": 33.84
+  },
+  "nourelle": {
+    "dubai_mall_km": 11.41,
+    "palm_jumeirah_km": 6.49,
+    "dubai_airport_km": 22.19
+  },
+  "symbolic-altus": {
+    "dubai_mall_km": 13.94,
+    "palm_jumeirah_km": 24.11,
+    "dubai_airport_km": 16.85
+  },
+  "skygate-tower": {
+    "dubai_mall_km": 18.88,
+    "palm_jumeirah_km": 10.79,
+    "dubai_airport_km": 28.85
+  },
+  "eywa-the-way-of-water": {
+    "dubai_mall_km": 1.7,
+    "palm_jumeirah_km": 15.9,
+    "dubai_airport_km": 12.26
+  },
+  "wadi-hills": {
+    "dubai_mall_km": 15.22,
+    "palm_jumeirah_km": 25.25,
+    "dubai_airport_km": 17.66
+  },
+  "lyvia-by-palace": {
+    "dubai_mall_km": 8,
+    "palm_jumeirah_km": 24.73,
+    "dubai_airport_km": 5.4
+  },
+  "purvanchal-triana-residences": {
+    "dubai_mall_km": 3.38,
+    "palm_jumeirah_km": 18.93,
+    "dubai_airport_km": 9.42
+  },
+  "elmora": {
+    "dubai_mall_km": 2.89,
+    "palm_jumeirah_km": 18.65,
+    "dubai_airport_km": 9.55
+  },
+  "bond-living": {
+    "dubai_mall_km": 16.11,
+    "palm_jumeirah_km": 25.79,
+    "dubai_airport_km": 18.49
+  },
+  "four-seasons-private-residences-saadiyat-island-villas": {
+    "dubai_mall_km": 111,
+    "palm_jumeirah_km": 94.23,
+    "dubai_airport_km": 121.77
+  },
+  "derby-heights": {
+    "dubai_mall_km": 10,
+    "palm_jumeirah_km": 22.21,
+    "dubai_airport_km": 13.27
+  },
+  "la-perla": {
+    "dubai_mall_km": 71.16,
+    "palm_jumeirah_km": 87.4,
+    "dubai_airport_km": 60.77
+  },
+  "lumena-alta": {
+    "dubai_mall_km": 2.25,
+    "palm_jumeirah_km": 14.92,
+    "dubai_airport_km": 13.03
+  },
+  "sky-line": {
+    "dubai_mall_km": 15.35,
+    "palm_jumeirah_km": 25.52,
+    "dubai_airport_km": 17.61
+  },
+  "helvetia-marine": {
+    "dubai_mall_km": 10.47,
+    "palm_jumeirah_km": 25.32,
+    "dubai_airport_km": 7.76
+  },
+  "tonino-lamborghini-residences-2": {
+    "dubai_mall_km": 71,
+    "palm_jumeirah_km": 87.27,
+    "dubai_airport_km": 60.59
+  },
+  "azizi-noura": {
+    "dubai_mall_km": 31.54,
+    "palm_jumeirah_km": 17.26,
+    "dubai_airport_km": 41.98
+  },
+  "floarea-breeze": {
+    "dubai_mall_km": 10.33,
+    "palm_jumeirah_km": 25.01,
+    "dubai_airport_km": 8.06
+  },
+  "aurea": {
+    "dubai_mall_km": 8.47,
+    "palm_jumeirah_km": 22.93,
+    "dubai_airport_km": 8.53
+  },
+  "helvetia-verde": {
+    "dubai_mall_km": 4.77,
+    "palm_jumeirah_km": 20.3,
+    "dubai_airport_km": 9.43
+  },
+  "the-tranquil": {
+    "dubai_mall_km": 21.19,
+    "palm_jumeirah_km": 6.88,
+    "dubai_airport_km": 31.89
+  },
+  "wellness-estate": {
+    "dubai_mall_km": 12.91,
+    "palm_jumeirah_km": 18.88,
+    "dubai_airport_km": 19.43
+  },
+  "samana-hills-south-3": {
+    "dubai_mall_km": 43.72,
+    "palm_jumeirah_km": 29.45,
+    "dubai_airport_km": 53.97
+  },
+  "aqua-maya": {
+    "dubai_mall_km": 71.18,
+    "palm_jumeirah_km": 87.39,
+    "dubai_airport_km": 60.8
+  },
+  "enta": {
+    "dubai_mall_km": 80.86,
+    "palm_jumeirah_km": 97.39,
+    "dubai_airport_km": 70.27
+  },
+  "368-park-ln": {
+    "dubai_mall_km": 16.66,
+    "palm_jumeirah_km": 10.34,
+    "dubai_airport_km": 26.61
+  },
+  "elar1s-sky": {
+    "dubai_mall_km": 19.75,
+    "palm_jumeirah_km": 10.62,
+    "dubai_airport_km": 29.83
+  },
+  "soulever-towers": {
+    "dubai_mall_km": 8.88,
+    "palm_jumeirah_km": 21.79,
+    "dubai_airport_km": 10.64
+  },
+  "elle-residences": {
+    "dubai_mall_km": 10.75,
+    "palm_jumeirah_km": 24.97,
+    "dubai_airport_km": 8.87
+  },
+  "creek-beach-canopy-moor": {
+    "dubai_mall_km": 7.37,
+    "palm_jumeirah_km": 24.09,
+    "dubai_airport_km": 5.7
+  },
+  "palace-beach-residence": {
+    "dubai_mall_km": 17.44,
+    "palm_jumeirah_km": 2.74,
+    "dubai_airport_km": 28.25
+  },
+  "azizi-lina": {
+    "dubai_mall_km": 31.66,
+    "palm_jumeirah_km": 17.38,
+    "dubai_airport_km": 42.1
+  },
+  "casagrand-hermina": {
+    "dubai_mall_km": 11.67,
+    "palm_jumeirah_km": 27.11,
+    "dubai_airport_km": 6.72
+  },
+  "elevia-residences-2": {
+    "dubai_mall_km": 12.99,
+    "palm_jumeirah_km": 26.67,
+    "dubai_airport_km": 12.42
+  },
+  "ramada-residences": {
+    "dubai_mall_km": 4.15,
+    "palm_jumeirah_km": 21.27,
+    "dubai_airport_km": 6.86
+  },
+  "mirasol-2": {
+    "dubai_mall_km": 80.86,
+    "palm_jumeirah_km": 97.37,
+    "dubai_airport_km": 70.28
+  },
+  "grove-uptown-views": {
+    "dubai_mall_km": 115.06,
+    "palm_jumeirah_km": 98.25,
+    "dubai_airport_km": 125.85
+  },
+  "palazzo-tissoli": {
+    "dubai_mall_km": 71.71,
+    "palm_jumeirah_km": 87.95,
+    "dubai_airport_km": 61.32
+  },
+  "azure-by-lapis": {
+    "dubai_mall_km": 75.62,
+    "palm_jumeirah_km": 92.12,
+    "dubai_airport_km": 65.06
+  },
+  "villa-dellarte": {
+    "dubai_mall_km": 10.28,
+    "palm_jumeirah_km": 24.92,
+    "dubai_airport_km": 8.12
+  },
+  "divine-al-barari": {
+    "dubai_mall_km": 11.88,
+    "palm_jumeirah_km": 18.53,
+    "dubai_airport_km": 18.48
+  },
+  "avida-residences": {
+    "dubai_mall_km": 11.86,
+    "palm_jumeirah_km": 26.97,
+    "dubai_airport_km": 7.46
+  },
+  "rise-by-athlon-4": {
+    "dubai_mall_km": 15.69,
+    "palm_jumeirah_km": 19.12,
+    "dubai_airport_km": 22.5
+  },
+  "rise-by-athlon-3": {
+    "dubai_mall_km": 15.82,
+    "palm_jumeirah_km": 19.1,
+    "dubai_airport_km": 22.66
+  },
+  "rise-by-athlon-2": {
+    "dubai_mall_km": 15.65,
+    "palm_jumeirah_km": 18.92,
+    "dubai_airport_km": 22.55
+  },
+  "rise-by-athlon-1": {
+    "dubai_mall_km": 15.65,
+    "palm_jumeirah_km": 18.91,
+    "dubai_airport_km": 22.55
+  },
+  "sera-1": {
+    "dubai_mall_km": 8.58,
+    "palm_jumeirah_km": 23.29,
+    "dubai_airport_km": 8.1
+  },
+  "elar1s-rise": {
+    "dubai_mall_km": 19.9,
+    "palm_jumeirah_km": 10.62,
+    "dubai_airport_km": 29.98
+  },
+  "palace-residences-hillside": {
+    "dubai_mall_km": 9.66,
+    "palm_jumeirah_km": 11.98,
+    "dubai_airport_km": 19.44
+  },
+  "damac-riverside-views-indigo-2": {
+    "dubai_mall_km": 25.15,
+    "palm_jumeirah_km": 19.09,
+    "dubai_airport_km": 33.84
+  },
+  "damac-riverside-views-indigo-1": {
+    "dubai_mall_km": 25.14,
+    "palm_jumeirah_km": 19.07,
+    "dubai_airport_km": 33.83
+  },
+  "masaar-3-lareen": {
+    "dubai_mall_km": 37.17,
+    "palm_jumeirah_km": 53.96,
+    "dubai_airport_km": 27.26
+  },
+  "masaar-3-dana": {
+    "dubai_mall_km": 37.63,
+    "palm_jumeirah_km": 54.41,
+    "dubai_airport_km": 27.75
+  },
+  "merge-residences": {
+    "dubai_mall_km": 5.49,
+    "palm_jumeirah_km": 16.15,
+    "dubai_airport_km": 14.1
+  },
+  "marbella": {
+    "dubai_mall_km": 109.67,
+    "palm_jumeirah_km": 94.34,
+    "dubai_airport_km": 119.97
+  },
+  "hq-by-rove": {
+    "dubai_mall_km": 1.37,
+    "palm_jumeirah_km": 17.91,
+    "dubai_airport_km": 10.3
+  },
+  "breez-by-danube": {
+    "dubai_mall_km": 7.93,
+    "palm_jumeirah_km": 21.45,
+    "dubai_airport_km": 9.95
+  },
+  "damac-district": {
+    "dubai_mall_km": 20.43,
+    "palm_jumeirah_km": 16.78,
+    "dubai_airport_km": 28.99
+  },
+  "imperial-garden": {
+    "dubai_mall_km": 15.73,
+    "palm_jumeirah_km": 12.1,
+    "dubai_airport_km": 25.23
+  },
+  "villa-del-brunello": {
+    "dubai_mall_km": 11.5,
+    "palm_jumeirah_km": 25.82,
+    "dubai_airport_km": 8.85
+  },
+  "mangrove-village-2": {
+    "dubai_mall_km": 119.7,
+    "palm_jumeirah_km": 103.66,
+    "dubai_airport_km": 130.25
+  },
+  "veda-by-aum-development": {
+    "dubai_mall_km": 16.1,
+    "palm_jumeirah_km": 10.55,
+    "dubai_airport_km": 25.98
+  },
+  "pearlside-marina-residences": {
+    "dubai_mall_km": 58.85,
+    "palm_jumeirah_km": 74.92,
+    "dubai_airport_km": 48.62
+  },
+  "livia-residences": {
+    "dubai_mall_km": 28.11,
+    "palm_jumeirah_km": 21.63,
+    "dubai_airport_km": 36.63
+  },
+  "chapter-01": {
+    "dubai_mall_km": 13.58,
+    "palm_jumeirah_km": 27.37,
+    "dubai_airport_km": 12.52
+  },
+  "riverton-house": {
+    "dubai_mall_km": 5.01,
+    "palm_jumeirah_km": 20.83,
+    "dubai_airport_km": 8.86
+  },
+  "azizi-wares": {
+    "dubai_mall_km": 33.77,
+    "palm_jumeirah_km": 19.4,
+    "dubai_airport_km": 44.19
+  },
+  "wynwood-horizon": {
+    "dubai_mall_km": 4.58,
+    "palm_jumeirah_km": 20.22,
+    "dubai_airport_km": 9.35
+  },
+  "sera-2": {
+    "dubai_mall_km": 8.72,
+    "palm_jumeirah_km": 23.33,
+    "dubai_airport_km": 8.25
+  },
+  "azizi-david": {
+    "dubai_mall_km": 5.33,
+    "palm_jumeirah_km": 22.43,
+    "dubai_airport_km": 5.84
+  },
+  "pearl-house-iv": {
+    "dubai_mall_km": 17.03,
+    "palm_jumeirah_km": 10.05,
+    "dubai_airport_km": 27.05
+  },
+  "beverly-park": {
+    "dubai_mall_km": 16.14,
+    "palm_jumeirah_km": 25.75,
+    "dubai_airport_km": 18.57
+  },
+  "the-haven-3": {
+    "dubai_mall_km": 12.46,
+    "palm_jumeirah_km": 19.38,
+    "dubai_airport_km": 18.61
+  },
+  "v-suites-by-anax": {
+    "dubai_mall_km": 1.92,
+    "palm_jumeirah_km": 15.86,
+    "dubai_airport_km": 12.37
+  },
+  "verdan1a-3": {
+    "dubai_mall_km": 14.75,
+    "palm_jumeirah_km": 24.73,
+    "dubai_airport_km": 17.45
+  },
+  "avant-garde-residences-2": {
+    "dubai_mall_km": 17.13,
+    "palm_jumeirah_km": 10.89,
+    "dubai_airport_km": 26.98
+  },
+  "the-serene": {
+    "dubai_mall_km": 21.19,
+    "palm_jumeirah_km": 6.88,
+    "dubai_airport_km": 31.89
+  },
+  "saddlewood-park": {
+    "dubai_mall_km": 4.43,
+    "palm_jumeirah_km": 18.13,
+    "dubai_airport_km": 11.72
+  },
+  "azizi-abraham": {
+    "dubai_mall_km": 31.93,
+    "palm_jumeirah_km": 17.64,
+    "dubai_airport_km": 42.37
+  },
+  "arka-enclave-residences": {
+    "dubai_mall_km": 10.55,
+    "palm_jumeirah_km": 25.52,
+    "dubai_airport_km": 7.54
+  },
+  "riviera-64": {
+    "dubai_mall_km": 4.47,
+    "palm_jumeirah_km": 19.44,
+    "dubai_airport_km": 10.3
+  },
+  "riviera-62": {
+    "dubai_mall_km": 4.42,
+    "palm_jumeirah_km": 19.44,
+    "dubai_airport_km": 10.27
+  },
+  "riviera-60": {
+    "dubai_mall_km": 4.38,
+    "palm_jumeirah_km": 19.46,
+    "dubai_airport_km": 10.2
+  },
+  "whitestone-residence": {
+    "dubai_mall_km": 2.61,
+    "palm_jumeirah_km": 18.02,
+    "dubai_airport_km": 10.16
+  },
+  "oasis-residences": {
+    "dubai_mall_km": 27.92,
+    "palm_jumeirah_km": 21.24,
+    "dubai_airport_km": 36.53
+  },
+  "riviera-66": {
+    "dubai_mall_km": 4.53,
+    "palm_jumeirah_km": 19.45,
+    "dubai_airport_km": 10.34
+  },
+  "riviera-58": {
+    "dubai_mall_km": 4.35,
+    "palm_jumeirah_km": 19.45,
+    "dubai_airport_km": 10.18
+  },
+  "riviera-56": {
+    "dubai_mall_km": 4.42,
+    "palm_jumeirah_km": 19.58,
+    "dubai_airport_km": 10.08
+  },
+  "the-elysian-residence": {
+    "dubai_mall_km": 3.33,
+    "palm_jumeirah_km": 19.12,
+    "dubai_airport_km": 9.17
+  },
+  "passo": {
+    "dubai_mall_km": 19.38,
+    "palm_jumeirah_km": 2.25,
+    "dubai_airport_km": 30.15
+  },
+  "montiva-by-vida": {
+    "dubai_mall_km": 8.05,
+    "palm_jumeirah_km": 24.72,
+    "dubai_airport_km": 5.56
+  },
+  "blue-marina-residence": {
+    "dubai_mall_km": 10.5,
+    "palm_jumeirah_km": 24.88,
+    "dubai_airport_km": 8.59
+  },
+  "reef-997": {
+    "dubai_mall_km": 10.54,
+    "palm_jumeirah_km": 25.39,
+    "dubai_airport_km": 7.75
+  },
+  "bliss-tower": {
+    "dubai_mall_km": 14.42,
+    "palm_jumeirah_km": 24.33,
+    "dubai_airport_km": 17.32
+  },
+  "terra-golf-collection-phase-2-2": {
+    "dubai_mall_km": 20.79,
+    "palm_jumeirah_km": 13.45,
+    "dubai_airport_km": 30.35
+  },
+  "baystar-by-vida": {
+    "dubai_mall_km": 8.15,
+    "palm_jumeirah_km": 22.81,
+    "dubai_airport_km": 8.27
+  },
+  "vedaire-residences": {
+    "dubai_mall_km": 5.17,
+    "palm_jumeirah_km": 16.46,
+    "dubai_airport_km": 13.64
+  },
+  "binghatti-flare": {
+    "dubai_mall_km": 20.59,
+    "palm_jumeirah_km": 10.51,
+    "dubai_airport_km": 30.75
+  },
+  "four-seasons-private-residences-saadiyat-island": {
+    "dubai_mall_km": 110.99,
+    "palm_jumeirah_km": 94.23,
+    "dubai_airport_km": 121.77
+  },
+  "mayfair-nexus-by-seven-mayfair": {
+    "dubai_mall_km": 16.87,
+    "palm_jumeirah_km": 17.49,
+    "dubai_airport_km": 24.62
+  },
+  "ashley-hills": {
+    "dubai_mall_km": 15.22,
+    "palm_jumeirah_km": 12.22,
+    "dubai_airport_km": 24.67
+  },
+  "maak-residence": {
+    "dubai_mall_km": 28.17,
+    "palm_jumeirah_km": 21.75,
+    "dubai_airport_km": 36.68
+  },
+  "riverside-views-marine-2": {
+    "dubai_mall_km": 25.1,
+    "palm_jumeirah_km": 19.04,
+    "dubai_airport_km": 33.8
+  },
+  "riverside-views-royal-2": {
+    "dubai_mall_km": 25.12,
+    "palm_jumeirah_km": 19.05,
+    "dubai_airport_km": 33.82
+  },
+  "california-residences": {
+    "dubai_mall_km": 14.09,
+    "palm_jumeirah_km": 20.21,
+    "dubai_airport_km": 19.99
+  },
+  "rivo": {
+    "dubai_mall_km": 15.36,
+    "palm_jumeirah_km": 25.45,
+    "dubai_airport_km": 17.68
+  },
+  "house-of-well": {
+    "dubai_mall_km": 10.66,
+    "palm_jumeirah_km": 25.58,
+    "dubai_airport_km": 7.64
+  },
+  "saray-prime-residences": {
+    "dubai_mall_km": 15.93,
+    "palm_jumeirah_km": 25.52,
+    "dubai_airport_km": 18.47
+  },
+  "rosehill": {
+    "dubai_mall_km": 7.68,
+    "palm_jumeirah_km": 13.33,
+    "dubai_airport_km": 17.29
+  },
+  "arib-collection": {
+    "dubai_mall_km": 15.05,
+    "palm_jumeirah_km": 25.08,
+    "dubai_airport_km": 17.56
+  },
+  "vida-residences-saadiyat-island": {
+    "dubai_mall_km": 113.79,
+    "palm_jumeirah_km": 97.08,
+    "dubai_airport_km": 124.55
+  },
+  "canalside-marina-residences": {
+    "dubai_mall_km": 58.65,
+    "palm_jumeirah_km": 74.72,
+    "dubai_airport_km": 48.42
+  },
+  "ocean-bay": {
+    "dubai_mall_km": 11.87,
+    "palm_jumeirah_km": 27.26,
+    "dubai_airport_km": 6.88
+  },
+  "wellington-ocean-walk": {
+    "dubai_mall_km": 12.02,
+    "palm_jumeirah_km": 27.16,
+    "dubai_airport_km": 7.46
+  },
+  "zenith-by-amber": {
+    "dubai_mall_km": 13.67,
+    "palm_jumeirah_km": 27.52,
+    "dubai_airport_km": 12.47
+  },
+  "iris-park": {
+    "dubai_mall_km": 17.21,
+    "palm_jumeirah_km": 9.9,
+    "dubai_airport_km": 27.26
+  },
+  "hayat": {
+    "dubai_mall_km": 40.11,
+    "palm_jumeirah_km": 27.66,
+    "dubai_airport_km": 49.9
+  },
+  "hygge-hotel": {
+    "dubai_mall_km": 12.47,
+    "palm_jumeirah_km": 12.43,
+    "dubai_airport_km": 20.92
+  },
+  "mawjan-residence": {
+    "dubai_mall_km": 27.78,
+    "palm_jumeirah_km": 43.69,
+    "dubai_airport_km": 18.18
+  },
+  "sikander": {
+    "dubai_mall_km": 25.46,
+    "palm_jumeirah_km": 11.61,
+    "dubai_airport_km": 35.97
+  },
+  "talea": {
+    "dubai_mall_km": 9.03,
+    "palm_jumeirah_km": 21.81,
+    "dubai_airport_km": 10.81
+  },
+  "alta-v1ew": {
+    "dubai_mall_km": 16.91,
+    "palm_jumeirah_km": 9.67,
+    "dubai_airport_km": 27
+  },
+  "velos-residences": {
+    "dubai_mall_km": 16.56,
+    "palm_jumeirah_km": 14.25,
+    "dubai_airport_km": 25.48
+  },
+  "the-willows-residences": {
+    "dubai_mall_km": 10,
+    "palm_jumeirah_km": 22.23,
+    "dubai_airport_km": 13.27
+  },
+  "azizi-amir": {
+    "dubai_mall_km": 22.66,
+    "palm_jumeirah_km": 9.9,
+    "dubai_airport_km": 33.11
+  },
+  "mas-barsha-residency": {
+    "dubai_mall_km": 14.19,
+    "palm_jumeirah_km": 5.58,
+    "dubai_airport_km": 24.88
+  },
+  "norah-residence": {
+    "dubai_mall_km": 18.07,
+    "palm_jumeirah_km": 11.12,
+    "dubai_airport_km": 27.92
+  },
+  "ahs-tower": {
+    "dubai_mall_km": 2.11,
+    "palm_jumeirah_km": 18.28,
+    "dubai_airport_km": 9.76
+  },
+  "tomorrow-commercial-tower": {
+    "dubai_mall_km": 13.34,
+    "palm_jumeirah_km": 28.08,
+    "dubai_airport_km": 10.87
+  },
+  "residences-du-port-autograph-collection": {
+    "dubai_mall_km": 19.79,
+    "palm_jumeirah_km": 5.37,
+    "dubai_airport_km": 30.53
+  },
+  "reem-by-vision": {
+    "dubai_mall_km": 12.97,
+    "palm_jumeirah_km": 23.85,
+    "dubai_airport_km": 15.7
+  },
+  "berkeley-square": {
+    "dubai_mall_km": 17.97,
+    "palm_jumeirah_km": 11.42,
+    "dubai_airport_km": 27.75
+  },
+  "silva": {
+    "dubai_mall_km": 7.93,
+    "palm_jumeirah_km": 24.62,
+    "dubai_airport_km": 5.55
+  },
+  "the-beach-house-fahid": {
+    "dubai_mall_km": 105.92,
+    "palm_jumeirah_km": 89.65,
+    "dubai_airport_km": 116.56
+  },
+  "seamont-autograph-collection-by-marriott": {
+    "dubai_mall_km": 116.29,
+    "palm_jumeirah_km": 99.57,
+    "dubai_airport_km": 127.06
+  },
+  "lumena": {
+    "dubai_mall_km": 2.05,
+    "palm_jumeirah_km": 15.13,
+    "dubai_airport_km": 12.82
+  },
+  "sierra": {
+    "dubai_mall_km": 17.69,
+    "palm_jumeirah_km": 12.94,
+    "dubai_airport_km": 27.07
+  },
+  "aspirz-by-danube": {
+    "dubai_mall_km": 18.71,
+    "palm_jumeirah_km": 11.58,
+    "dubai_airport_km": 28.5
+  },
+  "solera-downtown-mina": {
+    "dubai_mall_km": 80.17,
+    "palm_jumeirah_km": 96.68,
+    "dubai_airport_km": 69.59
+  },
+  "avana-residences": {
+    "dubai_mall_km": 16.26,
+    "palm_jumeirah_km": 9.7,
+    "dubai_airport_km": 26.33
+  },
+  "mayyas-at-the-bay": {
+    "dubai_mall_km": 107.14,
+    "palm_jumeirah_km": 91.31,
+    "dubai_airport_km": 117.63
+  },
+  "the-source-terraces": {
+    "dubai_mall_km": 114.98,
+    "palm_jumeirah_km": 98.17,
+    "dubai_airport_km": 125.76
+  },
+  "icon-tower-2": {
+    "dubai_mall_km": 107.86,
+    "palm_jumeirah_km": 92.04,
+    "dubai_airport_km": 118.35
+  },
+  "binghatti-twilight": {
+    "dubai_mall_km": 6.86,
+    "palm_jumeirah_km": 24,
+    "dubai_airport_km": 4.16
+  },
+  "gianfranco-ferre-residences": {
+    "dubai_mall_km": 70.93,
+    "palm_jumeirah_km": 87.13,
+    "dubai_airport_km": 60.56
+  },
+  "bayfront-marina-residences": {
+    "dubai_mall_km": 57.78,
+    "palm_jumeirah_km": 73.84,
+    "dubai_airport_km": 47.56
+  },
+  "symbolic-zen-residences": {
+    "dubai_mall_km": 23.29,
+    "palm_jumeirah_km": 10.19,
+    "dubai_airport_km": 33.76
+  },
+  "binghatti-skyblade": {
+    "dubai_mall_km": 1.14,
+    "palm_jumeirah_km": 16.1,
+    "dubai_airport_km": 11.92
+  },
+  "aila-homes": {
+    "dubai_mall_km": 75.94,
+    "palm_jumeirah_km": 92.36,
+    "dubai_airport_km": 65.42
+  },
+  "the-eden": {
+    "dubai_mall_km": 21.19,
+    "palm_jumeirah_km": 6.88,
+    "dubai_airport_km": 31.88
+  },
+  "south-square": {
+    "dubai_mall_km": 35.84,
+    "palm_jumeirah_km": 23.16,
+    "dubai_airport_km": 45.81
+  },
+  "riviera-68": {
+    "dubai_mall_km": 4.56,
+    "palm_jumeirah_km": 19.46,
+    "dubai_airport_km": 10.36
+  },
+  "riviera-50": {
+    "dubai_mall_km": 4.3,
+    "palm_jumeirah_km": 19.24,
+    "dubai_airport_km": 10.41
+  },
+  "akala-residences": {
+    "dubai_mall_km": 1.04,
+    "palm_jumeirah_km": 17.43,
+    "dubai_airport_km": 10.52
+  },
+  "acacia-by-fashion-tv": {
+    "dubai_mall_km": 71.63,
+    "palm_jumeirah_km": 87.87,
+    "dubai_airport_km": 61.23
+  },
+  "tomorrow-166": {
+    "dubai_mall_km": 10.24,
+    "palm_jumeirah_km": 25.04,
+    "dubai_airport_km": 7.84
+  },
+  "rayhan-at-waada": {
+    "dubai_mall_km": 44.25,
+    "palm_jumeirah_km": 32.75,
+    "dubai_airport_km": 53.64
+  },
+  "altura-1-at-waada": {
+    "dubai_mall_km": 44.83,
+    "palm_jumeirah_km": 33.5,
+    "dubai_airport_km": 54.15
+  },
+  "oystra": {
+    "dubai_mall_km": 71.28,
+    "palm_jumeirah_km": 87.57,
+    "dubai_airport_km": 60.85
+  },
+  "cascada-1-at-waada": {
+    "dubai_mall_km": 44.4,
+    "palm_jumeirah_km": 33.06,
+    "dubai_airport_km": 53.73
+  },
+  "dwtn-residences": {
+    "dubai_mall_km": 1.73,
+    "palm_jumeirah_km": 15.44,
+    "dubai_airport_km": 12.5
+  },
+  "manam-pearl": {
+    "dubai_mall_km": 24.27,
+    "palm_jumeirah_km": 11.41,
+    "dubai_airport_km": 34.66
+  },
+  "miraggio": {
+    "dubai_mall_km": 70.94,
+    "palm_jumeirah_km": 87.2,
+    "dubai_airport_km": 60.54
+  },
+  "chelsea-residences-2": {
+    "dubai_mall_km": 9.23,
+    "palm_jumeirah_km": 21.72,
+    "dubai_airport_km": 11.17
+  },
+  "rimal-4": {
+    "dubai_mall_km": 19.94,
+    "palm_jumeirah_km": 5.15,
+    "dubai_airport_km": 30.7
+  },
+  "rimal-1": {
+    "dubai_mall_km": 19.82,
+    "palm_jumeirah_km": 5.12,
+    "dubai_airport_km": 30.57
+  },
+  "amwaj-4": {
+    "dubai_mall_km": 20.34,
+    "palm_jumeirah_km": 5.49,
+    "dubai_airport_km": 31.09
+  },
+  "naseem-townhouses": {
+    "dubai_mall_km": 20.28,
+    "palm_jumeirah_km": 19.48,
+    "dubai_airport_km": 27.8
+  },
+  "treppan-serenique-residences": {
+    "dubai_mall_km": 11.75,
+    "palm_jumeirah_km": 26.22,
+    "dubai_airport_km": 8.63
+  },
+  "auresta": {
+    "dubai_mall_km": 15.72,
+    "palm_jumeirah_km": 10.58,
+    "dubai_airport_km": 25.59
+  },
+  "burj-capital": {
+    "dubai_mall_km": 2.36,
+    "palm_jumeirah_km": 15.11,
+    "dubai_airport_km": 13.03
+  },
+  "lazord-by-lapis-2": {
+    "dubai_mall_km": 12.17,
+    "palm_jumeirah_km": 19.45,
+    "dubai_airport_km": 18.23
+  },
+  "the-lx-offices-tower": {
+    "dubai_mall_km": 15.25,
+    "palm_jumeirah_km": 13.12,
+    "dubai_airport_km": 24.44
+  },
+  "pristine-beach-residences": {
+    "dubai_mall_km": 56.52,
+    "palm_jumeirah_km": 72.56,
+    "dubai_airport_km": 46.34
+  },
+  "azizi-milan-9": {
+    "dubai_mall_km": 12.58,
+    "palm_jumeirah_km": 20.11,
+    "dubai_airport_km": 18.26
+  },
+  "pinewood-estate-homes": {
+    "dubai_mall_km": 21.91,
+    "palm_jumeirah_km": 11.9,
+    "dubai_airport_km": 31.94
+  },
+  "al-hamra-greens": {
+    "dubai_mall_km": 74.88,
+    "palm_jumeirah_km": 91.35,
+    "dubai_airport_km": 64.33
+  },
+  "future-residence": {
+    "dubai_mall_km": 4.89,
+    "palm_jumeirah_km": 20.47,
+    "dubai_airport_km": 9.29
+  },
+  "jumeirah-residences-emirates-towers": {
+    "dubai_mall_km": 2.28,
+    "palm_jumeirah_km": 18.79,
+    "dubai_airport_km": 9.21
+  },
+  "wynwood-by-imtiaz": {
+    "dubai_mall_km": 10,
+    "palm_jumeirah_km": 24.76,
+    "dubai_airport_km": 7.91
+  },
+  "the-orchard-place-solena": {
+    "dubai_mall_km": 17.27,
+    "palm_jumeirah_km": 11,
+    "dubai_airport_km": 27.1
+  },
+  "capital-one-jvc": {
+    "dubai_mall_km": 16.11,
+    "palm_jumeirah_km": 11.03,
+    "dubai_airport_km": 25.89
+  },
+  "trevino": {
+    "dubai_mall_km": 17.28,
+    "palm_jumeirah_km": 9.68,
+    "dubai_airport_km": 27.39
+  },
+  "bling-avenue-1": {
+    "dubai_mall_km": 27.97,
+    "palm_jumeirah_km": 21.39,
+    "dubai_airport_km": 36.54
+  },
+  "octa-isle-by-missoni": {
+    "dubai_mall_km": 11.46,
+    "palm_jumeirah_km": 26.56,
+    "dubai_airport_km": 7.4
+  },
+  "gate-eleven-residences": {
+    "dubai_mall_km": 10.3,
+    "palm_jumeirah_km": 22.41,
+    "dubai_airport_km": 13.47
+  },
+  "double-tree-by-hilton": {
+    "dubai_mall_km": 2.73,
+    "palm_jumeirah_km": 17.87,
+    "dubai_airport_km": 10.36
+  },
+  "creeksideresidence": {
+    "dubai_mall_km": 33,
+    "palm_jumeirah_km": 49.11,
+    "dubai_airport_km": 23.02
+  },
+  "waldorf-astoria-residences-business-bay": {
+    "dubai_mall_km": 1.29,
+    "palm_jumeirah_km": 16.04,
+    "dubai_airport_km": 12.02
+  },
+  "arlington-park": {
+    "dubai_mall_km": 15.83,
+    "palm_jumeirah_km": 25.53,
+    "dubai_airport_km": 18.31
+  },
+  "provenza-residences": {
+    "dubai_mall_km": 17.84,
+    "palm_jumeirah_km": 10.98,
+    "dubai_airport_km": 27.7
+  },
+  "arthouse-residences": {
+    "dubai_mall_km": 71.18,
+    "palm_jumeirah_km": 87.41,
+    "dubai_airport_km": 60.8
+  },
+  "urban-park-residences-2": {
+    "dubai_mall_km": 19.13,
+    "palm_jumeirah_km": 13.7,
+    "dubai_airport_km": 28.45
+  },
+  "marquis-vista": {
+    "dubai_mall_km": 14.7,
+    "palm_jumeirah_km": 24.75,
+    "dubai_airport_km": 17.35
+  },
+  "the-horizon": {
+    "dubai_mall_km": 21.18,
+    "palm_jumeirah_km": 6.89,
+    "dubai_airport_km": 31.87
+  },
+  "antalya": {
+    "dubai_mall_km": 18.04,
+    "palm_jumeirah_km": 12.1,
+    "dubai_airport_km": 27.67
+  },
+  "the-artist-hotel": {
+    "dubai_mall_km": 12.53,
+    "palm_jumeirah_km": 12.37,
+    "dubai_airport_km": 21
+  },
+  "ayamore-residences": {
+    "dubai_mall_km": 12.07,
+    "palm_jumeirah_km": 27.2,
+    "dubai_airport_km": 7.49
+  },
+  "voxa": {
+    "dubai_mall_km": 18.81,
+    "palm_jumeirah_km": 10.73,
+    "dubai_airport_km": 28.79
+  },
+  "riviera-55": {
+    "dubai_mall_km": 4.47,
+    "palm_jumeirah_km": 19.68,
+    "dubai_airport_km": 10
+  },
+  "aquamont": {
+    "dubai_mall_km": 52.85,
+    "palm_jumeirah_km": 68.53,
+    "dubai_airport_km": 42.97
+  },
+  "riviera-49": {
+    "dubai_mall_km": 4.41,
+    "palm_jumeirah_km": 19.23,
+    "dubai_airport_km": 10.51
+  },
+  "altan": {
+    "dubai_mall_km": 7.71,
+    "palm_jumeirah_km": 24.45,
+    "dubai_airport_km": 5.48
+  },
+  "floarea-oasis": {
+    "dubai_mall_km": 14.58,
+    "palm_jumeirah_km": 24.72,
+    "dubai_airport_km": 17.22
+  },
+  "verdan1a-4": {
+    "dubai_mall_km": 14.79,
+    "palm_jumeirah_km": 24.59,
+    "dubai_airport_km": 17.63
+  },
+  "isolana-residences": {
+    "dubai_mall_km": 10.73,
+    "palm_jumeirah_km": 25.68,
+    "dubai_airport_km": 7.6
+  },
+  "safa-parkview": {
+    "dubai_mall_km": 22.95,
+    "palm_jumeirah_km": 40.06,
+    "dubai_airport_km": 12.13
+  },
+  "hamsa-2": {
+    "dubai_mall_km": 22.54,
+    "palm_jumeirah_km": 39.66,
+    "dubai_airport_km": 11.72
+  },
+  "brabus-island": {
+    "dubai_mall_km": 108.94,
+    "palm_jumeirah_km": 93.11,
+    "dubai_airport_km": 119.43
+  },
+  "cresswell-views": {
+    "dubai_mall_km": 29.98,
+    "palm_jumeirah_km": 22.93,
+    "dubai_airport_km": 38.54
+  },
+  "tulip-oasis-x-residences": {
+    "dubai_mall_km": 12.81,
+    "palm_jumeirah_km": 18.68,
+    "dubai_airport_km": 19.42
+  },
+  "bayn": {
+    "dubai_mall_km": 52.96,
+    "palm_jumeirah_km": 36.4,
+    "dubai_airport_km": 63.72
+  },
+  "forest-city-2": {
+    "dubai_mall_km": 15.83,
+    "palm_jumeirah_km": 25.33,
+    "dubai_airport_km": 18.49
+  },
+  "reef-998": {
+    "dubai_mall_km": 14.45,
+    "palm_jumeirah_km": 24.72,
+    "dubai_airport_km": 17.02
+  },
+  "trio-isle-by-missoni": {
+    "dubai_mall_km": 70.62,
+    "palm_jumeirah_km": 86.9,
+    "dubai_airport_km": 60.2
+  },
+  "nautis-residences-by-stamn": {
+    "dubai_mall_km": 10.84,
+    "palm_jumeirah_km": 25.63,
+    "dubai_airport_km": 7.9
+  },
+  "s1lva-park-living": {
+    "dubai_mall_km": 20.24,
+    "palm_jumeirah_km": 10.53,
+    "dubai_airport_km": 30.37
+  },
+  "trump-international-hotel-tower-dubai": {
+    "dubai_mall_km": 1.44,
+    "palm_jumeirah_km": 17.02,
+    "dubai_airport_km": 10.96
+  },
+  "ajman-pearl-tower": {
+    "dubai_mall_km": 28.95,
+    "palm_jumeirah_km": 45.45,
+    "dubai_airport_km": 18.63
+  },
+  "sky-gardens-tower": {
+    "dubai_mall_km": 37.15,
+    "palm_jumeirah_km": 54.19,
+    "dubai_airport_km": 26.33
+  },
+  "la-vue": {
+    "dubai_mall_km": 7.5,
+    "palm_jumeirah_km": 18.79,
+    "dubai_airport_km": 13.73
+  },
+  "beverly-grande": {
+    "dubai_mall_km": 17.65,
+    "palm_jumeirah_km": 13.24,
+    "dubai_airport_km": 26.95
+  },
+  "yachtside-marina-residences": {
+    "dubai_mall_km": 58.52,
+    "palm_jumeirah_km": 74.57,
+    "dubai_airport_km": 48.31
+  },
+  "binghatti-aquarise": {
+    "dubai_mall_km": 2.41,
+    "palm_jumeirah_km": 15.55,
+    "dubai_airport_km": 12.78
+  },
+  "weybridge-gardens-5": {
+    "dubai_mall_km": 16.25,
+    "palm_jumeirah_km": 25.88,
+    "dubai_airport_km": 18.61
+  },
+  "taj-wellington-mews": {
+    "dubai_mall_km": 71.42,
+    "palm_jumeirah_km": 87.67,
+    "dubai_airport_km": 61.02
+  },
+  "sparklz": {
+    "dubai_mall_km": 22.89,
+    "palm_jumeirah_km": 11.07,
+    "dubai_airport_km": 33.18
+  },
+  "vestoria-bay": {
+    "dubai_mall_km": 10.67,
+    "palm_jumeirah_km": 25.52,
+    "dubai_airport_km": 7.79
+  },
+  "elire-managed-by-lux": {
+    "dubai_mall_km": 1.37,
+    "palm_jumeirah_km": 15.78,
+    "dubai_airport_km": 12.18
+  },
+  "taiyo-residences": {
+    "dubai_mall_km": 26.27,
+    "palm_jumeirah_km": 11.56,
+    "dubai_airport_km": 36.88
+  },
+  "floarea-skies": {
+    "dubai_mall_km": 17.04,
+    "palm_jumeirah_km": 10.12,
+    "dubai_airport_km": 27.05
+  },
+  "fairmont-marina-residences": {
+    "dubai_mall_km": 125.28,
+    "palm_jumeirah_km": 108.44,
+    "dubai_airport_km": 136.07
+  },
+  "aquino": {
+    "dubai_mall_km": 71.07,
+    "palm_jumeirah_km": 87.29,
+    "dubai_airport_km": 60.7
+  },
+  "wellington-villas": {
+    "dubai_mall_km": 9.43,
+    "palm_jumeirah_km": 14.28,
+    "dubai_airport_km": 18.33
+  },
+  "ir1dian-park-2-2": {
+    "dubai_mall_km": 17.74,
+    "palm_jumeirah_km": 11.54,
+    "dubai_airport_km": 27.48
+  },
+  "bab-al-qasr-canal-view-residence-22": {
+    "dubai_mall_km": 107.82,
+    "palm_jumeirah_km": 92.08,
+    "dubai_airport_km": 118.28
+  },
+  "ananda-residences": {
+    "dubai_mall_km": 17.6,
+    "palm_jumeirah_km": 12.89,
+    "dubai_airport_km": 26.99
+  },
+  "cove-grand": {
+    "dubai_mall_km": 14.98,
+    "palm_jumeirah_km": 24.87,
+    "dubai_airport_km": 17.66
+  },
+  "the-mural": {
+    "dubai_mall_km": 9.29,
+    "palm_jumeirah_km": 22.13,
+    "dubai_airport_km": 10.73
+  },
+  "hadley-heights-2-olympic-edition": {
+    "dubai_mall_km": 18.5,
+    "palm_jumeirah_km": 12.64,
+    "dubai_airport_km": 28.04
+  },
+  "skyvue-stellar": {
+    "dubai_mall_km": 5.08,
+    "palm_jumeirah_km": 20.31,
+    "dubai_airport_km": 9.72
+  },
+  "peace-lagoons-2": {
+    "dubai_mall_km": 14.95,
+    "palm_jumeirah_km": 25.25,
+    "dubai_airport_km": 17.27
+  },
+  "playa-viva": {
+    "dubai_mall_km": 70.82,
+    "palm_jumeirah_km": 87.1,
+    "dubai_airport_km": 60.4
+  },
+  "albero-at-green-gate": {
+    "dubai_mall_km": 7.81,
+    "palm_jumeirah_km": 24.54,
+    "dubai_airport_km": 5.48
+  },
+  "barari-heights": {
+    "dubai_mall_km": 12.3,
+    "palm_jumeirah_km": 19.81,
+    "dubai_airport_km": 18.14
+  },
+  "high-best": {
+    "dubai_mall_km": 11.02,
+    "palm_jumeirah_km": 22.76,
+    "dubai_airport_km": 14.06
+  },
+  "masaar-2-anber": {
+    "dubai_mall_km": 35.41,
+    "palm_jumeirah_km": 52.11,
+    "dubai_airport_km": 25.69
+  },
+  "masaar-2-melia": {
+    "dubai_mall_km": 36.08,
+    "palm_jumeirah_km": 52.78,
+    "dubai_airport_km": 26.36
+  },
+  "starline-beach-residences": {
+    "dubai_mall_km": 56.97,
+    "palm_jumeirah_km": 73.02,
+    "dubai_airport_km": 46.77
+  },
+  "villa-del-gavi": {
+    "dubai_mall_km": 11.34,
+    "palm_jumeirah_km": 25.61,
+    "dubai_airport_km": 8.88
+  },
+  "selora-residences": {
+    "dubai_mall_km": 10.35,
+    "palm_jumeirah_km": 21.95,
+    "dubai_airport_km": 14.01
+  },
+  "zyra-vista": {
+    "dubai_mall_km": 12.32,
+    "palm_jumeirah_km": 26.08,
+    "dubai_airport_km": 12.02
+  },
+  "the-district": {
+    "dubai_mall_km": 118.11,
+    "palm_jumeirah_km": 101.4,
+    "dubai_airport_km": 128.88
+  },
+  "v1stara-house-2": {
+    "dubai_mall_km": 23.24,
+    "palm_jumeirah_km": 10.24,
+    "dubai_airport_km": 33.7
+  },
+  "samana-barari-avenue": {
+    "dubai_mall_km": 11.98,
+    "palm_jumeirah_km": 18.48,
+    "dubai_airport_km": 18.63
+  },
+  "vista-1": {
+    "dubai_mall_km": 119.21,
+    "palm_jumeirah_km": 102.48,
+    "dubai_airport_km": 129.98
+  },
+  "wellington-grand-villas": {
+    "dubai_mall_km": 9.69,
+    "palm_jumeirah_km": 21.26,
+    "dubai_airport_km": 13.85
+  },
+  "woodland-crest": {
+    "dubai_mall_km": 5.08,
+    "palm_jumeirah_km": 16.36,
+    "dubai_airport_km": 13.66
+  },
+  "w-residences-by-dalands": {
+    "dubai_mall_km": 71.64,
+    "palm_jumeirah_km": 87.9,
+    "dubai_airport_km": 61.24
+  },
+  "island-heights": {
+    "dubai_mall_km": 71.21,
+    "palm_jumeirah_km": 87.42,
+    "dubai_airport_km": 60.85
+  },
+  "golf-verge": {
+    "dubai_mall_km": 39.97,
+    "palm_jumeirah_km": 28.94,
+    "dubai_airport_km": 49.33
+  },
+  "golf-meadow": {
+    "dubai_mall_km": 40.07,
+    "palm_jumeirah_km": 29.02,
+    "dubai_airport_km": 49.43
+  },
+  "rabdan-gates": {
+    "dubai_mall_km": 12.69,
+    "palm_jumeirah_km": 19.4,
+    "dubai_airport_km": 18.86
+  },
+  "tulip-oasis-11": {
+    "dubai_mall_km": 12.45,
+    "palm_jumeirah_km": 19.42,
+    "dubai_airport_km": 18.57
+  },
+  "verdan1a-2": {
+    "dubai_mall_km": 16.15,
+    "palm_jumeirah_km": 25.78,
+    "dubai_airport_km": 18.57
+  },
+  "sensia": {
+    "dubai_mall_km": 8.88,
+    "palm_jumeirah_km": 21.79,
+    "dubai_airport_km": 10.64
+  },
+  "dg-villas": {
+    "dubai_mall_km": 22.19,
+    "palm_jumeirah_km": 14.33,
+    "dubai_airport_km": 31.72
+  },
+  "barajeel-towers": {
+    "dubai_mall_km": 28.82,
+    "palm_jumeirah_km": 45.33,
+    "dubai_airport_km": 18.49
+  },
+  "sunbliss-residences": {
+    "dubai_mall_km": 22.65,
+    "palm_jumeirah_km": 10.45,
+    "dubai_airport_km": 33.02
+  },
+  "al-mamsha-nama-4": {
+    "dubai_mall_km": 22.49,
+    "palm_jumeirah_km": 39.6,
+    "dubai_airport_km": 11.67
+  },
+  "distrikt": {
+    "dubai_mall_km": 14.14,
+    "palm_jumeirah_km": 19.64,
+    "dubai_airport_km": 20.4
+  },
+  "luxury-canal-residences": {
+    "dubai_mall_km": 10.78,
+    "palm_jumeirah_km": 25.9,
+    "dubai_airport_km": 7.27
+  },
+  "velor": {
+    "dubai_mall_km": 0.79,
+    "palm_jumeirah_km": 17.23,
+    "dubai_airport_km": 10.87
+  },
+  "samana-business-park": {
+    "dubai_mall_km": 12.09,
+    "palm_jumeirah_km": 19.32,
+    "dubai_airport_km": 18.22
+  },
+  "masaar-2-coral": {
+    "dubai_mall_km": 35.86,
+    "palm_jumeirah_km": 52.54,
+    "dubai_airport_km": 26.19
+  },
+  "masaar-2-narenj": {
+    "dubai_mall_km": 35.61,
+    "palm_jumeirah_km": 52.34,
+    "dubai_airport_km": 25.84
+  },
+  "skyvue-spectra": {
+    "dubai_mall_km": 5.11,
+    "palm_jumeirah_km": 20.43,
+    "dubai_airport_km": 9.58
+  },
+  "chelsea-gardens": {
+    "dubai_mall_km": 3.33,
+    "palm_jumeirah_km": 18.95,
+    "dubai_airport_km": 9.37
+  },
+  "sol-levante": {
+    "dubai_mall_km": 20.95,
+    "palm_jumeirah_km": 10.78,
+    "dubai_airport_km": 31.1
+  },
+  "lume-residences": {
+    "dubai_mall_km": 17.86,
+    "palm_jumeirah_km": 10.21,
+    "dubai_airport_km": 27.88
+  },
+  "trussardi-residences-2-2": {
+    "dubai_mall_km": 22.44,
+    "palm_jumeirah_km": 9.63,
+    "dubai_airport_km": 32.91
+  },
+  "costa-mare": {
+    "dubai_mall_km": 71.15,
+    "palm_jumeirah_km": 87.46,
+    "dubai_airport_km": 60.72
+  },
+  "aya-beachfront-residences": {
+    "dubai_mall_km": 51.34,
+    "palm_jumeirah_km": 67.05,
+    "dubai_airport_km": 41.45
+  },
+  "saas-heights": {
+    "dubai_mall_km": 117.25,
+    "palm_jumeirah_km": 100.57,
+    "dubai_airport_km": 128.01
+  },
+  "uno-luxe": {
+    "dubai_mall_km": 71.56,
+    "palm_jumeirah_km": 87.81,
+    "dubai_airport_km": 61.16
+  },
+  "district-one-naya-residences": {
+    "dubai_mall_km": 4.5,
+    "palm_jumeirah_km": 16.38,
+    "dubai_airport_km": 13.26
+  },
+  "sola-residences-2": {
+    "dubai_mall_km": 26.26,
+    "palm_jumeirah_km": 11.57,
+    "dubai_airport_km": 36.87
+  },
+  "zenith-j1": {
+    "dubai_mall_km": 16.98,
+    "palm_jumeirah_km": 9.85,
+    "dubai_airport_km": 27.03
+  },
+  "celesto-tower": {
+    "dubai_mall_km": 14.87,
+    "palm_jumeirah_km": 25,
+    "dubai_airport_km": 17.38
+  },
+  "pierside-marina-residences": {
+    "dubai_mall_km": 58.66,
+    "palm_jumeirah_km": 74.7,
+    "dubai_airport_km": 48.46
+  },
+  "cove-boulevard": {
+    "dubai_mall_km": 14.54,
+    "palm_jumeirah_km": 24.88,
+    "dubai_airport_km": 16.99
+  },
+  "marlin-2": {
+    "dubai_mall_km": 116.85,
+    "palm_jumeirah_km": 100.12,
+    "dubai_airport_km": 127.62
+  },
+  "ir1dian-park-2": {
+    "dubai_mall_km": 17.76,
+    "palm_jumeirah_km": 11.58,
+    "dubai_airport_km": 27.49
+  },
+  "vida-residences-hillside": {
+    "dubai_mall_km": 9.73,
+    "palm_jumeirah_km": 12.21,
+    "dubai_airport_km": 19.43
+  },
+  "celeste": {
+    "dubai_mall_km": 6.75,
+    "palm_jumeirah_km": 23.9,
+    "dubai_airport_km": 4.14
+  },
+  "rose-gardens-1": {
+    "dubai_mall_km": 3.2,
+    "palm_jumeirah_km": 18.51,
+    "dubai_airport_km": 9.83
+  },
+  "binghatti-skyhall": {
+    "dubai_mall_km": 1.86,
+    "palm_jumeirah_km": 16.01,
+    "dubai_airport_km": 12.23
+  },
+  "parkwood": {
+    "dubai_mall_km": 9.58,
+    "palm_jumeirah_km": 12.11,
+    "dubai_airport_km": 19.33
+  },
+  "27-east-end-garden-residences": {
+    "dubai_mall_km": 13.57,
+    "palm_jumeirah_km": 27.18,
+    "dubai_airport_km": 12.76
+  },
+  "binghatti-hillside": {
+    "dubai_mall_km": 14.44,
+    "palm_jumeirah_km": 12.98,
+    "dubai_airport_km": 23.65
+  },
+  "wellington-ocean": {
+    "dubai_mall_km": 10.61,
+    "palm_jumeirah_km": 25.49,
+    "dubai_airport_km": 7.72
+  },
+  "waldorf-astoria-residences-rak": {
+    "dubai_mall_km": 73.48,
+    "palm_jumeirah_km": 89.89,
+    "dubai_airport_km": 62.98
+  },
+  "jumeirah-asora-bay": {
+    "dubai_mall_km": 4.62,
+    "palm_jumeirah_km": 16.76,
+    "dubai_airport_km": 12.25
+  },
+  "hidd-al-saadiyat": {
+    "dubai_mall_km": 107.18,
+    "palm_jumeirah_km": 90.4,
+    "dubai_airport_km": 117.96
+  },
+  "timez": {
+    "dubai_mall_km": 12.45,
+    "palm_jumeirah_km": 24.14,
+    "dubai_airport_km": 14.65
+  },
+  "celia-gardens": {
+    "dubai_mall_km": 7.6,
+    "palm_jumeirah_km": 18.9,
+    "dubai_airport_km": 13.73
+  },
+  "skyhills-astra": {
+    "dubai_mall_km": 14.19,
+    "palm_jumeirah_km": 13.1,
+    "dubai_airport_km": 23.36
+  },
+  "la-cle": {
+    "dubai_mall_km": 25.17,
+    "palm_jumeirah_km": 11.61,
+    "dubai_airport_km": 35.64
+  },
+  "serenia-district-west": {
+    "dubai_mall_km": 19.72,
+    "palm_jumeirah_km": 6.32,
+    "dubai_airport_km": 30.39
+  },
+  "almaan-101": {
+    "dubai_mall_km": 17.44,
+    "palm_jumeirah_km": 11.08,
+    "dubai_airport_km": 27.27
+  },
+  "15-cascade": {
+    "dubai_mall_km": 17.96,
+    "palm_jumeirah_km": 13.28,
+    "dubai_airport_km": 27.28
+  },
+  "hamsa": {
+    "dubai_mall_km": 22.46,
+    "palm_jumeirah_km": 39.58,
+    "dubai_airport_km": 11.64
+  },
+  "the-element-at-sobha-one": {
+    "dubai_mall_km": 6.25,
+    "palm_jumeirah_km": 22.18,
+    "dubai_airport_km": 8.13
+  },
+  "agua-residences": {
+    "dubai_mall_km": 10.73,
+    "palm_jumeirah_km": 25.61,
+    "dubai_airport_km": 7.73
+  },
+  "coastal-haven": {
+    "dubai_mall_km": 10.78,
+    "palm_jumeirah_km": 25.89,
+    "dubai_airport_km": 7.27
+  },
+  "naseem-al-jurf-apartments": {
+    "dubai_mall_km": 62.06,
+    "palm_jumeirah_km": 45.25,
+    "dubai_airport_km": 72.86
+  },
+  "naseem-al-jurf-villas": {
+    "dubai_mall_km": 61.7,
+    "palm_jumeirah_km": 44.88,
+    "dubai_airport_km": 72.5
+  },
+  "celeste-heights": {
+    "dubai_mall_km": 23.37,
+    "palm_jumeirah_km": 11.56,
+    "dubai_airport_km": 33.64
+  },
+  "pelagia": {
+    "dubai_mall_km": 71.05,
+    "palm_jumeirah_km": 87.25,
+    "dubai_airport_km": 60.69
+  },
+  "riverside-views-capri-2": {
+    "dubai_mall_km": 25.13,
+    "palm_jumeirah_km": 19.07,
+    "dubai_airport_km": 33.82
+  },
+  "riverside-views-royal-1": {
+    "dubai_mall_km": 25.12,
+    "palm_jumeirah_km": 19.04,
+    "dubai_airport_km": 33.82
+  },
+  "bayside-marina-residences": {
+    "dubai_mall_km": 59.27,
+    "palm_jumeirah_km": 75.32,
+    "dubai_airport_km": 49.05
+  },
+  "golf-grove-by-regent": {
+    "dubai_mall_km": 20.96,
+    "palm_jumeirah_km": 12.47,
+    "dubai_airport_km": 30.77
+  },
+  "jacob-co-apartments": {
+    "dubai_mall_km": 61.29,
+    "palm_jumeirah_km": 44.46,
+    "dubai_airport_km": 72.1
+  },
+  "nawayef-park-views": {
+    "dubai_mall_km": 126.58,
+    "palm_jumeirah_km": 110.05,
+    "dubai_airport_km": 137.29
+  },
+  "azizi-emerald": {
+    "dubai_mall_km": 5.81,
+    "palm_jumeirah_km": 22.83,
+    "dubai_airport_km": 5.14
+  },
+  "damac-lagoon-views-12": {
+    "dubai_mall_km": 21.8,
+    "palm_jumeirah_km": 16.31,
+    "dubai_airport_km": 30.73
+  },
+  "views-vii": {
+    "dubai_mall_km": 29.57,
+    "palm_jumeirah_km": 22.34,
+    "dubai_airport_km": 38.22
+  },
+  "the-ritz-carlton-rak-al-wadi": {
+    "dubai_mall_km": 70.51,
+    "palm_jumeirah_km": 87.52,
+    "dubai_airport_km": 59.7
+  },
+  "woodlandterraces": {
+    "dubai_mall_km": 10.67,
+    "palm_jumeirah_km": 22.6,
+    "dubai_airport_km": 13.76
+  },
+  "safa-1": {
+    "dubai_mall_km": 22.98,
+    "palm_jumeirah_km": 40.09,
+    "dubai_airport_km": 12.16
+  },
+  "damac-lagoons-santorini": {
+    "dubai_mall_km": 21,
+    "palm_jumeirah_km": 16.16,
+    "dubai_airport_km": 29.85
+  },
+  "altay-hills": {
+    "dubai_mall_km": 30.21,
+    "palm_jumeirah_km": 46.57,
+    "dubai_airport_km": 21.24
+  },
+  "squarex-one": {
+    "dubai_mall_km": 17.33,
+    "palm_jumeirah_km": 11.9,
+    "dubai_airport_km": 26.96
+  },
+  "greygate-residences": {
+    "dubai_mall_km": 16.83,
+    "palm_jumeirah_km": 10.86,
+    "dubai_airport_km": 26.67
+  },
+  "wasel": {
+    "dubai_mall_km": 11.59,
+    "palm_jumeirah_km": 27,
+    "dubai_airport_km": 6.78
+  },
+  "belgravia-gardens": {
+    "dubai_mall_km": 12.75,
+    "palm_jumeirah_km": 21.11,
+    "dubai_airport_km": 17.75
+  },
+  "mirasol": {
+    "dubai_mall_km": 80.82,
+    "palm_jumeirah_km": 97.34,
+    "dubai_airport_km": 70.25
+  },
+  "majestique-residence": {
+    "dubai_mall_km": 28.91,
+    "palm_jumeirah_km": 21.29,
+    "dubai_airport_km": 37.75
+  },
+  "the-eighty-three": {
+    "dubai_mall_km": 29.39,
+    "palm_jumeirah_km": 22.42,
+    "dubai_airport_km": 37.97
+  },
+  "reportage-hills": {
+    "dubai_mall_km": 20.44,
+    "palm_jumeirah_km": 15.65,
+    "dubai_airport_km": 29.36
+  },
+  "flora-isle-beachfront-residences": {
+    "dubai_mall_km": 11.66,
+    "palm_jumeirah_km": 25.96,
+    "dubai_airport_km": 8.91
+  },
+  "jacob-co": {
+    "dubai_mall_km": 61.77,
+    "palm_jumeirah_km": 44.96,
+    "dubai_airport_km": 72.57
+  },
+  "mamsha-palm": {
+    "dubai_mall_km": 114.49,
+    "palm_jumeirah_km": 97.68,
+    "dubai_airport_km": 125.27
+  },
+  "the-chedi-private-residences": {
+    "dubai_mall_km": 15.43,
+    "palm_jumeirah_km": 4.84,
+    "dubai_airport_km": 26.15
+  },
+  "esme-beach-residences": {
+    "dubai_mall_km": 11.43,
+    "palm_jumeirah_km": 25.73,
+    "dubai_airport_km": 8.86
+  },
+  "golf-links-18": {
+    "dubai_mall_km": 18.9,
+    "palm_jumeirah_km": 13.27,
+    "dubai_airport_km": 28.31
+  },
+  "viera-residences": {
+    "dubai_mall_km": 20.4,
+    "palm_jumeirah_km": 11.99,
+    "dubai_airport_km": 30.26
+  },
+  "park-lane-2-by-heilbronn": {
+    "dubai_mall_km": 16.3,
+    "palm_jumeirah_km": 10.86,
+    "dubai_airport_km": 26.12
+  },
+  "estrella-by-nexus": {
+    "dubai_mall_km": 12.02,
+    "palm_jumeirah_km": 19.01,
+    "dubai_airport_km": 18.34
+  },
+  "the-autograph-i-series": {
+    "dubai_mall_km": 17.62,
+    "palm_jumeirah_km": 11.66,
+    "dubai_airport_km": 27.32
+  },
+  "coastline-beach-residences": {
+    "dubai_mall_km": 58.77,
+    "palm_jumeirah_km": 74.8,
+    "dubai_airport_km": 48.57
+  },
+  "marriott-residences-jlt": {
+    "dubai_mall_km": 20.04,
+    "palm_jumeirah_km": 6.37,
+    "dubai_airport_km": 30.71
+  },
+  "al-haseen-residences-4": {
+    "dubai_mall_km": 43.78,
+    "palm_jumeirah_km": 29.52,
+    "dubai_airport_km": 54.02
+  },
+  "hayyan": {
+    "dubai_mall_km": 31.82,
+    "palm_jumeirah_km": 48.75,
+    "dubai_airport_km": 21.73
+  },
+  "olfah": {
+    "dubai_mall_km": 20.16,
+    "palm_jumeirah_km": 37.31,
+    "dubai_airport_km": 9.47
+  },
+  "marriott-residences-sheikh-zayed-road": {
+    "dubai_mall_km": 13.22,
+    "palm_jumeirah_km": 6.03,
+    "dubai_airport_km": 23.92
+  },
+  "golf-dale": {
+    "dubai_mall_km": 39.61,
+    "palm_jumeirah_km": 28.69,
+    "dubai_airport_km": 48.95
+  },
+  "mews-mansions": {
+    "dubai_mall_km": 5.55,
+    "palm_jumeirah_km": 19.43,
+    "dubai_airport_km": 11.26
+  },
+  "verdan1a-1": {
+    "dubai_mall_km": 15.22,
+    "palm_jumeirah_km": 25.35,
+    "dubai_airport_km": 17.57
+  },
+  "stamn-yuni": {
+    "dubai_mall_km": 3.34,
+    "palm_jumeirah_km": 18.95,
+    "dubai_airport_km": 9.38
+  },
+  "orise": {
+    "dubai_mall_km": 8.58,
+    "palm_jumeirah_km": 21.69,
+    "dubai_airport_km": 10.41
+  },
+  "the-gate-4": {
+    "dubai_mall_km": 22.93,
+    "palm_jumeirah_km": 40.06,
+    "dubai_airport_km": 12.12
+  },
+  "the-boulevard": {
+    "dubai_mall_km": 15.57,
+    "palm_jumeirah_km": 25.56,
+    "dubai_airport_km": 17.9
+  },
+  "villa-del-divos": {
+    "dubai_mall_km": 11.72,
+    "palm_jumeirah_km": 26.15,
+    "dubai_airport_km": 8.69
+  },
+  "fortune-bay-residences": {
+    "dubai_mall_km": 70.39,
+    "palm_jumeirah_km": 86.71,
+    "dubai_airport_km": 59.96
+  },
+  "vega": {
+    "dubai_mall_km": 19.24,
+    "palm_jumeirah_km": 12.05,
+    "dubai_airport_km": 28.97
+  },
+  "reef-999": {
+    "dubai_mall_km": 24.78,
+    "palm_jumeirah_km": 11.62,
+    "dubai_airport_km": 35.2
+  },
+  "weybridge-gardens-4": {
+    "dubai_mall_km": 14.91,
+    "palm_jumeirah_km": 24.71,
+    "dubai_airport_km": 17.7
+  },
+  "florine-beach-residences": {
+    "dubai_mall_km": 57.34,
+    "palm_jumeirah_km": 73.4,
+    "dubai_airport_km": 47.12
+  },
+  "tetr1s-tower": {
+    "dubai_mall_km": 17.64,
+    "palm_jumeirah_km": 11.79,
+    "dubai_airport_km": 27.31
+  },
+  "rove-home-dubai-marina": {
+    "dubai_mall_km": 19.63,
+    "palm_jumeirah_km": 5.38,
+    "dubai_airport_km": 30.36
+  },
+  "bond-enclave": {
+    "dubai_mall_km": 15.28,
+    "palm_jumeirah_km": 12.93,
+    "dubai_airport_km": 24.53
+  },
+  "guzel-towers": {
+    "dubai_mall_km": 21.25,
+    "palm_jumeirah_km": 10.86,
+    "dubai_airport_km": 31.41
+  },
+  "whitecliffs-residences": {
+    "dubai_mall_km": 10.77,
+    "palm_jumeirah_km": 25.89,
+    "dubai_airport_km": 7.27
+  },
+  "azizi-ruby": {
+    "dubai_mall_km": 17.14,
+    "palm_jumeirah_km": 10.17,
+    "dubai_airport_km": 27.14
+  },
+  "one-central": {
+    "dubai_mall_km": 75.34,
+    "palm_jumeirah_km": 91.84,
+    "dubai_airport_km": 64.79
+  },
+  "park-five": {
+    "dubai_mall_km": 19.83,
+    "palm_jumeirah_km": 11.9,
+    "dubai_airport_km": 29.65
+  },
+  "liv-maritime": {
+    "dubai_mall_km": 8.26,
+    "palm_jumeirah_km": 21.6,
+    "dubai_airport_km": 10.13
+  },
+  "mbl-signature": {
+    "dubai_mall_km": 18.82,
+    "palm_jumeirah_km": 5.25,
+    "dubai_airport_km": 29.53
+  },
+  "skyvue-solair": {
+    "dubai_mall_km": 5.23,
+    "palm_jumeirah_km": 20.43,
+    "dubai_airport_km": 9.7
+  },
+  "aria-heights": {
+    "dubai_mall_km": 17.23,
+    "palm_jumeirah_km": 11.85,
+    "dubai_airport_km": 26.86
+  },
+  "one-678-residences": {
+    "dubai_mall_km": 36.75,
+    "palm_jumeirah_km": 53.87,
+    "dubai_airport_km": 25.94
+  },
+  "essenl1fe": {
+    "dubai_mall_km": 20.05,
+    "palm_jumeirah_km": 10.62,
+    "dubai_airport_km": 30.15
+  },
+  "arian": {
+    "dubai_mall_km": 30.82,
+    "palm_jumeirah_km": 16.49,
+    "dubai_airport_km": 41.28
+  },
+  "la-mazzoni": {
+    "dubai_mall_km": 71.7,
+    "palm_jumeirah_km": 87.92,
+    "dubai_airport_km": 61.33
+  },
+  "treppan-tower": {
+    "dubai_mall_km": 21.13,
+    "palm_jumeirah_km": 10.83,
+    "dubai_airport_km": 31.28
+  },
+  "hotel-london": {
+    "dubai_mall_km": 12.46,
+    "palm_jumeirah_km": 12.41,
+    "dubai_airport_km": 20.92
+  },
+  "the-hillgate": {
+    "dubai_mall_km": 14.18,
+    "palm_jumeirah_km": 25.49,
+    "dubai_airport_km": 15.86
+  },
+  "amazonia": {
+    "dubai_mall_km": 6.65,
+    "palm_jumeirah_km": 23.8,
+    "dubai_airport_km": 4.3
+  },
+  "binghatti-starlight": {
+    "dubai_mall_km": 4.35,
+    "palm_jumeirah_km": 21.48,
+    "dubai_airport_km": 6.63
+  },
+  "forest-city-tower": {
+    "dubai_mall_km": 12.32,
+    "palm_jumeirah_km": 19.53,
+    "dubai_airport_km": 18.35
+  },
+  "empire-lakeviews": {
+    "dubai_mall_km": 12.54,
+    "palm_jumeirah_km": 23.54,
+    "dubai_airport_km": 15.41
+  },
+  "knightsbridge-phase-2": {
+    "dubai_mall_km": 10.42,
+    "palm_jumeirah_km": 22.17,
+    "dubai_airport_km": 13.88
+  },
+  "binghatti-pinnacle": {
+    "dubai_mall_km": 3.87,
+    "palm_jumeirah_km": 21.02,
+    "dubai_airport_km": 7.03
+  },
+  "glorious-central-residences": {
+    "dubai_mall_km": 13.02,
+    "palm_jumeirah_km": 27.04,
+    "dubai_airport_km": 11.93
+  },
+  "vitalia-palm-jumeirah-residences": {
+    "dubai_mall_km": 15.27,
+    "palm_jumeirah_km": 2.26,
+    "dubai_airport_km": 25.99
+  },
+  "aquamarine-beach-residences": {
+    "dubai_mall_km": 55.3,
+    "palm_jumeirah_km": 71.28,
+    "dubai_airport_km": 45.17
+  },
+  "avenue-park-towers": {
+    "dubai_mall_km": 4.24,
+    "palm_jumeirah_km": 20.49,
+    "dubai_airport_km": 7.82
+  },
+  "the-community-sports-arena": {
+    "dubai_mall_km": 18.12,
+    "palm_jumeirah_km": 12.53,
+    "dubai_airport_km": 27.65
+  },
+  "raffi": {
+    "dubai_mall_km": 25.49,
+    "palm_jumeirah_km": 11.62,
+    "dubai_airport_km": 36
+  },
+  "damac-lagoons-nice": {
+    "dubai_mall_km": 22.33,
+    "palm_jumeirah_km": 17.1,
+    "dubai_airport_km": 31.1
+  },
+  "laguna-residence": {
+    "dubai_mall_km": 12.75,
+    "palm_jumeirah_km": 19.91,
+    "dubai_airport_km": 18.59
+  },
+  "brand-centro": {
+    "dubai_mall_km": 2.6,
+    "palm_jumeirah_km": 17.96,
+    "dubai_airport_km": 10.22
+  },
+  "bonds-avenue-residences": {
+    "dubai_mall_km": 10.7,
+    "palm_jumeirah_km": 25.66,
+    "dubai_airport_km": 7.56
+  },
+  "mackerel-tower": {
+    "dubai_mall_km": 11.61,
+    "palm_jumeirah_km": 26.82,
+    "dubai_airport_km": 7.2
+  },
+  "exotica-by-al-marina": {
+    "dubai_mall_km": 16.68,
+    "palm_jumeirah_km": 11.13,
+    "dubai_airport_km": 26.45
+  },
+  "al-serh-residences-11": {
+    "dubai_mall_km": 16.1,
+    "palm_jumeirah_km": 9.8,
+    "dubai_airport_km": 26.14
+  },
+  "stamn-one": {
+    "dubai_mall_km": 2.91,
+    "palm_jumeirah_km": 18.36,
+    "dubai_airport_km": 9.89
+  },
+  "onda": {
+    "dubai_mall_km": 2.16,
+    "palm_jumeirah_km": 15.71,
+    "dubai_airport_km": 12.56
+  },
+  "ag-aum": {
+    "dubai_mall_km": 15.2,
+    "palm_jumeirah_km": 24.88,
+    "dubai_airport_km": 17.97
+  },
+  "ag-ark": {
+    "dubai_mall_km": 15.98,
+    "palm_jumeirah_km": 25.8,
+    "dubai_airport_km": 18.3
+  },
+  "the-mansions-sobha-hartland-ii": {
+    "dubai_mall_km": 5.35,
+    "palm_jumeirah_km": 20.73,
+    "dubai_airport_km": 9.41
+  },
+  "livel-residenza": {
+    "dubai_mall_km": 16.43,
+    "palm_jumeirah_km": 11.16,
+    "dubai_airport_km": 26.19
+  },
+  "eden-house-the-park": {
+    "dubai_mall_km": 3.35,
+    "palm_jumeirah_km": 13.88,
+    "dubai_airport_km": 14.06
+  },
+  "marina-cove": {
+    "dubai_mall_km": 19.17,
+    "palm_jumeirah_km": 5.09,
+    "dubai_airport_km": 29.91
+  },
+  "coral-beach-villas-phase-2": {
+    "dubai_mall_km": 58.93,
+    "palm_jumeirah_km": 75.03,
+    "dubai_airport_km": 48.69
+  },
+  "binghatti-hillviews": {
+    "dubai_mall_km": 13.57,
+    "palm_jumeirah_km": 12.86,
+    "dubai_airport_km": 22.8
+  },
+  "the-beach-vista": {
+    "dubai_mall_km": 71.52,
+    "palm_jumeirah_km": 87.78,
+    "dubai_airport_km": 61.11
+  },
+  "maison-elysee-iii": {
+    "dubai_mall_km": 18.16,
+    "palm_jumeirah_km": 11.51,
+    "dubai_airport_km": 27.93
+  },
+  "aurel1a-residence": {
+    "dubai_mall_km": 18.3,
+    "palm_jumeirah_km": 12.41,
+    "dubai_airport_km": 27.87
+  },
+  "interstellar-tower": {
+    "dubai_mall_km": 20.43,
+    "palm_jumeirah_km": 10.65,
+    "dubai_airport_km": 30.55
+  },
+  "binghatti-skyrise": {
+    "dubai_mall_km": 1.87,
+    "palm_jumeirah_km": 15.77,
+    "dubai_airport_km": 12.41
+  },
+  "the-corner": {
+    "dubai_mall_km": 16.47,
+    "palm_jumeirah_km": 26.27,
+    "dubai_airport_km": 18.59
+  },
+  "samana-rome": {
+    "dubai_mall_km": 10.92,
+    "palm_jumeirah_km": 22.71,
+    "dubai_airport_km": 13.99
+  },
+  "the-gate-3": {
+    "dubai_mall_km": 22.93,
+    "palm_jumeirah_km": 40.05,
+    "dubai_airport_km": 12.12
+  },
+  "damac-islands-maldives": {
+    "dubai_mall_km": 18.54,
+    "palm_jumeirah_km": 20.49,
+    "dubai_airport_km": 25.23
+  },
+  "binghatti-grove": {
+    "dubai_mall_km": 16.54,
+    "palm_jumeirah_km": 11.33,
+    "dubai_airport_km": 26.27
+  },
+  "coraline-beach-residences": {
+    "dubai_mall_km": 56.21,
+    "palm_jumeirah_km": 72.2,
+    "dubai_airport_km": 46.05
+  },
+  "gharbi-2-residences": {
+    "dubai_mall_km": 16.89,
+    "palm_jumeirah_km": 10.56,
+    "dubai_airport_km": 26.8
+  },
+  "bay-grove-residences": {
+    "dubai_mall_km": 12.63,
+    "palm_jumeirah_km": 27.78,
+    "dubai_airport_km": 7.61
+  },
+  "verdana-10-residences": {
+    "dubai_mall_km": 25.85,
+    "palm_jumeirah_km": 15.39,
+    "dubai_airport_km": 35.69
+  },
+  "parkway": {
+    "dubai_mall_km": 5.02,
+    "palm_jumeirah_km": 20.65,
+    "dubai_airport_km": 9.16
+  },
+  "saas-hills": {
+    "dubai_mall_km": 13.48,
+    "palm_jumeirah_km": 12.68,
+    "dubai_airport_km": 22.77
+  },
+  "vanguard-by-fransk-muller": {
+    "dubai_mall_km": 17.69,
+    "palm_jumeirah_km": 4.38,
+    "dubai_airport_km": 28.44
+  },
+  "verdana-vii-residences": {
+    "dubai_mall_km": 25.5,
+    "palm_jumeirah_km": 15.31,
+    "dubai_airport_km": 35.31
+  },
+  "pier-point": {
+    "dubai_mall_km": 7.67,
+    "palm_jumeirah_km": 22.26,
+    "dubai_airport_km": 8.49
+  },
+  "porto-view": {
+    "dubai_mall_km": 8.09,
+    "palm_jumeirah_km": 22.73,
+    "dubai_airport_km": 8.31
+  },
+  "v1stara-house": {
+    "dubai_mall_km": 23.64,
+    "palm_jumeirah_km": 10.75,
+    "dubai_airport_km": 34.07
+  },
+  "reef-1000": {
+    "dubai_mall_km": 15.96,
+    "palm_jumeirah_km": 25.42,
+    "dubai_airport_km": 18.6
+  },
+  "saria": {
+    "dubai_mall_km": 7.43,
+    "palm_jumeirah_km": 21.03,
+    "dubai_airport_km": 9.93
+  },
+  "il-teatro-2": {
+    "dubai_mall_km": 23.85,
+    "palm_jumeirah_km": 40.97,
+    "dubai_airport_km": 13.03
+  },
+  "binghatti-ivory": {
+    "dubai_mall_km": 4.11,
+    "palm_jumeirah_km": 21.23,
+    "dubai_airport_km": 6.9
+  },
+  "playa-del-sol": {
+    "dubai_mall_km": 70.99,
+    "palm_jumeirah_km": 87.28,
+    "dubai_airport_km": 60.58
+  },
+  "golf-hillside-2": {
+    "dubai_mall_km": 7.87,
+    "palm_jumeirah_km": 13.17,
+    "dubai_airport_km": 17.51
+  },
+  "district-one-phase-ii-villas-2": {
+    "dubai_mall_km": 3.26,
+    "palm_jumeirah_km": 15.62,
+    "dubai_airport_km": 13.11
+  },
+  "zephyra-residences": {
+    "dubai_mall_km": 10.68,
+    "palm_jumeirah_km": 25.4,
+    "dubai_airport_km": 8
+  },
+  "enara": {
+    "dubai_mall_km": 0.99,
+    "palm_jumeirah_km": 17.54,
+    "dubai_airport_km": 10.6
+  },
+  "beach-walk-3": {
+    "dubai_mall_km": 11.55,
+    "palm_jumeirah_km": 25.88,
+    "dubai_airport_km": 8.83
+  },
+  "bayz-102": {
+    "dubai_mall_km": 2.25,
+    "palm_jumeirah_km": 14.9,
+    "dubai_airport_km": 13.06
+  },
+  "sobha-solis": {
+    "dubai_mall_km": 16.93,
+    "palm_jumeirah_km": 13.94,
+    "dubai_airport_km": 25.97
+  },
+  "bloom-living-almeria": {
+    "dubai_mall_km": 109.33,
+    "palm_jumeirah_km": 93.99,
+    "dubai_airport_km": 119.64
+  },
+  "binghatti-ghost": {
+    "dubai_mall_km": 4.3,
+    "palm_jumeirah_km": 21.45,
+    "dubai_airport_km": 6.62
+  },
+  "maya-3": {
+    "dubai_mall_km": 16.49,
+    "palm_jumeirah_km": 26.16,
+    "dubai_airport_km": 18.74
+  },
+  "barari-parkview": {
+    "dubai_mall_km": 12.22,
+    "palm_jumeirah_km": 18.45,
+    "dubai_airport_km": 18.9
+  },
+  "jasmine-lane-2": {
+    "dubai_mall_km": 21.56,
+    "palm_jumeirah_km": 14.61,
+    "dubai_airport_km": 30.93
+  },
+  "south-garden": {
+    "dubai_mall_km": 26.34,
+    "palm_jumeirah_km": 11.66,
+    "dubai_airport_km": 36.94
+  },
+  "legado": {
+    "dubai_mall_km": 18.43,
+    "palm_jumeirah_km": 11.3,
+    "dubai_airport_km": 28.26
+  },
+  "nesba-3": {
+    "dubai_mall_km": 23.08,
+    "palm_jumeirah_km": 40.21,
+    "dubai_airport_km": 12.27
+  },
+  "v1v1d-residence": {
+    "dubai_mall_km": 20.78,
+    "palm_jumeirah_km": 10.68,
+    "dubai_airport_km": 30.93
+  },
+  "waref-residences": {
+    "dubai_mall_km": 15.83,
+    "palm_jumeirah_km": 10.15,
+    "dubai_airport_km": 25.79
+  },
+  "evora-residence": {
+    "dubai_mall_km": 22.54,
+    "palm_jumeirah_km": 9.27,
+    "dubai_airport_km": 33.07
+  },
+  "isola-bella": {
+    "dubai_mall_km": 18.08,
+    "palm_jumeirah_km": 10.52,
+    "dubai_airport_km": 28.06
+  },
+  "one-sky-park": {
+    "dubai_mall_km": 17.82,
+    "palm_jumeirah_km": 9.95,
+    "dubai_airport_km": 27.9
+  },
+  "fairmont-residences-solara-tower": {
+    "dubai_mall_km": 1.16,
+    "palm_jumeirah_km": 16.06,
+    "dubai_airport_km": 11.96
+  },
+  "riviera-lodge": {
+    "dubai_mall_km": 16.71,
+    "palm_jumeirah_km": 10.88,
+    "dubai_airport_km": 26.54
+  },
+  "ocean-pearl-2": {
+    "dubai_mall_km": 11.98,
+    "palm_jumeirah_km": 27.35,
+    "dubai_airport_km": 6.96
+  },
+  "arisha-terraces": {
+    "dubai_mall_km": 18.58,
+    "palm_jumeirah_km": 14.34,
+    "dubai_airport_km": 27.66
+  },
+  "canal-bay": {
+    "dubai_mall_km": 1.75,
+    "palm_jumeirah_km": 16.11,
+    "dubai_airport_km": 12.12
+  },
+  "astra-south": {
+    "dubai_mall_km": 28.7,
+    "palm_jumeirah_km": 21.97,
+    "dubai_airport_km": 37.26
+  },
+  "verdana-6-residences": {
+    "dubai_mall_km": 25.43,
+    "palm_jumeirah_km": 15.5,
+    "dubai_airport_km": 35.18
+  },
+  "al-haseen-residences-3": {
+    "dubai_mall_km": 43.66,
+    "palm_jumeirah_km": 29.48,
+    "dubai_airport_km": 53.88
+  },
+  "one-beverly": {
+    "dubai_mall_km": 15.22,
+    "palm_jumeirah_km": 12.02,
+    "dubai_airport_km": 24.72
+  },
+  "dugasta-warsan": {
+    "dubai_mall_km": 12.62,
+    "palm_jumeirah_km": 26.47,
+    "dubai_airport_km": 12.02
+  },
+  "7-seasons": {
+    "dubai_mall_km": 13.37,
+    "palm_jumeirah_km": 27.01,
+    "dubai_airport_km": 12.63
+  },
+  "moonsa-residences-2-2": {
+    "dubai_mall_km": 13.58,
+    "palm_jumeirah_km": 27.25,
+    "dubai_airport_km": 12.68
+  },
+  "iluka-residences-2": {
+    "dubai_mall_km": 10.58,
+    "palm_jumeirah_km": 24.92,
+    "dubai_airport_km": 8.65
+  },
+  "ocean-tower": {
+    "dubai_mall_km": 9.98,
+    "palm_jumeirah_km": 24.7,
+    "dubai_airport_km": 7.97
+  },
+  "ab-cavalier-2": {
+    "dubai_mall_km": 17.39,
+    "palm_jumeirah_km": 11.31,
+    "dubai_airport_km": 27.16
+  },
+  "golf-point": {
+    "dubai_mall_km": 39.85,
+    "palm_jumeirah_km": 29.14,
+    "dubai_airport_km": 49.11
+  },
+  "time-3": {
+    "dubai_mall_km": 15.2,
+    "palm_jumeirah_km": 25.42,
+    "dubai_airport_km": 17.47
+  },
+  "la-mer-by-elie-saab": {
+    "dubai_mall_km": 71.41,
+    "palm_jumeirah_km": 87.74,
+    "dubai_airport_km": 60.97
+  },
+  "gharbi-i-residences": {
+    "dubai_mall_km": 15.98,
+    "palm_jumeirah_km": 12.68,
+    "dubai_airport_km": 25.33
+  },
+  "knightsbridge-phase-1": {
+    "dubai_mall_km": 10.3,
+    "palm_jumeirah_km": 22.22,
+    "dubai_airport_km": 13.67
+  },
+  "the-arthouse": {
+    "dubai_mall_km": 114.72,
+    "palm_jumeirah_km": 97.92,
+    "dubai_airport_km": 125.51
+  },
+  "club-place": {
+    "dubai_mall_km": 8.03,
+    "palm_jumeirah_km": 13.12,
+    "dubai_airport_km": 17.66
+  },
+  "ocean-pearl": {
+    "dubai_mall_km": 11.93,
+    "palm_jumeirah_km": 27.05,
+    "dubai_airport_km": 7.47
+  },
+  "mayfair-gardens": {
+    "dubai_mall_km": 2.42,
+    "palm_jumeirah_km": 17.99,
+    "dubai_airport_km": 10.15
+  },
+  "riverside-views-marine-1": {
+    "dubai_mall_km": 25.11,
+    "palm_jumeirah_km": 19.04,
+    "dubai_airport_km": 33.81
+  },
+  "hyde-residences": {
+    "dubai_mall_km": 11.04,
+    "palm_jumeirah_km": 11.42,
+    "dubai_airport_km": 20.85
+  },
+  "cove-edition-i": {
+    "dubai_mall_km": 15.95,
+    "palm_jumeirah_km": 25.78,
+    "dubai_airport_km": 18.27
+  },
+  "alba-tower-2": {
+    "dubai_mall_km": 3.01,
+    "palm_jumeirah_km": 18.76,
+    "dubai_airport_km": 9.47
+  },
+  "one-residence": {
+    "dubai_mall_km": 0.67,
+    "palm_jumeirah_km": 17.48,
+    "dubai_airport_km": 10.58
+  },
+  "the-pulse-townhouses-2": {
+    "dubai_mall_km": 28.62,
+    "palm_jumeirah_km": 21.75,
+    "dubai_airport_km": 37.23
+  },
+  "coral-beach-palm-grove-villas-phase-1": {
+    "dubai_mall_km": 58.14,
+    "palm_jumeirah_km": 74.15,
+    "dubai_airport_km": 47.96
+  },
+  "ghaff-land-residence": {
+    "dubai_mall_km": 18.71,
+    "palm_jumeirah_km": 14.28,
+    "dubai_airport_km": 27.82
+  },
+  "damac-lagoons-costa-brava": {
+    "dubai_mall_km": 22.42,
+    "palm_jumeirah_km": 17.57,
+    "dubai_airport_km": 31.06
+  },
+  "manchester-tower": {
+    "dubai_mall_km": 20.69,
+    "palm_jumeirah_km": 6.06,
+    "dubai_airport_km": 31.42
+  },
+  "neila": {
+    "dubai_mall_km": 22.57,
+    "palm_jumeirah_km": 9.41,
+    "dubai_airport_km": 33.09
+  },
+  "nineteen-riviera-lagoon": {
+    "dubai_mall_km": 10.12,
+    "palm_jumeirah_km": 21.4,
+    "dubai_airport_km": 14.26
+  },
+  "anantara-south-palm-jumeirah-2": {
+    "dubai_mall_km": 14.82,
+    "palm_jumeirah_km": 2.42,
+    "dubai_airport_km": 25.62
+  },
+  "skyscape-altius": {
+    "dubai_mall_km": 5.8,
+    "palm_jumeirah_km": 20.83,
+    "dubai_airport_km": 9.75
+  },
+  "the-autograph-s-series": {
+    "dubai_mall_km": 17.61,
+    "palm_jumeirah_km": 10.35,
+    "dubai_airport_km": 27.6
+  },
+  "damac-lagoons-monte-carlo": {
+    "dubai_mall_km": 22.1,
+    "palm_jumeirah_km": 15.63,
+    "dubai_airport_km": 31.27
+  },
+  "peace-lagoons": {
+    "dubai_mall_km": 15.07,
+    "palm_jumeirah_km": 25.34,
+    "dubai_airport_km": 17.35
+  },
+  "bayshore-at-creek-beach": {
+    "dubai_mall_km": 6.97,
+    "palm_jumeirah_km": 23.63,
+    "dubai_airport_km": 6.12
+  },
+  "11-hills-park": {
+    "dubai_mall_km": 13.7,
+    "palm_jumeirah_km": 12.72,
+    "dubai_airport_km": 22.98
+  },
+  "urban-life-residences": {
+    "dubai_mall_km": 2.36,
+    "palm_jumeirah_km": 15.42,
+    "dubai_airport_km": 12.84
+  },
+  "takaya": {
+    "dubai_mall_km": 17.32,
+    "palm_jumeirah_km": 13.43,
+    "dubai_airport_km": 26.54
+  },
+  "al-jurf-gardens": {
+    "dubai_mall_km": 60.72,
+    "palm_jumeirah_km": 43.93,
+    "dubai_airport_km": 71.51
+  },
+  "ellington-house": {
+    "dubai_mall_km": 8.97,
+    "palm_jumeirah_km": 12.82,
+    "dubai_airport_km": 18.55
+  },
+  "damac-lagoons-mykonos": {
+    "dubai_mall_km": 21.83,
+    "palm_jumeirah_km": 15.77,
+    "dubai_airport_km": 30.92
+  },
+  "aqua-arc": {
+    "dubai_mall_km": 71.77,
+    "palm_jumeirah_km": 88.01,
+    "dubai_airport_km": 61.38
+  },
+  "havelock-heights": {
+    "dubai_mall_km": 16.97,
+    "palm_jumeirah_km": 9.82,
+    "dubai_airport_km": 27.04
+  },
+  "verdana-5-residences": {
+    "dubai_mall_km": 25.5,
+    "palm_jumeirah_km": 15.61,
+    "dubai_airport_km": 35.22
+  },
+  "reportage-village-abu-dhabi": {
+    "dubai_mall_km": 112.08,
+    "palm_jumeirah_km": 96.21,
+    "dubai_airport_km": 122.57
+  },
+  "next-coral": {
+    "dubai_mall_km": 12.04,
+    "palm_jumeirah_km": 27.21,
+    "dubai_airport_km": 7.39
+  },
+  "mansory-residences-by-amaal": {
+    "dubai_mall_km": 5.83,
+    "palm_jumeirah_km": 21.73,
+    "dubai_airport_km": 8.36
+  },
+  "al-thuraya-island-2": {
+    "dubai_mall_km": 41.85,
+    "palm_jumeirah_km": 57.86,
+    "dubai_airport_km": 31.82
+  },
+  "milos": {
+    "dubai_mall_km": 16.4,
+    "palm_jumeirah_km": 25.84,
+    "dubai_airport_km": 18.88
+  },
+  "binghatti-apex": {
+    "dubai_mall_km": 16.64,
+    "palm_jumeirah_km": 9.61,
+    "dubai_airport_km": 26.73
+  },
+  "verdes": {
+    "dubai_mall_km": 15.75,
+    "palm_jumeirah_km": 24.59,
+    "dubai_airport_km": 19
+  },
+  "skyscape-aura": {
+    "dubai_mall_km": 5.8,
+    "palm_jumeirah_km": 20.83,
+    "dubai_airport_km": 9.75
+  },
+  "riva-residence": {
+    "dubai_mall_km": 7.64,
+    "palm_jumeirah_km": 21.22,
+    "dubai_airport_km": 9.92
+  },
+  "belle-reve": {
+    "dubai_mall_km": 17.53,
+    "palm_jumeirah_km": 10.33,
+    "dubai_airport_km": 27.51
+  },
+  "verve-city-walk": {
+    "dubai_mall_km": 1.62,
+    "palm_jumeirah_km": 16.55,
+    "dubai_airport_km": 11.43
+  },
+  "w-residences-at-dubai-harbour": {
+    "dubai_mall_km": 18.06,
+    "palm_jumeirah_km": 3.64,
+    "dubai_airport_km": 28.85
+  },
+  "butterfly-towers": {
+    "dubai_mall_km": 14.8,
+    "palm_jumeirah_km": 13.18,
+    "dubai_airport_km": 23.96
+  },
+  "elo-3": {
+    "dubai_mall_km": 26.37,
+    "palm_jumeirah_km": 30.43,
+    "dubai_airport_km": 30.19
+  },
+  "vue-by-crystal-bay": {
+    "dubai_mall_km": 17.37,
+    "palm_jumeirah_km": 11.25,
+    "dubai_airport_km": 27.15
+  },
+  "the-bay-residence-ii": {
+    "dubai_mall_km": 106.38,
+    "palm_jumeirah_km": 90.62,
+    "dubai_airport_km": 116.85
+  },
+  "parkside-blvd": {
+    "dubai_mall_km": 15.91,
+    "palm_jumeirah_km": 12.81,
+    "dubai_airport_km": 25.22
+  },
+  "the-golf-place": {
+    "dubai_mall_km": 18.75,
+    "palm_jumeirah_km": 13.16,
+    "dubai_airport_km": 28.17
+  },
+  "marbella-resort-hotel": {
+    "dubai_mall_km": 12.54,
+    "palm_jumeirah_km": 12.46,
+    "dubai_airport_km": 20.97
+  },
+  "me-do-re-2": {
+    "dubai_mall_km": 19.57,
+    "palm_jumeirah_km": 5.88,
+    "dubai_airport_km": 30.26
+  },
+  "one-b-tower": {
+    "dubai_mall_km": 3.4,
+    "palm_jumeirah_km": 13.78,
+    "dubai_airport_km": 14.22
+  },
+  "the-heights-country-club-wellness": {
+    "dubai_mall_km": 26.55,
+    "palm_jumeirah_km": 21.62,
+    "dubai_airport_km": 34.69
+  },
+  "palatium-residences": {
+    "dubai_mall_km": 17.7,
+    "palm_jumeirah_km": 10.91,
+    "dubai_airport_km": 27.58
+  },
+  "skyscape-avenue": {
+    "dubai_mall_km": 5.13,
+    "palm_jumeirah_km": 20.49,
+    "dubai_airport_km": 9.51
+  },
+  "one-by-binghatti": {
+    "dubai_mall_km": 2.22,
+    "palm_jumeirah_km": 15.02,
+    "dubai_airport_km": 13.02
+  },
+  "tiger-sky-tower": {
+    "dubai_mall_km": 1.71,
+    "palm_jumeirah_km": 17.81,
+    "dubai_airport_km": 10.53
+  },
+  "the-atria-2": {
+    "dubai_mall_km": 2.49,
+    "palm_jumeirah_km": 14.86,
+    "dubai_airport_km": 13.23
+  },
+  "jardin-astral": {
+    "dubai_mall_km": 3.08,
+    "palm_jumeirah_km": 18.63,
+    "dubai_airport_km": 9.65
+  },
+  "kempinski-marina-residences": {
+    "dubai_mall_km": 18.04,
+    "palm_jumeirah_km": 4.25,
+    "dubai_airport_km": 28.8
+  },
+  "tonino-lamborghini-residences": {
+    "dubai_mall_km": 6.19,
+    "palm_jumeirah_km": 20.14,
+    "dubai_airport_km": 11.06
+  },
+  "sea-glints-mansions": {
+    "dubai_mall_km": 32.82,
+    "palm_jumeirah_km": 48.77,
+    "dubai_airport_km": 23.01
+  },
+  "gateway-residences": {
+    "dubai_mall_km": 32.91,
+    "palm_jumeirah_km": 49.02,
+    "dubai_airport_km": 22.94
+  },
+  "sealine-residence": {
+    "dubai_mall_km": 32.74,
+    "palm_jumeirah_km": 48.74,
+    "dubai_airport_km": 22.88
+  },
+  "aqua-flora": {
+    "dubai_mall_km": 14.2,
+    "palm_jumeirah_km": 13.02,
+    "dubai_airport_km": 23.39
+  },
+  "mangrove": {
+    "dubai_mall_km": 7.27,
+    "palm_jumeirah_km": 23.98,
+    "dubai_airport_km": 5.8
+  },
+  "athlon": {
+    "dubai_mall_km": 15.75,
+    "palm_jumeirah_km": 19.51,
+    "dubai_airport_km": 22.36
+  },
+  "coral-by-vision": {
+    "dubai_mall_km": 2.92,
+    "palm_jumeirah_km": 18.65,
+    "dubai_airport_km": 9.56
+  },
+  "edgewater-residences": {
+    "dubai_mall_km": 11.56,
+    "palm_jumeirah_km": 25.95,
+    "dubai_airport_km": 8.74
+  },
+  "davinci-tower": {
+    "dubai_mall_km": 1.32,
+    "palm_jumeirah_km": 16.91,
+    "dubai_airport_km": 11.31
+  },
+  "anantara-sharjah-residences": {
+    "dubai_mall_km": 26.04,
+    "palm_jumeirah_km": 41.96,
+    "dubai_airport_km": 16.54
+  },
+  "jade-tower": {
+    "dubai_mall_km": 12.85,
+    "palm_jumeirah_km": 19.01,
+    "dubai_airport_km": 19.28
+  },
+  "lum1nar": {
+    "dubai_mall_km": 20.53,
+    "palm_jumeirah_km": 10.69,
+    "dubai_airport_km": 30.65
+  },
+  "azura-residences": {
+    "dubai_mall_km": 9.44,
+    "palm_jumeirah_km": 24.26,
+    "dubai_airport_km": 7.82
+  },
+  "sha-villas": {
+    "dubai_mall_km": 60.58,
+    "palm_jumeirah_km": 43.69,
+    "dubai_airport_km": 71.39
+  },
+  "sha-residences": {
+    "dubai_mall_km": 60.57,
+    "palm_jumeirah_km": 43.69,
+    "dubai_airport_km": 71.38
+  },
+  "damac-lagoon-views-11": {
+    "dubai_mall_km": 20.45,
+    "palm_jumeirah_km": 16.03,
+    "dubai_airport_km": 29.26
+  },
+  "sea-view-residence": {
+    "dubai_mall_km": 11.85,
+    "palm_jumeirah_km": 26.94,
+    "dubai_airport_km": 7.5
+  },
+  "port-de-la-mer-le-pont": {
+    "dubai_mall_km": 5.49,
+    "palm_jumeirah_km": 17.78,
+    "dubai_airport_km": 11.84
+  },
+  "port-de-la-mer-la-voile": {
+    "dubai_mall_km": 5.16,
+    "palm_jumeirah_km": 17.96,
+    "dubai_airport_km": 11.45
+  },
+  "port-de-la-mer-la-cote": {
+    "dubai_mall_km": 5.49,
+    "palm_jumeirah_km": 17.96,
+    "dubai_airport_km": 11.67
+  },
+  "six-sensesresidences-marina": {
+    "dubai_mall_km": 17.72,
+    "palm_jumeirah_km": 4.19,
+    "dubai_airport_km": 28.48
+  },
+  "q-gardens-aliya": {
+    "dubai_mall_km": 17.46,
+    "palm_jumeirah_km": 11.71,
+    "dubai_airport_km": 27.14
+  },
+  "binghatti-hills": {
+    "dubai_mall_km": 14.38,
+    "palm_jumeirah_km": 13.2,
+    "dubai_airport_km": 23.52
+  },
+  "beach-oasis-2": {
+    "dubai_mall_km": 18.5,
+    "palm_jumeirah_km": 14.37,
+    "dubai_airport_km": 27.56
+  },
+  "riviera-69": {
+    "dubai_mall_km": 4.51,
+    "palm_jumeirah_km": 19.34,
+    "dubai_airport_km": 10.47
+  },
+  "primero-residences": {
+    "dubai_mall_km": 24.15,
+    "palm_jumeirah_km": 11.38,
+    "dubai_airport_km": 34.54
+  },
+  "diamondz": {
+    "dubai_mall_km": 20.37,
+    "palm_jumeirah_km": 6.59,
+    "dubai_airport_km": 31.05
+  },
+  "valo": {
+    "dubai_mall_km": 7.41,
+    "palm_jumeirah_km": 24.26,
+    "dubai_airport_km": 5.23
+  },
+  "the-waterway": {
+    "dubai_mall_km": 5.16,
+    "palm_jumeirah_km": 20.9,
+    "dubai_airport_km": 8.93
+  },
+  "vitality-residence": {
+    "dubai_mall_km": 16.74,
+    "palm_jumeirah_km": 10.38,
+    "dubai_airport_km": 26.68
+  },
+  "casa-vista-residence": {
+    "dubai_mall_km": 17.43,
+    "palm_jumeirah_km": 11.64,
+    "dubai_airport_km": 27.13
+  },
+  "mag-city-townhouses": {
+    "dubai_mall_km": 6.21,
+    "palm_jumeirah_km": 15.72,
+    "dubai_airport_km": 14.9
+  },
+  "damac-hills-2-victoria": {
+    "dubai_mall_km": 26.15,
+    "palm_jumeirah_km": 29.86,
+    "dubai_airport_km": 30.23
+  },
+  "elo-2": {
+    "dubai_mall_km": 26.36,
+    "palm_jumeirah_km": 30.47,
+    "dubai_airport_km": 30.15
+  },
+  "opal-gardens": {
+    "dubai_mall_km": 9.76,
+    "palm_jumeirah_km": 20.98,
+    "dubai_airport_km": 14.21
+  },
+  "rixos-dubai-islands": {
+    "dubai_mall_km": 12.4,
+    "palm_jumeirah_km": 27.37,
+    "dubai_airport_km": 7.9
+  },
+  "talia-the-valley": {
+    "dubai_mall_km": 27.12,
+    "palm_jumeirah_km": 34.75,
+    "dubai_airport_km": 28.28
+  },
+  "rivana-the-valley": {
+    "dubai_mall_km": 27.45,
+    "palm_jumeirah_km": 35.06,
+    "dubai_airport_km": 28.58
+  },
+  "jewel": {
+    "dubai_mall_km": 25.14,
+    "palm_jumeirah_km": 11.61,
+    "dubai_airport_km": 35.61
+  },
+  "nouran-living": {
+    "dubai_mall_km": 113.41,
+    "palm_jumeirah_km": 96.72,
+    "dubai_airport_km": 124.17
+  },
+  "elo": {
+    "dubai_mall_km": 26.34,
+    "palm_jumeirah_km": 30.54,
+    "dubai_airport_km": 30.07
+  },
+  "electra": {
+    "dubai_mall_km": 18.45,
+    "palm_jumeirah_km": 11.32,
+    "dubai_airport_km": 28.29
+  },
+  "the-f1fth": {
+    "dubai_mall_km": 15.95,
+    "palm_jumeirah_km": 9.67,
+    "dubai_airport_km": 26.01
+  },
+  "bloom-living-seville": {
+    "dubai_mall_km": 109.07,
+    "palm_jumeirah_km": 93.79,
+    "dubai_airport_km": 119.36
+  },
+  "karl-lagerfeld-villas-2": {
+    "dubai_mall_km": 9.82,
+    "palm_jumeirah_km": 21.47,
+    "dubai_airport_km": 13.81
+  },
+  "seaside": {
+    "dubai_mall_km": 10.79,
+    "palm_jumeirah_km": 25.56,
+    "dubai_airport_km": 7.94
+  },
+  "binghatti-phoenix": {
+    "dubai_mall_km": 17.93,
+    "palm_jumeirah_km": 11.48,
+    "dubai_airport_km": 27.69
+  },
+  "binghatti-avenue": {
+    "dubai_mall_km": 4.02,
+    "palm_jumeirah_km": 21.16,
+    "dubai_airport_km": 6.9
+  },
+  "south-living": {
+    "dubai_mall_km": 27.88,
+    "palm_jumeirah_km": 21.48,
+    "dubai_airport_km": 36.4
+  },
+  "living-legends-phase-5": {
+    "dubai_mall_km": 13.05,
+    "palm_jumeirah_km": 17.83,
+    "dubai_airport_km": 20.17
+  },
+  "vivanti-residences": {
+    "dubai_mall_km": 16.83,
+    "palm_jumeirah_km": 10.52,
+    "dubai_airport_km": 26.74
+  },
+  "eleve": {
+    "dubai_mall_km": 30.7,
+    "palm_jumeirah_km": 16.41,
+    "dubai_airport_km": 41.16
+  },
+  "sonate-residences": {
+    "dubai_mall_km": 19.94,
+    "palm_jumeirah_km": 10.62,
+    "dubai_airport_km": 30.03
+  },
+  "lucky-oasis-residence": {
+    "dubai_mall_km": 17.46,
+    "palm_jumeirah_km": 11.52,
+    "dubai_airport_km": 27.18
+  },
+  "wadi-villas": {
+    "dubai_mall_km": 10.3,
+    "palm_jumeirah_km": 21.52,
+    "dubai_airport_km": 14.37
+  },
+  "the-alba-residences": {
+    "dubai_mall_km": 15.45,
+    "palm_jumeirah_km": 2.17,
+    "dubai_airport_km": 26.16
+  },
+  "99-parkplace": {
+    "dubai_mall_km": 17.84,
+    "palm_jumeirah_km": 10.94,
+    "dubai_airport_km": 27.72
+  },
+  "regent-residences-dubai-sankari-place": {
+    "dubai_mall_km": 1.29,
+    "palm_jumeirah_km": 17.27,
+    "dubai_airport_km": 10.96
+  },
+  "hatimi-residences": {
+    "dubai_mall_km": 10.57,
+    "palm_jumeirah_km": 24.82,
+    "dubai_airport_km": 8.83
+  },
+  "bay-villas-dubai-islands": {
+    "dubai_mall_km": 14.34,
+    "palm_jumeirah_km": 29.44,
+    "dubai_airport_km": 8.43
+  },
+  "ramhan-island-villas-phase-3": {
+    "dubai_mall_km": 105.28,
+    "palm_jumeirah_km": 88.82,
+    "dubai_airport_km": 115.98
+  },
+  "cove": {
+    "dubai_mall_km": 14.66,
+    "palm_jumeirah_km": 25.01,
+    "dubai_airport_km": 17.05
+  },
+  "safa-gate": {
+    "dubai_mall_km": 3.37,
+    "palm_jumeirah_km": 13.78,
+    "dubai_airport_km": 14.17
+  },
+  "enaya-residences": {
+    "dubai_mall_km": 20.08,
+    "palm_jumeirah_km": 10.52,
+    "dubai_airport_km": 30.2
+  },
+  "bliss-homes": {
+    "dubai_mall_km": 16.07,
+    "palm_jumeirah_km": 25.74,
+    "dubai_airport_km": 18.48
+  },
+  "kaya": {
+    "dubai_mall_km": 21.36,
+    "palm_jumeirah_km": 20.37,
+    "dubai_airport_km": 28.74
+  },
+  "nesba-2": {
+    "dubai_mall_km": 23.13,
+    "palm_jumeirah_km": 40.26,
+    "dubai_airport_km": 12.32
+  },
+  "binghatti-phantom": {
+    "dubai_mall_km": 16.6,
+    "palm_jumeirah_km": 11.16,
+    "dubai_airport_km": 26.36
+  },
+  "one-park-central": {
+    "dubai_mall_km": 17.56,
+    "palm_jumeirah_km": 10.38,
+    "dubai_airport_km": 27.54
+  },
+  "w1nner": {
+    "dubai_mall_km": 19.16,
+    "palm_jumeirah_km": 10.87,
+    "dubai_airport_km": 29.14
+  },
+  "nobu-residences-al-marjan-island": {
+    "dubai_mall_km": 71.31,
+    "palm_jumeirah_km": 87.63,
+    "dubai_airport_km": 60.87
+  },
+  "squarex-residence": {
+    "dubai_mall_km": 17.06,
+    "palm_jumeirah_km": 10.17,
+    "dubai_airport_km": 27.05
+  },
+  "rove-home-marasi-drive": {
+    "dubai_mall_km": 1.85,
+    "palm_jumeirah_km": 15.93,
+    "dubai_airport_km": 12.29
+  },
+  "sobha-orbis": {
+    "dubai_mall_km": 16.73,
+    "palm_jumeirah_km": 14.43,
+    "dubai_airport_km": 25.6
+  },
+  "keturah-resort": {
+    "dubai_mall_km": 4.1,
+    "palm_jumeirah_km": 21.15,
+    "dubai_airport_km": 7.1
+  },
+  "sama-yas-by-aldar": {
+    "dubai_mall_km": 101.76,
+    "palm_jumeirah_km": 85.81,
+    "dubai_airport_km": 112.29
+  },
+  "faradis-tower": {
+    "dubai_mall_km": 15.31,
+    "palm_jumeirah_km": 31.56,
+    "dubai_airport_km": 6.54
+  },
+  "rixos-residences": {
+    "dubai_mall_km": 0.64,
+    "palm_jumeirah_km": 17.13,
+    "dubai_airport_km": 10.94
+  },
+  "riviera-67": {
+    "dubai_mall_km": 4.46,
+    "palm_jumeirah_km": 19.33,
+    "dubai_airport_km": 10.43
+  },
+  "helvetia-residences-2": {
+    "dubai_mall_km": 18.27,
+    "palm_jumeirah_km": 11.25,
+    "dubai_airport_km": 28.11
+  },
+  "cello-residences": {
+    "dubai_mall_km": 18.15,
+    "palm_jumeirah_km": 10.45,
+    "dubai_airport_km": 28.15
+  },
+  "fh-residency": {
+    "dubai_mall_km": 19.99,
+    "palm_jumeirah_km": 10.62,
+    "dubai_airport_km": 30.08
+  },
+  "manarat-living-2": {
+    "dubai_mall_km": 114.2,
+    "palm_jumeirah_km": 97.43,
+    "dubai_airport_km": 124.98
+  },
+  "burj-azizi": {
+    "dubai_mall_km": 3.01,
+    "palm_jumeirah_km": 18.99,
+    "dubai_airport_km": 9.19
+  },
+  "trinity": {
+    "dubai_mall_km": 15.91,
+    "palm_jumeirah_km": 12.57,
+    "dubai_airport_km": 25.28
+  },
+  "the-east-crest-by-meteora": {
+    "dubai_mall_km": 16.48,
+    "palm_jumeirah_km": 11.28,
+    "dubai_airport_km": 26.21
+  },
+  "santorini-residences": {
+    "dubai_mall_km": 20.61,
+    "palm_jumeirah_km": 10.7,
+    "dubai_airport_km": 30.74
+  },
+  "binghatti-rose": {
+    "dubai_mall_km": 17.53,
+    "palm_jumeirah_km": 9.99,
+    "dubai_airport_km": 27.58
+  },
+  "habtoor-grande-residence": {
+    "dubai_mall_km": 18.63,
+    "palm_jumeirah_km": 4.02,
+    "dubai_airport_km": 29.41
+  },
+  "aeon": {
+    "dubai_mall_km": 7.32,
+    "palm_jumeirah_km": 24.13,
+    "dubai_airport_km": 5.43
+  },
+  "red-square": {
+    "dubai_mall_km": 20.1,
+    "palm_jumeirah_km": 10.61,
+    "dubai_airport_km": 30.21
+  },
+  "manta-bay": {
+    "dubai_mall_km": 71.48,
+    "palm_jumeirah_km": 87.69,
+    "dubai_airport_km": 61.11
+  },
+  "bayz-101": {
+    "dubai_mall_km": 1.75,
+    "palm_jumeirah_km": 15.43,
+    "dubai_airport_km": 12.52
+  },
+  "westwood-grande": {
+    "dubai_mall_km": 17.85,
+    "palm_jumeirah_km": 10.15,
+    "dubai_airport_km": 27.89
+  },
+  "vista-del-mar": {
+    "dubai_mall_km": 106.84,
+    "palm_jumeirah_km": 91.01,
+    "dubai_airport_km": 117.33
+  },
+  "taormina-village": {
+    "dubai_mall_km": 11.98,
+    "palm_jumeirah_km": 18.14,
+    "dubai_airport_km": 18.83
+  },
+  "bentley-home": {
+    "dubai_mall_km": 9.95,
+    "palm_jumeirah_km": 21.94,
+    "dubai_airport_km": 13.49
+  },
+  "serene-gardens-ii": {
+    "dubai_mall_km": 22.28,
+    "palm_jumeirah_km": 9.45,
+    "dubai_airport_km": 32.76
+  },
+  "aeternitas": {
+    "dubai_mall_km": 17.86,
+    "palm_jumeirah_km": 4.24,
+    "dubai_airport_km": 28.62
+  },
+  "mercer-house": {
+    "dubai_mall_km": 20.72,
+    "palm_jumeirah_km": 6.91,
+    "dubai_airport_km": 31.38
+  },
+  "the-beach-residence": {
+    "dubai_mall_km": 70.95,
+    "palm_jumeirah_km": 87.2,
+    "dubai_airport_km": 60.56
+  },
+  "iconic-tower": {
+    "dubai_mall_km": 15.35,
+    "palm_jumeirah_km": 4.64,
+    "dubai_airport_km": 26.09
+  },
+  "jw-marriott-residences": {
+    "dubai_mall_km": 71.66,
+    "palm_jumeirah_km": 87.99,
+    "dubai_airport_km": 61.21
+  },
+  "the-orchard-place": {
+    "dubai_mall_km": 17.1,
+    "palm_jumeirah_km": 10.93,
+    "dubai_airport_km": 26.94
+  },
+  "the-beach-house": {
+    "dubai_mall_km": 71.25,
+    "palm_jumeirah_km": 87.52,
+    "dubai_airport_km": 60.84
+  },
+  "quattro-del-mar": {
+    "dubai_mall_km": 80.85,
+    "palm_jumeirah_km": 97.38,
+    "dubai_airport_km": 70.26
+  },
+  "q-gardens-lofts-2": {
+    "dubai_mall_km": 17.3,
+    "palm_jumeirah_km": 11.05,
+    "dubai_airport_km": 27.12
+  },
+  "mercedes-benz-places-by-binghatti": {
+    "dubai_mall_km": 1,
+    "palm_jumeirah_km": 16.72,
+    "dubai_airport_km": 11.4
+  },
+  "eden-house-the-canal": {
+    "dubai_mall_km": 4.2,
+    "palm_jumeirah_km": 13.53,
+    "dubai_airport_km": 14.53
+  },
+  "address-residences": {
+    "dubai_mall_km": 71.73,
+    "palm_jumeirah_km": 87.92,
+    "dubai_airport_km": 61.37
+  },
+  "il-teatro": {
+    "dubai_mall_km": 23.71,
+    "palm_jumeirah_km": 40.83,
+    "dubai_airport_km": 12.9
+  },
+  "views-v": {
+    "dubai_mall_km": 17.62,
+    "palm_jumeirah_km": 10.85,
+    "dubai_airport_km": 27.5
+  },
+  "ag-9ine": {
+    "dubai_mall_km": 15.78,
+    "palm_jumeirah_km": 25.29,
+    "dubai_airport_km": 18.45
+  },
+  "360-riverside-crescent": {
+    "dubai_mall_km": 5.11,
+    "palm_jumeirah_km": 20.27,
+    "dubai_airport_km": 9.8
+  },
+  "rise-residences-2": {
+    "dubai_mall_km": 15.96,
+    "palm_jumeirah_km": 9.84,
+    "dubai_airport_km": 25.99
+  },
+  "al-ameera-village-2": {
+    "dubai_mall_km": 35.82,
+    "palm_jumeirah_km": 52.92,
+    "dubai_airport_km": 25
+  },
+  "vela-viento": {
+    "dubai_mall_km": 1.23,
+    "palm_jumeirah_km": 17.72,
+    "dubai_airport_km": 10.47
+  },
+  "rosso-bay-residences": {
+    "dubai_mall_km": 70.05,
+    "palm_jumeirah_km": 86.44,
+    "dubai_airport_km": 59.57
+  },
+  "nikki-beach-residences-2": {
+    "dubai_mall_km": 70.05,
+    "palm_jumeirah_km": 86.44,
+    "dubai_airport_km": 59.57
+  },
+  "oasis-tower": {
+    "dubai_mall_km": 28.25,
+    "palm_jumeirah_km": 44.57,
+    "dubai_airport_km": 18.17
+  },
+  "ajman-creek-towers": {
+    "dubai_mall_km": 28.37,
+    "palm_jumeirah_km": 44.69,
+    "dubai_airport_km": 18.27
+  },
+  "moonstone": {
+    "dubai_mall_km": 70.32,
+    "palm_jumeirah_km": 86.62,
+    "dubai_airport_km": 59.89
+  },
+  "lumina-vista": {
+    "dubai_mall_km": 17.64,
+    "palm_jumeirah_km": 10.63,
+    "dubai_airport_km": 27.57
+  },
+  "maya-5": {
+    "dubai_mall_km": 20.77,
+    "palm_jumeirah_km": 10.63,
+    "dubai_airport_km": 30.93
+  },
+  "maison-elysee-i-ii": {
+    "dubai_mall_km": 17.5,
+    "palm_jumeirah_km": 11.68,
+    "dubai_airport_km": 27.19
+  },
+  "ozone1": {
+    "dubai_mall_km": 17.6,
+    "palm_jumeirah_km": 11.72,
+    "dubai_airport_km": 27.29
+  },
+  "nad-al-sheba-gardens-phase-4": {
+    "dubai_mall_km": 5.15,
+    "palm_jumeirah_km": 17.38,
+    "dubai_airport_km": 12.92
+  },
+  "riviera-61": {
+    "dubai_mall_km": 4.34,
+    "palm_jumeirah_km": 19.36,
+    "dubai_airport_km": 10.29
+  },
+  "one-river-point": {
+    "dubai_mall_km": 2.57,
+    "palm_jumeirah_km": 14.67,
+    "dubai_airport_km": 13.37
+  },
+  "oak-yard": {
+    "dubai_mall_km": 16.7,
+    "palm_jumeirah_km": 10.36,
+    "dubai_airport_km": 26.65
+  },
+  "samana-california-2": {
+    "dubai_mall_km": 22.43,
+    "palm_jumeirah_km": 9.48,
+    "dubai_airport_km": 32.92
+  },
+  "the-first-collection-dubai-sports-city": {
+    "dubai_mall_km": 17.5,
+    "palm_jumeirah_km": 10.57,
+    "dubai_airport_km": 27.43
+  },
+  "48-parkside": {
+    "dubai_mall_km": 16.2,
+    "palm_jumeirah_km": 13.2,
+    "dubai_airport_km": 25.41
+  },
+  "310-riverside-crescent": {
+    "dubai_mall_km": 5.42,
+    "palm_jumeirah_km": 20.31,
+    "dubai_airport_km": 10.06
+  },
+  "the-central-downtown": {
+    "dubai_mall_km": 15.32,
+    "palm_jumeirah_km": 12.5,
+    "dubai_airport_km": 24.69
+  },
+  "haven-living": {
+    "dubai_mall_km": 10.93,
+    "palm_jumeirah_km": 25.87,
+    "dubai_airport_km": 7.63
+  },
+  "elara": {
+    "dubai_mall_km": 11.34,
+    "palm_jumeirah_km": 6.35,
+    "dubai_airport_km": 22.14
+  },
+  "aqua-dimore": {
+    "dubai_mall_km": 14.56,
+    "palm_jumeirah_km": 13.13,
+    "dubai_airport_km": 23.72
+  },
+  "expo-valley-2": {
+    "dubai_mall_km": 28.2,
+    "palm_jumeirah_km": 18.08,
+    "dubai_airport_km": 37.81
+  },
+  "sapphire-32": {
+    "dubai_mall_km": 17.29,
+    "palm_jumeirah_km": 10.94,
+    "dubai_airport_km": 27.14
+  },
+  "mama-residence": {
+    "dubai_mall_km": 2.06,
+    "palm_jumeirah_km": 15.61,
+    "dubai_airport_km": 12.6
+  },
+  "olivia-residences": {
+    "dubai_mall_km": 24.83,
+    "palm_jumeirah_km": 14.4,
+    "dubai_airport_km": 34.72
+  },
+  "sun-island": {
+    "dubai_mall_km": 42.15,
+    "palm_jumeirah_km": 58.24,
+    "dubai_airport_km": 32.05
+  },
+  "blue-bay-walk": {
+    "dubai_mall_km": 41.92,
+    "palm_jumeirah_km": 58.09,
+    "dubai_airport_km": 31.75
+  },
+  "binghatti-tulip": {
+    "dubai_mall_km": 16.74,
+    "palm_jumeirah_km": 10.93,
+    "dubai_airport_km": 26.56
+  },
+  "trussardi-residences": {
+    "dubai_mall_km": 22.67,
+    "palm_jumeirah_km": 9.79,
+    "dubai_airport_km": 33.14
+  },
+  "floating-residences": {
+    "dubai_mall_km": 12.02,
+    "palm_jumeirah_km": 11.72,
+    "dubai_airport_km": 20.79
+  },
+  "laya-courtyard": {
+    "dubai_mall_km": 18.74,
+    "palm_jumeirah_km": 14.41,
+    "dubai_airport_km": 27.81
+  },
+  "350-riverside-crescent": {
+    "dubai_mall_km": 5.19,
+    "palm_jumeirah_km": 20.29,
+    "dubai_airport_km": 9.86
+  },
+  "samana-manhattan": {
+    "dubai_mall_km": 18.26,
+    "palm_jumeirah_km": 11.51,
+    "dubai_airport_km": 28.04
+  },
+  "manzel-majlis-residential-complex": {
+    "dubai_mall_km": 117.56,
+    "palm_jumeirah_km": 100.92,
+    "dubai_airport_km": 128.31
+  },
+  "gardenia-bay": {
+    "dubai_mall_km": 102.96,
+    "palm_jumeirah_km": 87.19,
+    "dubai_airport_km": 113.43
+  },
+  "marriott-jvc": {
+    "dubai_mall_km": 16.42,
+    "palm_jumeirah_km": 11.3,
+    "dubai_airport_km": 26.14
+  },
+  "monaco-mansions": {
+    "dubai_mall_km": 42.04,
+    "palm_jumeirah_km": 30.65,
+    "dubai_airport_km": 51.45
+  },
+  "nima-the-valley": {
+    "dubai_mall_km": 27.84,
+    "palm_jumeirah_km": 35.17,
+    "dubai_airport_km": 29.12
+  },
+  "aria-2": {
+    "dubai_mall_km": 21.16,
+    "palm_jumeirah_km": 20.51,
+    "dubai_airport_km": 28.45
+  },
+  "nautica-towers": {
+    "dubai_mall_km": 7.51,
+    "palm_jumeirah_km": 21.11,
+    "dubai_airport_km": 9.91
+  },
+  "oceano": {
+    "dubai_mall_km": 71.81,
+    "palm_jumeirah_km": 88.08,
+    "dubai_airport_km": 61.4
+  },
+  "izzzilife-mint": {
+    "dubai_mall_km": 18.52,
+    "palm_jumeirah_km": 10.98,
+    "dubai_airport_km": 28.44
+  },
+  "palm-jebel-ali": {
+    "dubai_mall_km": 37.65,
+    "palm_jumeirah_km": 20.72,
+    "dubai_airport_km": 48.47
+  },
+  "floarea-residence-2": {
+    "dubai_mall_km": 15.55,
+    "palm_jumeirah_km": 12.02,
+    "dubai_airport_km": 25.07
+  },
+  "porto-playa": {
+    "dubai_mall_km": 81.28,
+    "palm_jumeirah_km": 97.79,
+    "dubai_airport_km": 70.7
+  },
+  "orla-infinity": {
+    "dubai_mall_km": 18.9,
+    "palm_jumeirah_km": 1.93,
+    "dubai_airport_km": 29.64
+  },
+  "weybridge-gardens": {
+    "dubai_mall_km": 15.97,
+    "palm_jumeirah_km": 25.82,
+    "dubai_airport_km": 18.26
+  },
+  "trillionaire-residences": {
+    "dubai_mall_km": 1.51,
+    "palm_jumeirah_km": 16.49,
+    "dubai_airport_km": 11.73
+  },
+  "lilium-tower": {
+    "dubai_mall_km": 20.2,
+    "palm_jumeirah_km": 10.57,
+    "dubai_airport_km": 30.32
+  },
+  "oceanz": {
+    "dubai_mall_km": 8.54,
+    "palm_jumeirah_km": 21.69,
+    "dubai_airport_km": 10.36
+  },
+  "adeba-azizi-residence": {
+    "dubai_mall_km": 4.41,
+    "palm_jumeirah_km": 21.55,
+    "dubai_airport_km": 6.54
+  },
+  "vyb-2": {
+    "dubai_mall_km": 2.28,
+    "palm_jumeirah_km": 15.64,
+    "dubai_airport_km": 12.66
+  },
+  "eywa-the-tree-of-life": {
+    "dubai_mall_km": 1.71,
+    "palm_jumeirah_km": 15.85,
+    "dubai_airport_km": 12.3
+  },
+  "bloom-arjaan-by-rotana": {
+    "dubai_mall_km": 113.67,
+    "palm_jumeirah_km": 96.96,
+    "dubai_airport_km": 124.44
+  },
+  "rove-home-downtown": {
+    "dubai_mall_km": 1.17,
+    "palm_jumeirah_km": 16.02,
+    "dubai_airport_km": 11.98
+  },
+  "tranquil-wellness-residences": {
+    "dubai_mall_km": 17.92,
+    "palm_jumeirah_km": 9.76,
+    "dubai_airport_km": 28.03
+  },
+  "the-mayfair": {
+    "dubai_mall_km": 22.18,
+    "palm_jumeirah_km": 21.83,
+    "dubai_airport_km": 29.13
+  },
+  "samana-golf-views": {
+    "dubai_mall_km": 18.53,
+    "palm_jumeirah_km": 12.52,
+    "dubai_airport_km": 28.1
+  },
+  "coral-reef": {
+    "dubai_mall_km": 8.04,
+    "palm_jumeirah_km": 21.51,
+    "dubai_airport_km": 9.99
+  },
+  "binghatti-orchid": {
+    "dubai_mall_km": 17,
+    "palm_jumeirah_km": 9.96,
+    "dubai_airport_km": 27.04
+  },
+  "paradise-hills": {
+    "dubai_mall_km": 20.71,
+    "palm_jumeirah_km": 15.59,
+    "dubai_airport_km": 29.69
+  },
+  "aysha-residences-one": {
+    "dubai_mall_km": 16.52,
+    "palm_jumeirah_km": 32.42,
+    "dubai_airport_km": 8.18
+  },
+  "riviera-65": {
+    "dubai_mall_km": 4.42,
+    "palm_jumeirah_km": 19.35,
+    "dubai_airport_km": 10.38
+  },
+  "parkside-views": {
+    "dubai_mall_km": 10.86,
+    "palm_jumeirah_km": 11.32,
+    "dubai_airport_km": 20.71
+  },
+  "greenside-residence": {
+    "dubai_mall_km": 8.79,
+    "palm_jumeirah_km": 12.85,
+    "dubai_airport_km": 18.39
+  },
+  "masaar-saro": {
+    "dubai_mall_km": 32.67,
+    "palm_jumeirah_km": 49.33,
+    "dubai_airport_km": 23.08
+  },
+  "shamsa": {
+    "dubai_mall_km": 28.19,
+    "palm_jumeirah_km": 18.07,
+    "dubai_airport_km": 37.8
+  },
+  "the-beach-houses": {
+    "dubai_mall_km": 81.53,
+    "palm_jumeirah_km": 98.06,
+    "dubai_airport_km": 70.95
+  },
+  "the-haven": {
+    "dubai_mall_km": 12.1,
+    "palm_jumeirah_km": 18.56,
+    "dubai_airport_km": 18.71
+  },
+  "gateway-by-premier-choice": {
+    "dubai_mall_km": 17.04,
+    "palm_jumeirah_km": 10.08,
+    "dubai_airport_km": 27.05
+  },
+  "venice-damac-lagoons": {
+    "dubai_mall_km": 20.68,
+    "palm_jumeirah_km": 16.22,
+    "dubai_airport_km": 29.46
+  },
+  "saadiyat-lagoons-al-ghaf": {
+    "dubai_mall_km": 112.81,
+    "palm_jumeirah_km": 96.11,
+    "dubai_airport_km": 123.57
+  },
+  "anwa-aria": {
+    "dubai_mall_km": 8.09,
+    "palm_jumeirah_km": 21.54,
+    "dubai_airport_km": 10.02
+  },
+  "keturah-reserve-apartments": {
+    "dubai_mall_km": 5.53,
+    "palm_jumeirah_km": 15.69,
+    "dubai_airport_km": 14.42
+  },
+  "saadiyat-lagoons-al-sidr": {
+    "dubai_mall_km": 112.9,
+    "palm_jumeirah_km": 96.19,
+    "dubai_airport_km": 123.66
+  },
+  "saadiyat-lagoons-ethir": {
+    "dubai_mall_km": 112.87,
+    "palm_jumeirah_km": 96.19,
+    "dubai_airport_km": 123.63
+  },
+  "samana-california": {
+    "dubai_mall_km": 22.5,
+    "palm_jumeirah_km": 9.51,
+    "dubai_airport_km": 33
+  },
+  "pearl-house-ii": {
+    "dubai_mall_km": 17.4,
+    "palm_jumeirah_km": 11.36,
+    "dubai_airport_km": 27.15
+  },
+  "mudon-al-ranim-8": {
+    "dubai_mall_km": 20.17,
+    "palm_jumeirah_km": 18.01,
+    "dubai_airport_km": 28.25
+  },
+  "kayan-phase-2": {
+    "dubai_mall_km": 60.91,
+    "palm_jumeirah_km": 44.16,
+    "dubai_airport_km": 71.7
+  },
+  "district-one-west": {
+    "dubai_mall_km": 5.48,
+    "palm_jumeirah_km": 14.7,
+    "dubai_airport_km": 15
+  },
+  "sobha-reserve": {
+    "dubai_mall_km": 13.71,
+    "palm_jumeirah_km": 21.27,
+    "dubai_airport_km": 18.82
+  },
+  "masaar-sequoia": {
+    "dubai_mall_km": 32.64,
+    "palm_jumeirah_km": 49.36,
+    "dubai_airport_km": 22.95
+  },
+  "st-regis-residences": {
+    "dubai_mall_km": 0.63,
+    "palm_jumeirah_km": 17.26,
+    "dubai_airport_km": 10.8
+  },
+  "7-park-central": {
+    "dubai_mall_km": 16.49,
+    "palm_jumeirah_km": 11.24,
+    "dubai_airport_km": 26.24
+  },
+  "320-riverside-crescent": {
+    "dubai_mall_km": 5.55,
+    "palm_jumeirah_km": 20.47,
+    "dubai_airport_km": 9.98
+  },
+  "the-ritz-carlton-residences-2": {
+    "dubai_mall_km": 1.5,
+    "palm_jumeirah_km": 17.05,
+    "dubai_airport_km": 11.24
+  },
+  "the-ritz-carlton-residences": {
+    "dubai_mall_km": 4.11,
+    "palm_jumeirah_km": 21.17,
+    "dubai_airport_km": 7.09
+  },
+  "luma-park-views": {
+    "dubai_mall_km": 17.52,
+    "palm_jumeirah_km": 10.66,
+    "dubai_airport_km": 27.43
+  },
+  "golf-greens": {
+    "dubai_mall_km": 20.6,
+    "palm_jumeirah_km": 17.27,
+    "dubai_airport_km": 29.02
+  },
+  "pantheon-boulevard": {
+    "dubai_mall_km": 17.59,
+    "palm_jumeirah_km": 11.56,
+    "dubai_airport_km": 27.31
+  },
+  "baccarat": {
+    "dubai_mall_km": 0.89,
+    "palm_jumeirah_km": 16.7,
+    "dubai_airport_km": 11.39
+  },
+  "casa-canal": {
+    "dubai_mall_km": 3.75,
+    "palm_jumeirah_km": 13.54,
+    "dubai_airport_km": 14.4
+  },
+  "grove": {
+    "dubai_mall_km": 7.09,
+    "palm_jumeirah_km": 23.85,
+    "dubai_airport_km": 5.73
+  },
+  "rosewater": {
+    "dubai_mall_km": 7.08,
+    "palm_jumeirah_km": 23.85,
+    "dubai_airport_km": 5.71
+  },
+  "kyoto": {
+    "dubai_mall_km": 16.14,
+    "palm_jumeirah_km": 12.93,
+    "dubai_airport_km": 25.42
+  },
+  "so-uptown-dubai-residences": {
+    "dubai_mall_km": 20.6,
+    "palm_jumeirah_km": 6.97,
+    "dubai_airport_km": 31.25
+  },
+  "elitz-2": {
+    "dubai_mall_km": 16.06,
+    "palm_jumeirah_km": 9.59,
+    "dubai_airport_km": 26.14
+  },
+  "lucky-royale-residence": {
+    "dubai_mall_km": 16.88,
+    "palm_jumeirah_km": 10.46,
+    "dubai_airport_km": 26.81
+  },
+  "stonehenge-residences-2-2": {
+    "dubai_mall_km": 17.15,
+    "palm_jumeirah_km": 10.24,
+    "dubai_airport_km": 27.14
+  },
+  "royal-regency": {
+    "dubai_mall_km": 2.01,
+    "palm_jumeirah_km": 16,
+    "dubai_airport_km": 12.3
+  },
+  "binghatti-gardenia": {
+    "dubai_mall_km": 16.79,
+    "palm_jumeirah_km": 10.89,
+    "dubai_airport_km": 26.63
+  },
+  "aras-heights": {
+    "dubai_mall_km": 12.56,
+    "palm_jumeirah_km": 19.08,
+    "dubai_airport_km": 18.91
+  },
+  "jawaher-residences": {
+    "dubai_mall_km": 16.57,
+    "palm_jumeirah_km": 32.43,
+    "dubai_airport_km": 8.31
+  },
+  "the-source-2": {
+    "dubai_mall_km": 114.82,
+    "palm_jumeirah_km": 98.01,
+    "dubai_airport_km": 125.6
+  },
+  "binghatti-amber": {
+    "dubai_mall_km": 16.58,
+    "palm_jumeirah_km": 10.39,
+    "dubai_airport_km": 26.51
+  },
+  "arbor-view": {
+    "dubai_mall_km": 15.65,
+    "palm_jumeirah_km": 11.93,
+    "dubai_airport_km": 25.18
+  },
+  "empire-residence": {
+    "dubai_mall_km": 16.53,
+    "palm_jumeirah_km": 11.02,
+    "dubai_airport_km": 26.33
+  },
+  "q-gardens-lofts": {
+    "dubai_mall_km": 17.53,
+    "palm_jumeirah_km": 10.94,
+    "dubai_airport_km": 27.39
+  },
+  "marriott-residences": {
+    "dubai_mall_km": 2.21,
+    "palm_jumeirah_km": 15.57,
+    "dubai_airport_km": 12.69
+  },
+  "pearl-house": {
+    "dubai_mall_km": 17.41,
+    "palm_jumeirah_km": 11.14,
+    "dubai_airport_km": 27.22
+  },
+  "vela": {
+    "dubai_mall_km": 1.24,
+    "palm_jumeirah_km": 17.62,
+    "dubai_airport_km": 10.58
+  },
+  "north-43": {
+    "dubai_mall_km": 17.13,
+    "palm_jumeirah_km": 10.13,
+    "dubai_airport_km": 27.14
+  },
+  "sea-la-vie": {
+    "dubai_mall_km": 107.47,
+    "palm_jumeirah_km": 91.65,
+    "dubai_airport_km": 117.96
+  },
+  "society-house": {
+    "dubai_mall_km": 0.8,
+    "palm_jumeirah_km": 17.63,
+    "dubai_airport_km": 10.45
+  },
+  "riviera-63": {
+    "dubai_mall_km": 4.38,
+    "palm_jumeirah_km": 19.34,
+    "dubai_airport_km": 10.36
+  },
+  "bugatti-residences": {
+    "dubai_mall_km": 1.77,
+    "palm_jumeirah_km": 15.4,
+    "dubai_airport_km": 12.59
+  },
+  "kempinski-residences": {
+    "dubai_mall_km": 4.44,
+    "palm_jumeirah_km": 21.47,
+    "dubai_airport_km": 6.86
+  },
+  "condor-concept-7": {
+    "dubai_mall_km": 15.84,
+    "palm_jumeirah_km": 10.42,
+    "dubai_airport_km": 25.75
+  },
+  "armani-beach-residences": {
+    "dubai_mall_km": 14.95,
+    "palm_jumeirah_km": 2.36,
+    "dubai_airport_km": 25.69
+  },
+  "v1ter": {
+    "dubai_mall_km": 16.67,
+    "palm_jumeirah_km": 11.57,
+    "dubai_airport_km": 26.34
+  },
+  "damac-lagoons-morocco": {
+    "dubai_mall_km": 20.01,
+    "palm_jumeirah_km": 15.78,
+    "dubai_airport_km": 28.83
+  },
+  "al-habtoor-tower": {
+    "dubai_mall_km": 3.1,
+    "palm_jumeirah_km": 14.06,
+    "dubai_airport_km": 13.91
+  },
+  "binghatti-house-2": {
+    "dubai_mall_km": 16.94,
+    "palm_jumeirah_km": 9.73,
+    "dubai_airport_km": 27.02
+  },
+  "burj-binghatti-jacobco-residences": {
+    "dubai_mall_km": 1.76,
+    "palm_jumeirah_km": 17.83,
+    "dubai_airport_km": 10.54
+  },
+  "thyme": {
+    "dubai_mall_km": 2.21,
+    "palm_jumeirah_km": 15.85,
+    "dubai_airport_km": 12.17
+  },
+  "alef-noon-residence": {
+    "dubai_mall_km": 15.95,
+    "palm_jumeirah_km": 9.88,
+    "dubai_airport_km": 25.97
+  },
+  "hartland-ii-villas": {
+    "dubai_mall_km": 5.62,
+    "palm_jumeirah_km": 20.92,
+    "dubai_airport_km": 9.42
+  },
+  "ivy-gardens": {
+    "dubai_mall_km": 15.57,
+    "palm_jumeirah_km": 25.49,
+    "dubai_airport_km": 17.96
+  },
+  "oxford-gardens": {
+    "dubai_mall_km": 15.03,
+    "palm_jumeirah_km": 13.38,
+    "dubai_airport_km": 24.13
+  },
+  "creek-waters-2": {
+    "dubai_mall_km": 7,
+    "palm_jumeirah_km": 23.85,
+    "dubai_airport_km": 5.46
+  },
+  "bayview": {
+    "dubai_mall_km": 18.21,
+    "palm_jumeirah_km": 3.02,
+    "dubai_airport_km": 29.02
+  },
+  "riviera-59": {
+    "dubai_mall_km": 4.31,
+    "palm_jumeirah_km": 19.38,
+    "dubai_airport_km": 10.25
+  },
+  "330-riverside-crescent": {
+    "dubai_mall_km": 5.47,
+    "palm_jumeirah_km": 20.4,
+    "dubai_airport_km": 9.99
+  },
+  "design-quarter": {
+    "dubai_mall_km": 2.08,
+    "palm_jumeirah_km": 18.07,
+    "dubai_airport_km": 10.4
+  },
+  "canal-crown": {
+    "dubai_mall_km": 1.71,
+    "palm_jumeirah_km": 16.44,
+    "dubai_airport_km": 11.84
+  },
+  "damac-hills-golf-gate-2": {
+    "dubai_mall_km": 19.9,
+    "palm_jumeirah_km": 15.99,
+    "dubai_airport_km": 28.64
+  },
+  "como-residences": {
+    "dubai_mall_km": 16.57,
+    "palm_jumeirah_km": 1.96,
+    "dubai_airport_km": 27.39
+  },
+  "altai-tower": {
+    "dubai_mall_km": 21.16,
+    "palm_jumeirah_km": 10.84,
+    "dubai_airport_km": 31.31
+  },
+  "intercontinental-dubai": {
+    "dubai_mall_km": 12.43,
+    "palm_jumeirah_km": 12.6,
+    "dubai_airport_km": 20.81
+  },
+  "damac-bay-2-2": {
+    "dubai_mall_km": 17.94,
+    "palm_jumeirah_km": 3.79,
+    "dubai_airport_km": 28.72
+  },
+  "cte-dazur": {
+    "dubai_mall_km": 12.6,
+    "palm_jumeirah_km": 12.31,
+    "dubai_airport_km": 21.09
+  },
+  "dg1": {
+    "dubai_mall_km": 2.39,
+    "palm_jumeirah_km": 14.93,
+    "dubai_airport_km": 13.15
+  },
+  "the-crestmark": {
+    "dubai_mall_km": 1.23,
+    "palm_jumeirah_km": 17.01,
+    "dubai_airport_km": 11.19
+  },
+  "fashionz": {
+    "dubai_mall_km": 19.54,
+    "palm_jumeirah_km": 10.68,
+    "dubai_airport_km": 29.58
+  },
+  "seapoint": {
+    "dubai_mall_km": 18.03,
+    "palm_jumeirah_km": 2.91,
+    "dubai_airport_km": 28.84
+  },
+  "the-quayside": {
+    "dubai_mall_km": 2.32,
+    "palm_jumeirah_km": 15.04,
+    "dubai_airport_km": 13.06
+  },
+  "the-diplomat-residences": {
+    "dubai_mall_km": 21.99,
+    "palm_jumeirah_km": 21.59,
+    "dubai_airport_km": 29.01
+  },
+  "the-community-motor-city": {
+    "dubai_mall_km": 17.39,
+    "palm_jumeirah_km": 13.65,
+    "dubai_airport_km": 26.55
+  },
+  "sobha-creek-vistas": {
+    "dubai_mall_km": 3.24,
+    "palm_jumeirah_km": 18.7,
+    "dubai_airport_km": 10.29
+  },
+  "jomana": {
+    "dubai_mall_km": 11.37,
+    "palm_jumeirah_km": 6.3,
+    "dubai_airport_km": 22.18
+  },
+  "hadley-heights": {
+    "dubai_mall_km": 16.9,
+    "palm_jumeirah_km": 10.78,
+    "dubai_airport_km": 26.76
+  },
+  "erin": {
+    "dubai_mall_km": 2.2,
+    "palm_jumeirah_km": 15.72,
+    "dubai_airport_km": 12.29
+  },
+  "palace-residences-north": {
+    "dubai_mall_km": 6.94,
+    "palm_jumeirah_km": 23.75,
+    "dubai_airport_km": 5.64
+  },
+  "one-crescent": {
+    "dubai_mall_km": 15.21,
+    "palm_jumeirah_km": 2.28,
+    "dubai_airport_km": 25.93
+  },
+  "oakley-square-residences": {
+    "dubai_mall_km": 16.72,
+    "palm_jumeirah_km": 10.75,
+    "dubai_airport_km": 26.58
+  },
+  "binghatti-corner": {
+    "dubai_mall_km": 16.79,
+    "palm_jumeirah_km": 9.66,
+    "dubai_airport_km": 26.88
+  },
+  "biltmore-sufouh": {
+    "dubai_mall_km": 14.03,
+    "palm_jumeirah_km": 5.2,
+    "dubai_airport_km": 24.77
+  },
+  "seslia-tower-2": {
+    "dubai_mall_km": 19.1,
+    "palm_jumeirah_km": 10.88,
+    "dubai_airport_km": 29.07
+  },
+  "mykonos-signature": {
+    "dubai_mall_km": 15.68,
+    "palm_jumeirah_km": 12.63,
+    "dubai_airport_km": 25.03
+  },
+  "rukan-residence": {
+    "dubai_mall_km": 17.49,
+    "palm_jumeirah_km": 18.17,
+    "dubai_airport_km": 25.05
+  },
+  "me-do-re": {
+    "dubai_mall_km": 20.4,
+    "palm_jumeirah_km": 6.48,
+    "dubai_airport_km": 31.08
+  },
+  "marina-living": {
+    "dubai_mall_km": 20.43,
+    "palm_jumeirah_km": 5.95,
+    "dubai_airport_km": 31.15
+  },
+  "mar-casa": {
+    "dubai_mall_km": 8.19,
+    "palm_jumeirah_km": 21.56,
+    "dubai_airport_km": 10.1
+  },
+  "liv-lux": {
+    "dubai_mall_km": 18.81,
+    "palm_jumeirah_km": 4.5,
+    "dubai_airport_km": 29.58
+  },
+  "canal-heights-2": {
+    "dubai_mall_km": 1.51,
+    "palm_jumeirah_km": 16.48,
+    "dubai_airport_km": 11.74
+  },
+  "canal-heights": {
+    "dubai_mall_km": 1.54,
+    "palm_jumeirah_km": 16.36,
+    "dubai_airport_km": 11.85
+  },
+  "bluewaters-bay-2": {
+    "dubai_mall_km": 20.85,
+    "palm_jumeirah_km": 5.48,
+    "dubai_airport_km": 31.62
+  },
+  "399-hills-park": {
+    "dubai_mall_km": 9.07,
+    "palm_jumeirah_km": 12.81,
+    "dubai_airport_km": 18.64
+  },
+  "golf-grand": {
+    "dubai_mall_km": 8.56,
+    "palm_jumeirah_km": 13,
+    "dubai_airport_km": 18.14
+  },
+  "hotel-edge-by-rotana-navitas": {
+    "dubai_mall_km": 26.33,
+    "palm_jumeirah_km": 30.57,
+    "dubai_airport_km": 30.04
+  },
+  "damac-bay": {
+    "dubai_mall_km": 17.97,
+    "palm_jumeirah_km": 3.56,
+    "dubai_airport_km": 28.76
+  },
+  "upside": {
+    "dubai_mall_km": 1.69,
+    "palm_jumeirah_km": 17.44,
+    "dubai_airport_km": 10.92
+  },
+  "cedar": {
+    "dubai_mall_km": 7.22,
+    "palm_jumeirah_km": 23.95,
+    "dubai_airport_km": 5.76
+  },
+  "the-edge": {
+    "dubai_mall_km": 1.47,
+    "palm_jumeirah_km": 15.72,
+    "dubai_airport_km": 12.28
+  },
+  "azizi-grand": {
+    "dubai_mall_km": 19.33,
+    "palm_jumeirah_km": 12.02,
+    "dubai_airport_km": 29.08
+  },
+  "elvira": {
+    "dubai_mall_km": 10.67,
+    "palm_jumeirah_km": 11.42,
+    "dubai_airport_km": 20.51
+  },
+  "elevate": {
+    "dubai_mall_km": 15.09,
+    "palm_jumeirah_km": 13.36,
+    "dubai_airport_km": 24.19
+  },
+  "house-iv": {
+    "dubai_mall_km": 9.29,
+    "palm_jumeirah_km": 12.83,
+    "dubai_airport_km": 18.82
+  },
+  "ra1n": {
+    "dubai_mall_km": 16.92,
+    "palm_jumeirah_km": 11.74,
+    "dubai_airport_km": 26.56
+  },
+  "verde": {
+    "dubai_mall_km": 19.48,
+    "palm_jumeirah_km": 6.06,
+    "dubai_airport_km": 30.16
+  },
+  "binghatti-onyx": {
+    "dubai_mall_km": 17.16,
+    "palm_jumeirah_km": 9.64,
+    "dubai_airport_km": 27.26
+  },
+  "luma22": {
+    "dubai_mall_km": 16.29,
+    "palm_jumeirah_km": 9.81,
+    "dubai_airport_km": 26.33
+  },
+  "neva-residences": {
+    "dubai_mall_km": 15.73,
+    "palm_jumeirah_km": 10.38,
+    "dubai_airport_km": 25.64
+  },
+  "seahaven": {
+    "dubai_mall_km": 18.12,
+    "palm_jumeirah_km": 3.87,
+    "dubai_airport_km": 28.9
+  },
+  "riviera-azure": {
+    "dubai_mall_km": 4.26,
+    "palm_jumeirah_km": 19.4,
+    "dubai_airport_km": 10.18
+  },
+  "beach-oasis": {
+    "dubai_mall_km": 18.35,
+    "palm_jumeirah_km": 14.43,
+    "dubai_airport_km": 27.38
+  },
+  "binghatti-emerald": {
+    "dubai_mall_km": 17.06,
+    "palm_jumeirah_km": 9.83,
+    "dubai_airport_km": 27.12
+  },
+  "viewz": {
+    "dubai_mall_km": 20.21,
+    "palm_jumeirah_km": 6.39,
+    "dubai_airport_km": 30.89
+  },
+  "mag-330": {
+    "dubai_mall_km": 12.89,
+    "palm_jumeirah_km": 20.18,
+    "dubai_airport_km": 18.58
+  },
+  "uh": {
+    "dubai_mall_km": 19.94,
+    "palm_jumeirah_km": 6.39,
+    "dubai_airport_km": 30.61
+  },
+  "elitz": {
+    "dubai_mall_km": 16.05,
+    "palm_jumeirah_km": 10.91,
+    "dubai_airport_km": 25.85
+  },
+  "the-highbury": {
+    "dubai_mall_km": 3.34,
+    "palm_jumeirah_km": 18.82,
+    "dubai_airport_km": 10.21
+  },
+  "ocean-house": {
+    "dubai_mall_km": 14.71,
+    "palm_jumeirah_km": 2.45,
+    "dubai_airport_km": 25.49
+  },
+  "waves-opulence": {
+    "dubai_mall_km": 3.93,
+    "palm_jumeirah_km": 19.02,
+    "dubai_airport_km": 10.39
+  },
+  "sobha-one": {
+    "dubai_mall_km": 5.96,
+    "palm_jumeirah_km": 21.8,
+    "dubai_airport_km": 8.39
+  },
+  "the-v-tower": {
+    "dubai_mall_km": 16.11,
+    "palm_jumeirah_km": 25.64,
+    "dubai_airport_km": 18.62
+  },
+  "zumurud-tower": {
+    "dubai_mall_km": 20.38,
+    "palm_jumeirah_km": 5.82,
+    "dubai_airport_km": 31.11
+  },
+  "zenith-tower-a2": {
+    "dubai_mall_km": 18.95,
+    "palm_jumeirah_km": 13.35,
+    "dubai_airport_km": 28.35
+  },
+  "zada-tower": {
+    "dubai_mall_km": 2.3,
+    "palm_jumeirah_km": 14.89,
+    "dubai_airport_km": 13.12
+  },
+  "w-residences-dubai-the-palm": {
+    "dubai_mall_km": 19.69,
+    "palm_jumeirah_km": 2.6,
+    "dubai_airport_km": 30.49
+  },
+  "the-cove-ll": {
+    "dubai_mall_km": 6.57,
+    "palm_jumeirah_km": 23.28,
+    "dubai_airport_km": 6.16
+  },
+  "the-community": {
+    "dubai_mall_km": 19.81,
+    "palm_jumeirah_km": 10.62,
+    "dubai_airport_km": 29.88
+  },
+  "urban-oasis": {
+    "dubai_mall_km": 2.51,
+    "palm_jumeirah_km": 14.66,
+    "dubai_airport_km": 13.33
+  },
+  "uniestate-supreme-residence": {
+    "dubai_mall_km": 15.53,
+    "palm_jumeirah_km": 12.21,
+    "dubai_airport_km": 25
+  },
+  "uniestate-prime-tower": {
+    "dubai_mall_km": 16.33,
+    "palm_jumeirah_km": 10.18,
+    "dubai_airport_km": 26.3
+  },
+  "the-paragon": {
+    "dubai_mall_km": 1.99,
+    "palm_jumeirah_km": 15.81,
+    "dubai_airport_km": 12.43
+  },
+  "the-palm-tower": {
+    "dubai_mall_km": 16.86,
+    "palm_jumeirah_km": 1.34,
+    "dubai_airport_km": 27.67
+  },
+  "the-pad": {
+    "dubai_mall_km": 1.42,
+    "palm_jumeirah_km": 16.73,
+    "dubai_airport_km": 11.5
+  },
+  "the-opus": {
+    "dubai_mall_km": 1.61,
+    "palm_jumeirah_km": 15.56,
+    "dubai_airport_km": 12.43
+  },
+  "majestique-residence-2": {
+    "dubai_mall_km": 28.91,
+    "palm_jumeirah_km": 21.25,
+    "dubai_airport_km": 37.76
+  },
+  "majestine": {
+    "dubai_mall_km": 1.23,
+    "palm_jumeirah_km": 16.81,
+    "dubai_airport_km": 11.37
+  },
+  "maimoon-gardens": {
+    "dubai_mall_km": 15.81,
+    "palm_jumeirah_km": 10.65,
+    "dubai_airport_km": 25.66
+  },
+  "viridian": {
+    "dubai_mall_km": 2.04,
+    "palm_jumeirah_km": 16.02,
+    "dubai_airport_km": 11.99
+  },
+  "volare": {
+    "dubai_mall_km": 15.38,
+    "palm_jumeirah_km": 12.85,
+    "dubai_airport_km": 24.65
+  },
+  "vida-dubai-marina": {
+    "dubai_mall_km": 20.05,
+    "palm_jumeirah_km": 5.61,
+    "dubai_airport_km": 30.78
+  },
+  "vida-dubai-mall": {
+    "dubai_mall_km": 0.45,
+    "palm_jumeirah_km": 17.53,
+    "dubai_airport_km": 10.48
+  },
+  "tria": {
+    "dubai_mall_km": 12.4,
+    "palm_jumeirah_km": 24.46,
+    "dubai_airport_km": 14.22
+  },
+  "jenna-and-warda-apartments": {
+    "dubai_mall_km": 21.49,
+    "palm_jumeirah_km": 21.02,
+    "dubai_airport_km": 28.63
+  },
+  "torino": {
+    "dubai_mall_km": 15.39,
+    "palm_jumeirah_km": 12.01,
+    "dubai_airport_km": 24.9
+  },
+  "the-sterling": {
+    "dubai_mall_km": 0.97,
+    "palm_jumeirah_km": 16.92,
+    "dubai_airport_km": 11.21
+  },
+  "the-spirit": {
+    "dubai_mall_km": 18.54,
+    "palm_jumeirah_km": 12.72,
+    "dubai_airport_km": 28.05
+  },
+  "the-residences-at-marina-gate-1": {
+    "dubai_mall_km": 18.09,
+    "palm_jumeirah_km": 4.35,
+    "dubai_airport_km": 28.84
+  },
+  "the-residence-burj-khalifa": {
+    "dubai_mall_km": 0.59,
+    "palm_jumeirah_km": 16.59,
+    "dubai_airport_km": 11.37
+  },
+  "the-nook": {
+    "dubai_mall_km": 26.1,
+    "palm_jumeirah_km": 11.16,
+    "dubai_airport_km": 36.74
+  },
+  "the-grand": {
+    "dubai_mall_km": 6.43,
+    "palm_jumeirah_km": 23.32,
+    "dubai_airport_km": 5.68
+  },
+  "the-autograph": {
+    "dubai_mall_km": 16.57,
+    "palm_jumeirah_km": 9.81,
+    "dubai_airport_km": 26.62
+  },
+  "the-address-the-blvd": {
+    "dubai_mall_km": 0.55,
+    "palm_jumeirah_km": 17.05,
+    "dubai_airport_km": 10.89
+  },
+  "marina-star": {
+    "dubai_mall_km": 20.68,
+    "palm_jumeirah_km": 6,
+    "dubai_airport_km": 31.41
+  },
+  "marina-shores": {
+    "dubai_mall_km": 18.72,
+    "palm_jumeirah_km": 4.6,
+    "dubai_airport_km": 29.48
+  },
+  "madinat-jumeriah-living": {
+    "dubai_mall_km": 11.38,
+    "palm_jumeirah_km": 6.08,
+    "dubai_airport_km": 22.19
+  },
+  "liv-marina": {
+    "dubai_mall_km": 18.48,
+    "palm_jumeirah_km": 4.41,
+    "dubai_airport_km": 29.24
+  },
+  "the-8": {
+    "dubai_mall_km": 19.25,
+    "palm_jumeirah_km": 2.16,
+    "dubai_airport_km": 30.01
+  },
+  "tamani-arts-offices": {
+    "dubai_mall_km": 1.13,
+    "palm_jumeirah_km": 16.74,
+    "dubai_airport_km": 11.41
+  },
+  "sunrise-bay": {
+    "dubai_mall_km": 17.93,
+    "palm_jumeirah_km": 2.95,
+    "dubai_airport_km": 28.73
+  },
+  "sun-point-dubai": {
+    "dubai_mall_km": 21.06,
+    "palm_jumeirah_km": 12.36,
+    "dubai_airport_km": 30.91
+  },
+  "studio-one": {
+    "dubai_mall_km": 20.85,
+    "palm_jumeirah_km": 5.97,
+    "dubai_airport_km": 31.6
+  },
+  "stella-maris": {
+    "dubai_mall_km": 20.49,
+    "palm_jumeirah_km": 5.85,
+    "dubai_airport_km": 31.23
+  },
+  "sparkle-towers": {
+    "dubai_mall_km": 20.42,
+    "palm_jumeirah_km": 5.66,
+    "dubai_airport_km": 31.17
+  },
+  "sol-bay": {
+    "dubai_mall_km": 2.11,
+    "palm_jumeirah_km": 15.67,
+    "dubai_airport_km": 12.57
+  },
+  "waves-grande": {
+    "dubai_mall_km": 3.86,
+    "palm_jumeirah_km": 18.89,
+    "dubai_airport_km": 10.49
+  },
+  "sobha-hartland-waves": {
+    "dubai_mall_km": 3.9,
+    "palm_jumeirah_km": 18.93,
+    "dubai_airport_km": 10.48
+  },
+  "the-crest": {
+    "dubai_mall_km": 4.15,
+    "palm_jumeirah_km": 19.45,
+    "dubai_airport_km": 10.03
+  },
+  "one-park-avenue": {
+    "dubai_mall_km": 3.61,
+    "palm_jumeirah_km": 18.99,
+    "dubai_airport_km": 10.19
+  },
+  "hartland-greens-phase-iii": {
+    "dubai_mall_km": 3.64,
+    "palm_jumeirah_km": 18.95,
+    "dubai_airport_km": 10.26
+  },
+  "crest-grande": {
+    "dubai_mall_km": 4.06,
+    "palm_jumeirah_km": 19.26,
+    "dubai_airport_km": 10.19
+  },
+  "creek-vistas-reserve": {
+    "dubai_mall_km": 3.15,
+    "palm_jumeirah_km": 18.6,
+    "dubai_airport_km": 10.36
+  },
+  "creek-vistas-grande": {
+    "dubai_mall_km": 3.09,
+    "palm_jumeirah_km": 18.53,
+    "dubai_airport_km": 10.4
+  },
+  "creek-vistas-heights": {
+    "dubai_mall_km": 2.98,
+    "palm_jumeirah_km": 18.3,
+    "dubai_airport_km": 10.6
+  },
+  "skyz-by-danube": {
+    "dubai_mall_km": 16.16,
+    "palm_jumeirah_km": 13.31,
+    "dubai_airport_km": 25.34
+  },
+  "six-senses-residences": {
+    "dubai_mall_km": 19.6,
+    "palm_jumeirah_km": 2.76,
+    "dubai_airport_km": 30.41
+  },
+  "silicon-heights": {
+    "dubai_mall_km": 14.65,
+    "palm_jumeirah_km": 26.86,
+    "dubai_airport_km": 15.1
+  },
+  "seven-hotel-and-apartments-the-palm": {
+    "dubai_mall_km": 17.11,
+    "palm_jumeirah_km": 1.46,
+    "dubai_airport_km": 27.93
+  },
+  "golf-views-seven-city": {
+    "dubai_mall_km": 18.23,
+    "palm_jumeirah_km": 5.36,
+    "dubai_airport_km": 28.92
+  },
+  "serenia-residences-the-palm": {
+    "dubai_mall_km": 14.77,
+    "palm_jumeirah_km": 2.39,
+    "dubai_airport_km": 25.56
+  },
+  "serenia-living": {
+    "dubai_mall_km": 18.72,
+    "palm_jumeirah_km": 1.87,
+    "dubai_airport_km": 29.45
+  },
+  "samana-park-views": {
+    "dubai_mall_km": 14.88,
+    "palm_jumeirah_km": 13.37,
+    "dubai_airport_km": 23.98
+  },
+  "samana-hills": {
+    "dubai_mall_km": 14.77,
+    "palm_jumeirah_km": 13.28,
+    "dubai_airport_km": 23.89
+  },
+  "reva-residences": {
+    "dubai_mall_km": 1.12,
+    "palm_jumeirah_km": 16.97,
+    "dubai_airport_km": 11.2
+  },
+  "regalia": {
+    "dubai_mall_km": 1.92,
+    "palm_jumeirah_km": 17.73,
+    "dubai_airport_km": 10.7
+  },
+  "prime-residency-3": {
+    "dubai_mall_km": 23.97,
+    "palm_jumeirah_km": 11.56,
+    "dubai_airport_km": 34.31
+  },
+  "port-de-la-mer-le-ciel": {
+    "dubai_mall_km": 5.03,
+    "palm_jumeirah_km": 17.63,
+    "dubai_airport_km": 11.68
+  },
+  "port-de-la-mer-la-sirene": {
+    "dubai_mall_km": 5.07,
+    "palm_jumeirah_km": 17.8,
+    "dubai_airport_km": 11.55
+  },
+  "peninsula-two": {
+    "dubai_mall_km": 1.84,
+    "palm_jumeirah_km": 15.4,
+    "dubai_airport_km": 12.63
+  },
+  "peninsula-three": {
+    "dubai_mall_km": 1.83,
+    "palm_jumeirah_km": 15.42,
+    "dubai_airport_km": 12.62
+  },
+  "peninsula-one": {
+    "dubai_mall_km": 1.96,
+    "palm_jumeirah_km": 15.29,
+    "dubai_airport_km": 12.75
+  },
+  "peninsula-four": {
+    "dubai_mall_km": 1.89,
+    "palm_jumeirah_km": 15.41,
+    "dubai_airport_km": 12.65
+  },
+  "pearlz": {
+    "dubai_mall_km": 22.67,
+    "palm_jumeirah_km": 10.84,
+    "dubai_airport_km": 32.98
+  },
+  "park-point": {
+    "dubai_mall_km": 10.24,
+    "palm_jumeirah_km": 11.49,
+    "dubai_airport_km": 20.1
+  },
+  "paramount-tower-hotel-residences": {
+    "dubai_mall_km": 1.52,
+    "palm_jumeirah_km": 15.67,
+    "dubai_airport_km": 12.27
+  },
+  "palm-beach-towers": {
+    "dubai_mall_km": 16.52,
+    "palm_jumeirah_km": 3.46,
+    "dubai_airport_km": 27.31
+  },
+  "orla": {
+    "dubai_mall_km": 18.74,
+    "palm_jumeirah_km": 1.86,
+    "dubai_airport_km": 29.47
+  },
+  "opera-grand": {
+    "dubai_mall_km": 0.87,
+    "palm_jumeirah_km": 16.3,
+    "dubai_airport_km": 11.65
+  },
+  "opalz": {
+    "dubai_mall_km": 14.61,
+    "palm_jumeirah_km": 13.08,
+    "dubai_airport_km": 23.79
+  },
+  "one-zaabeel": {
+    "dubai_mall_km": 3.55,
+    "palm_jumeirah_km": 19.98,
+    "dubai_airport_km": 8.15
+  },
+  "one-canal": {
+    "dubai_mall_km": 3.64,
+    "palm_jumeirah_km": 13.62,
+    "dubai_airport_km": 14.32
+  },
+  "o10": {
+    "dubai_mall_km": 3.81,
+    "palm_jumeirah_km": 20.95,
+    "dubai_airport_km": 7.11
+  },
+  "nobles-tower": {
+    "dubai_mall_km": 1.76,
+    "palm_jumeirah_km": 17.48,
+    "dubai_airport_km": 10.9
+  },
+  "muraba-dia": {
+    "dubai_mall_km": 14.93,
+    "palm_jumeirah_km": 2.39,
+    "dubai_airport_km": 25.74
+  },
+  "mudon-views": {
+    "dubai_mall_km": 19.38,
+    "palm_jumeirah_km": 17.46,
+    "dubai_airport_km": 27.53
+  },
+  "mr-c-residences-jumeirah": {
+    "dubai_mall_km": 3.83,
+    "palm_jumeirah_km": 13.7,
+    "dubai_airport_km": 14.3
+  },
+  "mon-reve": {
+    "dubai_mall_km": 0.48,
+    "palm_jumeirah_km": 17.25,
+    "dubai_airport_km": 10.79
+  },
+  "mbl-royal": {
+    "dubai_mall_km": 20.27,
+    "palm_jumeirah_km": 6.32,
+    "dubai_airport_km": 30.96
+  },
+  "marquis-signature": {
+    "dubai_mall_km": 15.66,
+    "palm_jumeirah_km": 12.26,
+    "dubai_airport_km": 25.11
+  },
+  "marina-vista": {
+    "dubai_mall_km": 17.79,
+    "palm_jumeirah_km": 2.89,
+    "dubai_airport_km": 28.6
+  },
+  "lamaa": {
+    "dubai_mall_km": 11.45,
+    "palm_jumeirah_km": 6.35,
+    "dubai_airport_km": 22.25
+  },
+  "lake-terrace": {
+    "dubai_mall_km": 19.88,
+    "palm_jumeirah_km": 5.93,
+    "dubai_airport_km": 30.58
+  },
+  "lake-city-tower": {
+    "dubai_mall_km": 19.86,
+    "palm_jumeirah_km": 5.87,
+    "dubai_airport_km": 30.57
+  },
+  "jumeirah-living-marina-gate": {
+    "dubai_mall_km": 18.15,
+    "palm_jumeirah_km": 4.27,
+    "dubai_airport_km": 28.91
+  },
+  "jumeirah-living-business-bay": {
+    "dubai_mall_km": 2.17,
+    "palm_jumeirah_km": 15.11,
+    "dubai_airport_km": 12.95
+  },
+  "jumeirah-gate": {
+    "dubai_mall_km": 20.75,
+    "palm_jumeirah_km": 5.63,
+    "dubai_airport_km": 31.51
+  },
+  "joya-blanca-residences": {
+    "dubai_mall_km": 15.54,
+    "palm_jumeirah_km": 11.96,
+    "dubai_airport_km": 25.07
+  },
+  "jadeel": {
+    "dubai_mall_km": 11.39,
+    "palm_jumeirah_km": 6.23,
+    "dubai_airport_km": 22.19
+  },
+  "hills-park": {
+    "dubai_mall_km": 11.32,
+    "palm_jumeirah_km": 11.7,
+    "dubai_airport_km": 21.01
+  },
+  "harbour-views": {
+    "dubai_mall_km": 6.66,
+    "palm_jumeirah_km": 23.49,
+    "dubai_airport_km": 5.75
+  },
+  "harbour-gate": {
+    "dubai_mall_km": 6.9,
+    "palm_jumeirah_km": 23.78,
+    "dubai_airport_km": 5.43
+  },
+  "grandeur-residences": {
+    "dubai_mall_km": 19.35,
+    "palm_jumeirah_km": 2.8,
+    "dubai_airport_km": 30.17
+  },
+  "grand-bleu-tower": {
+    "dubai_mall_km": 17.59,
+    "palm_jumeirah_km": 2.7,
+    "dubai_airport_km": 28.4
+  },
+  "ghalia": {
+    "dubai_mall_km": 17.98,
+    "palm_jumeirah_km": 10.35,
+    "dubai_airport_km": 27.99
+  },
+  "gemini-splendor": {
+    "dubai_mall_km": 4.04,
+    "palm_jumeirah_km": 19.36,
+    "dubai_airport_km": 10.05
+  },
+  "forte": {
+    "dubai_mall_km": 1.09,
+    "palm_jumeirah_km": 16.12,
+    "dubai_airport_km": 11.83
+  },
+  "the-five-jvc": {
+    "dubai_mall_km": 17.55,
+    "palm_jumeirah_km": 10.8,
+    "dubai_airport_km": 27.44
+  },
+  "fawad": {
+    "dubai_mall_km": 3.82,
+    "palm_jumeirah_km": 20.92,
+    "dubai_airport_km": 7.23
+  },
+  "equiti-arcade": {
+    "dubai_mall_km": 23.08,
+    "palm_jumeirah_km": 9.99,
+    "dubai_airport_km": 33.56
+  },
+  "emirates-garden-1-gardenia": {
+    "dubai_mall_km": 17.32,
+    "palm_jumeirah_km": 11.25,
+    "dubai_airport_km": 27.1
+  },
+  "elysee-3": {
+    "dubai_mall_km": 17.81,
+    "palm_jumeirah_km": 9.99,
+    "dubai_airport_km": 27.87
+  },
+  "beach-house": {
+    "dubai_mall_km": 15.35,
+    "palm_jumeirah_km": 2.19,
+    "dubai_airport_km": 26.06
+  },
+  "elite-downtown-residence": {
+    "dubai_mall_km": 1.29,
+    "palm_jumeirah_km": 16.43,
+    "dubai_airport_km": 11.72
+  },
+  "elegance-tower": {
+    "dubai_mall_km": 0.49,
+    "palm_jumeirah_km": 17.46,
+    "dubai_airport_km": 10.56
+  },
+  "downtown-views-2": {
+    "dubai_mall_km": 0.63,
+    "palm_jumeirah_km": 17.6,
+    "dubai_airport_km": 10.34
+  },
+  "towers-by-paramount": {
+    "dubai_mall_km": 1.75,
+    "palm_jumeirah_km": 17.68,
+    "dubai_airport_km": 10.69
+  },
+  "kiara": {
+    "dubai_mall_km": 20.15,
+    "palm_jumeirah_km": 16.35,
+    "dubai_airport_km": 28.81
+  },
+  "safa-one": {
+    "dubai_mall_km": 3.56,
+    "palm_jumeirah_km": 13.59,
+    "dubai_airport_km": 14.37
+  },
+  "creekside-18": {
+    "dubai_mall_km": 6.58,
+    "palm_jumeirah_km": 23.36,
+    "dubai_airport_km": 5.93
+  },
+  "creek-rise": {
+    "dubai_mall_km": 6.78,
+    "palm_jumeirah_km": 23.69,
+    "dubai_airport_km": 5.41
+  },
+  "creek-gate": {
+    "dubai_mall_km": 6.82,
+    "palm_jumeirah_km": 23.65,
+    "dubai_airport_km": 5.65
+  },
+  "creek-edge": {
+    "dubai_mall_km": 6.75,
+    "palm_jumeirah_km": 23.69,
+    "dubai_airport_km": 5.31
+  },
+  "creek-crescent": {
+    "dubai_mall_km": 6.88,
+    "palm_jumeirah_km": 23.8,
+    "dubai_airport_km": 5.26
+  },
+  "city-center-residences": {
+    "dubai_mall_km": 0.95,
+    "palm_jumeirah_km": 16.77,
+    "dubai_airport_km": 11.34
+  },
+  "chic-tower": {
+    "dubai_mall_km": 2.4,
+    "palm_jumeirah_km": 14.8,
+    "dubai_airport_km": 13.21
+  },
+  "celadon": {
+    "dubai_mall_km": 2.1,
+    "palm_jumeirah_km": 15.75,
+    "dubai_airport_km": 12.24
+  },
+  "cavalli-couture": {
+    "dubai_mall_km": 3.8,
+    "palm_jumeirah_km": 13.52,
+    "dubai_airport_km": 14.43
+  },
+  "cavalli-tower": {
+    "dubai_mall_km": 17.53,
+    "palm_jumeirah_km": 4.02,
+    "dubai_airport_km": 28.29
+  },
+  "canal-front-residences": {
+    "dubai_mall_km": 3.43,
+    "palm_jumeirah_km": 13.82,
+    "dubai_airport_km": 14.12
+  },
+  "burj-vista": {
+    "dubai_mall_km": 0.88,
+    "palm_jumeirah_km": 16.46,
+    "dubai_airport_km": 11.47
+  },
+  "burj-view-residence": {
+    "dubai_mall_km": 15.18,
+    "palm_jumeirah_km": 12.52,
+    "dubai_airport_km": 24.54
+  },
+  "burj-royale": {
+    "dubai_mall_km": 0.66,
+    "palm_jumeirah_km": 16.9,
+    "dubai_airport_km": 11.15
+  },
+  "burj-khalifa": {
+    "dubai_mall_km": 0.55,
+    "palm_jumeirah_km": 16.65,
+    "dubai_airport_km": 11.3
+  },
+  "burj-crown": {
+    "dubai_mall_km": 1.12,
+    "palm_jumeirah_km": 16.05,
+    "dubai_airport_km": 11.9
+  },
+  "boulevard-point": {
+    "dubai_mall_km": 0.45,
+    "palm_jumeirah_km": 17.5,
+    "dubai_airport_km": 10.52
+  },
+  "bloom-heights": {
+    "dubai_mall_km": 17.46,
+    "palm_jumeirah_km": 10.44,
+    "dubai_airport_km": 27.42
+  },
+  "binghatti-nova": {
+    "dubai_mall_km": 17.26,
+    "palm_jumeirah_km": 11.88,
+    "dubai_airport_km": 26.89
+  },
+  "binghatti-crest": {
+    "dubai_mall_km": 18.08,
+    "palm_jumeirah_km": 11.21,
+    "dubai_airport_km": 27.91
+  },
+  "binghatti-canal": {
+    "dubai_mall_km": 1.41,
+    "palm_jumeirah_km": 17.17,
+    "dubai_airport_km": 11.09
+  },
+  "beach-vista": {
+    "dubai_mall_km": 17.88,
+    "palm_jumeirah_km": 2.83,
+    "dubai_airport_km": 28.69
+  },
+  "beach-mansion": {
+    "dubai_mall_km": 17.64,
+    "palm_jumeirah_km": 2.82,
+    "dubai_airport_km": 28.45
+  },
+  "beach-isle": {
+    "dubai_mall_km": 17.73,
+    "palm_jumeirah_km": 2.76,
+    "dubai_airport_km": 28.55
+  },
+  "bay-central-west-central-towers": {
+    "dubai_mall_km": 19.45,
+    "palm_jumeirah_km": 4.94,
+    "dubai_airport_km": 30.2
+  },
+  "bali-residences": {
+    "dubai_mall_km": 19.6,
+    "palm_jumeirah_km": 10.59,
+    "dubai_airport_km": 29.67
+  },
+  "riviera-reve": {
+    "dubai_mall_km": 4.22,
+    "palm_jumeirah_km": 19.29,
+    "dubai_airport_km": 10.28
+  },
+  "riviera-beachfront": {
+    "dubai_mall_km": 4.18,
+    "palm_jumeirah_km": 19.1,
+    "dubai_airport_km": 10.48
+  },
+  "riviera-41": {
+    "dubai_mall_km": 4.16,
+    "palm_jumeirah_km": 19.04,
+    "dubai_airport_km": 10.54
+  },
+  "riviera-36": {
+    "dubai_mall_km": 3.95,
+    "palm_jumeirah_km": 18.72,
+    "dubai_airport_km": 10.76
+  },
+  "riviera-34": {
+    "dubai_mall_km": 3.83,
+    "palm_jumeirah_km": 18.39,
+    "dubai_airport_km": 11.04
+  },
+  "riviera-32": {
+    "dubai_mall_km": 3.87,
+    "palm_jumeirah_km": 18.36,
+    "dubai_airport_km": 11.09
+  },
+  "riviera-3": {
+    "dubai_mall_km": 3.24,
+    "palm_jumeirah_km": 17.89,
+    "dubai_airport_km": 11.19
+  },
+  "riviera-20": {
+    "dubai_mall_km": 3.65,
+    "palm_jumeirah_km": 18.38,
+    "dubai_airport_km": 10.92
+  },
+  "riviera-15": {
+    "dubai_mall_km": 3.47,
+    "palm_jumeirah_km": 18.04,
+    "dubai_airport_km": 11.17
+  },
+  "riviera-13": {
+    "dubai_mall_km": 3.54,
+    "palm_jumeirah_km": 18,
+    "dubai_airport_km": 11.25
+  },
+  "mina": {
+    "dubai_mall_km": 14.9,
+    "palm_jumeirah_km": 2.36,
+    "dubai_airport_km": 25.71
+  },
+  "safa-two": {
+    "dubai_mall_km": 3.27,
+    "palm_jumeirah_km": 13.89,
+    "dubai_airport_km": 14.08
+  },
+  "aykon-city": {
+    "dubai_mall_km": 3.27,
+    "palm_jumeirah_km": 13.9,
+    "dubai_airport_km": 14.09
+  },
+  "avanos": {
+    "dubai_mall_km": 16.17,
+    "palm_jumeirah_km": 9.96,
+    "dubai_airport_km": 26.18
+  },
+  "avalon-tower": {
+    "dubai_mall_km": 17.41,
+    "palm_jumeirah_km": 11.1,
+    "dubai_airport_km": 27.22
+  },
+  "al-jazi": {
+    "dubai_mall_km": 11.46,
+    "palm_jumeirah_km": 6.26,
+    "dubai_airport_km": 22.26
+  },
+  "alcove": {
+    "dubai_mall_km": 16.75,
+    "palm_jumeirah_km": 10.85,
+    "dubai_airport_km": 26.59
+  },
+  "ag-square": {
+    "dubai_mall_km": 16.06,
+    "palm_jumeirah_km": 25.54,
+    "dubai_airport_km": 18.64
+  },
+  "address-the-bay": {
+    "dubai_mall_km": 17.44,
+    "palm_jumeirah_km": 2.64,
+    "dubai_airport_km": 28.25
+  },
+  "address-harbour-point": {
+    "dubai_mall_km": 6.56,
+    "palm_jumeirah_km": 23.49,
+    "dubai_airport_km": 5.47
+  },
+  "aces-chateau": {
+    "dubai_mall_km": 16.04,
+    "palm_jumeirah_km": 10.18,
+    "dubai_airport_km": 26
+  },
+  "acacia-at-park-heights": {
+    "dubai_mall_km": 10.28,
+    "palm_jumeirah_km": 11.62,
+    "dubai_airport_km": 20.1
+  },
+  "1-residences": {
+    "dubai_mall_km": 4.17,
+    "palm_jumeirah_km": 20.57,
+    "dubai_airport_km": 7.66
+  },
+  "17-icon-bay": {
+    "dubai_mall_km": 6.66,
+    "palm_jumeirah_km": 23.43,
+    "dubai_airport_km": 5.94
+  },
+  "6996fe6073cfd-tilal-binghatti": {
+    "dubai_mall_km": 17.53,
+    "palm_jumeirah_km": 30.7,
+    "dubai_airport_km": 15.58
+  },
+  "ayami-residence": {
+    "dubai_mall_km": 12.45,
+    "palm_jumeirah_km": 27.94,
+    "dubai_airport_km": 9.04
+  },
+  "wow-tower": {
+    "dubai_mall_km": 15.49,
+    "palm_jumeirah_km": 25.22,
+    "dubai_airport_km": 18.09
+  },
+  "palm-01-by-binghatti": {
+    "dubai_mall_km": 16.4,
+    "palm_jumeirah_km": 2.91,
+    "dubai_airport_km": 27.2
+  },
+  "john-richmond-residences-townhouses": {
+    "dubai_mall_km": 22.94,
+    "palm_jumeirah_km": 10.27,
+    "dubai_airport_km": 33.36
+  },
+  "mia-tower": {
+    "dubai_mall_km": 4.85,
+    "palm_jumeirah_km": 20.36,
+    "dubai_airport_km": 9.42
+  },
+  "the-autograph-g-series": {
+    "dubai_mall_km": 17.54,
+    "palm_jumeirah_km": 10.33,
+    "dubai_airport_km": 27.53
+  },
+  "nova-tower": {
+    "dubai_mall_km": 13.67,
+    "palm_jumeirah_km": 24.78,
+    "dubai_airport_km": 15.8
+  },
+  "elevia-residences-iii": {
+    "dubai_mall_km": 12.51,
+    "palm_jumeirah_km": 26.6,
+    "dubai_airport_km": 11.61
+  },
+  "ocean-crest": {
+    "dubai_mall_km": 10.04,
+    "palm_jumeirah_km": 24.82,
+    "dubai_airport_km": 7.88
+  },
+  "viani-by-meteora-2": {
+    "dubai_mall_km": 13.98,
+    "palm_jumeirah_km": 24.34,
+    "dubai_airport_km": 16.69
+  },
+  "sunlight-homes": {
+    "dubai_mall_km": 12.91,
+    "palm_jumeirah_km": 26.55,
+    "dubai_airport_km": 12.45
+  },
+  "al-waleed-ws-1": {
+    "dubai_mall_km": 16.39,
+    "palm_jumeirah_km": 25.95,
+    "dubai_airport_km": 18.77
+  },
+  "azizi-riviera-54": {
+    "dubai_mall_km": 4.48,
+    "palm_jumeirah_km": 19.77,
+    "dubai_airport_km": 9.89
+  },
+  "azizi-riviera-53": {
+    "dubai_mall_km": 4.35,
+    "palm_jumeirah_km": 19.6,
+    "dubai_airport_km": 10
+  },
+  "house-of-well-2": {
+    "dubai_mall_km": 15.26,
+    "palm_jumeirah_km": 27.31,
+    "dubai_airport_km": 13.48
+  },
+  "mag-d11": {
+    "dubai_mall_km": 10.04,
+    "palm_jumeirah_km": 22.22,
+    "dubai_airport_km": 13.32
+  },
+  "avior": {
+    "dubai_mall_km": 1.83,
+    "palm_jumeirah_km": 15.46,
+    "dubai_airport_km": 12.48
+  },
+  "arib-boutique": {
+    "dubai_mall_km": 15.05,
+    "palm_jumeirah_km": 24.96,
+    "dubai_airport_km": 17.68
+  },
+  "orvessa-residences": {
+    "dubai_mall_km": 24.08,
+    "palm_jumeirah_km": 11.29,
+    "dubai_airport_km": 34.47
+  },
+  "lamar-residence": {
+    "dubai_mall_km": 109.18,
+    "palm_jumeirah_km": 93.35,
+    "dubai_airport_km": 119.66
+  },
+  "terra-tower": {
+    "dubai_mall_km": 14.49,
+    "palm_jumeirah_km": 24.5,
+    "dubai_airport_km": 17.29
+  },
+  "pg-maison": {
+    "dubai_mall_km": 23.73,
+    "palm_jumeirah_km": 10.73,
+    "dubai_airport_km": 34.17
+  },
+  "muraba-veil": {
+    "dubai_mall_km": 2.88,
+    "palm_jumeirah_km": 14.29,
+    "dubai_airport_km": 13.65
+  },
+  "al-walid-tower": {
+    "dubai_mall_km": 16.12,
+    "palm_jumeirah_km": 32.49,
+    "dubai_airport_km": 6.86
+  },
+  "cloud-towers": {
+    "dubai_mall_km": 20.3,
+    "palm_jumeirah_km": 10.6,
+    "dubai_airport_km": 30.42
+  }
+}
