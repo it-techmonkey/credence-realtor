@@ -14,7 +14,7 @@ import { translateToEnglish, containsArabic } from '@/lib/translate';
 import { getAmenityIcon } from '@/lib/amenityIcons';
 import { normalizePropertyDescription } from '@/lib/descriptionParser';
 import type { NormalizedDescription } from '@/lib/descriptionParser';
-import { getHotspotDistances, distanceToDriveTime, matchHotspot, getHotspotLabel, type HotspotKey } from '@/lib/hotspots';
+import { getHotspotDistances, getHotspotDistanceKm, distanceToDriveTime, matchHotspot, getHotspotLabel, type HotspotKey } from '@/lib/hotspots';
 import { memo } from 'react';
 import { MapPin, Bed, Bath, Square, Calendar, Building2, ChevronRight, ArrowLeft, User, MapPinned, Home, Clock, Navigation, CreditCard, HardHat, KeyRound, Car } from 'lucide-react';
 
@@ -760,9 +760,8 @@ export default function PropertyDetailPage() {
                         <div className="space-y-2">
                           {normalizedDescription.nearby.length > 0 && normalizedDescription.nearby.map((n, idx) => {
                             const hotspotKey = matchHotspot(n);
-                            const timeLabel = hotspotKey && hotspotDistances
-                              ? distanceToDriveTime((hotspotDistances as Record<string, number>)[`${hotspotKey}_km`])
-                              : idx < 3 ? '10–15 mins' : idx < 6 ? '20–30 mins' : '40–45 mins';
+                            const km = hotspotKey ? getHotspotDistanceKm(hotspotDistances, hotspotKey) : undefined;
+                            const timeLabel = km != null ? distanceToDriveTime(km) : idx < 3 ? '10–15 mins' : idx < 6 ? '20–30 mins' : '40–45 mins';
                             return (
                               <div key={`${n}-${idx}`} className="flex items-center justify-between gap-3 py-2.5 px-3 rounded-xl bg-gray-50/80 border border-gray-100">
                                 <div className="flex items-center gap-2.5 min-w-0">
@@ -775,9 +774,8 @@ export default function PropertyDetailPage() {
                           })}
                           {Object.keys(normalizedDescription.distances).length > 0 && Object.entries(normalizedDescription.distances).map(([place, value], idx) => {
                             const hotspotKey = matchHotspot(place);
-                            const timeLabel = hotspotKey && hotspotDistances
-                              ? distanceToDriveTime((hotspotDistances as Record<string, number>)[`${hotspotKey}_km`])
-                              : idx < 3 ? '10–15 mins' : idx < 6 ? '20–30 mins' : '40–45 mins';
+                            const km = hotspotKey ? getHotspotDistanceKm(hotspotDistances, hotspotKey) : undefined;
+                            const timeLabel = km != null ? distanceToDriveTime(km) : idx < 3 ? '10–15 mins' : idx < 6 ? '20–30 mins' : '40–45 mins';
                             return (
                               <div key={place} className="flex items-center justify-between gap-3 py-2.5 px-3 rounded-xl bg-gray-50/80 border border-gray-100">
                                 <div className="flex items-center gap-2.5 min-w-0">
@@ -797,8 +795,8 @@ export default function PropertyDetailPage() {
                         <p className="text-xs font-semibold text-gray-600 mb-3">Distance from hotspots</p>
                         <div className="space-y-2">
                           {(['dubai_mall', 'palm_jumeirah', 'dubai_airport'] as HotspotKey[]).map((key) => {
-                            const km = hotspotDistances[`${key}_km` as keyof typeof hotspotDistances];
-                            if (typeof km !== 'number') return null;
+                            const km = getHotspotDistanceKm(hotspotDistances, key);
+                            if (km == null) return null;
                             return (
                               <div key={key} className="flex items-center justify-between gap-3 py-3 px-4 rounded-xl bg-secondary/5 border border-secondary/10">
                                 <div className="flex items-center gap-3 min-w-0">

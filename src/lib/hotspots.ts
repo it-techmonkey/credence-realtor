@@ -64,6 +64,16 @@ export function getHotspotLabel(key: HotspotKey): string {
 }
 
 /**
+ * Get distance in km for a hotspot from HotspotDistances. Type-safe.
+ */
+export function getHotspotDistanceKm(distances: HotspotDistances | null, key: HotspotKey): number | undefined {
+  if (!distances) return undefined;
+  const k = `${key}_km` as keyof HotspotDistances;
+  const val = distances[k];
+  return typeof val === 'number' ? val : undefined;
+}
+
+/**
  * Check if a place name (e.g. from nearby facilities) matches a known hotspot.
  * Returns the hotspot key if it matches (case-insensitive, partial match).
  */
