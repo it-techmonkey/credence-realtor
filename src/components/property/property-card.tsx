@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { memo } from 'react';
-import { formatPrice, getUnitTypeFromBedrooms } from '../../lib/properties';
+import { getUnitTypeFromBedrooms } from '../../lib/properties';
 
 interface Property {
   id?: string | number;
@@ -23,9 +23,7 @@ function PropertyCard({ property }: PropertyCardProps) {
   const {
     id,
     title,
-    price,
     bedrooms,
-    bathrooms,
     type,
     mainImage,
   } = property;
@@ -91,11 +89,6 @@ function PropertyCard({ property }: PropertyCardProps) {
               </div>
             )}
           </div>
-
-          {/* Price */}
-          <p className="font-semibold text-xl md:text-2xl lg:text-[28px] leading-normal text-black">
-            AED {formatPrice(price)}
-          </p>
 
           {/* Button */}
           <div className="mt-auto">

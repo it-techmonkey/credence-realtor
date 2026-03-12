@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { Bed, Bath, Square, MapPin, Phone, MessageCircle, Building2, ArrowRight } from 'lucide-react';
-import { formatPrice, getUnitTypeFromBedrooms } from '@/lib/properties';
+import { getUnitTypeFromBedrooms } from '@/lib/properties';
 import InquiryModal from '@/components/property/inquiry-modal';
 import { useScrollAnimation } from '@/utils/useScrollAnimation';
 
@@ -36,11 +36,20 @@ const PropertyCard = ({ property, index = 0 }) => {
                             : (getUnitTypeFromBedrooms(property.bedrooms) || property.category || '')}
                     </div>
 
-                    {/* Price Overlay */}
+                    {/* Image overlay: Unit type + Bedrooms only */}
                     <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent p-5 pt-16">
-                        <p className="text-white text-2xl font-display font-bold tracking-tight">
-                            AED {typeof property.price === 'number' ? formatPrice(property.price) : property.price}
-                        </p>
+                        <div className="flex flex-wrap items-center gap-2">
+                            {getUnitTypeFromBedrooms(property.bedrooms) && (
+                                <span className="text-white text-base font-display font-bold tracking-tight">
+                                    {getUnitTypeFromBedrooms(property.bedrooms)}
+                                </span>
+                            )}
+                            {property.bedrooms !== undefined && property.bedrooms > 0 && (
+                                <span className="text-white/90 text-base font-medium">
+                                    {property.bedrooms} BR
+                                </span>
+                            )}
+                        </div>
                     </div>
                 </div>
 

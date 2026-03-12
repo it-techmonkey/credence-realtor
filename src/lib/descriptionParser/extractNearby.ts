@@ -1,37 +1,69 @@
 /**
- * Detect nearby infrastructure: restaurants, malls, schools, beach, metro, etc.
- * Returns unique phrases (e.g. "Dubai Marina", "shopping malls").
- * Pure and composable.
+ * Detect nearby facilities and location references from description text.
+ * 1. Clean HTML tags.
+ * 2. Normalize text to lowercase.
+ * 3. Loop through whitelist; if a keyword exists in the description, add the properly cased value.
+ * 4. Return unique results.
  */
-const NEARBY_KEYWORDS: { pattern: RegExp; label: string }[] = [
-  { pattern: /\b(?:dubai marina|jbr|jumeirah|downtown|difc|palm jumeirah|business bay)\b/gi, label: 'Landmark' },
-  { pattern: /\b(?:restaurants?|dining|food court|caf[eé]s?)\b/gi, label: 'Restaurants' },
-  { pattern: /\b(?:malls?|shopping|retail)\b/gi, label: 'Shopping' },
-  { pattern: /\b(?:schools?|universit(?:y|ies)|education)\b/gi, label: 'Schools' },
-  { pattern: /\b(?:beach|marina|waterfront|golf course)\b/gi, label: 'Leisure' },
-  { pattern: /\b(?:metro|metro station|public transport)\b/gi, label: 'Transport' },
-  { pattern: /\b(?:hospital|medical|clinic|pharmac)\b/gi, label: 'Medical' },
-  { pattern: /\b(?:airport|dxb)\b/gi, label: 'Airport' },
-  { pattern: /\b(?:park|parks|green space)\b/gi, label: 'Parks' },
+import { stripHtml } from './stripHtml';
+
+/** Display value → lowercase keywords (longer phrases first per category so "metro station" is checked before "metro"). */
+const NEARBY_WHITELIST: { value: string; keywords: string[] }[] = [
+  // Education
+  { value: 'School', keywords: ['school', 'schools'] },
+  { value: 'Nursery', keywords: ['nursery', 'nurseries'] },
+  { value: 'University', keywords: ['university', 'universities'] },
+  // Healthcare
+  { value: 'Hospital', keywords: ['hospital', 'hospitals'] },
+  { value: 'Clinic', keywords: ['clinic', 'clinics'] },
+  { value: 'Pharmacy', keywords: ['pharmacy', 'pharmacies'] },
+  { value: 'Landmark', keywords: ['landmark', 'landmarks'] },
+  { value: 'Marina', keywords: ['marina', 'marinas'] },
+  // Shopping
+  { value: 'Shopping Mall', keywords: ['shopping mall', 'shopping malls'] },
+  { value: 'Supermarket', keywords: ['supermarket', 'supermarkets'] },
+  { value: 'Retail Shops', keywords: ['retail shops', 'retail'] },
+  // Dining
+  { value: 'Restaurants', keywords: ['restaurant', 'restaurants', 'dining'] },
+  { value: 'Cafes', keywords: ['cafe', 'cafes', 'café', 'cafés'] },
+  // Transport
+  { value: 'Metro Station', keywords: ['metro station', 'metro stations'] },
+  { value: 'Bus Stop', keywords: ['bus stop', 'bus stops'] },
+  { value: 'Highway Access', keywords: ['highway access'] },
+  // Leisure
+  { value: 'Park', keywords: ['park', 'parks', 'green space'] },
+  { value: 'Beach', keywords: ['beach', 'beaches'] },
+  { value: 'Golf Club', keywords: ['golf club', 'golf clubs', 'golf course'] },
+  // Entertainment
+  { value: 'Cinema', keywords: ['cinema', 'cinemas'] },
+  { value: 'Attractions', keywords: ['attraction', 'attractions'] },
+  { value: 'Water Park', keywords: ['water park', 'water parks'] },
+  // Location references
+  { value: 'Airport', keywords: ['airport', 'airports'] },
+  { value: 'Downtown', keywords: ['downtown'] },
+  { value: 'Mall', keywords: ['mall', 'malls'] },
+  { value: 'Metro', keywords: ['metro'] },
+  { value: 'Highway', keywords: ['highway', 'highways'] },
+  { value: 'Business District', keywords: ['business district', 'business districts'] },
 ];
 
-export function extractNearby(plainText: string): string[] {
-  if (!plainText || typeof plainText !== 'string') return [];
+export function extractNearby(htmlOrPlainText: string): string[] {
+  if (!htmlOrPlainText || typeof htmlOrPlainText !== 'string') return [];
+  const raw = htmlOrPlainText.trim();
+  if (!raw) return [];
+
+  const text = stripHtml(raw);
+  const textLower = text.toLowerCase();
   const seen = new Set<string>();
 
-  for (const { pattern, label } of NEARBY_KEYWORDS) {
-    const m = plainText.match(pattern);
-    if (m) {
-      const normalized = label;
-      if (!seen.has(normalized)) seen.add(normalized);
+  for (const { value, keywords } of NEARBY_WHITELIST) {
+    if (seen.has(value)) continue;
+    for (const keyword of keywords) {
+      if (textLower.includes(keyword)) {
+        seen.add(value);
+        break;
+      }
     }
-  }
-
-  // Also capture "X minutes from Y" places
-  const fromMatch = plainText.matchAll(/(?:\d+\s*(?:min|km)\s+)?(?:from|to)\s+([A-Za-z\s]+?)(?:\.|,|$)/g);
-  for (const m of fromMatch) {
-    const place = m[1].trim();
-    if (place.length > 2 && place.length < 50 && !seen.has(place)) seen.add(place);
   }
 
   return Array.from(seen);

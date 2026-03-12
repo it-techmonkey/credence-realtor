@@ -9,7 +9,7 @@ import InquiryModal from '@/components/property/inquiry-modal';
 import DescriptionModal from '@/components/property/description-modal';
 import ImageViewerModal from '@/components/property/image-viewer-modal';
 import AmenitiesModal from '@/components/property/amenities-modal';
-import { getPropertyById, getSuggestedSimilarProperties, formatPrice, formatDate, getUnitTypeFromBedrooms, Property } from '@/lib/properties';
+import { getPropertyById, getSuggestedSimilarProperties, formatDate, getUnitTypeFromBedrooms, Property } from '@/lib/properties';
 import { translateToEnglish, containsArabic } from '@/lib/translate';
 import { getAmenityIcon } from '@/lib/amenityIcons';
 import { normalizePropertyDescription } from '@/lib/descriptionParser';
@@ -117,7 +117,7 @@ const PropertyDetailsGrid = memo(({ property, translatedDeveloper, translatedLoc
 PropertyDetailsGrid.displayName = 'PropertyDetailsGrid';
 
 /** Premium sticky CTA bar — appears on scroll. onVisibleChange allows parent to add bottom padding. */
-function StickyEnquireBar({ price, title, onEnquire, onVisibleChange }: { price: number; title: string; onEnquire: () => void; onVisibleChange?: (visible: boolean) => void }) {
+function StickyEnquireBar({ title, onEnquire, onVisibleChange }: { title: string; onEnquire: () => void; onVisibleChange?: (visible: boolean) => void }) {
   const [visible, setVisible] = useState(false);
   useEffect(() => {
     const onScroll = () => {
@@ -133,13 +133,7 @@ function StickyEnquireBar({ price, title, onEnquire, onVisibleChange }: { price:
   return (
     <div className="fixed bottom-0 left-0 right-0 z-30 bg-white/90 backdrop-blur-xl border-t border-gray-100 shadow-[0_-4px_24px_rgba(0,0,0,0.06)] safe-area-pb pb-safe">
       <div className="container mx-auto px-4 sm:px-6 max-w-5xl py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <div className="flex flex-col sm:flex-row items-center gap-1 sm:gap-8 text-center sm:text-left">
-          <p className="text-[11px] uppercase tracking-[0.2em] text-gray-400 font-medium">From</p>
-          <p className="font-display font-semibold text-xl text-secondary tracking-tight">
-            AED {formatPrice(price)}
-          </p>
-          <p className="text-gray-500 text-sm truncate max-w-[220px] sm:max-w-sm" title={title}>{title}</p>
-        </div>
+        <p className="text-gray-700 text-sm font-medium truncate max-w-[220px] sm:max-w-sm text-center sm:text-left" title={title}>{title}</p>
         <button
           onClick={onEnquire}
           className="w-full sm:w-auto bg-secondary text-white px-8 py-3 rounded-full font-medium text-sm tracking-wide hover:bg-secondary/90 transition-all duration-200 flex items-center justify-center gap-2 shrink-0"
@@ -520,7 +514,7 @@ export default function PropertyDetailPage() {
               </button>
             )}
           </div>
-          {/* Overlay: sm+ only; on desktop (lg) hide price and CTA */}
+          {/* Overlay: title, location, unit type + BR, CTA (sm only) */}
           <div className="relative z-10 px-4 sm:px-6 lg:px-8 pb-6 sm:pb-8 pt-16 max-w-4xl hidden sm:block">
             <h1 className="font-display font-bold text-2xl sm:text-3xl lg:text-4xl text-white leading-tight tracking-tight mb-2">
               {displayTitle}
@@ -537,9 +531,12 @@ export default function PropertyDetailPage() {
                   {property.type}
                 </span>
               )}
-              <span className="font-display font-semibold text-lg sm:text-xl text-white lg:hidden">
-                From AED {formatPrice(property.minPrice ?? property.price)}
-              </span>
+              {getUnitTypeFromBedrooms(property.bedrooms) && (
+                <span className="text-white/95 font-semibold text-base sm:text-lg">
+                  {getUnitTypeFromBedrooms(property.bedrooms)}
+                  {property.bedrooms != null && property.bedrooms > 0 && ` · ${property.bedrooms} BR`}
+                </span>
+              )}
             </div>
             <button
               onClick={handleOpenInquiry}
@@ -582,19 +579,14 @@ export default function PropertyDetailPage() {
                 </div>
               )}
 
-              {/* Mobile only: Price + Request info right after gallery (hidden on desktop; sidebar has it) */}
-              <div className="lg:hidden rounded-2xl overflow-hidden border border-gray-100 bg-white shadow-md">
-                <div className="bg-secondary px-5 py-4">
-                  <p className="font-display font-bold text-2xl text-white tracking-tight">AED {formatPrice(property.minPrice ?? property.price)}</p>
-                </div>
-                <div className="p-5">
-                  <button
-                    onClick={handleOpenInquiry}
-                    className="w-full bg-primary text-secondary py-4 rounded-xl font-semibold text-sm uppercase tracking-wider hover:bg-primary/90 transition-colors flex items-center justify-center gap-2"
-                  >
-                    Request information <ChevronRight size={18} strokeWidth={2.5} />
-                  </button>
-                </div>
+              {/* Mobile only: Request info CTA (no price) */}
+              <div className="lg:hidden rounded-2xl overflow-hidden border border-gray-100 bg-white shadow-md p-5">
+                <button
+                  onClick={handleOpenInquiry}
+                  className="w-full bg-primary text-secondary py-4 rounded-xl font-semibold text-sm uppercase tracking-wider hover:bg-primary/90 transition-colors flex items-center justify-center gap-2"
+                >
+                  Request information <ChevronRight size={18} strokeWidth={2.5} />
+                </button>
               </div>
 
               <nav className="flex flex-wrap gap-2 border-b border-gray-200 pb-4" aria-label="Sections">
@@ -681,19 +673,14 @@ export default function PropertyDetailPage() {
             {/* Right column: sticky sidebar — on mobile shows after main (order-2); key details & nearby only on mobile (no price/summary) */}
             <aside className="order-2 lg:order-2">
               <div className="lg:sticky lg:top-24 space-y-5">
-                {/* Price + CTA card — desktop only (mobile has it after gallery in left column) */}
-                <div className="hidden lg:block rounded-2xl overflow-hidden border border-gray-100 bg-white shadow-md">
-                  <div className="bg-secondary px-5 py-4 sm:px-6 sm:py-5">
-                    <p className="font-display font-bold text-2xl sm:text-3xl text-white tracking-tight">AED {formatPrice(property.minPrice ?? property.price)}</p>
-                  </div>
-                  <div className="p-5 sm:p-6">
-                    <button
-                      onClick={handleOpenInquiry}
-                      className="w-full bg-primary text-secondary py-4 rounded-xl font-semibold text-sm uppercase tracking-wider hover:bg-primary/90 transition-colors flex items-center justify-center gap-2"
-                    >
-                      Request information <ChevronRight size={18} strokeWidth={2.5} />
-                    </button>
-                  </div>
+                {/* CTA card — desktop only (no price) */}
+                <div className="hidden lg:block rounded-2xl overflow-hidden border border-gray-100 bg-white shadow-md p-5 sm:p-6">
+                  <button
+                    onClick={handleOpenInquiry}
+                    className="w-full bg-primary text-secondary py-4 rounded-xl font-semibold text-sm uppercase tracking-wider hover:bg-primary/90 transition-colors flex items-center justify-center gap-2"
+                  >
+                    Request information <ChevronRight size={18} strokeWidth={2.5} />
+                  </button>
                 </div>
 
                 {/* Summary card — desktop only (mobile: no summary, overview is in main column) */}
@@ -811,7 +798,6 @@ export default function PropertyDetailPage() {
 
         {/* Sticky bottom CTA - visible on scroll for easy enquiry */}
         <StickyEnquireBar
-          price={property.minPrice ?? property.price}
           title={displayTitle}
           onEnquire={handleOpenInquiry}
           onVisibleChange={setStickyBarVisible}
