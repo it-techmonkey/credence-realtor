@@ -374,8 +374,18 @@ export function getPaymentPlanKeyForDeveloper(developer: string | undefined | nu
   return mapping[trimmed] ?? mapping[developer] ?? null;
 }
 
+/** Hardcoded payment plan for Binghatti: 20% on booking, 50% on construction, 30% on handover. */
+const BINGHATTI_PAYMENT_PLAN: PaymentPlanSections = {
+  on_booking: 20,
+  on_construction: 50,
+  on_handover: 30,
+};
+
 /** Returns payment plan sections (on_booking, on_construction, on_handover) for a developer from payment-plans.json. */
 export function getPaymentPlanSectionsByDeveloper(developer: string | undefined | null): PaymentPlanSections | null {
+  const trimmed = developer && typeof developer === 'string' ? developer.trim() : '';
+  if (trimmed && trimmed.toLowerCase() === 'binghatti') return BINGHATTI_PAYMENT_PLAN;
+
   const key = getPaymentPlanKeyForDeveloper(developer);
   if (!key) return null;
   const plans = getDeveloperPaymentPlansRaw();
