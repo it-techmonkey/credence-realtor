@@ -38,12 +38,16 @@ function PropertiesContent() {
     const propertiesPerPage = 9;
     const debounceTimerRef = useRef(null);
     const loadIdRef = useRef(0);
+    const propertiesSectionRef = useRef(null);
+    const lastPageRequestedRef = useRef(null);
+    const userInitiatedFilterChangeRef = useRef(false);
 
     // Initialize scroll animations
     useScrollAnimations();
 
     // Callbacks defined early to avoid initialization issues
     const handleApplyFilters = useCallback((newFilters) => {
+        userInitiatedFilterChangeRef.current = true;
         setFilters(newFilters);
         setCurrentPage(1); // Reset to first page when filters change
         // Start from current URL so we preserve search and other params
@@ -75,10 +79,11 @@ function PropertiesContent() {
         else params.delete('sortBy');
         if (newFilters.sortOrder) params.set('sortOrder', newFilters.sortOrder);
         else params.delete('sortOrder');
+        params.delete('page'); // reset to page 1 when filters change
         const queryString = params.toString();
         router.replace(queryString ? `/properties?${queryString}` : '/properties', { scroll: false });
         setTimeout(() => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            propertiesSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }, 100);
     }, [router, searchParams]);
 
@@ -157,7 +162,7 @@ function PropertiesContent() {
         };
     }, [searchQuery]);
 
-    // Keep URL in sync with debounced search so search works with filters and share/back
+    // Keep URL in sync with debounced search so search works with filters and share/back; reset page when search changes
     useEffect(() => {
         const params = new URLSearchParams(searchParams.toString());
         const trimmed = debouncedSearchQuery.trim();
@@ -168,6 +173,7 @@ function PropertiesContent() {
         } else {
             params.delete('search');
         }
+        params.delete('page');
         const queryString = params.toString();
         router.replace(queryString ? `/properties?${queryString}` : '/properties', { scroll: false });
     }, [debouncedSearchQuery, searchParams, router]);
@@ -264,18 +270,29 @@ function PropertiesContent() {
         }
 
         // Always sync filters from URL so switching category (e.g. Luxury -> Affordable) clears stale minPrice/maxPrice
+        userInitiatedFilterChangeRef.current = false; // This is an auto-sync from URL, not a user action
         setFilters(urlFilters);
 
-        // Sync page from URL so back/refresh keeps the same page
+        // Sync page from URL so back/refresh keeps the same page. Don't overwrite if user just clicked a page and URL hasn't updated yet.
         const pageParam = searchParams.get('page');
-        const pageNum = parseInt(pageParam || '1', 10);
-        setCurrentPage(!isNaN(pageNum) && pageNum >= 1 ? pageNum : 1);
+        const pageNum = Math.max(1, parseInt(pageParam || '1', 10) || 1);
+        const userRequested = lastPageRequestedRef.current;
+        if (userRequested !== null && userRequested !== pageNum) {
+            // URL still shows old page; keep user's choice (don't overwrite)
+            return;
+        }
+        if (userRequested === pageNum) lastPageRequestedRef.current = null;
+        setCurrentPage(pageNum);
     }, [searchParams]);
 
-    // Fetch properties from API with filters
+    // Fetch properties from API with filters. Use URL page when available; fallback to currentPage so first click works (router may not have updated searchParams yet).
     useEffect(() => {
         const thisLoadId = loadIdRef.current + 1;
         loadIdRef.current = thisLoadId;
+
+        const pageParam = searchParams.get('page');
+        const pageFromUrl = parseInt(pageParam || '', 10);
+        const pageToFetch = Math.max(1, (!isNaN(pageFromUrl) && pageFromUrl >= 1 ? pageFromUrl : currentPage));
 
         const loadProperties = async () => {
             setIsLoading(true);
@@ -318,7 +335,7 @@ function PropertiesContent() {
                     apiFilters.search = debouncedSearchQuery.trim();
                 }
 
-                const result = await getPaginatedProperties(apiFilters, currentPage, propertiesPerPage);
+                const result = await getPaginatedProperties(apiFilters, pageToFetch, propertiesPerPage);
 
                 // Ignore stale response if user changed filters before this request finished
                 if (loadIdRef.current !== thisLoadId) return;
@@ -340,7 +357,7 @@ function PropertiesContent() {
                     console.log('Properties loaded:', {
                         count: result.properties.length,
                         total: result.pagination.total,
-                        page: currentPage,
+                        page: pageToFetch,
                         filters: apiFilters,
                         ms: Date.now() - startTime
                     });
@@ -362,21 +379,37 @@ function PropertiesContent() {
         loadProperties();
     }, [filters, debouncedSearchQuery, activeFilter, currentPage, propertiesPerPage, searchParams]);
 
-    // Reset to page 1 when filters or debounced search change
+    // Reset to page 1 when filters or debounced search change (state + URL handled in handleApplyFilters / handleFilterChange)
     useEffect(() => {
-        setCurrentPage(1);
+        if (userInitiatedFilterChangeRef.current) {
+            setCurrentPage(1);
+        }
     }, [filters, debouncedSearchQuery, activeFilter]);
 
     const handlePageChange = useCallback((page) => {
-        setCurrentPage(page);
+        lastPageRequestedRef.current = page;
         const params = new URLSearchParams(searchParams.toString());
         if (page <= 1) params.delete('page');
         else params.set('page', String(page));
         router.replace(params.toString() ? `/properties?${params.toString()}` : '/properties', { scroll: false });
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        setCurrentPage(page);
+        // Scroll to properties section so user sees the list, not the hero
+        requestAnimationFrame(() => {
+            propertiesSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
     }, [router, searchParams]);
 
+    // On load or reload with ?page=N, scroll to properties section once data is ready
+    const pageParam = searchParams.get('page');
+    useEffect(() => {
+        const pageNum = parseInt(pageParam || '1', 10);
+        if (pageNum > 1 && !isLoading && properties.length > 0) {
+            propertiesSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    }, [pageParam, isLoading, properties.length]);
+
     const handleFilterChange = useCallback((filter) => {
+        userInitiatedFilterChangeRef.current = true;
         setActiveFilter(filter);
         setCurrentPage(1);
         const params = new URLSearchParams(searchParams.toString());
@@ -430,7 +463,7 @@ function PropertiesContent() {
 
 
             {/* 2. Filter & Properties Grid Section */}
-            <section className="py-12 bg-gray-50/50">
+            <section id="properties-results" ref={propertiesSectionRef} className="py-12 bg-gray-50/50 scroll-mt-4">
                 <div className="container mx-auto px-4 max-w-7xl">
 
                     {/* Search Bar */}

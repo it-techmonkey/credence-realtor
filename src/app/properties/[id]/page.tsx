@@ -768,8 +768,8 @@ export default function PropertyDetailPage() {
                               <span className="font-semibold text-secondary text-sm">{getHotspotLabel(key)}</span>
                             </div>
                             <div className="shrink-0 text-right">
-                              <span className="block text-sm font-display font-bold text-gray-800 tabular-nums">~{roadKm} km</span>
-                              <span className="block text-xs text-gray-500">{driveTime}</span>
+                              <span className="block text-sm font-display font-bold text-gray-800 tabular-nums">{driveTime}</span>
+                              <span className="block text-xs text-gray-500">~{roadKm} km</span>
                             </div>
                           </div>
                         );

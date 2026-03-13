@@ -15,6 +15,8 @@ import {
 
 const AFFORDABLE_MAX = (categoriesConfig as { affordableMaxPriceAED?: number }).affordableMaxPriceAED ?? 1_500_000;
 const LUXURY_DEV_NAMES = (categoriesConfig as { luxuryDeveloperNames?: string[] }).luxuryDeveloperNames ?? [];
+/** Luxury = developers whose minimum project price (starting point) is 5M+ AED */
+const LUXURY_MIN_PRICE_AED = 5_000_000;
 const OFFICE_SET = new Set((officeSlugs as string[]).map((s) => s.toLowerCase().trim()));
 const COMMERCIAL_SET = new Set((commercialSlugs as string[]).map((s) => s.toLowerCase().trim()));
 
@@ -172,9 +174,10 @@ function getProjectCategory(project: any): string {
   if (textContainsAny(combined, COMMERCIAL_KEYWORDS)) return 'Commercial';
   // Waterfront: only projects whose stored description contains "waterfront" or "lagoon"
   if (descriptionContainsWaterfrontOrLagoon(project.slug)) return 'Waterfront';
-  // Luxury: only developers in the configured list (Binghatti, Emaar, Damac, Imtiaz, Jacob, Sobha, Ellington, Azizi, Omniyat, Aldar)
-  const isLuxuryDev = LUXURY_DEV_NAMES.some((name) => builder.toLowerCase().includes(name.toLowerCase()) || builder.includes(name));
-  if (isLuxuryDev) return 'Luxury';
+  // Luxury: developers whose starting point (min price across their projects) is 5M+; fallback to name list for any edge cases
+  // (getProjectCategory is called before we have the luxury builder set; category filter uses the set computed in GET)
+  const isLuxuryByName = LUXURY_DEV_NAMES.some((name) => builder.toLowerCase().includes(name.toLowerCase()) || builder.includes(name));
+  if (isLuxuryByName) return 'Luxury';
   if (priceFrom > 0 && priceFrom <= AFFORDABLE_MAX) return 'Affordable';
   return 'Off-Plan';
 }
@@ -271,6 +274,22 @@ export async function GET(request: NextRequest) {
     // 2b. Only show properties that have a stored description
     items = items.filter((p: any) => hasStoredDescription(p.slug));
 
+    // 2c. Build set of developers (builders) whose starting point is 5M+ (min price across all their projects)
+    const builderMinPrice = new Map<string, number>();
+    for (const p of items) {
+      const b = (p.builder || '').toString().trim();
+      if (!b) continue;
+      const priceFrom = p.statistics?.total?.price_from ?? 0;
+      if (priceFrom <= 0) continue;
+      const current = builderMinPrice.get(b);
+      if (current === undefined) builderMinPrice.set(b, priceFrom);
+      else builderMinPrice.set(b, Math.min(current, priceFrom));
+    }
+    const luxuryBuilders5M = new Set<string>();
+    builderMinPrice.forEach((minP, builder) => {
+      if (minP >= LUXURY_MIN_PRICE_AED) luxuryBuilders5M.add(builder);
+    });
+
     // 3. City filter (by city_id in data — for UI filter; location still determined by lat/long)
     const filterCityId = getCityIdFromParam(cityParam ?? undefined);
     if (filterCityId !== null) {
@@ -291,12 +310,10 @@ export async function GET(request: NextRequest) {
       const cat = category.toLowerCase();
       if (cat === 'luxury') {
         items = items.filter((p: any) => {
-          const builder = (p.builder || '').toString();
-          const isLuxuryDev = LUXURY_DEV_NAMES.some(
-            (name) => builder.toLowerCase().includes(name.toLowerCase()) || builder.includes(name)
-          );
+          const builder = (p.builder || '').toString().trim();
+          const isLuxury5M = luxuryBuilders5M.has(builder);
           (p as any)._category = 'Luxury';
-          return isLuxuryDev;
+          return isLuxury5M;
         });
       } else {
         items = items.filter((p: any) => {
