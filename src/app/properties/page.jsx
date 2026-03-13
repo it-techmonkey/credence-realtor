@@ -162,14 +162,13 @@ function PropertiesContent() {
         };
     }, [searchQuery]);
 
-    // Keep URL in sync with debounced search so search works with filters and share/back; reset page when search changes
+    // Keep URL in sync with debounced search so search works with filters and share/back; preserve spaces in input
     useEffect(() => {
         const params = new URLSearchParams(searchParams.toString());
-        const trimmed = debouncedSearchQuery.trim();
         const currentSearch = params.get('search') || '';
-        if (trimmed === currentSearch) return;
-        if (trimmed) {
-            params.set('search', trimmed);
+        if (debouncedSearchQuery === currentSearch) return;
+        if (debouncedSearchQuery.trim()) {
+            params.set('search', debouncedSearchQuery);
         } else {
             params.delete('search');
         }
@@ -469,13 +468,14 @@ function PropertiesContent() {
                     {/* Search Bar */}
                     <div className="mb-8">
                         <div className="bg-white border border-gray-200 flex gap-3 items-center px-5 py-3 rounded-full max-w-2xl mx-auto">
-                            <Search size={20} className="text-gray-400 shrink-0" />
+                            <Search size={20} className="text-gray-400 shrink-0" aria-hidden />
                             <input
-                                type="text"
-                                placeholder="Search for a Property by Name, Location, or Developer"
+                                type="search"
+                                placeholder="Search by name, location or developer"
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
-                                className="flex-1 outline-none text-base font-medium text-gray-700 placeholder:text-gray-400 bg-transparent"
+                                className="flex-1 min-w-0 outline-none text-base font-medium text-gray-700 placeholder:text-gray-400 placeholder:truncate bg-transparent"
+                                aria-label="Search properties by name, location or developer"
                             />
                         </div>
                     </div>
