@@ -14,7 +14,7 @@ import { translateToEnglish, containsArabic } from '@/lib/translate';
 import { getAmenityIcon } from '@/lib/amenityIcons';
 import { normalizePropertyDescription } from '@/lib/descriptionParser';
 import type { NormalizedDescription } from '@/lib/descriptionParser';
-import { getHotspotDistances, getHotspotDistanceKm, getHotspotLabel, straightLineToRoadKm, HOTSPOT_KEYS } from '@/lib/hotspots';
+import { getHotspotDistances, getHotspotDistanceKm, getHotspotLabel, straightLineToRoadKm, distanceToDriveTime, HOTSPOT_KEYS } from '@/lib/hotspots';
 import { memo } from 'react';
 import { MapPin, Bed, Bath, Square, Calendar, Building2, ChevronRight, ArrowLeft, User, MapPinned, Home, CreditCard, HardHat, KeyRound, Car } from 'lucide-react';
 
@@ -758,6 +758,7 @@ export default function PropertyDetailPage() {
                         const straightLineKm = getHotspotDistanceKm(hotspotDistances, key);
                         if (straightLineKm == null) return null;
                         const roadKm = straightLineToRoadKm(straightLineKm);
+                        const driveTime = distanceToDriveTime(roadKm);
                         return (
                           <div key={key} className="flex items-center justify-between gap-3 py-3 px-4 rounded-xl bg-secondary/5 border border-secondary/10">
                             <div className="flex items-center gap-3 min-w-0">
@@ -766,7 +767,10 @@ export default function PropertyDetailPage() {
                               </div>
                               <span className="font-semibold text-secondary text-sm">{getHotspotLabel(key)}</span>
                             </div>
-                            <span className="shrink-0 text-sm font-display font-bold text-gray-800 tabular-nums">~{roadKm} km</span>
+                            <div className="shrink-0 text-right">
+                              <span className="block text-sm font-display font-bold text-gray-800 tabular-nums">~{roadKm} km</span>
+                              <span className="block text-xs text-gray-500">{driveTime}</span>
+                            </div>
                           </div>
                         );
                       })}
