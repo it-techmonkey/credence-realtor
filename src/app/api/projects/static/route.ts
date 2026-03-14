@@ -15,6 +15,12 @@ import {
 
 const AFFORDABLE_MAX = (categoriesConfig as { affordableMaxPriceAED?: number }).affordableMaxPriceAED ?? 1_500_000;
 const LUXURY_DEV_NAMES = (categoriesConfig as { luxuryDeveloperNames?: string[] }).luxuryDeveloperNames ?? [];
+const LUXURY_PROJECT_SLUGS = new Set(
+  ((categoriesConfig as { luxuryProjectSlugs?: string[] }).luxuryProjectSlugs ?? []).map((s) => s.toLowerCase().trim())
+);
+const LUXURY_PROJECT_SLUG_CONTAINS = ((categoriesConfig as { luxuryProjectSlugContains?: string[] }).luxuryProjectSlugContains ?? []).map((s) => s.toLowerCase().trim());
+/** Order of slug patterns for luxury category: projects matching these (in order) appear first. */
+const LUXURY_START_ORDER = ((categoriesConfig as { luxuryProjectStartOrder?: string[] }).luxuryProjectStartOrder ?? []).map((s) => s.toLowerCase().trim());
 /** Luxury = developers whose minimum project price (starting point) is 5M+ AED */
 const LUXURY_MIN_PRICE_AED = 5_000_000;
 const OFFICE_SET = new Set((officeSlugs as string[]).map((s) => s.toLowerCase().trim()));
@@ -271,8 +277,12 @@ export async function GET(request: NextRequest) {
       return from > 0 || to > 0;
     });
 
-    // 2b. Only show properties that have a stored description
-    items = items.filter((p: any) => hasStoredDescription(p.slug));
+    // 2b. Only show properties that have a stored description, except luxury allowlist (they may have empty desc)
+    items = items.filter((p: any) => {
+      if (hasStoredDescription(p.slug)) return true;
+      const slug = (p.slug || '').toString().toLowerCase().trim();
+      return LUXURY_PROJECT_SLUGS.has(slug) || LUXURY_PROJECT_SLUG_CONTAINS.some((sub) => slug.includes(sub));
+    });
 
     // 2c. Build set of developers (builders) whose starting point is 5M+ (min price across all their projects)
     const builderMinPrice = new Map<string, number>();
@@ -311,10 +321,26 @@ export async function GET(request: NextRequest) {
       if (cat === 'luxury') {
         items = items.filter((p: any) => {
           const builder = (p.builder || '').toString().trim();
+          const slug = (p.slug || '').toString().toLowerCase().trim();
+          const priceFrom = p.statistics?.total?.price_from ?? 0;
           const isLuxury5M = luxuryBuilders5M.has(builder);
+          const isLuxuryAllowlist = LUXURY_PROJECT_SLUGS.has(slug) || LUXURY_PROJECT_SLUG_CONTAINS.some((sub) => slug.includes(sub));
+          const isLuxuryByPrice = priceFrom >= LUXURY_MIN_PRICE_AED;
           (p as any)._category = 'Luxury';
-          return isLuxury5M;
+          return isLuxury5M || isLuxuryAllowlist || isLuxuryByPrice;
         });
+        // Put allowlisted / priority projects at the start in configured order
+        if (LUXURY_START_ORDER.length > 0) {
+          items.sort((a: any, b: any) => {
+            const slugA = (a.slug || '').toString().toLowerCase().trim();
+            const slugB = (b.slug || '').toString().toLowerCase().trim();
+            const idxA = LUXURY_START_ORDER.findIndex((pat) => slugA === pat || slugA.includes(pat));
+            const idxB = LUXURY_START_ORDER.findIndex((pat) => slugB === pat || slugB.includes(pat));
+            const iA = idxA === -1 ? 9999 : idxA;
+            const iB = idxB === -1 ? 9999 : idxB;
+            return iA - iB;
+          });
+        }
       } else {
         items = items.filter((p: any) => {
           const projectCat = getProjectCategory(p);
