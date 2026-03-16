@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { stripPropertyNumberFromTitle } from '@/lib/staticPropertyData';
 
 // Alnair API Base URL for real estate projects
 const ALNAIR_API_URL = 'https://api.alnair.ae/project/find';
@@ -117,13 +118,14 @@ function transformAlnairResponse(alnairData: any, page: number, limit: number) {
       ? Math.round(maxAreaMt * 10.764) 
       : 0;
     
+    const displayTitle = stripPropertyNumberFromTitle(project.title || '');
     return {
       id: project.id,
       _id: project.id,
       slug: project.slug,
-      title: project.title,
-      name: project.title,
-      property_name: project.title,
+      title: displayTitle,
+      name: displayTitle,
+      property_name: displayTitle,
       type: project.type || 'project',
       category: 'Residential', // Default category
       

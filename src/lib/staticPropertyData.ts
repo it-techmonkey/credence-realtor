@@ -8,6 +8,12 @@ import fs from 'fs';
 import { stripHtml } from '@/lib/descriptionParser';
 import { extractAmenities } from '@/lib/descriptionParser/extractAmenities';
 
+/** Remove trailing property/building number (space + digits) from title for display. */
+export function stripPropertyNumberFromTitle(title: string): string {
+  if (!title || typeof title !== 'string') return title || '';
+  return title.replace(/\s+\d+$/, '').trim() || title.trim();
+}
+
 /** Allowed city IDs — only properties with these city_id values are visible. */
 export const ALLOWED_CITY_IDS = new Set([1, 2, 3, 5, 7, 14, 52]);
 

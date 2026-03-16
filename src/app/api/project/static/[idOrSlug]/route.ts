@@ -13,6 +13,7 @@ import {
   getStoredPaymentPlanBreakdown,
   getStoredPaymentPlanSections,
   getPaymentPlanSectionsByDeveloper,
+  stripPropertyNumberFromTitle,
 } from '@/lib/staticPropertyData';
 
 const AFFORDABLE_MAX = (categoriesConfig as { affordableMaxPriceAED?: number }).affordableMaxPriceAED ?? 1_500_000;
@@ -109,7 +110,7 @@ function transformProject(project: any) {
   return {
     id: project.id,
     slug: project.slug,
-    title: project.title,
+    title: stripPropertyNumberFromTitle(project.title || ''),
     type: getProjectType(project),
     category,
     price: minPrice || maxPrice,

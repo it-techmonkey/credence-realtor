@@ -11,6 +11,7 @@ import {
   getMainImage,
   hasStoredDescription,
   descriptionContainsWaterfrontOrLagoon,
+  stripPropertyNumberFromTitle,
 } from '@/lib/staticPropertyData';
 
 const AFFORDABLE_MAX = (categoriesConfig as { affordableMaxPriceAED?: number }).affordableMaxPriceAED ?? 1_500_000;
@@ -21,6 +22,12 @@ const LUXURY_PROJECT_SLUGS = new Set(
 const LUXURY_PROJECT_SLUG_CONTAINS = ((categoriesConfig as { luxuryProjectSlugContains?: string[] }).luxuryProjectSlugContains ?? []).map((s) => s.toLowerCase().trim());
 /** Order of slug patterns for luxury category: projects matching these (in order) appear first. */
 const LUXURY_START_ORDER = ((categoriesConfig as { luxuryProjectStartOrder?: string[] }).luxuryProjectStartOrder ?? []).map((s) => s.toLowerCase().trim());
+/** Slugs to exclude from luxury category (e.g. Azizi Riviera 66, 60). */
+const LUXURY_EXCLUDE_SLUGS = new Set(
+  ((categoriesConfig as { luxuryExcludeSlugs?: string[] }).luxuryExcludeSlugs ?? []).map((s) => s.toLowerCase().trim())
+);
+/** Slug substrings: any project whose slug contains one of these is excluded from luxury (e.g. all Azizi Riviera). */
+const LUXURY_EXCLUDE_SLUG_CONTAINS = ((categoriesConfig as { luxuryExcludeSlugContains?: string[] }).luxuryExcludeSlugContains ?? []).map((s) => s.toLowerCase().trim());
 /** Luxury = developers whose minimum project price (starting point) is 5M+ AED */
 const LUXURY_MIN_PRICE_AED = 5_000_000;
 const OFFICE_SET = new Set((officeSlugs as string[]).map((s) => s.toLowerCase().trim()));
@@ -213,7 +220,7 @@ function transformProject(project: any) {
   return {
     id: project.id,
     slug: project.slug,
-    title: project.title,
+    title: stripPropertyNumberFromTitle(project.title || ''),
     type: getProjectType(project),
     category,
     price: minPrice || maxPrice,
@@ -322,6 +329,8 @@ export async function GET(request: NextRequest) {
         items = items.filter((p: any) => {
           const builder = (p.builder || '').toString().trim();
           const slug = (p.slug || '').toString().toLowerCase().trim();
+          if (LUXURY_EXCLUDE_SLUGS.has(slug)) return false;
+          if (LUXURY_EXCLUDE_SLUG_CONTAINS.some((sub) => slug.includes(sub))) return false;
           const priceFrom = p.statistics?.total?.price_from ?? 0;
           const isLuxury5M = luxuryBuilders5M.has(builder);
           const isLuxuryAllowlist = LUXURY_PROJECT_SLUGS.has(slug) || LUXURY_PROJECT_SLUG_CONTAINS.some((sub) => slug.includes(sub));
