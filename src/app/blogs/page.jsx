@@ -52,35 +52,36 @@ const Blogs = () => {
 
     const communities = {
         'Premium & Central': [
-            { name: "Downtown Dubai", tag: "Luxury living, short-term rentals", points: ["Burj Khalifa & Dubai Mall", "Strong daily rental demand", "Premium capital appreciation"] },
-            { name: "Business Bay", tag: "High ROI, professionals", points: ["Mixed-use residential & commercial", "Canal-facing apartments", "More affordable than Downtown"] },
-            { name: "DIFC", tag: "Corporate professionals", points: ["Financial hub with luxury residences", "Walkable live-work-play ecosystem", "Premium investment potential"] }
+            { name: "Downtown Dubai", tag: "Luxury core, iconic landmarks", points: ["Visit Burj Khalifa observation decks", "Watch Dubai Fountain shows", "Luxury shopping at Dubai Mall"] },
+            { name: "Business Bay", tag: "Central business + residential", points: ["Canal-side dining and views", "Corporate offices and coworking", "Luxury apartments in a prime location"] },
+            { name: "DIFC", tag: "Global financial district", points: ["Fine dining and premium lifestyle", "Art galleries and curated events", "Corporate hub with strong demand"] },
+            { name: "Al Barsha", tag: "Central residential convenience", points: ["Ski Dubai experiences", "Mall of the Emirates shopping", "Strong dining and cafe scene"] }
         ],
         'Waterfront & Island': [
-            { name: "Palm Jumeirah", tag: "Iconic luxury, beachfront", points: ["World-renowned island living", "Exclusive villas & apartments", "High vacation rental demand"] },
-            { name: "Dubai Marina", tag: "Vibrant, waterfront lifestyle", points: ["High-rise luxury towers", "Popular with expats & tourists", "Strong rental yields"] },
-            { name: "Emaar Beachfront", tag: "Private island feel", points: ["Miami-style living", "Direct beach access", "Premium off-plan opportunities"] }
+            { name: "Palm Jumeirah", tag: "Iconic island luxury", points: ["Beach clubs and premium leisure", "Atlantis Aquaventure access", "Fine dining and five-star resorts"] },
+            { name: "Dubai Marina", tag: "Waterfront high-rise lifestyle", points: ["Marina Walk strolls", "Yacht cruises and marina leisure", "Beaches, cafes and nightlife"] },
+            { name: "Dubai Creek Harbour", tag: "Emerging waterfront skyline", points: ["Creek promenade walks", "Dining with skyline views", "Top photography and sunset spots"] },
+            { name: "Bluewaters Island", tag: "Lifestyle island destination", points: ["Ain Dubai observation experience", "Fine dining and waterfront retail", "Entertainment-led living"] }
         ],
-        // Add other tabs as placeholders or repeated data if specific content not provided for all
         'Family & Villas': [
-            { name: "Dubai Hills Estate", tag: "Green community, golf course", points: ["Family-centric amenities", "High demand for villas", "Central location"] },
-            { name: "Arabian Ranches", tag: "Established villa community", points: ["Suburban lifestyle", "Top-rated schools nearby", "Strong long-term occupancy"] },
-            { name: "Damac Hills", tag: "Luxury golf living", points: ["Trump International Golf Club", "Affordable luxury villas", "Abundant green spaces"] }
+            { name: "Dubai Hills Estate", tag: "Green premium community", points: ["Golfing and active lifestyle", "Parks and cycling tracks", "Dubai Hills Mall convenience"] },
+            { name: "Arabian Ranches", tag: "Established villa suburb", points: ["Golf and polo lifestyle", "Family parks and open spaces", "Quiet community living"] },
+            { name: "Jumeirah Village Circle (JVC)", tag: "Family-friendly and affordable", points: ["Parks and jogging tracks", "Community-first daily living", "Local cafes and convenience retail"] }
         ],
         'Green & Lifestyle': [
-            { name: "Sobha Hartland", tag: "City center, green living", points: ["Waterfront & forest views", "Two international schools", "Freehold community"] },
-            { name: "Al Barari", tag: "Eco-friendly luxury", points: ["Botanical gardens", "Exclusive spacious villas", "Holistic wellness lifestyle"] },
-            { name: "Jumeirah Golf Estates", tag: "Premium golf community", points: ["World Championship courses", "Luxury finishes", "High-net-worth residents"] }
+            { name: "Jumeirah Lake Towers (JLT)", tag: "Lakeside mixed-use district", points: ["Lakeside walking loops", "Restaurants and cafe clusters", "Strong office + residential mix"] },
+            { name: "Jumeirah Beach Residence (JBR)", tag: "Beachfront promenade lifestyle", points: ["Beach activities year-round", "Outdoor dining and social strip", "Street markets and events"] },
+            { name: "Umm Suqeim", tag: "Upscale beach-focused living", points: ["Beach sports and waterfront access", "Wild Wadi Waterpark nearby", "Luxury dining options"] }
         ],
         'High-ROI & Emerging': [
-            { name: "JVC (Jumeirah Village Circle)", tag: "Affordable, high yield", points: ["Popular with young professionals", "Competitive entry prices", "Consistent rental demand"] },
-            { name: "Arjan", tag: "Up-and-coming", points: ["Near Miracle Garden", "Attracting moderate income tenants", "Strong capital appreciation potential"] },
-            { name: "Dubai South", tag: "Future growth hub", points: ["Home to Al Maktoum Airport", "Expo City proximity", "Long-term investment horizon"] }
+            { name: "Dubai Sports City", tag: "Sports-centric investment zone", points: ["Cricket and football facilities", "Fitness and sports academies", "Steady residential demand"] },
+            { name: "Motor City", tag: "Lifestyle + motorsport identity", points: ["Dubai Autodrome experiences", "Dedicated cycling tracks", "Parks, cafes and family housing"] },
+            { name: "Dubai Silicon Oasis", tag: "Tech hub with value pricing", points: ["Tech offices and startup ecosystem", "Community parks and schools", "Student-friendly and affordable housing"] }
         ],
         'Future-Focused': [
-            { name: "Creek Harbour", tag: "The Next Downtown", points: ["Waterfront views of skyline", "Sustainable urban design", "Future tall tower planned"] },
-            { name: "Meydan", tag: "Luxury & Horse Racing", points: ["Near Downtown", "High-end master community", "Meydan One Mall upcoming"] },
-            { name: "Maritime City", tag: "Sea-facing commercial/res", points: ["Freehold peninsula", "Strategic location", "Emerging luxury destination"] }
+            { name: "Dubai Design District (d3)", tag: "Creative and innovation hub", points: ["Art exhibitions and installations", "Creative cafes and studios", "Fashion and design events"] },
+            { name: "Deira", tag: "Historic commercial district", points: ["Gold and spice souks", "Traditional abra rides", "Old Dubai cultural exploration"] },
+            { name: "Bur Dubai", tag: "Heritage and culture center", points: ["Museums and heritage walks", "Traditional market experiences", "Authentic cultural landmarks"] }
         ]
     };
 
