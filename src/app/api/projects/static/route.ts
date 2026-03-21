@@ -16,6 +16,7 @@ import {
 
 const AFFORDABLE_MAX = (categoriesConfig as { affordableMaxPriceAED?: number }).affordableMaxPriceAED ?? 1_500_000;
 const LUXURY_DEV_NAMES = (categoriesConfig as { luxuryDeveloperNames?: string[] }).luxuryDeveloperNames ?? [];
+const AFFORDABLE_DEV_NAMES = (categoriesConfig as { affordableDeveloperNames?: string[] }).affordableDeveloperNames ?? [];
 const LUXURY_PROJECT_SLUGS = new Set(
   ((categoriesConfig as { luxuryProjectSlugs?: string[] }).luxuryProjectSlugs ?? []).map((s) => s.toLowerCase().trim())
 );
@@ -93,6 +94,25 @@ function getBuilderAliasesForDeveloper(developerParam: string): string[] {
   return list.map((b) => b.trim()).filter(Boolean);
 }
 
+function developerMatchesCategory(rawBuilder: string, categoryDeveloperNames: string[]): boolean {
+  const builder = (rawBuilder || '').toString().trim();
+  if (!builder || categoryDeveloperNames.length === 0) return false;
+  const builderNorm = normalizeDeveloperName(builder);
+  const builderArabicNorm = normalizeArabicForMatch(builder);
+  return categoryDeveloperNames.some((name) => {
+    const n = (name || '').trim();
+    if (!n) return false;
+    const nNorm = normalizeDeveloperName(n);
+    const nArabicNorm = normalizeArabicForMatch(n);
+    return (
+      builderNorm.includes(nNorm) ||
+      nNorm.includes(builderNorm) ||
+      builderArabicNorm.includes(nArabicNorm) ||
+      nArabicNorm.includes(builderArabicNorm)
+    );
+  });
+}
+
 /** Match filter param against builder: exact/alias list (Urdu/Arabic/English) OR translated name. */
 function developerFilterMatches(
   developerParam: string,
@@ -163,6 +183,31 @@ function projectHasBedroomOption(project: any, minBedrooms: number): boolean {
   return consider(project?.statistics?.units) || consider(project?.statistics?.villas) || consider(project?.statistics?.transactions);
 }
 
+function getProjectAreaSqFt(project: any): { min: number; max: number } {
+  const sources = [
+    project?.statistics?.units,
+    project?.statistics?.villas,
+    project?.statistics?.transactions,
+  ];
+  let minAreaM2 = Infinity;
+  let maxAreaM2 = 0;
+
+  for (const source of sources) {
+    if (!source || typeof source !== 'object') continue;
+    for (const unitData of Object.values(source as Record<string, any>)) {
+      if (!unitData || typeof unitData !== 'object') continue;
+      const areaFrom = Number((unitData as any).area_from ?? 0);
+      const areaTo = Number((unitData as any).area_to ?? 0);
+      if (areaFrom > 0) minAreaM2 = Math.min(minAreaM2, areaFrom);
+      if (areaTo > 0) maxAreaM2 = Math.max(maxAreaM2, areaTo);
+    }
+  }
+
+  const minSqFt = minAreaM2 !== Infinity && minAreaM2 > 0 ? Math.round(minAreaM2 * 10.764) : 0;
+  const maxSqFt = maxAreaM2 > 0 ? Math.round(maxAreaM2 * 10.764) : minSqFt;
+  return { min: minSqFt, max: maxSqFt };
+}
+
 function textContainsAny(text: string, keywords: string[]): boolean {
   const t = (text || '').toLowerCase();
   return keywords.some((k) => t.includes(k.toLowerCase()));
@@ -187,10 +232,8 @@ function getProjectCategory(project: any): string {
   if (textContainsAny(combined, COMMERCIAL_KEYWORDS)) return 'Commercial';
   // Waterfront: only projects whose stored description contains "waterfront" or "lagoon"
   if (descriptionContainsWaterfrontOrLagoon(project.slug)) return 'Waterfront';
-  // Luxury: developers whose starting point (min price across their projects) is 5M+; fallback to name list for any edge cases
-  // (getProjectCategory is called before we have the luxury builder set; category filter uses the set computed in GET)
-  const isLuxuryByName = LUXURY_DEV_NAMES.some((name) => builder.toLowerCase().includes(name.toLowerCase()) || builder.includes(name));
-  if (isLuxuryByName) return 'Luxury';
+  if (developerMatchesCategory(builder, LUXURY_DEV_NAMES)) return 'Luxury';
+  if (developerMatchesCategory(builder, AFFORDABLE_DEV_NAMES)) return 'Affordable';
   if (priceFrom > 0 && priceFrom <= AFFORDABLE_MAX) return 'Affordable';
   return 'Off-Plan';
 }
@@ -216,6 +259,7 @@ function transformProject(project: any) {
   const lat = project.latitude;
   const lng = project.longitude;
   const bedrooms = getProjectBedrooms(project);
+  const area = getProjectAreaSqFt(project);
 
   return {
     id: project.id,
@@ -236,6 +280,9 @@ function transformProject(project: any) {
     latitude: lat != null && !isNaN(Number(lat)) ? Number(lat) : null,
     longitude: lng != null && !isNaN(Number(lng)) ? Number(lng) : null,
     bedrooms,
+    area: area.min || undefined,
+    areaMin: area.min || undefined,
+    areaMax: area.max || undefined,
   };
 }
 
@@ -266,8 +313,17 @@ export async function GET(request: NextRequest) {
     const unitType = unitTypeParam === 'apartment' || unitTypeParam === 'villa' ? unitTypeParam : undefined;
     let minPrice = searchParams.get('minPrice') ? parseInt(searchParams.get('minPrice')!, 10) : undefined;
     let maxPrice = searchParams.get('maxPrice') ? parseInt(searchParams.get('maxPrice')!, 10) : undefined;
+    const minArea = searchParams.get('minArea') ? parseInt(searchParams.get('minArea')!, 10) : undefined;
+    const maxArea = searchParams.get('maxArea') ? parseInt(searchParams.get('maxArea')!, 10) : undefined;
+    const sortByParam = searchParams.get('sortBy')?.trim().toLowerCase();
+    const sortOrderParam = searchParams.get('sortOrder')?.trim().toLowerCase();
+    const sortBy: 'min_price' | 'max_price' | 'created_at' | 'updated_at' | undefined =
+      sortByParam === 'min_price' || sortByParam === 'max_price' || sortByParam === 'created_at' || sortByParam === 'updated_at'
+        ? (sortByParam as any)
+        : undefined;
+    const sortOrder: 'asc' | 'desc' = sortOrderParam === 'asc' ? 'asc' : 'desc';
 
-    if (category && category.toLowerCase() === 'affordable') {
+    if (category && category.toLowerCase() === 'affordable' && AFFORDABLE_DEV_NAMES.length === 0) {
       const cap = AFFORDABLE_MAX;
       maxPrice = maxPrice !== undefined && maxPrice > 0 ? Math.min(maxPrice, cap) : cap;
     }
@@ -332,11 +388,12 @@ export async function GET(request: NextRequest) {
           if (LUXURY_EXCLUDE_SLUGS.has(slug)) return false;
           if (LUXURY_EXCLUDE_SLUG_CONTAINS.some((sub) => slug.includes(sub))) return false;
           const priceFrom = p.statistics?.total?.price_from ?? 0;
+          const isLuxuryByDeveloper = developerMatchesCategory(builder, LUXURY_DEV_NAMES);
           const isLuxury5M = luxuryBuilders5M.has(builder);
           const isLuxuryAllowlist = LUXURY_PROJECT_SLUGS.has(slug) || LUXURY_PROJECT_SLUG_CONTAINS.some((sub) => slug.includes(sub));
           const isLuxuryByPrice = priceFrom >= LUXURY_MIN_PRICE_AED;
           (p as any)._category = 'Luxury';
-          return isLuxury5M || isLuxuryAllowlist || isLuxuryByPrice;
+          return isLuxuryByDeveloper || isLuxury5M || isLuxuryAllowlist || isLuxuryByPrice;
         });
         // Put allowlisted / priority projects at the start in configured order
         if (LUXURY_START_ORDER.length > 0) {
@@ -350,6 +407,15 @@ export async function GET(request: NextRequest) {
             return iA - iB;
           });
         }
+      } else if (cat === 'affordable') {
+        items = items.filter((p: any) => {
+          const builder = (p.builder || '').toString().trim();
+          const priceFrom = p.statistics?.total?.price_from ?? p.statistics?.total?.price_to ?? 0;
+          const isAffordableByDeveloper = developerMatchesCategory(builder, AFFORDABLE_DEV_NAMES);
+          const isAffordableByPrice = AFFORDABLE_DEV_NAMES.length === 0 && priceFrom > 0 && priceFrom <= AFFORDABLE_MAX;
+          (p as any)._category = 'Affordable';
+          return isAffordableByDeveloper || isAffordableByPrice;
+        });
       } else {
         items = items.filter((p: any) => {
           const projectCat = getProjectCategory(p);
@@ -411,6 +477,18 @@ export async function GET(request: NextRequest) {
         return ceilingPrice <= maxPrice;
       });
     }
+    if (minArea !== undefined && minArea > 0) {
+      items = items.filter((p: any) => {
+        const area = getProjectAreaSqFt(p);
+        return area.max >= minArea;
+      });
+    }
+    if (maxArea !== undefined && maxArea > 0) {
+      items = items.filter((p: any) => {
+        const area = getProjectAreaSqFt(p);
+        return area.min <= maxArea;
+      });
+    }
 
     // Dedupe by canonical project name
     const canonicalTitle = (t: string) => (t || '').replace(/\s+\d+$/, '').trim() || (t || '');
@@ -422,14 +500,38 @@ export async function GET(request: NextRequest) {
       return true;
     });
 
-    // 6. Description-based sort: projects with stored description first
-    items.sort((a: any, b: any) => {
-      const slugA = (a.slug || '').toString().trim();
-      const slugB = (b.slug || '').toString().trim();
-      const hasA = hasStoredDescription(slugA) ? 1 : 0;
-      const hasB = hasStoredDescription(slugB) ? 1 : 0;
-      return hasB - hasA;
-    });
+    // 6. Sorting
+    if (sortBy) {
+      items.sort((a: any, b: any) => {
+        let aValue = 0;
+        let bValue = 0;
+        if (sortBy === 'min_price') {
+          aValue = Number(a?.statistics?.total?.price_from ?? a?.statistics?.total?.price_to ?? 0);
+          bValue = Number(b?.statistics?.total?.price_from ?? b?.statistics?.total?.price_to ?? 0);
+        } else if (sortBy === 'max_price') {
+          aValue = Number(a?.statistics?.total?.price_to ?? a?.statistics?.total?.price_from ?? 0);
+          bValue = Number(b?.statistics?.total?.price_to ?? b?.statistics?.total?.price_from ?? 0);
+        } else {
+          const aDate = sortBy === 'created_at' ? a?.created_at : a?.updated_at;
+          const bDate = sortBy === 'created_at' ? b?.created_at : b?.updated_at;
+          const aParsed = Date.parse(aDate || '');
+          const bParsed = Date.parse(bDate || '');
+          // Static dataset has no created/updated fields; fallback to project id as a deterministic recency proxy.
+          aValue = Number.isFinite(aParsed) ? aParsed : Number(a?.id ?? 0);
+          bValue = Number.isFinite(bParsed) ? bParsed : Number(b?.id ?? 0);
+        }
+        return sortOrder === 'asc' ? aValue - bValue : bValue - aValue;
+      });
+    } else {
+      // Default ranking keeps richer records first.
+      items.sort((a: any, b: any) => {
+        const slugA = (a.slug || '').toString().trim();
+        const slugB = (b.slug || '').toString().trim();
+        const hasA = hasStoredDescription(slugA) ? 1 : 0;
+        const hasB = hasStoredDescription(slugB) ? 1 : 0;
+        return hasB - hasA;
+      });
+    }
 
     const total = items.length;
     const totalPages = Math.ceil(total / limit);
