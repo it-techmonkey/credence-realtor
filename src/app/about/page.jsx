@@ -360,21 +360,22 @@ const About = () => {
 
                     <AnimatedContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12 justify-items-center">
                         {[
-                            { title: "Team Recognition", img: "/assets/awards and team recog/team (1).png" },
-                            { title: "Awards & Certifications", img: "/assets/awards and team recog/award.png" },
-                            { title: "Team Celebration", img: "/assets/awards and team recog/team2.png" },
-                            { title: "Excellence Award", img: "/assets/awards and team recog/award2.png" },
-                            { title: "Team Event", img: "/assets/awards and team recog/team (3).png" },
-                            { title: "Industry Recognition", img: "/assets/awards and team recog/awar3.png" }
+                            { title: "Team Recognition", desc: "Celebrating performance, integrity, and service excellence across our growing advisory team." },
+                            { title: "Awards & Certifications", desc: "Recognized through professional certifications and industry-standard compliance milestones." },
+                            { title: "Team Celebration", desc: "A culture that values collaboration, mentorship, and shared success." },
+                            { title: "Excellence Award", desc: "Committed to consistent quality in client outcomes and execution standards." },
+                            { title: "Team Event", desc: "Regular initiatives that strengthen leadership, communication, and market readiness." },
+                            { title: "Industry Recognition", desc: "Trusted by clients and partners for transparent guidance and reliable delivery." }
                         ].map((item, idx) => (
                             <AnimatedItem
                                 key={idx}
-                                className="bg-white p-6 border border-[#E5E5E5] hover:border-[#C5A365] transition-colors w-full max-w-sm"
+                                className="bg-white p-6 border border-[#E5E5E5] hover:border-[#C5A365] transition-colors w-full max-w-sm text-left"
                             >
-                                <div className="bg-[#F9F7F2] mb-6 overflow-hidden rounded-sm p-4 flex items-center justify-center h-64">
-                                    <img src={item.img} alt={item.title} className="w-full h-full object-contain" />
+                                <div className="w-11 h-11 rounded-full bg-[#F9F7F2] text-[#C5A365] flex items-center justify-center mb-5">
+                                    <Award size={20} />
                                 </div>
-                                <h4 className="text-secondary font-bold">{item.title}</h4>
+                                <h4 className="text-secondary font-bold mb-2">{item.title}</h4>
+                                <p className="text-sm text-gray-500 leading-relaxed">{item.desc}</p>
                             </AnimatedItem>
                         ))}
                     </AnimatedContainer>

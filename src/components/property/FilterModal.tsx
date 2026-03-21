@@ -286,7 +286,10 @@ export default function FilterModal({ isOpen, onClose, filters, onApplyFilters }
                   if (!e.target.value) {
                     setLocalFilters({ ...localFilters, sortBy: undefined, sortOrder: undefined });
                   } else {
-                    const [sortBy, sortOrder] = e.target.value.split('_');
+                    const selected = e.target.value;
+                    const lastUnderscoreIdx = selected.lastIndexOf('_');
+                    const sortBy = lastUnderscoreIdx > 0 ? selected.slice(0, lastUnderscoreIdx) : selected;
+                    const sortOrder = lastUnderscoreIdx > 0 ? selected.slice(lastUnderscoreIdx + 1) : 'desc';
                     setLocalFilters({ 
                       ...localFilters, 
                       sortBy: sortBy as any,

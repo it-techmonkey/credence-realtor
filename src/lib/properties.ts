@@ -163,6 +163,9 @@ function mapStaticProjectToProperty(data: any): Property {
   const mainImage = data.mainImage || data.main_image || gallery[0] || '';
   const minPrice = data.minPrice ?? data.price;
   const maxPrice = data.maxPrice ?? data.price;
+  const areaValue = data.area ?? data.sq_ft ?? data.property_size;
+  const areaMinValue = data.areaMin ?? data.area_min ?? areaValue;
+  const areaMaxValue = data.areaMax ?? data.area_max ?? areaValue;
   const price = minPrice || maxPrice || 0;
   const amenities = Array.isArray(data.amenities) ? data.amenities.filter((a: unknown) => typeof a === 'string' && a.trim()) : [];
   const prop: Property = {
@@ -175,6 +178,9 @@ function mapStaticProjectToProperty(data: any): Property {
     price,
     minPrice: minPrice || undefined,
     maxPrice: maxPrice && maxPrice !== minPrice ? maxPrice : undefined,
+    area: typeof areaValue === 'number' && areaValue > 0 ? areaValue : undefined,
+    areaMin: typeof areaMinValue === 'number' && areaMinValue > 0 ? areaMinValue : undefined,
+    areaMax: typeof areaMaxValue === 'number' && areaMaxValue > 0 ? areaMaxValue : undefined,
     mainImage: mainImage || 'https://via.placeholder.com/800x600?text=No+Image',
     gallery: gallery,
     location: data.location || data.locality || '',
@@ -539,6 +545,10 @@ async function getPaginatedPropertiesFromStatic(
   if (filters.unitType) params.set('unitType', filters.unitType);
   if (filters.minPrice && filters.minPrice > 0) params.set('minPrice', String(filters.minPrice));
   if (filters.maxPrice && filters.maxPrice > 0) params.set('maxPrice', String(filters.maxPrice));
+  if (filters.minArea && filters.minArea > 0) params.set('minArea', String(filters.minArea));
+  if (filters.maxArea && filters.maxArea > 0) params.set('maxArea', String(filters.maxArea));
+  if (filters.sortBy) params.set('sortBy', String(filters.sortBy));
+  if (filters.sortOrder) params.set('sortOrder', String(filters.sortOrder));
 
   const base = getBaseUrl();
   const url = typeof window !== 'undefined'
