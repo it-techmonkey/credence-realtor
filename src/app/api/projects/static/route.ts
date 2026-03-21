@@ -247,6 +247,12 @@ function isCategoryPriorityProject(project: any, category: string | null): boole
   return getCategoryPriorityRank(project, category) !== Number.MAX_SAFE_INTEGER;
 }
 
+function isAffordableProjectEligible(project: any): boolean {
+  const startingPrice = project?.statistics?.total?.price_from ?? project?.statistics?.total?.price_to ?? 0;
+  const hasOneBedroomOption = projectHasBedroomOption(project, 1);
+  return startingPrice > 0 && startingPrice <= AFFORDABLE_MAX && hasOneBedroomOption;
+}
+
 function getProjectCategory(project: any): string {
   const slug = (project.slug || '').toString().toLowerCase().trim();
   const combined = projectSlugTitleDistrict(project);
@@ -260,8 +266,7 @@ function getProjectCategory(project: any): string {
   // Waterfront: only projects whose stored description contains "waterfront" or "lagoon"
   if (descriptionContainsWaterfrontOrLagoon(project.slug)) return 'Waterfront';
   if (developerMatchesCategory(builder, LUXURY_DEV_NAMES)) return 'Luxury';
-  if (developerMatchesCategory(builder, AFFORDABLE_DEV_NAMES)) return 'Affordable';
-  if (priceFrom > 0 && priceFrom <= AFFORDABLE_MAX) return 'Affordable';
+  if (isAffordableProjectEligible(project)) return 'Affordable';
   return 'Off-Plan';
 }
 
@@ -440,16 +445,9 @@ export async function GET(request: NextRequest) {
         }
       } else if (cat === 'affordable') {
         items = items.filter((p: any) => {
-          if (isCategoryPriorityProject(p, cat)) {
-            (p as any)._category = 'Affordable';
-            return true;
-          }
-          const builder = (p.builder || '').toString().trim();
-          const priceFrom = p.statistics?.total?.price_from ?? p.statistics?.total?.price_to ?? 0;
-          const isAffordableByDeveloper = developerMatchesCategory(builder, AFFORDABLE_DEV_NAMES);
-          const isAffordableByPrice = AFFORDABLE_DEV_NAMES.length === 0 && priceFrom > 0 && priceFrom <= AFFORDABLE_MAX;
+          const isAffordableByRule = isAffordableProjectEligible(p);
           (p as any)._category = 'Affordable';
-          return isAffordableByDeveloper || isAffordableByPrice;
+          return isAffordableByRule;
         });
       } else {
         items = items.filter((p: any) => {
