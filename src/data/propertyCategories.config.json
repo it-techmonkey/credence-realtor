@@ -96,5 +96,64 @@
     "تايقر",
     "اكوا"
   ],
-  "categoryOrder": ["Affordable", "Waterfront", "Luxury", "Office", "Commercial", "Off-Plan"]
+  "categoryOrder": ["Affordable", "Waterfront", "Luxury", "Office", "Commercial", "Off-Plan"],
+  "topCategoryProjectPriority": {
+    "luxury": [
+      "Sea Legend One",
+      "Sea legend one BY MVS real estate",
+      "Capital Horizon Terraces",
+      "Olivia Residence Gardens",
+      "Olivia Gardens Residence",
+      "Azizi Venice",
+      "Luz Ora",
+      "Luz Ora Residences",
+      "Verde by Vision",
+      "The Grandala",
+      "Enso Amber",
+      "Amber by Enso"
+    ],
+    "off-plan": [
+      "Sea Legend One",
+      "Sea legend one BY MVS real estate",
+      "Capital Horizon Terraces",
+      "Azizi Venice",
+      "Olivia Residence Gardens",
+      "Olivia Gardens Residence",
+      "Enso Amber",
+      "Amber by Enso",
+      "Colibri Views",
+      "Luz Ora",
+      "Luz Ora Residences",
+      "Verde by Vision"
+    ],
+    "affordable": [
+      "Azizi Venice",
+      "The Grandala",
+      "Enso Amber",
+      "Amber by Enso",
+      "Colibri Views",
+      "Verde by Vision",
+      "Luz Ora",
+      "Luz Ora Residences"
+    ],
+    "waterfront": [
+      "Sea Legend One",
+      "Sea legend one BY MVS real estate",
+      "Capital Horizon Terraces",
+      "Luz Ora",
+      "Luz Ora Residences",
+      "Azizi Venice"
+    ],
+    "commercial": [
+      "The Momentum District",
+      "The Grandala",
+      "Capital Horizon Terraces",
+      "Amber by Enso"
+    ],
+    "office": [
+      "The Momentum District",
+      "Amber by Enso",
+      "The Grandala"
+    ]
+  }
 }

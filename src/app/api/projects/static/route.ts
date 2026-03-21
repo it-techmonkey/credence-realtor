@@ -17,6 +17,7 @@ import {
 const AFFORDABLE_MAX = (categoriesConfig as { affordableMaxPriceAED?: number }).affordableMaxPriceAED ?? 1_500_000;
 const LUXURY_DEV_NAMES = (categoriesConfig as { luxuryDeveloperNames?: string[] }).luxuryDeveloperNames ?? [];
 const AFFORDABLE_DEV_NAMES = (categoriesConfig as { affordableDeveloperNames?: string[] }).affordableDeveloperNames ?? [];
+const TOP_CATEGORY_PROJECT_PRIORITY = (categoriesConfig as { topCategoryProjectPriority?: Record<string, string[]> }).topCategoryProjectPriority ?? {};
 const LUXURY_PROJECT_SLUGS = new Set(
   ((categoriesConfig as { luxuryProjectSlugs?: string[] }).luxuryProjectSlugs ?? []).map((s) => s.toLowerCase().trim())
 );
@@ -220,6 +221,32 @@ function projectSlugTitleDistrict(project: any): string {
   return `${s} ${t} ${d}`;
 }
 
+function normalizeProjectLabel(value: string): string {
+  return (value || '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, ' ')
+    .trim();
+}
+
+function getCategoryPriorityRank(project: any, category: string | null): number {
+  if (!category) return Number.MAX_SAFE_INTEGER;
+  const key = category.toLowerCase();
+  const priorityList = TOP_CATEGORY_PROJECT_PRIORITY[key];
+  if (!Array.isArray(priorityList) || priorityList.length === 0) return Number.MAX_SAFE_INTEGER;
+  const title = normalizeProjectLabel((project?.title || '').toString());
+  const slug = normalizeProjectLabel((project?.slug || '').toString());
+  for (let i = 0; i < priorityList.length; i += 1) {
+    const p = normalizeProjectLabel(priorityList[i] || '');
+    if (!p) continue;
+    if (title.includes(p) || slug.includes(p)) return i;
+  }
+  return Number.MAX_SAFE_INTEGER;
+}
+
+function isCategoryPriorityProject(project: any, category: string | null): boolean {
+  return getCategoryPriorityRank(project, category) !== Number.MAX_SAFE_INTEGER;
+}
+
 function getProjectCategory(project: any): string {
   const slug = (project.slug || '').toString().toLowerCase().trim();
   const combined = projectSlugTitleDistrict(project);
@@ -383,6 +410,10 @@ export async function GET(request: NextRequest) {
       const cat = category.toLowerCase();
       if (cat === 'luxury') {
         items = items.filter((p: any) => {
+          if (isCategoryPriorityProject(p, cat)) {
+            (p as any)._category = 'Luxury';
+            return true;
+          }
           const builder = (p.builder || '').toString().trim();
           const slug = (p.slug || '').toString().toLowerCase().trim();
           if (LUXURY_EXCLUDE_SLUGS.has(slug)) return false;
@@ -409,6 +440,10 @@ export async function GET(request: NextRequest) {
         }
       } else if (cat === 'affordable') {
         items = items.filter((p: any) => {
+          if (isCategoryPriorityProject(p, cat)) {
+            (p as any)._category = 'Affordable';
+            return true;
+          }
           const builder = (p.builder || '').toString().trim();
           const priceFrom = p.statistics?.total?.price_from ?? p.statistics?.total?.price_to ?? 0;
           const isAffordableByDeveloper = developerMatchesCategory(builder, AFFORDABLE_DEV_NAMES);
@@ -418,6 +453,10 @@ export async function GET(request: NextRequest) {
         });
       } else {
         items = items.filter((p: any) => {
+          if (isCategoryPriorityProject(p, cat)) {
+            (p as any)._category = category;
+            return true;
+          }
           const projectCat = getProjectCategory(p);
           (p as any)._category = projectCat;
           return projectCat.toLowerCase() === cat;
@@ -503,6 +542,9 @@ export async function GET(request: NextRequest) {
     // 6. Sorting
     if (sortBy) {
       items.sort((a: any, b: any) => {
+        const rankA = getCategoryPriorityRank(a, category ?? null);
+        const rankB = getCategoryPriorityRank(b, category ?? null);
+        if (rankA !== rankB) return rankA - rankB;
         let aValue = 0;
         let bValue = 0;
         if (sortBy === 'min_price') {
@@ -525,6 +567,9 @@ export async function GET(request: NextRequest) {
     } else {
       // Default ranking keeps richer records first.
       items.sort((a: any, b: any) => {
+        const rankA = getCategoryPriorityRank(a, category ?? null);
+        const rankB = getCategoryPriorityRank(b, category ?? null);
+        if (rankA !== rankB) return rankA - rankB;
         const slugA = (a.slug || '').toString().trim();
         const slugB = (b.slug || '').toString().trim();
         const hasA = hasStoredDescription(slugA) ? 1 : 0;
