@@ -161,6 +161,19 @@ function isPriorityDeveloperProject(rawBuilder: string): boolean {
   return getPreferredDeveloperRank(rawBuilder) < 9999;
 }
 
+/** Stable pseudo-random mix (FNV-1a) so priority-35 projects are not grouped by developer order. */
+function deterministicMixKey(project: any): number {
+  const slug = (project?.slug || '').toString();
+  const id = project?.id != null ? String(project.id) : '';
+  const s = `${id}:${slug}`;
+  let h = 2166136261;
+  for (let i = 0; i < s.length; i += 1) {
+    h ^= s.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return h >>> 0;
+}
+
 /** Match filter param against builder: exact/alias list (Urdu/Arabic/English) OR translated name. */
 function developerFilterMatches(
   developerParam: string,
@@ -282,10 +295,20 @@ function getCategoryPriorityRank(project: any, category: string | null): number 
   if (!Array.isArray(priorityList) || priorityList.length === 0) return Number.MAX_SAFE_INTEGER;
   const title = normalizeProjectLabel((project?.title || '').toString());
   const slug = normalizeProjectLabel((project?.slug || '').toString());
+  const slugRaw = (project?.slug || '').toString().toLowerCase();
+  const titleRaw = (project?.title || '').toString().toLowerCase();
   for (let i = 0; i < priorityList.length; i += 1) {
     const p = normalizeProjectLabel(priorityList[i] || '');
     if (!p) continue;
     if (title.includes(p) || slug.includes(p)) return i;
+    if (p.length >= 4 && (slugRaw.includes(p) || titleRaw.includes(p))) return i;
+  }
+  // Luxury: "All Omniyat projects" — match builder when slug/title do not contain "omniyat"
+  if (key === 'luxury') {
+    const omniyatIdx = priorityList.findIndex((x) => normalizeProjectLabel((x || '').toString()) === 'omniyat');
+    if (omniyatIdx >= 0 && developerMatchesCategory((project?.builder || '').toString(), ['omniyat', 'Omniyat', 'أومنيات'])) {
+      return omniyatIdx;
+    }
   }
   return Number.MAX_SAFE_INTEGER;
 }
@@ -574,8 +597,8 @@ export async function GET(request: NextRequest) {
       return true;
     });
 
-    // 6. Sorting: 35 priority developers first (all pages until exhausted) → others last → then category pins →
-    //    developer order (1–35) → price/date or description
+    // 6. Sorting: 35 priority developers first → others last → category pins → mixed order within priority-35
+    //    (deterministic hash, not Emaar-then-Nakheel) → non-priority still by dev rank tie-break → price/date or description
     if (sortBy) {
       items.sort((a: any, b: any) => {
         const bucketA = isPriorityDeveloperProject(a?.builder || '') ? 0 : 1;
@@ -584,9 +607,15 @@ export async function GET(request: NextRequest) {
         const rankA = getCategoryPriorityRank(a, category ?? null);
         const rankB = getCategoryPriorityRank(b, category ?? null);
         if (rankA !== rankB) return rankA - rankB;
-        const devA = getPreferredDeveloperRank(a?.builder || '');
-        const devB = getPreferredDeveloperRank(b?.builder || '');
-        if (devA !== devB) return devA - devB;
+        if (bucketA === 0 && bucketB === 0) {
+          const mixA = deterministicMixKey(a);
+          const mixB = deterministicMixKey(b);
+          if (mixA !== mixB) return mixA - mixB;
+        } else {
+          const devA = getPreferredDeveloperRank(a?.builder || '');
+          const devB = getPreferredDeveloperRank(b?.builder || '');
+          if (devA !== devB) return devA - devB;
+        }
         let aValue = 0;
         let bValue = 0;
         if (sortBy === 'min_price') {
@@ -615,9 +644,15 @@ export async function GET(request: NextRequest) {
         const rankA = getCategoryPriorityRank(a, category ?? null);
         const rankB = getCategoryPriorityRank(b, category ?? null);
         if (rankA !== rankB) return rankA - rankB;
-        const devA = getPreferredDeveloperRank(a?.builder || '');
-        const devB = getPreferredDeveloperRank(b?.builder || '');
-        if (devA !== devB) return devA - devB;
+        if (bucketA === 0 && bucketB === 0) {
+          const mixA = deterministicMixKey(a);
+          const mixB = deterministicMixKey(b);
+          if (mixA !== mixB) return mixA - mixB;
+        } else {
+          const devA = getPreferredDeveloperRank(a?.builder || '');
+          const devB = getPreferredDeveloperRank(b?.builder || '');
+          if (devA !== devB) return devA - devB;
+        }
         const slugA = (a.slug || '').toString().trim();
         const slugB = (b.slug || '').toString().trim();
         const hasA = hasStoredDescription(slugA) ? 1 : 0;
