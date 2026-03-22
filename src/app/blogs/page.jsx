@@ -235,18 +235,19 @@ const Blogs = () => {
                         ))}
                     </div>
 
-                    {/* Cards */}
+                    {/* Cards — items-start prevents row stretch when one card expands (keeps sibling card heights stable) */}
                     <AnimatedContainer
-                        className="grid grid-cols-1 md:grid-cols-3 gap-8"
+                        className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start"
                         key={activeTab}
                     >
                         {communities[activeTab].map((comm, idx) => {
                             const areaKey = `${activeTab}-${idx}`;
                             const isOpen = expandedAreaKey === areaKey;
+                            const hasOverview = Boolean(comm.description && String(comm.description).trim());
                             return (
                             <AnimatedItem
                                 key={areaKey}
-                                className="bg-white border border-gray-100 shadow-sm hover:shadow-md transition-shadow flex flex-col overflow-hidden rounded-lg"
+                                className="bg-white border border-gray-100 shadow-sm hover:shadow-md transition-shadow flex flex-col overflow-hidden rounded-lg max-w-full self-start w-full"
                             >
                                 <div className="relative h-48 w-full shrink-0 bg-gray-100">
                                     <img
@@ -257,29 +258,54 @@ const Blogs = () => {
                                     />
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent pointer-events-none" aria-hidden="true" />
                                 </div>
-                                <div className="p-8 flex flex-col flex-1">
-                                <button
-                                    type="button"
-                                    className="text-left w-full"
-                                    onClick={() => setExpandedAreaKey(isOpen ? null : areaKey)}
-                                    aria-expanded={isOpen}
-                                >
-                                    <div className="flex justify-between items-start mb-4">
-                                        <h3 className="text-xl font-display text-secondary">{comm.name}</h3>
-                                        <MapPin size={18} className="text-gray-300 shrink-0" />
+                                <div className="p-8 flex flex-col gap-0">
+                                <div className="flex justify-between items-start gap-3 mb-4">
+                                    <h3 className="text-xl font-display text-secondary leading-tight">{comm.name}</h3>
+                                    <MapPin size={18} className="text-gray-300 shrink-0 mt-1" aria-hidden="true" />
+                                </div>
+                                <div className="bg-[#Fdf8f0] text-[#C5A365] text-xs inline-block px-3 py-1 rounded mb-5 w-fit max-w-full">
+                                    {comm.tag}
+                                </div>
+
+                                {hasOverview && (
+                                    <div className="mb-6 rounded-xl border border-[#C5A365]/15 bg-gradient-to-b from-[#F9F7F2] to-white p-4 shadow-[inset_0_1px_0_0_rgba(197,163,101,0.08)]">
+                                        <button
+                                            type="button"
+                                            className="flex w-full items-center justify-between gap-2 text-left"
+                                            onClick={() => setExpandedAreaKey(isOpen ? null : areaKey)}
+                                            aria-expanded={isOpen}
+                                            aria-controls={`area-overview-${areaKey}`}
+                                            id={`area-overview-trigger-${areaKey}`}
+                                        >
+                                            <span className="text-[11px] font-bold uppercase tracking-widest text-[#C5A365]">
+                                                Area overview
+                                            </span>
+                                            {isOpen ? (
+                                                <ChevronUp size={18} className="shrink-0 text-[#C5A365]" aria-hidden="true" />
+                                            ) : (
+                                                <ChevronDown size={18} className="shrink-0 text-gray-400" aria-hidden="true" />
+                                            )}
+                                        </button>
+                                        <div
+                                            id={`area-overview-${areaKey}`}
+                                            role="region"
+                                            aria-labelledby={`area-overview-trigger-${areaKey}`}
+                                            className="mt-3"
+                                        >
+                                            <p
+                                                className={`text-gray-600 text-sm leading-relaxed ${isOpen ? 'max-h-[min(280px,45vh)] overflow-y-auto pr-1 [scrollbar-gutter:stable]' : 'line-clamp-3'}`}
+                                            >
+                                                {comm.description}
+                                            </p>
+                                            {!isOpen && (
+                                                <p className="mt-2 text-xs text-gray-400">
+                                                    Expand above for the full overview.
+                                                </p>
+                                            )}
+                                        </div>
                                     </div>
-                                    <div className="bg-[#Fdf8f0] text-[#C5A365] text-xs inline-block px-3 py-1 rounded mb-4">
-                                        {comm.tag}
-                                    </div>
-                                    <p className="text-xs text-gray-400 mb-2">
-                                        {isOpen ? 'Tap to hide area overview' : 'Tap for area overview'}
-                                    </p>
-                                </button>
-                                {isOpen && comm.description && (
-                                    <p className="text-gray-600 text-sm leading-relaxed mb-6 border-l-2 border-[#C5A365] pl-4">
-                                        {comm.description}
-                                    </p>
                                 )}
+
                                 <ul className="space-y-3 mb-6">
                                     {comm.points.map((point, i) => (
                                         <li key={i} className="flex items-start gap-3">
