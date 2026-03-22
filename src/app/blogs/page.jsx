@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import {
     MessageCircle,
     ArrowRight,
@@ -27,6 +28,7 @@ import AnimatedSection from '@/components/AnimatedSection';
 import AnimatedContainer from '@/components/AnimatedContainer';
 import AnimatedItem from '@/components/AnimatedItem';
 import { useScrollAnimations } from '@/utils/useScrollAnimation';
+import areaGuideCommunities from '@/data/dubai-area-guide-areas.json';
 
 const Blogs = () => {
     useScrollAnimations();
@@ -34,6 +36,8 @@ const Blogs = () => {
     const [activeTab, setActiveTab] = useState('Premium & Central');
     // State for Accordion
     const [openAccordion, setOpenAccordion] = useState(null);
+    /** `${tab}-${index}` when an area card is expanded to show the long description */
+    const [expandedAreaKey, setExpandedAreaKey] = useState(null);
 
     const toggleAccordion = (index) => {
         setOpenAccordion(openAccordion === index ? null : index);
@@ -50,39 +54,7 @@ const Blogs = () => {
         { icon: <Home size={20} />, title: "Diverse Property Types", desc: "From luxury villas to high-ROI apartments to entry investor profile" }
     ];
 
-    const communities = {
-        'Premium & Central': [
-            { name: "Downtown Dubai", tag: "Luxury living, short-term rentals", points: ["Burj Khalifa & Dubai Mall", "Strong daily rental demand", "Premium capital appreciation"] },
-            { name: "Business Bay", tag: "High ROI, professionals", points: ["Mixed-use residential & commercial", "Canal-facing apartments", "More affordable than Downtown"] },
-            { name: "DIFC", tag: "Corporate professionals", points: ["Financial hub with luxury residences", "Walkable live-work-play ecosystem", "Premium investment potential"] }
-        ],
-        'Waterfront & Island': [
-            { name: "Palm Jumeirah", tag: "Iconic luxury, beachfront", points: ["World-renowned island living", "Exclusive villas & apartments", "High vacation rental demand"] },
-            { name: "Dubai Marina", tag: "Vibrant, waterfront lifestyle", points: ["High-rise luxury towers", "Popular with expats & tourists", "Strong rental yields"] },
-            { name: "Emaar Beachfront", tag: "Private island feel", points: ["Miami-style living", "Direct beach access", "Premium off-plan opportunities"] }
-        ],
-        // Add other tabs as placeholders or repeated data if specific content not provided for all
-        'Family & Villas': [
-            { name: "Dubai Hills Estate", tag: "Green community, golf course", points: ["Family-centric amenities", "High demand for villas", "Central location"] },
-            { name: "Arabian Ranches", tag: "Established villa community", points: ["Suburban lifestyle", "Top-rated schools nearby", "Strong long-term occupancy"] },
-            { name: "Damac Hills", tag: "Luxury golf living", points: ["Trump International Golf Club", "Affordable luxury villas", "Abundant green spaces"] }
-        ],
-        'Green & Lifestyle': [
-            { name: "Sobha Hartland", tag: "City center, green living", points: ["Waterfront & forest views", "Two international schools", "Freehold community"] },
-            { name: "Al Barari", tag: "Eco-friendly luxury", points: ["Botanical gardens", "Exclusive spacious villas", "Holistic wellness lifestyle"] },
-            { name: "Jumeirah Golf Estates", tag: "Premium golf community", points: ["World Championship courses", "Luxury finishes", "High-net-worth residents"] }
-        ],
-        'High-ROI & Emerging': [
-            { name: "JVC (Jumeirah Village Circle)", tag: "Affordable, high yield", points: ["Popular with young professionals", "Competitive entry prices", "Consistent rental demand"] },
-            { name: "Arjan", tag: "Up-and-coming", points: ["Near Miracle Garden", "Attracting moderate income tenants", "Strong capital appreciation potential"] },
-            { name: "Dubai South", tag: "Future growth hub", points: ["Home to Al Maktoum Airport", "Expo City proximity", "Long-term investment horizon"] }
-        ],
-        'Future-Focused': [
-            { name: "Creek Harbour", tag: "The Next Downtown", points: ["Waterfront views of skyline", "Sustainable urban design", "Future tall tower planned"] },
-            { name: "Meydan", tag: "Luxury & Horse Racing", points: ["Near Downtown", "High-end master community", "Meydan One Mall upcoming"] },
-            { name: "Maritime City", tag: "Sea-facing commercial/res", points: ["Freehold peninsula", "Strategic location", "Emerging luxury destination"] }
-        ]
-    };
+    const communities = areaGuideCommunities;
 
     const faqs = [
         { q: "Who Can Buy Property in Dubai?", a: "Foreign nationals can own freehold properties in designated zones across Dubai. Over 40 freehold areas available including Downtown, Marina, Palm Jumeirah. Leasehold options (up to 99 years) available in other areas. No restrictions on number of properties owned. Corporate entities can also purchase property." },
@@ -249,7 +221,10 @@ const Blogs = () => {
                         {Object.keys(communities).map((tab) => (
                             <button
                                 key={tab}
-                                onClick={() => setActiveTab(tab)}
+                                onClick={() => {
+                                    setActiveTab(tab);
+                                    setExpandedAreaKey(null);
+                                }}
                                 className={`px-6 py-3 rounded border text-sm font-medium flex items-center gap-2 transition-all ${activeTab === tab
                                     ? 'bg-[#1A1A1A] text-white border-[#1A1A1A]'
                                     : 'bg-white text-gray-600 border-gray-200 hover:border-gray-400'
@@ -260,24 +235,78 @@ const Blogs = () => {
                         ))}
                     </div>
 
-                    {/* Cards */}
+                    {/* Cards — items-start prevents row stretch when one card expands (keeps sibling card heights stable) */}
                     <AnimatedContainer
-                        className="grid grid-cols-1 md:grid-cols-3 gap-8"
+                        className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start"
                         key={activeTab}
                     >
-                        {communities[activeTab].map((comm, idx) => (
+                        {communities[activeTab].map((comm, idx) => {
+                            const areaKey = `${activeTab}-${idx}`;
+                            const isOpen = expandedAreaKey === areaKey;
+                            const hasOverview = Boolean(comm.description && String(comm.description).trim());
+                            return (
                             <AnimatedItem
-                                key={idx}
-                                className="bg-white p-8 border border-gray-100 shadow-sm hover:shadow-md transition-shadow"
+                                key={areaKey}
+                                className="bg-white border border-gray-100 shadow-sm hover:shadow-md transition-shadow flex flex-col overflow-hidden rounded-lg max-w-full self-start w-full"
                             >
-                                <div className="flex justify-between items-start mb-4">
-                                    <h3 className="text-xl font-display text-secondary">{comm.name}</h3>
-                                    <MapPin size={18} className="text-gray-300" />
+                                <div className="relative h-48 w-full shrink-0 bg-gray-100">
+                                    <img
+                                        src={comm.image || '/assets/blogs-bg.jpg'}
+                                        alt={`${comm.name} — Dubai area guide`}
+                                        className="w-full h-full object-cover"
+                                        loading="lazy"
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent pointer-events-none" aria-hidden="true" />
                                 </div>
-                                <div className="bg-[#Fdf8f0] text-[#C5A365] text-xs inline-block px-3 py-1 rounded mb-6">
+                                <div className="p-8 flex flex-col gap-0">
+                                <div className="flex justify-between items-start gap-3 mb-4">
+                                    <h3 className="text-xl font-display text-secondary leading-tight">{comm.name}</h3>
+                                    <MapPin size={18} className="text-gray-300 shrink-0 mt-1" aria-hidden="true" />
+                                </div>
+                                <div className="bg-[#Fdf8f0] text-[#C5A365] text-xs inline-block px-3 py-1 rounded mb-5 w-fit max-w-full">
                                     {comm.tag}
                                 </div>
-                                <ul className="space-y-3 mb-8">
+
+                                {hasOverview && (
+                                    <div className="mb-6 rounded-xl border border-[#C5A365]/15 bg-gradient-to-b from-[#F9F7F2] to-white p-4 shadow-[inset_0_1px_0_0_rgba(197,163,101,0.08)]">
+                                        <button
+                                            type="button"
+                                            className="flex w-full items-center justify-between gap-2 text-left"
+                                            onClick={() => setExpandedAreaKey(isOpen ? null : areaKey)}
+                                            aria-expanded={isOpen}
+                                            aria-controls={`area-overview-${areaKey}`}
+                                            id={`area-overview-trigger-${areaKey}`}
+                                        >
+                                            <span className="text-[11px] font-bold uppercase tracking-widest text-[#C5A365]">
+                                                Area overview
+                                            </span>
+                                            {isOpen ? (
+                                                <ChevronUp size={18} className="shrink-0 text-[#C5A365]" aria-hidden="true" />
+                                            ) : (
+                                                <ChevronDown size={18} className="shrink-0 text-gray-400" aria-hidden="true" />
+                                            )}
+                                        </button>
+                                        <div
+                                            id={`area-overview-${areaKey}`}
+                                            role="region"
+                                            aria-labelledby={`area-overview-trigger-${areaKey}`}
+                                            className="mt-3"
+                                        >
+                                            <p
+                                                className={`text-gray-600 text-sm leading-relaxed ${isOpen ? 'max-h-[min(280px,45vh)] overflow-y-auto pr-1 [scrollbar-gutter:stable]' : 'line-clamp-3'}`}
+                                            >
+                                                {comm.description}
+                                            </p>
+                                            {!isOpen && (
+                                                <p className="mt-2 text-xs text-gray-400">
+                                                    Expand above for the full overview.
+                                                </p>
+                                            )}
+                                        </div>
+                                    </div>
+                                )}
+
+                                <ul className="space-y-3 mb-6">
                                     {comm.points.map((point, i) => (
                                         <li key={i} className="flex items-start gap-3">
                                             <div className="w-1.5 h-1.5 rounded-full bg-[#C5A365] mt-1.5 shrink-0" />
@@ -285,12 +314,21 @@ const Blogs = () => {
                                         </li>
                                     ))}
                                 </ul>
+                                <Link
+                                    href={`/properties?city=dubai&locality=${encodeURIComponent(comm.locality)}`}
+                                    className="w-full mb-3 border border-[#C5A365] text-[#C5A365] py-3 rounded text-sm font-semibold hover:bg-[#C5A365] hover:text-white transition-colors flex items-center justify-center gap-2"
+                                    onClick={(e) => e.stopPropagation()}
+                                >
+                                    View properties in this area <ArrowRight size={16} />
+                                </Link>
                                 <ContactDropdown
                                     label="Speak to an Advisor"
                                     className="w-full border border-gray-200 text-gray-600 py-3 rounded text-sm hover:border-black hover:text-black transition-colors flex items-center justify-center gap-2"
                                 />
+                                </div>
                             </AnimatedItem>
-                        ))}
+                        );
+                        })}
                     </AnimatedContainer>
                 </div>
             </AnimatedSection>

@@ -17,13 +17,14 @@ import {
 const AFFORDABLE_MAX = (categoriesConfig as { affordableMaxPriceAED?: number }).affordableMaxPriceAED ?? 1_500_000;
 const LUXURY_DEV_NAMES = (categoriesConfig as { luxuryDeveloperNames?: string[] }).luxuryDeveloperNames ?? [];
 const AFFORDABLE_DEV_NAMES = (categoriesConfig as { affordableDeveloperNames?: string[] }).affordableDeveloperNames ?? [];
+const PRIORITY_DEVELOPER_NAMES = ((categoriesConfig as { priorityDeveloperNames?: string[] }).priorityDeveloperNames ?? []).map((s) =>
+  (s || '').toLowerCase().trim()
+).filter(Boolean);
 const TOP_CATEGORY_PROJECT_PRIORITY = (categoriesConfig as { topCategoryProjectPriority?: Record<string, string[]> }).topCategoryProjectPriority ?? {};
 const LUXURY_PROJECT_SLUGS = new Set(
   ((categoriesConfig as { luxuryProjectSlugs?: string[] }).luxuryProjectSlugs ?? []).map((s) => s.toLowerCase().trim())
 );
 const LUXURY_PROJECT_SLUG_CONTAINS = ((categoriesConfig as { luxuryProjectSlugContains?: string[] }).luxuryProjectSlugContains ?? []).map((s) => s.toLowerCase().trim());
-/** Order of slug patterns for luxury category: projects matching these (in order) appear first. */
-const LUXURY_START_ORDER = ((categoriesConfig as { luxuryProjectStartOrder?: string[] }).luxuryProjectStartOrder ?? []).map((s) => s.toLowerCase().trim());
 /** Slugs to exclude from luxury category (e.g. Azizi Riviera 66, 60). */
 const LUXURY_EXCLUDE_SLUGS = new Set(
   ((categoriesConfig as { luxuryExcludeSlugs?: string[] }).luxuryExcludeSlugs ?? []).map((s) => s.toLowerCase().trim())
@@ -34,9 +35,12 @@ const LUXURY_EXCLUDE_SLUG_CONTAINS = ((categoriesConfig as { luxuryExcludeSlugCo
 const LUXURY_MIN_PRICE_AED = 5_000_000;
 const OFFICE_SET = new Set((officeSlugs as string[]).map((s) => s.toLowerCase().trim()));
 const COMMERCIAL_SET = new Set((commercialSlugs as string[]).map((s) => s.toLowerCase().trim()));
+const WATERFRONT_PROJECT_SLUGS = new Set(
+  ((categoriesConfig as { waterfrontProjectSlugs?: string[] }).waterfrontProjectSlugs ?? []).map((s) => s.toLowerCase().trim())
+);
 
 const OFFICE_KEYWORDS = ['office', 'offices', 'مكتب', 'مكاتب', 'business bay', 'difc'];
-const COMMERCIAL_KEYWORDS = ['commercial', 'retail', 'تجاري', 'تجارة', 'mall'];
+const COMMERCIAL_KEYWORDS = ['commercial', 'retail', 'تجاري', 'تجارة', 'mall', 'business park'];
 
 /** Normalize developer/builder for comparison: lowercase, drop common suffixes. */
 function normalizeDeveloperName(name: string): string {
@@ -54,7 +58,7 @@ function normalizeDeveloperName(name: string): string {
 const BUILDERS_BY_DEVELOPER: Record<string, string[]> = {
   emaar: ['إمار', 'امار', 'emaar', 'Emaar', 'Emaar Properties'],
   nakheel: ['نخيلهيل', 'نخيل', 'nakheel', 'Nakheel'],
-  meraas: ['مراس', 'ميراس', 'meraas', 'Meraas'],
+  meraas: ['مراس', 'ميراس', 'meraas', 'Meraas', 'MEERAS', 'meeras', 'Meeras'],
   'dubai properties': ['مجموعة دبي للعقارات', 'دبي الجنوب للعقارات دي دبليو سي ش.ذ.م.م', 'دبي الجنوب', 'مجموعة دبي', 'Dubai Properties'],
   damac: ['داماك', 'damac', 'Damac', 'DAMAC'],
   sobha: ['سوبها', 'سوبا', 'sobha', 'Sobha', 'SOBHA'],
@@ -73,8 +77,12 @@ const BUILDERS_BY_DEVELOPER: Record<string, string[]> = {
   'expo city': ['Expo City', 'expo city'],
   reportage: ['reportage', 'Reportage'],
   'select group': ['Select Group', 'select group'],
-  'union properties': ['Union Properties', 'union properties'],
+  'union properties': ['Union Properties', 'union properties', 'Union'],
+  union: ['Union Properties', 'union properties', 'Union'],
   nabni: ['nabni', 'Nabni'],
+  /** Seven Tides / SRG (same group in market data) */
+  'seven tides': ['Seven Tides', 'seven tides', 'SRG', 'srg', 'Seven Tides Real Estate'],
+  srg: ['SRG', 'srg', 'Seven Tides', 'seven tides'],
 };
 
 /** Normalize Arabic/Urdu for fuzzy match: collapse alef/ya variants so إمار and امار both match. */
@@ -112,6 +120,58 @@ function developerMatchesCategory(rawBuilder: string, categoryDeveloperNames: st
       nArabicNorm.includes(builderArabicNorm)
     );
   });
+}
+
+/** Alternate spellings / same-group brands for one priority slot (table order 1–35). */
+function priorityDeveloperTokens(entry: string): string[] {
+  const key = (entry || '').toLowerCase().trim();
+  const extras: Record<string, string[]> = {
+    'dubai holding': ['dubai holding', 'dubai holdings', 'dubai holding real estate'],
+    meraas: ['meraas', 'meeras', 'MEERAS', 'Meraas', 'Meeras'],
+    binghatti: ['binghatti', 'bingati', 'Binghatti'],
+    imtiaz: ['imtiaz', 'imtiyaz', 'Imtiaz'],
+    union: ['union', 'union properties', 'Union Properties'],
+    'seven tides': ['seven tides', 'Seven Tides', 'srg', 'SRG', 'Seven Tides Real Estate'],
+    'majid al futtaim': ['majid al futtaim', 'majid al-futtaim', 'Majid Al Futtaim'],
+    'object 1': ['object 1', 'object1', 'object one', 'Object 1'],
+    'expo city': ['expo city', 'expo city developer', 'Expo City'],
+    'dubai south': ['dubai south', 'dubai south developer', 'Dubai South'],
+    'gulf land': ['gulf land', 'gulf land developer', 'Gulf Land'],
+  };
+  return extras[key] ?? [entry];
+}
+
+/** Lower index = higher priority (35 focus developers, fixed order). Non-matched = large rank. */
+function getPreferredDeveloperRank(rawBuilder: string): number {
+  const builder = (rawBuilder || '').toString();
+  if (!builder.trim() || PRIORITY_DEVELOPER_NAMES.length === 0) return 9999;
+  let best = 9999;
+  for (let i = 0; i < PRIORITY_DEVELOPER_NAMES.length; i += 1) {
+    const name = PRIORITY_DEVELOPER_NAMES[i];
+    if (!name) continue;
+    if (developerMatchesCategory(builder, priorityDeveloperTokens(name))) {
+      if (i < best) best = i;
+    }
+  }
+  return best;
+}
+
+/** True when builder matches one of the 35 priority developers (same rules as rank < 9999). */
+function isPriorityDeveloperProject(rawBuilder: string): boolean {
+  return getPreferredDeveloperRank(rawBuilder) < 9999;
+}
+
+/** Stable pseudo-random mix (FNV-1a) so priority-35 projects are not grouped by developer order. */
+function deterministicMixKey(project: any): number {
+  const slug = (project?.slug || '').toString();
+  const id = project?.id != null ? String(project.id) : '';
+  const s = `${id}:${slug}`;
+  let h = 2166136261;
+  for (let i = 0; i < s.length; i += 1) {
+    h ^= s.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return h >>> 0;
 }
 
 /** Match filter param against builder: exact/alias list (Urdu/Arabic/English) OR translated name. */
@@ -235,16 +295,32 @@ function getCategoryPriorityRank(project: any, category: string | null): number 
   if (!Array.isArray(priorityList) || priorityList.length === 0) return Number.MAX_SAFE_INTEGER;
   const title = normalizeProjectLabel((project?.title || '').toString());
   const slug = normalizeProjectLabel((project?.slug || '').toString());
+  const slugRaw = (project?.slug || '').toString().toLowerCase();
+  const titleRaw = (project?.title || '').toString().toLowerCase();
   for (let i = 0; i < priorityList.length; i += 1) {
     const p = normalizeProjectLabel(priorityList[i] || '');
     if (!p) continue;
     if (title.includes(p) || slug.includes(p)) return i;
+    if (p.length >= 4 && (slugRaw.includes(p) || titleRaw.includes(p))) return i;
+  }
+  // Luxury: "All Omniyat projects" — match builder when slug/title do not contain "omniyat"
+  if (key === 'luxury') {
+    const omniyatIdx = priorityList.findIndex((x) => normalizeProjectLabel((x || '').toString()) === 'omniyat');
+    if (omniyatIdx >= 0 && developerMatchesCategory((project?.builder || '').toString(), ['omniyat', 'Omniyat', 'أومنيات'])) {
+      return omniyatIdx;
+    }
   }
   return Number.MAX_SAFE_INTEGER;
 }
 
 function isCategoryPriorityProject(project: any, category: string | null): boolean {
   return getCategoryPriorityRank(project, category) !== Number.MAX_SAFE_INTEGER;
+}
+
+function isAffordableProjectEligible(project: any): boolean {
+  const startingPrice = project?.statistics?.total?.price_from ?? project?.statistics?.total?.price_to ?? 0;
+  const hasOneBedroomOption = projectHasBedroomOption(project, 1);
+  return startingPrice > 0 && startingPrice <= AFFORDABLE_MAX && hasOneBedroomOption;
 }
 
 function getProjectCategory(project: any): string {
@@ -257,11 +333,11 @@ function getProjectCategory(project: any): string {
   if (textContainsAny(combined, OFFICE_KEYWORDS)) return 'Office';
   if (COMMERCIAL_SET.has(slug)) return 'Commercial';
   if (textContainsAny(combined, COMMERCIAL_KEYWORDS)) return 'Commercial';
-  // Waterfront: only projects whose stored description contains "waterfront" or "lagoon"
+  // Waterfront: explicit list (curated) + stored description mentions waterfront/lagoon
+  if (WATERFRONT_PROJECT_SLUGS.has(slug)) return 'Waterfront';
   if (descriptionContainsWaterfrontOrLagoon(project.slug)) return 'Waterfront';
   if (developerMatchesCategory(builder, LUXURY_DEV_NAMES)) return 'Luxury';
-  if (developerMatchesCategory(builder, AFFORDABLE_DEV_NAMES)) return 'Affordable';
-  if (priceFrom > 0 && priceFrom <= AFFORDABLE_MAX) return 'Affordable';
+  if (isAffordableProjectEligible(project)) return 'Affordable';
   return 'Off-Plan';
 }
 
@@ -426,30 +502,12 @@ export async function GET(request: NextRequest) {
           (p as any)._category = 'Luxury';
           return isLuxuryByDeveloper || isLuxury5M || isLuxuryAllowlist || isLuxuryByPrice;
         });
-        // Put allowlisted / priority projects at the start in configured order
-        if (LUXURY_START_ORDER.length > 0) {
-          items.sort((a: any, b: any) => {
-            const slugA = (a.slug || '').toString().toLowerCase().trim();
-            const slugB = (b.slug || '').toString().toLowerCase().trim();
-            const idxA = LUXURY_START_ORDER.findIndex((pat) => slugA === pat || slugA.includes(pat));
-            const idxB = LUXURY_START_ORDER.findIndex((pat) => slugB === pat || slugB.includes(pat));
-            const iA = idxA === -1 ? 9999 : idxA;
-            const iB = idxB === -1 ? 9999 : idxB;
-            return iA - iB;
-          });
-        }
+        // Order is applied in the final sort (category pins → 35 developer priority → description)
       } else if (cat === 'affordable') {
         items = items.filter((p: any) => {
-          if (isCategoryPriorityProject(p, cat)) {
-            (p as any)._category = 'Affordable';
-            return true;
-          }
-          const builder = (p.builder || '').toString().trim();
-          const priceFrom = p.statistics?.total?.price_from ?? p.statistics?.total?.price_to ?? 0;
-          const isAffordableByDeveloper = developerMatchesCategory(builder, AFFORDABLE_DEV_NAMES);
-          const isAffordableByPrice = AFFORDABLE_DEV_NAMES.length === 0 && priceFrom > 0 && priceFrom <= AFFORDABLE_MAX;
+          const isAffordableByRule = isAffordableProjectEligible(p);
           (p as any)._category = 'Affordable';
-          return isAffordableByDeveloper || isAffordableByPrice;
+          return isAffordableByRule;
         });
       } else {
         items = items.filter((p: any) => {
@@ -539,12 +597,25 @@ export async function GET(request: NextRequest) {
       return true;
     });
 
-    // 6. Sorting
+    // 6. Sorting: 35 priority developers first → others last → category pins → mixed order within priority-35
+    //    (deterministic hash, not Emaar-then-Nakheel) → non-priority still by dev rank tie-break → price/date or description
     if (sortBy) {
       items.sort((a: any, b: any) => {
+        const bucketA = isPriorityDeveloperProject(a?.builder || '') ? 0 : 1;
+        const bucketB = isPriorityDeveloperProject(b?.builder || '') ? 0 : 1;
+        if (bucketA !== bucketB) return bucketA - bucketB;
         const rankA = getCategoryPriorityRank(a, category ?? null);
         const rankB = getCategoryPriorityRank(b, category ?? null);
         if (rankA !== rankB) return rankA - rankB;
+        if (bucketA === 0 && bucketB === 0) {
+          const mixA = deterministicMixKey(a);
+          const mixB = deterministicMixKey(b);
+          if (mixA !== mixB) return mixA - mixB;
+        } else {
+          const devA = getPreferredDeveloperRank(a?.builder || '');
+          const devB = getPreferredDeveloperRank(b?.builder || '');
+          if (devA !== devB) return devA - devB;
+        }
         let aValue = 0;
         let bValue = 0;
         if (sortBy === 'min_price') {
@@ -567,9 +638,21 @@ export async function GET(request: NextRequest) {
     } else {
       // Default ranking keeps richer records first.
       items.sort((a: any, b: any) => {
+        const bucketA = isPriorityDeveloperProject(a?.builder || '') ? 0 : 1;
+        const bucketB = isPriorityDeveloperProject(b?.builder || '') ? 0 : 1;
+        if (bucketA !== bucketB) return bucketA - bucketB;
         const rankA = getCategoryPriorityRank(a, category ?? null);
         const rankB = getCategoryPriorityRank(b, category ?? null);
         if (rankA !== rankB) return rankA - rankB;
+        if (bucketA === 0 && bucketB === 0) {
+          const mixA = deterministicMixKey(a);
+          const mixB = deterministicMixKey(b);
+          if (mixA !== mixB) return mixA - mixB;
+        } else {
+          const devA = getPreferredDeveloperRank(a?.builder || '');
+          const devB = getPreferredDeveloperRank(b?.builder || '');
+          if (devA !== devB) return devA - devB;
+        }
         const slugA = (a.slug || '').toString().trim();
         const slugB = (b.slug || '').toString().trim();
         const hasA = hasStoredDescription(slugA) ? 1 : 0;

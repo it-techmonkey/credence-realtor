@@ -8,10 +8,16 @@ import fs from 'fs';
 import { stripHtml } from '@/lib/descriptionParser';
 import { extractAmenities } from '@/lib/descriptionParser/extractAmenities';
 
-/** Remove trailing property/building number (space + digits) from title for display. */
+/**
+ * Remove all numeric characters from display titles (e.g. "360 Riverside Crescent" → "Riverside Crescent").
+ * Uses Unicode decimal digits (\p{Nd}) so Arabic-Indic numerals are included. Collapses whitespace.
+ * If nothing readable remains, returns the original trimmed title.
+ */
 export function stripPropertyNumberFromTitle(title: string): string {
   if (!title || typeof title !== 'string') return title || '';
-  return title.replace(/\s+\d+$/, '').trim() || title.trim();
+  const raw = title.trim();
+  const withoutDigits = raw.replace(/\p{Nd}+/gu, '').replace(/\s+/g, ' ').trim();
+  return withoutDigits || raw;
 }
 
 /** Allowed city IDs — only properties with these city_id values are visible. */

@@ -1,0 +1,254 @@
+{
+  "Premium & Central": [
+    {
+      "name": "Downtown Dubai",
+      "image": "https://files.alnair.ae/uploads/2026/1/82/a7/82a7c75fe3ccdb8af2376968694726f6.jpg",
+      "tag": "Luxury core, iconic landmarks",
+      "points": [
+        "Visit Burj Khalifa observation decks",
+        "Watch Dubai Fountain shows",
+        "Luxury shopping at Dubai Mall"
+      ],
+      "locality": "downtown",
+      "description": "Downtown Dubai is the city’s most recognisable skyline cluster—home to Burj Khalifa, Dubai Mall, and the Opera District. It attracts end-users and investors who want walkable luxury, strong short-let demand, and enduring resale liquidity. The area blends high-rise apartments, branded residences, and premium hospitality, making it a benchmark for central Dubai living."
+    },
+    {
+      "name": "Business Bay",
+      "image": "https://files.alnair.ae/uploads/2025/5/db/8d/db8d96693913ce33fd531e2f0d31067e.jpg",
+      "tag": "Central business + residential",
+      "points": [
+        "Canal-side dining and views",
+        "Corporate offices and coworking",
+        "Luxury apartments in a prime location"
+      ],
+      "locality": "business bay",
+      "description": "Business Bay sits along the Dubai Water Canal and functions as a bridge between Downtown and newer corridors. You’ll find a mix of executive apartments, hotel-branded towers, and canal-front dining. Its central location and office footprint support consistent rental demand from professionals and frequent travellers."
+    },
+    {
+      "name": "DIFC",
+      "image": "https://files.alnair.ae/uploads/2025/7/ea/42/ea42bdee0f3e8e02677f22c38cee8964.jpg",
+      "tag": "Global financial district",
+      "points": [
+        "Fine dining and premium lifestyle",
+        "Art galleries and curated events",
+        "Corporate hub with strong demand"
+      ],
+      "locality": "difc",
+      "description": "The Dubai International Financial Centre (DIFC) is Dubai’s regulated finance and legal hub, known for art galleries, Michelin-level dining, and premium residential towers. Properties here appeal to executives and HNWIs who value proximity to offices, curated retail, and a mature, walkable urban core."
+    },
+    {
+      "name": "Al Barsha",
+      "image": "https://files.alnair.ae/uploads/2026/2/f4/f6/f4f6b03b066ad24677690a00e36328be.jpg",
+      "tag": "Central residential convenience",
+      "points": [
+        "Ski Dubai experiences",
+        "Mall of the Emirates shopping",
+        "Strong dining and cafe scene"
+      ],
+      "locality": "al barsha",
+      "description": "Al Barsha offers practical central living with Mall of the Emirates, Ski Dubai, and strong school and clinic access. It suits families and long-term residents who want established infrastructure, varied apartment stock, and quick connectivity to Sheikh Zayed Road and the Metro."
+    }
+  ],
+  "Waterfront & Island": [
+    {
+      "name": "Palm Jumeirah",
+      "image": "https://files.alnair.ae/uploads/2025/7/50/93/5093f8527e90df6622081ab51bc5af9e.png",
+      "tag": "Iconic island luxury",
+      "points": [
+        "Beach clubs and premium leisure",
+        "Atlantis Aquaventure access",
+        "Fine dining and five-star resorts"
+      ],
+      "locality": "jumeirah palm",
+      "description": "Palm Jumeirah remains one of the world’s most famous waterfront addresses, combining beach access, resort-grade amenities, and high-end dining. Villas and apartments here command premium pricing but benefit from limited beachfront supply and global brand recognition."
+    },
+    {
+      "name": "Dubai Marina",
+      "image": "https://files.alnair.ae/uploads/2025/6/d5/0a/d50a71fc5a47d2b2514eaad316b39ad2.jpg",
+      "tag": "Waterfront high-rise lifestyle",
+      "points": [
+        "Marina Walk strolls",
+        "Yacht cruises and marina leisure",
+        "Beaches, cafes and nightlife"
+      ],
+      "locality": "dubai marina",
+      "description": "Dubai Marina is a vertical waterfront community with marina views, beach proximity, and a lively evening economy. It is popular with young professionals and investors seeking liquidity, strong rental demand, and easy access to JBR, Bluewaters, and major highways."
+    },
+    {
+      "name": "Dubai Creek Harbour",
+      "image": "https://files.alnair.ae/uploads/2025/11/0c/bb/0cbbab5bdb07425c9d77cc647dd3a39c.jpg",
+      "tag": "Emerging waterfront skyline",
+      "points": [
+        "Creek promenade walks",
+        "Dining with skyline views",
+        "Top photography and sunset spots"
+      ],
+      "locality": "dubai creek harbour",
+      "description": "Dubai Creek Harbour is a master-planned waterfront district focused on skyline living, promenades, and long-term city expansion toward the creek. It appeals to buyers who want newer inventory, community-scale planning, and evolving amenities as the district matures."
+    },
+    {
+      "name": "Bluewaters Island",
+      "image": "https://files.alnair.ae/uploads/2023/7/f6/08/f60846cfdd795aba03bb9809274aca2a.jpg",
+      "tag": "Lifestyle island destination",
+      "points": [
+        "Ain Dubai observation experience",
+        "Fine dining and waterfront retail",
+        "Entertainment-led living"
+      ],
+      "locality": "bluewaters",
+      "description": "Bluewaters pairs island living with entertainment retail and sea views, anchored by Ain Dubai and curated dining. The location suits lifestyle-led buyers who value novelty, tourism adjacency, and proximity to Marina/JBR while staying slightly removed from the busiest strips."
+    }
+  ],
+  "Family & Villas": [
+    {
+      "name": "Dubai Hills Estate",
+      "image": "https://files.alnair.ae/uploads/2026/1/87/c9/87c9b5fc6ee989136ed8cde82a3edd1f.jpg",
+      "tag": "Green premium community",
+      "points": [
+        "Golfing and active lifestyle",
+        "Parks and cycling tracks",
+        "Dubai Hills Mall convenience"
+      ],
+      "locality": "dubai hills",
+      "description": "Dubai Hills Estate is a green, master-planned community centred on Dubai Hills Park, golf, and Dubai Hills Mall. It is a top pick for families wanting villas or large apartments, strong schools nearby, and a suburban feel with city connectivity."
+    },
+    {
+      "name": "Arabian Ranches",
+      "image": "https://files.alnair.ae/uploads/2026/2/d1/0a/d10ad5d6f460bd22af60f4ee22a9c146.jpg",
+      "tag": "Established villa suburb",
+      "points": [
+        "Golf and polo lifestyle",
+        "Family parks and open spaces",
+        "Quiet community living"
+      ],
+      "locality": "arabian ranches",
+      "description": "Arabian Ranches is one of Dubai’s best-known villa communities, valued for low-density living, mature landscaping, and family amenities. It suits buyers prioritising space, community schools, and a quieter environment while remaining accessible to major business districts."
+    },
+    {
+      "name": "Jumeirah Village Circle (JVC)",
+      "image": "https://files.alnair.ae/uploads/2026/2/10/2d/102d2ba95085c64acb22795d71425aa7.jpg",
+      "tag": "Family-friendly and affordable",
+      "points": [
+        "Parks and jogging tracks",
+        "Community-first daily living",
+        "Local cafes and convenience retail"
+      ],
+      "locality": "jvc",
+      "description": "JVC offers a ring-road community layout with parks, mid-rise apartments, and competitive entry pricing. It is popular with first-time investors and residents who want larger layouts, community facilities, and strong yield potential relative to central districts."
+    }
+  ],
+  "Green & Lifestyle": [
+    {
+      "name": "Jumeirah Lake Towers (JLT)",
+      "image": "https://files.alnair.ae/uploads/2026/2/0b/2f/0b2fa6af3e864b62fee29647cd90f215.png",
+      "tag": "Lakeside mixed-use district",
+      "points": [
+        "Lakeside walking loops",
+        "Restaurants and cafe clusters",
+        "Strong office + residential mix"
+      ],
+      "locality": "jlt",
+      "description": "JLT clusters towers around landscaped lakes with a dense F&B scene and strong Metro access. It balances affordability with lifestyle, attracting young professionals and investors who want walkability without premium Marina pricing."
+    },
+    {
+      "name": "Jumeirah Beach Residence (JBR)",
+      "image": "https://files.alnair.ae/uploads/2025/5/be/30/be3074d8c7094fe888345278904359ac.png",
+      "tag": "Beachfront promenade lifestyle",
+      "points": [
+        "Beach activities year-round",
+        "Outdoor dining and social strip",
+        "Street markets and events"
+      ],
+      "locality": "jbr",
+      "description": "JBR combines a beach promenade, retail walk, and high-rise apartments with direct sand access. It performs well for short-let strategies and lifestyle buyers who want beach living adjacent to Dubai Marina’s nightlife and services."
+    },
+    {
+      "name": "Umm Suqeim",
+      "image": "https://files.alnair.ae/uploads/2025/10/42/9b/429b6b9aa0493af51ff39588d05d10e1.jpg",
+      "tag": "Upscale beach-focused living",
+      "points": [
+        "Beach sports and waterfront access",
+        "Wild Wadi Waterpark nearby",
+        "Luxury dining options"
+      ],
+      "locality": "umm suqeim",
+      "description": "Umm Suqeim is a mature beach-adjacent district known for low-rise villas, townhouses, and proximity to Kite Beach. It appeals to families and end-users seeking established neighbourhoods, strong schools, and an authentic coastal Dubai lifestyle."
+    }
+  ],
+  "High-ROI & Emerging": [
+    {
+      "name": "Dubai Sports City",
+      "image": "https://files.alnair.ae/uploads/2025/8/c1/ee/c1ee824f12df53d197adef17ca92ebec.jpg",
+      "tag": "Sports-centric investment zone",
+      "points": [
+        "Cricket and football facilities",
+        "Fitness and sports academies",
+        "Steady residential demand"
+      ],
+      "locality": "sports city",
+      "description": "Dubai Sports City is built around stadiums, academies, and active-living infrastructure. Apartment pricing is typically more accessible than central Dubai, supporting yield-focused investors and residents who value sports amenities on the doorstep."
+    },
+    {
+      "name": "Motor City",
+      "image": "https://files.alnair.ae/uploads/2026/1/95/f3/95f32f4db016a8cc7762da3196760d50.jpg",
+      "tag": "Lifestyle + motorsport identity",
+      "points": [
+        "Dubai Autodrome experiences",
+        "Dedicated cycling tracks",
+        "Parks, cafes and family housing"
+      ],
+      "locality": "motorcity",
+      "description": "Motor City is a self-contained community with townhouses, apartments, and the Dubai Autodrome. It offers quieter streets, community retail, and family-friendly pricing—ideal for long-term residents who want value and a distinct neighbourhood identity."
+    },
+    {
+      "name": "Dubai Silicon Oasis",
+      "image": "https://files.alnair.ae/uploads/2026/2/3b/d8/3bd8fc9725d416ea1ebfba3736e9ef3e.png",
+      "tag": "Tech hub with value pricing",
+      "points": [
+        "Tech offices and startup ecosystem",
+        "Community parks and schools",
+        "Student-friendly and affordable housing"
+      ],
+      "locality": "dubai silicon oasis",
+      "description": "Dubai Silicon Oasis (DSO) combines technology parks with residential clusters and schools. It attracts tech-sector tenants, students, and budget-conscious investors looking for stable rental demand and improving community services."
+    }
+  ],
+  "Future-Focused": [
+    {
+      "name": "Dubai Design District (d3)",
+      "image": "https://files.alnair.ae/uploads/2026/2/87/4a/874af8b152125d2a3f8191d366e739f3.jpg",
+      "tag": "Creative and innovation hub",
+      "points": [
+        "Art exhibitions and installations",
+        "Creative cafes and studios",
+        "Fashion and design events"
+      ],
+      "locality": "design district",
+      "description": "d3 is Dubai’s creative quarter—home to design studios, fashion houses, and cultural programming. Residential towers here suit buyers who want a design-led address with quick access to Downtown and Business Bay."
+    },
+    {
+      "name": "Deira",
+      "image": "https://files.alnair.ae/uploads/2025/10/e6/71/e671f69ca9879e050c8ac99d9d4dca77.jpg",
+      "tag": "Historic commercial district",
+      "points": [
+        "Gold and spice souks",
+        "Traditional abra rides",
+        "Old Dubai cultural exploration"
+      ],
+      "locality": "deira",
+      "description": "Deira is historic Dubai’s trading heart—souks, abras, and dense retail corridors. While inventory is more varied than newer master plans, it remains relevant for buyers interested in heritage proximity, waterfront renewal projects, and competitive pricing."
+    },
+    {
+      "name": "Bur Dubai",
+      "image": "https://files.alnair.ae/uploads/2026/2/fd/34/fd347fca4171ccbac085b450b98195f6.jpg",
+      "tag": "Heritage and culture center",
+      "points": [
+        "Museums and heritage walks",
+        "Traditional market experiences",
+        "Authentic cultural landmarks"
+      ],
+      "locality": "bur dubai",
+      "description": "Bur Dubai blends heritage districts, museums, and older residential stock with ongoing revitalisation along the creek. It suits culturally curious residents and investors tracking regeneration-linked upside near Al Fahidi and traditional retail cores."
+    }
+  ]
+}

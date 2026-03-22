@@ -182,9 +182,9 @@ const Footer = () => {
                             </ul>
                         </div>
 
-                        {/* Column 4: Blogs */}
+                        {/* Column 4: Guide (content lives on /blogs) */}
                         <div>
-                            <h3 className="font-semibold text-white mb-6">Blogs</h3>
+                            <h3 className="font-semibold text-white mb-6">Guide</h3>
                             <ul className="space-y-3">
                                 {[
                                     { name: "Why Invest in Dubai", path: "/blogs#market" },
@@ -205,9 +205,9 @@ const Footer = () => {
                             </ul>
                         </div>
 
-                        {/* Column 5: Guide */}
+                        {/* Column 5: Blogs (buyer journey on /guide) */}
                         <div>
-                            <h3 className="font-semibold text-white mb-6">Guide</h3>
+                            <h3 className="font-semibold text-white mb-6">Blogs</h3>
                             <ul className="space-y-3">
                                 {[
                                     { name: "Step-by-Step Guide", path: "/guide#steps" },

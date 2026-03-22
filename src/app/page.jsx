@@ -387,6 +387,11 @@ const HomeContent = () => {
                                         </div>
                                     </div>
                                     <div className="p-5">
+                                        {item.description && (
+                                            <p className="text-sm text-gray-600 leading-relaxed mb-4 line-clamp-4">
+                                                {item.description}
+                                            </p>
+                                        )}
                                         <div className="mb-4 border-b border-gray-100 pb-4">
                                             <p className="text-xs text-gray-400 uppercase">Delivery Date</p>
                                             <p className="text-secondary font-semibold text-sm">

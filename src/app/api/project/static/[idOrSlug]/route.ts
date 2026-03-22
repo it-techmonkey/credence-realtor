@@ -20,8 +20,11 @@ const AFFORDABLE_MAX = (categoriesConfig as { affordableMaxPriceAED?: number }).
 const LUXURY_DEV_NAMES = (categoriesConfig as { luxuryDeveloperNames?: string[] }).luxuryDeveloperNames ?? [];
 const OFFICE_SET = new Set((officeSlugs as string[]).map((s) => s.toLowerCase().trim()));
 const COMMERCIAL_SET = new Set((commercialSlugs as string[]).map((s) => s.toLowerCase().trim()));
+const WATERFRONT_PROJECT_SLUGS = new Set(
+  ((categoriesConfig as { waterfrontProjectSlugs?: string[] }).waterfrontProjectSlugs ?? []).map((s) => s.toLowerCase().trim())
+);
 const OFFICE_KEYWORDS = ['office', 'offices', 'مكتب', 'مكاتب'];
-const COMMERCIAL_KEYWORDS = ['commercial', 'retail', 'تجاري', 'تجارة'];
+const COMMERCIAL_KEYWORDS = ['commercial', 'retail', 'تجاري', 'تجارة', 'mall', 'business park'];
 
 const UNIT_CODE_TO_BEDROOMS: Record<string, number> = {
   '110': 0, '111': 1, '112': 2, '113': 3, '114': 4, '115': 5, '116': 6, '117': 7,
@@ -78,6 +81,7 @@ function getProjectCategory(project: any): string {
   if (slugOrTitleMatches(slug, OFFICE_KEYWORDS) || slugOrTitleMatches(title, OFFICE_KEYWORDS)) return 'Office';
   if (COMMERCIAL_SET.has(slug)) return 'Commercial';
   if (slugOrTitleMatches(slug, COMMERCIAL_KEYWORDS) || slugOrTitleMatches(title, COMMERCIAL_KEYWORDS)) return 'Commercial';
+  if (WATERFRONT_PROJECT_SLUGS.has(slug)) return 'Waterfront';
   if (descriptionContainsWaterfrontOrLagoon(project.slug)) return 'Waterfront';
   if (LUXURY_DEV_NAMES.some((name) => builder.toLowerCase().includes(name.toLowerCase()) || builder.includes(name))) return 'Luxury';
   if (priceFrom > 0 && priceFrom <= AFFORDABLE_MAX) return 'Affordable';
