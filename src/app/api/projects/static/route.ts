@@ -156,6 +156,11 @@ function getPreferredDeveloperRank(rawBuilder: string): number {
   return best;
 }
 
+/** True when builder matches one of the 35 priority developers (same rules as rank < 9999). */
+function isPriorityDeveloperProject(rawBuilder: string): boolean {
+  return getPreferredDeveloperRank(rawBuilder) < 9999;
+}
+
 /** Match filter param against builder: exact/alias list (Urdu/Arabic/English) OR translated name. */
 function developerFilterMatches(
   developerParam: string,
@@ -569,9 +574,13 @@ export async function GET(request: NextRequest) {
       return true;
     });
 
-    // 6. Sorting: category pins → 35 developer priority (always) → price/date or description
+    // 6. Sorting: 35 priority developers first (all pages until exhausted) → others last → then category pins →
+    //    developer order (1–35) → price/date or description
     if (sortBy) {
       items.sort((a: any, b: any) => {
+        const bucketA = isPriorityDeveloperProject(a?.builder || '') ? 0 : 1;
+        const bucketB = isPriorityDeveloperProject(b?.builder || '') ? 0 : 1;
+        if (bucketA !== bucketB) return bucketA - bucketB;
         const rankA = getCategoryPriorityRank(a, category ?? null);
         const rankB = getCategoryPriorityRank(b, category ?? null);
         if (rankA !== rankB) return rankA - rankB;
@@ -600,6 +609,9 @@ export async function GET(request: NextRequest) {
     } else {
       // Default ranking keeps richer records first.
       items.sort((a: any, b: any) => {
+        const bucketA = isPriorityDeveloperProject(a?.builder || '') ? 0 : 1;
+        const bucketB = isPriorityDeveloperProject(b?.builder || '') ? 0 : 1;
+        if (bucketA !== bucketB) return bucketA - bucketB;
         const rankA = getCategoryPriorityRank(a, category ?? null);
         const rankB = getCategoryPriorityRank(b, category ?? null);
         if (rankA !== rankB) return rankA - rankB;
