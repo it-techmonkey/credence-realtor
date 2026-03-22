@@ -34,6 +34,9 @@ const LUXURY_EXCLUDE_SLUG_CONTAINS = ((categoriesConfig as { luxuryExcludeSlugCo
 const LUXURY_MIN_PRICE_AED = 5_000_000;
 const OFFICE_SET = new Set((officeSlugs as string[]).map((s) => s.toLowerCase().trim()));
 const COMMERCIAL_SET = new Set((commercialSlugs as string[]).map((s) => s.toLowerCase().trim()));
+const WATERFRONT_PROJECT_SLUGS = new Set(
+  ((categoriesConfig as { waterfrontProjectSlugs?: string[] }).waterfrontProjectSlugs ?? []).map((s) => s.toLowerCase().trim())
+);
 
 const OFFICE_KEYWORDS = ['office', 'offices', 'مكتب', 'مكاتب', 'business bay', 'difc'];
 const COMMERCIAL_KEYWORDS = ['commercial', 'retail', 'تجاري', 'تجارة', 'mall'];
@@ -263,7 +266,8 @@ function getProjectCategory(project: any): string {
   if (textContainsAny(combined, OFFICE_KEYWORDS)) return 'Office';
   if (COMMERCIAL_SET.has(slug)) return 'Commercial';
   if (textContainsAny(combined, COMMERCIAL_KEYWORDS)) return 'Commercial';
-  // Waterfront: only projects whose stored description contains "waterfront" or "lagoon"
+  // Waterfront: explicit list (curated) + stored description mentions waterfront/lagoon
+  if (WATERFRONT_PROJECT_SLUGS.has(slug)) return 'Waterfront';
   if (descriptionContainsWaterfrontOrLagoon(project.slug)) return 'Waterfront';
   if (developerMatchesCategory(builder, LUXURY_DEV_NAMES)) return 'Luxury';
   if (isAffordableProjectEligible(project)) return 'Affordable';
