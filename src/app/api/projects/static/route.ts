@@ -58,7 +58,7 @@ function normalizeDeveloperName(name: string): string {
 const BUILDERS_BY_DEVELOPER: Record<string, string[]> = {
   emaar: ['إمار', 'امار', 'emaar', 'Emaar', 'Emaar Properties'],
   nakheel: ['نخيلهيل', 'نخيل', 'nakheel', 'Nakheel'],
-  meraas: ['مراس', 'ميراس', 'meraas', 'Meraas'],
+  meraas: ['مراس', 'ميراس', 'meraas', 'Meraas', 'MEERAS', 'meeras', 'Meeras'],
   'dubai properties': ['مجموعة دبي للعقارات', 'دبي الجنوب للعقارات دي دبليو سي ش.ذ.م.م', 'دبي الجنوب', 'مجموعة دبي', 'Dubai Properties'],
   damac: ['داماك', 'damac', 'Damac', 'DAMAC'],
   sobha: ['سوبها', 'سوبا', 'sobha', 'Sobha', 'SOBHA'],
@@ -77,8 +77,12 @@ const BUILDERS_BY_DEVELOPER: Record<string, string[]> = {
   'expo city': ['Expo City', 'expo city'],
   reportage: ['reportage', 'Reportage'],
   'select group': ['Select Group', 'select group'],
-  'union properties': ['Union Properties', 'union properties'],
+  'union properties': ['Union Properties', 'union properties', 'Union'],
+  union: ['Union Properties', 'union properties', 'Union'],
   nabni: ['nabni', 'Nabni'],
+  /** Seven Tides / SRG (same group in market data) */
+  'seven tides': ['Seven Tides', 'seven tides', 'SRG', 'srg', 'Seven Tides Real Estate'],
+  srg: ['SRG', 'srg', 'Seven Tides', 'seven tides'],
 };
 
 /** Normalize Arabic/Urdu for fuzzy match: collapse alef/ya variants so إمار and امار both match. */
@@ -118,7 +122,26 @@ function developerMatchesCategory(rawBuilder: string, categoryDeveloperNames: st
   });
 }
 
-/** Lower index = higher priority (35 focus developers). Non-matched = large rank. */
+/** Alternate spellings / same-group brands for one priority slot (table order 1–35). */
+function priorityDeveloperTokens(entry: string): string[] {
+  const key = (entry || '').toLowerCase().trim();
+  const extras: Record<string, string[]> = {
+    'dubai holding': ['dubai holding', 'dubai holdings', 'dubai holding real estate'],
+    meraas: ['meraas', 'meeras', 'MEERAS', 'Meraas', 'Meeras'],
+    binghatti: ['binghatti', 'bingati', 'Binghatti'],
+    imtiaz: ['imtiaz', 'imtiyaz', 'Imtiaz'],
+    union: ['union', 'union properties', 'Union Properties'],
+    'seven tides': ['seven tides', 'Seven Tides', 'srg', 'SRG', 'Seven Tides Real Estate'],
+    'majid al futtaim': ['majid al futtaim', 'majid al-futtaim', 'Majid Al Futtaim'],
+    'object 1': ['object 1', 'object1', 'object one', 'Object 1'],
+    'expo city': ['expo city', 'expo city developer', 'Expo City'],
+    'dubai south': ['dubai south', 'dubai south developer', 'Dubai South'],
+    'gulf land': ['gulf land', 'gulf land developer', 'Gulf Land'],
+  };
+  return extras[key] ?? [entry];
+}
+
+/** Lower index = higher priority (35 focus developers, fixed order). Non-matched = large rank. */
 function getPreferredDeveloperRank(rawBuilder: string): number {
   const builder = (rawBuilder || '').toString();
   if (!builder.trim() || PRIORITY_DEVELOPER_NAMES.length === 0) return 9999;
@@ -126,7 +149,7 @@ function getPreferredDeveloperRank(rawBuilder: string): number {
   for (let i = 0; i < PRIORITY_DEVELOPER_NAMES.length; i += 1) {
     const name = PRIORITY_DEVELOPER_NAMES[i];
     if (!name) continue;
-    if (developerMatchesCategory(builder, [name])) {
+    if (developerMatchesCategory(builder, priorityDeveloperTokens(name))) {
       if (i < best) best = i;
     }
   }
@@ -546,12 +569,15 @@ export async function GET(request: NextRequest) {
       return true;
     });
 
-    // 6. Sorting
+    // 6. Sorting: category pins → 35 developer priority (always) → price/date or description
     if (sortBy) {
       items.sort((a: any, b: any) => {
         const rankA = getCategoryPriorityRank(a, category ?? null);
         const rankB = getCategoryPriorityRank(b, category ?? null);
         if (rankA !== rankB) return rankA - rankB;
+        const devA = getPreferredDeveloperRank(a?.builder || '');
+        const devB = getPreferredDeveloperRank(b?.builder || '');
+        if (devA !== devB) return devA - devB;
         let aValue = 0;
         let bValue = 0;
         if (sortBy === 'min_price') {
@@ -569,11 +595,7 @@ export async function GET(request: NextRequest) {
           aValue = Number.isFinite(aParsed) ? aParsed : Number(a?.id ?? 0);
           bValue = Number.isFinite(bParsed) ? bParsed : Number(b?.id ?? 0);
         }
-        const byUserSort = sortOrder === 'asc' ? aValue - bValue : bValue - aValue;
-        if (byUserSort !== 0) return byUserSort;
-        const devA = getPreferredDeveloperRank(a?.builder || '');
-        const devB = getPreferredDeveloperRank(b?.builder || '');
-        return devA - devB;
+        return sortOrder === 'asc' ? aValue - bValue : bValue - aValue;
       });
     } else {
       // Default ranking keeps richer records first.
