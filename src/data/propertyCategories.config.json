@@ -16,7 +16,13 @@
     "jacob-co-apartments",
     "manchester-city-yas-residences-by-ohana",
     "69982532426c8-manchester-city-yas-residences-by-ohana",
-    "the-residences-at-marina-gate-1"
+    "the-residences-at-marina-gate-1",
+    "project-maybach",
+    "maybach-ultimate-luxury",
+    "maybach-6",
+    "shahrukhz-by-danube",
+    "golf-hills",
+    "golf-hills-2"
   ],
   "luxuryProjectSlugContains": ["omniyat", "numa-reserve", "maison-margiela", "dorchester", "ohana"],
   "luxuryExcludeSlugs": ["riviera-66", "riviera-60"],
@@ -49,6 +55,12 @@
     "port-de-la-mer-la-sirene"
   ],
   "luxuryProjectStartOrder": [
+    "azizi-venice",
+    "sea-legend-one",
+    "capital-horizon-terraces",
+    "olivia-gardens",
+    "amber-by-enso",
+    "the-grandala",
     "mercedes-benz-places-by-binghatti",
     "burj-azizi",
     "burj-binghatti",
@@ -171,18 +183,21 @@
   "categoryOrder": ["Affordable", "Waterfront", "Luxury", "Office", "Commercial", "Off-Plan"],
   "topCategoryProjectPriority": {
     "luxury": [
+      "Azizi Venice",
+      "maybach",
+      "ShahrukhZ by Danube",
+      "golf hills",
       "Sea Legend One",
       "Sea legend one BY MVS real estate",
       "Capital Horizon Terraces",
-      "Olivia Residence Gardens",
       "Olivia Gardens Residence",
-      "Azizi Venice",
+      "Olivia Residence Gardens",
+      "Amber by Enso",
+      "Enso Amber",
+      "The Grandala",
       "Luz Ora",
       "Luz Ora Residences",
-      "Verde by Vision",
-      "The Grandala",
-      "Enso Amber",
-      "Amber by Enso"
+      "Verde by Vision"
     ],
     "off-plan": [
       "Sea Legend One",

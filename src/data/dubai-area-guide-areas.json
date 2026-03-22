@@ -2,6 +2,7 @@
   "Premium & Central": [
     {
       "name": "Downtown Dubai",
+      "image": "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1200&q=80",
       "tag": "Luxury core, iconic landmarks",
       "points": [
         "Visit Burj Khalifa observation decks",
@@ -13,6 +14,7 @@
     },
     {
       "name": "Business Bay",
+      "image": "https://images.unsplash.com/photo-1582672060674-2fdb7b75740e?auto=format&fit=crop&w=1200&q=80",
       "tag": "Central business + residential",
       "points": [
         "Canal-side dining and views",
@@ -24,6 +26,7 @@
     },
     {
       "name": "DIFC",
+      "image": "https://images.unsplash.com/photo-1565008576549-57569a49371d?auto=format&fit=crop&w=1200&q=80",
       "tag": "Global financial district",
       "points": [
         "Fine dining and premium lifestyle",
@@ -35,6 +38,7 @@
     },
     {
       "name": "Al Barsha",
+      "image": "https://images.unsplash.com/photo-1526498460520-4c246339dccb?auto=format&fit=crop&w=1200&q=80",
       "tag": "Central residential convenience",
       "points": [
         "Ski Dubai experiences",
@@ -48,6 +52,7 @@
   "Waterfront & Island": [
     {
       "name": "Palm Jumeirah",
+      "image": "https://images.unsplash.com/photo-1580674684081-7617edbf4c30?auto=format&fit=crop&w=1200&q=80",
       "tag": "Iconic island luxury",
       "points": [
         "Beach clubs and premium leisure",
@@ -59,6 +64,7 @@
     },
     {
       "name": "Dubai Marina",
+      "image": "https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=1200&q=80",
       "tag": "Waterfront high-rise lifestyle",
       "points": [
         "Marina Walk strolls",
@@ -70,6 +76,7 @@
     },
     {
       "name": "Dubai Creek Harbour",
+      "image": "https://images.unsplash.com/photo-1456926631375-92c8ceacdef3?auto=format&fit=crop&w=1200&q=80",
       "tag": "Emerging waterfront skyline",
       "points": [
         "Creek promenade walks",
@@ -81,6 +88,7 @@
     },
     {
       "name": "Bluewaters Island",
+      "image": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1200&q=80",
       "tag": "Lifestyle island destination",
       "points": [
         "Ain Dubai observation experience",
@@ -94,6 +102,7 @@
   "Family & Villas": [
     {
       "name": "Dubai Hills Estate",
+      "image": "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80",
       "tag": "Green premium community",
       "points": [
         "Golfing and active lifestyle",
@@ -105,6 +114,7 @@
     },
     {
       "name": "Arabian Ranches",
+      "image": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
       "tag": "Established villa suburb",
       "points": [
         "Golf and polo lifestyle",
@@ -116,6 +126,7 @@
     },
     {
       "name": "Jumeirah Village Circle (JVC)",
+      "image": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80",
       "tag": "Family-friendly and affordable",
       "points": [
         "Parks and jogging tracks",
@@ -129,6 +140,7 @@
   "Green & Lifestyle": [
     {
       "name": "Jumeirah Lake Towers (JLT)",
+      "image": "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1200&q=80",
       "tag": "Lakeside mixed-use district",
       "points": [
         "Lakeside walking loops",
@@ -140,6 +152,7 @@
     },
     {
       "name": "Jumeirah Beach Residence (JBR)",
+      "image": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80",
       "tag": "Beachfront promenade lifestyle",
       "points": [
         "Beach activities year-round",
@@ -151,6 +164,7 @@
     },
     {
       "name": "Umm Suqeim",
+      "image": "https://images.unsplash.com/photo-1559827260-dc66d52bef19?auto=format&fit=crop&w=1200&q=80",
       "tag": "Upscale beach-focused living",
       "points": [
         "Beach sports and waterfront access",
@@ -164,6 +178,7 @@
   "High-ROI & Emerging": [
     {
       "name": "Dubai Sports City",
+      "image": "https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=1200&q=80",
       "tag": "Sports-centric investment zone",
       "points": [
         "Cricket and football facilities",
@@ -175,6 +190,7 @@
     },
     {
       "name": "Motor City",
+      "image": "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80",
       "tag": "Lifestyle + motorsport identity",
       "points": [
         "Dubai Autodrome experiences",
@@ -186,6 +202,7 @@
     },
     {
       "name": "Dubai Silicon Oasis",
+      "image": "https://images.unsplash.com/photo-1486406146926-c627a92ad188?auto=format&fit=crop&w=1200&q=80",
       "tag": "Tech hub with value pricing",
       "points": [
         "Tech offices and startup ecosystem",
@@ -199,6 +216,7 @@
   "Future-Focused": [
     {
       "name": "Dubai Design District (d3)",
+      "image": "https://images.unsplash.com/photo-1494145904049-0d59a4bb2bb8?auto=format&fit=crop&w=1200&q=80",
       "tag": "Creative and innovation hub",
       "points": [
         "Art exhibitions and installations",
@@ -210,6 +228,7 @@
     },
     {
       "name": "Deira",
+      "image": "https://images.unsplash.com/photo-1529253355930-ddbe423a2caf?auto=format&fit=crop&w=1200&q=80",
       "tag": "Historic commercial district",
       "points": [
         "Gold and spice souks",
@@ -221,6 +240,7 @@
     },
     {
       "name": "Bur Dubai",
+      "image": "https://images.unsplash.com/photo-1518546305927-5a555bb7020d?auto=format&fit=crop&w=1200&q=80",
       "tag": "Heritage and culture center",
       "points": [
         "Museums and heritage walks",

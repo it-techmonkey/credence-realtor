@@ -246,8 +246,18 @@ const Blogs = () => {
                             return (
                             <AnimatedItem
                                 key={areaKey}
-                                className="bg-white p-8 border border-gray-100 shadow-sm hover:shadow-md transition-shadow flex flex-col"
+                                className="bg-white border border-gray-100 shadow-sm hover:shadow-md transition-shadow flex flex-col overflow-hidden rounded-lg"
                             >
+                                <div className="relative h-48 w-full shrink-0 bg-gray-100">
+                                    <img
+                                        src={comm.image || '/assets/blogs-bg.jpg'}
+                                        alt={`${comm.name} — Dubai area guide`}
+                                        className="w-full h-full object-cover"
+                                        loading="lazy"
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent pointer-events-none" aria-hidden="true" />
+                                </div>
+                                <div className="p-8 flex flex-col flex-1">
                                 <button
                                     type="button"
                                     className="text-left w-full"
@@ -289,6 +299,7 @@ const Blogs = () => {
                                     label="Speak to an Advisor"
                                     className="w-full border border-gray-200 text-gray-600 py-3 rounded text-sm hover:border-black hover:text-black transition-colors flex items-center justify-center gap-2"
                                 />
+                                </div>
                             </AnimatedItem>
                         );
                         })}

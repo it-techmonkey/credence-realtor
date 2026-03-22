@@ -25,8 +25,6 @@ const LUXURY_PROJECT_SLUGS = new Set(
   ((categoriesConfig as { luxuryProjectSlugs?: string[] }).luxuryProjectSlugs ?? []).map((s) => s.toLowerCase().trim())
 );
 const LUXURY_PROJECT_SLUG_CONTAINS = ((categoriesConfig as { luxuryProjectSlugContains?: string[] }).luxuryProjectSlugContains ?? []).map((s) => s.toLowerCase().trim());
-/** Order of slug patterns for luxury category: projects matching these (in order) appear first. */
-const LUXURY_START_ORDER = ((categoriesConfig as { luxuryProjectStartOrder?: string[] }).luxuryProjectStartOrder ?? []).map((s) => s.toLowerCase().trim());
 /** Slugs to exclude from luxury category (e.g. Azizi Riviera 66, 60). */
 const LUXURY_EXCLUDE_SLUGS = new Set(
   ((categoriesConfig as { luxuryExcludeSlugs?: string[] }).luxuryExcludeSlugs ?? []).map((s) => s.toLowerCase().trim())
@@ -453,18 +451,7 @@ export async function GET(request: NextRequest) {
           (p as any)._category = 'Luxury';
           return isLuxuryByDeveloper || isLuxury5M || isLuxuryAllowlist || isLuxuryByPrice;
         });
-        // Put allowlisted / priority projects at the start in configured order
-        if (LUXURY_START_ORDER.length > 0) {
-          items.sort((a: any, b: any) => {
-            const slugA = (a.slug || '').toString().toLowerCase().trim();
-            const slugB = (b.slug || '').toString().toLowerCase().trim();
-            const idxA = LUXURY_START_ORDER.findIndex((pat) => slugA === pat || slugA.includes(pat));
-            const idxB = LUXURY_START_ORDER.findIndex((pat) => slugB === pat || slugB.includes(pat));
-            const iA = idxA === -1 ? 9999 : idxA;
-            const iB = idxB === -1 ? 9999 : idxB;
-            return iA - iB;
-          });
-        }
+        // Order is applied in the final sort (category pins → 35 developer priority → description)
       } else if (cat === 'affordable') {
         items = items.filter((p: any) => {
           const isAffordableByRule = isAffordableProjectEligible(p);
