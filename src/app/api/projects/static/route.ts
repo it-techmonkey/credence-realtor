@@ -17,6 +17,9 @@ import {
 const AFFORDABLE_MAX = (categoriesConfig as { affordableMaxPriceAED?: number }).affordableMaxPriceAED ?? 1_500_000;
 const LUXURY_DEV_NAMES = (categoriesConfig as { luxuryDeveloperNames?: string[] }).luxuryDeveloperNames ?? [];
 const AFFORDABLE_DEV_NAMES = (categoriesConfig as { affordableDeveloperNames?: string[] }).affordableDeveloperNames ?? [];
+const PRIORITY_DEVELOPER_NAMES = ((categoriesConfig as { priorityDeveloperNames?: string[] }).priorityDeveloperNames ?? []).map((s) =>
+  (s || '').toLowerCase().trim()
+).filter(Boolean);
 const TOP_CATEGORY_PROJECT_PRIORITY = (categoriesConfig as { topCategoryProjectPriority?: Record<string, string[]> }).topCategoryProjectPriority ?? {};
 const LUXURY_PROJECT_SLUGS = new Set(
   ((categoriesConfig as { luxuryProjectSlugs?: string[] }).luxuryProjectSlugs ?? []).map((s) => s.toLowerCase().trim())
@@ -39,7 +42,7 @@ const WATERFRONT_PROJECT_SLUGS = new Set(
 );
 
 const OFFICE_KEYWORDS = ['office', 'offices', 'مكتب', 'مكاتب', 'business bay', 'difc'];
-const COMMERCIAL_KEYWORDS = ['commercial', 'retail', 'تجاري', 'تجارة', 'mall'];
+const COMMERCIAL_KEYWORDS = ['commercial', 'retail', 'تجاري', 'تجارة', 'mall', 'business park'];
 
 /** Normalize developer/builder for comparison: lowercase, drop common suffixes. */
 function normalizeDeveloperName(name: string): string {
@@ -115,6 +118,21 @@ function developerMatchesCategory(rawBuilder: string, categoryDeveloperNames: st
       nArabicNorm.includes(builderArabicNorm)
     );
   });
+}
+
+/** Lower index = higher priority (35 focus developers). Non-matched = large rank. */
+function getPreferredDeveloperRank(rawBuilder: string): number {
+  const builder = (rawBuilder || '').toString();
+  if (!builder.trim() || PRIORITY_DEVELOPER_NAMES.length === 0) return 9999;
+  let best = 9999;
+  for (let i = 0; i < PRIORITY_DEVELOPER_NAMES.length; i += 1) {
+    const name = PRIORITY_DEVELOPER_NAMES[i];
+    if (!name) continue;
+    if (developerMatchesCategory(builder, [name])) {
+      if (i < best) best = i;
+    }
+  }
+  return best;
 }
 
 /** Match filter param against builder: exact/alias list (Urdu/Arabic/English) OR translated name. */
@@ -564,7 +582,11 @@ export async function GET(request: NextRequest) {
           aValue = Number.isFinite(aParsed) ? aParsed : Number(a?.id ?? 0);
           bValue = Number.isFinite(bParsed) ? bParsed : Number(b?.id ?? 0);
         }
-        return sortOrder === 'asc' ? aValue - bValue : bValue - aValue;
+        const byUserSort = sortOrder === 'asc' ? aValue - bValue : bValue - aValue;
+        if (byUserSort !== 0) return byUserSort;
+        const devA = getPreferredDeveloperRank(a?.builder || '');
+        const devB = getPreferredDeveloperRank(b?.builder || '');
+        return devA - devB;
       });
     } else {
       // Default ranking keeps richer records first.
@@ -572,6 +594,9 @@ export async function GET(request: NextRequest) {
         const rankA = getCategoryPriorityRank(a, category ?? null);
         const rankB = getCategoryPriorityRank(b, category ?? null);
         if (rankA !== rankB) return rankA - rankB;
+        const devA = getPreferredDeveloperRank(a?.builder || '');
+        const devB = getPreferredDeveloperRank(b?.builder || '');
+        if (devA !== devB) return devA - devB;
         const slugA = (a.slug || '').toString().trim();
         const slugB = (b.slug || '').toString().trim();
         const hasA = hasStoredDescription(slugA) ? 1 : 0;

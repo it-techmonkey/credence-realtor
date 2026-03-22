@@ -6,7 +6,8 @@
     "location": "Yas Island",
     "mainImage": "https://files.alnair.ae/uploads/2026/2/e0/9c/e09ca84157c7e513ba126e83588ed542.jpg",
     "price": 2000000,
-    "readyDate": "Q4 2029"
+    "readyDate": "Q4 2029",
+    "description": "Manchester City Yas Residences by Ohana brings a football-inspired branded living concept to Yas Island, Abu Dhabi—pairing strong lifestyle storytelling with island leisure, dining, and entertainment. The development targets investors and fans seeking a unique branded address with long-term hospitality and tourism demand nearby."
   },
   {
     "id": 5114,
@@ -15,7 +16,8 @@
     "location": "Sea City",
     "mainImage": "https://files.alnair.ae/uploads/2025/9/54/7f/547fb33f3c8d62da593485a468d6f42e.jpg",
     "price": 1366000,
-    "readyDate": "Q2 2029"
+    "readyDate": "Q2 2029",
+    "description": "Greenz (linked to Danube’s Sea City pipeline) focuses on attainable apartments with family-friendly payment options and community amenities—ideal for first-time buyers and yield-led investors in Dubai’s value corridor."
   },
   {
     "id": 3846,
@@ -24,7 +26,8 @@
     "location": "Dubai South",
     "mainImage": "https://files.alnair.ae/uploads/2025/3/5b/b0/5bb01dc0df55f8c2190d9fdf357145c6.jpg",
     "price": 2635888,
-    "readyDate": "Q2 2029"
+    "readyDate": "Q2 2029",
+    "description": "Golf Vale by Emaar sits within Emaar South’s golf-facing master plan, offering contemporary villas and townhomes with green views, parks, and access to championship golf—built for end-users who want space and a credible long-term community story."
   },
   {
     "id": 5895,
@@ -33,6 +36,7 @@
     "location": "Damac Lagoons",
     "mainImage": "https://files.alnair.ae/uploads/2026/2/25/00/25008eed109bb94f5271334364c76487.jpg",
     "price": 725000,
-    "readyDate": "Q1 2029"
+    "readyDate": "Q1 2029",
+    "description": "Valencia is part of DAMAC Lagoons’ Mediterranean-themed clusters, known for lagoon-side living, townhouses, and strong visual differentiation. It appeals to investors who want thematic master-plan demand and competitive entry pricing relative to central Dubai."
   }
 ]

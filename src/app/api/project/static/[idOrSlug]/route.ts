@@ -24,7 +24,7 @@ const WATERFRONT_PROJECT_SLUGS = new Set(
   ((categoriesConfig as { waterfrontProjectSlugs?: string[] }).waterfrontProjectSlugs ?? []).map((s) => s.toLowerCase().trim())
 );
 const OFFICE_KEYWORDS = ['office', 'offices', 'مكتب', 'مكاتب'];
-const COMMERCIAL_KEYWORDS = ['commercial', 'retail', 'تجاري', 'تجارة'];
+const COMMERCIAL_KEYWORDS = ['commercial', 'retail', 'تجاري', 'تجارة', 'mall', 'business park'];
 
 const UNIT_CODE_TO_BEDROOMS: Record<string, number> = {
   '110': 0, '111': 1, '112': 2, '113': 3, '114': 4, '115': 5, '116': 6, '117': 7,

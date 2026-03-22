@@ -57,7 +57,7 @@ const Navbar = () => {
             ]
         },
         {
-            name: "Blogs",
+            name: "Guide",
             path: "/blogs",
             subItems: [
                 { name: "Why Invest in Dubai", path: "/blogs#market" },
@@ -71,7 +71,7 @@ const Navbar = () => {
             ]
         },
         {
-            name: "Guide",
+            name: "Blogs",
             path: "/guide",
             subItems: [
                 { name: "Step-by-Step Guide", path: "/guide#steps" },
