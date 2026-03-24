@@ -2,15 +2,12 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Square, MapPin, Building2, ArrowRight } from 'lucide-react';
-import { getUnitTypeLabelsFromBedrooms } from '@/lib/properties';
+import { MapPin, Building2, ArrowRight } from 'lucide-react';
 import InquiryModal from '@/components/property/inquiry-modal';
 import { useScrollAnimation } from '@/utils/useScrollAnimation';
 
 const PropertyCard = ({ property, index = 0 }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const unitLabels = getUnitTypeLabelsFromBedrooms(property.bedrooms);
-    const unitDisplay = unitLabels.length > 0 ? unitLabels.join(' · ') : (property.category === 'Office' || property.category === 'Commercial' ? property.category : '');
 
     return (
         <>
@@ -31,11 +28,6 @@ const PropertyCard = ({ property, index = 0 }) => {
                         <span className={`text-[9px] font-bold px-2 py-0.5 rounded uppercase tracking-wider text-white ${property.type === 'Off-Plan' ? 'bg-[#C5A365]' : 'bg-emerald-600'}`}>
                             {property.type}
                         </span>
-                        {unitDisplay && (
-                            <span className="bg-black/40 backdrop-blur-sm text-white text-[9px] font-semibold px-2 py-0.5 rounded uppercase tracking-wider">
-                                {unitDisplay}
-                            </span>
-                        )}
                     </div>
                 </div>
 
@@ -52,18 +44,6 @@ const PropertyCard = ({ property, index = 0 }) => {
                             <span className="truncate">{property.location}</span>
                         </p>
                     )}
-
-                    {/* Features: area only */}
-                    <div className="flex flex-wrap items-center gap-2 pt-2 text-xs text-gray-600">
-                        {property.area !== undefined && property.area > 0 && (
-                            <span className="flex items-center gap-1 text-gray-500">
-                                <Square size={12} className="text-gray-400 shrink-0" />
-                                {property.areaMax && property.areaMax > property.area
-                                    ? `${property.area.toLocaleString('en-US')} – ${property.areaMax.toLocaleString('en-US')} sqft`
-                                    : `${property.area.toLocaleString('en-US')} sqft`}
-                            </span>
-                        )}
-                    </div>
 
                     {/* Actions */}
                     <div className="mt-3 flex flex-col gap-1.5">
