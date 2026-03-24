@@ -74,9 +74,6 @@ const PropertyDetailsGrid = memo(({ property, translatedDeveloper, translatedLoc
       {localityDisplay && typeof localityDisplay === 'string' && localityDisplay.trim() !== '' && (
         <DetailRow icon={MapPinned} label="Locality" value={localityDisplay} />
       )}
-      {getUnitTypeLabelsFromBedrooms(property.bedrooms).length > 0 && (
-        <DetailRow icon={Home} label="Unit type" value={getUnitTypeLabelsFromBedrooms(property.bedrooms).join(' · ')} />
-      )}
       {property.area !== undefined && property.area !== null && property.area > 0 && (
         <DetailRow
           icon={Square}
