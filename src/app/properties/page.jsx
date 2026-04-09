@@ -347,6 +347,23 @@ function PropertiesContent() {
                 if (isAffordableView) {
                     list = list.filter((p) => getPropertyPrice(p) <= AFFORDABLE_MAX_PRICE);
                 }
+                const normalizedSearch = debouncedSearchQuery.trim().toLowerCase();
+                if (normalizedSearch) {
+                    list = list.filter((p) => {
+                        const title = String(p?.title || '').toLowerCase();
+                        const location = String(p?.location || '').toLowerCase();
+                        const locality = String(p?.locality || '').toLowerCase();
+                        const developer = String(p?.developer || '').toLowerCase();
+                        const slug = String(p?.slug || '').toLowerCase();
+                        return (
+                            title.includes(normalizedSearch) ||
+                            location.includes(normalizedSearch) ||
+                            locality.includes(normalizedSearch) ||
+                            developer.includes(normalizedSearch) ||
+                            slug.includes(normalizedSearch)
+                        );
+                    });
+                }
 
                 setProperties(list);
                 setTotalPages(result.pagination.totalPages);

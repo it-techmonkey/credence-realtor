@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { X, ArrowRight, BedDouble, Bath, Square, MapPin, Check } from 'lucide-react';
+import { X, ArrowRight, BedDouble, Bath, MapPin, Check } from 'lucide-react';
 import Link from 'next/link';
 import { getPaginatedProperties, formatPrice } from '@/lib/properties';
 
@@ -187,11 +187,6 @@ const AreaDetailsModal = ({ isOpen, onClose, area }) => {
                                                         {property.bathrooms && (
                                                             <div className="flex items-center gap-1">
                                                                 <Bath size={14} /> {property.bathrooms} {property.bathrooms === 1 ? 'Bath' : 'Baths'}
-                                                            </div>
-                                                        )}
-                                                        {property.area && (
-                                                            <div className="flex items-center gap-1">
-                                                                <Square size={14} /> {property.area} sqft
                                                             </div>
                                                         )}
                                                     </div>

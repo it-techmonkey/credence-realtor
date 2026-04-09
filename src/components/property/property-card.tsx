@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { memo } from 'react';
-import { getUnitTypeLabelsFromBedrooms } from '../../lib/properties';
 
 interface Property {
   id?: string | number;
@@ -23,7 +22,6 @@ function PropertyCard({ property }: PropertyCardProps) {
   const {
     id,
     title,
-    bedrooms,
     type,
     mainImage,
   } = property;
@@ -61,16 +59,8 @@ function PropertyCard({ property }: PropertyCardProps) {
             {title}
           </h3>
 
-          {/* Badges: Unit type (Apartment · Villa when 1-4), then type if present */}
+          {/* Badge: type only */}
           <div className="flex flex-wrap gap-2">
-            {getUnitTypeLabelsFromBedrooms(bedrooms).length > 0 && (
-              <div className="bg-[#e5e7ff] flex gap-1.5 items-center px-2.5 py-1.5 rounded-[28px]">
-                <span className="font-medium text-xs leading-normal text-black">
-                  {getUnitTypeLabelsFromBedrooms(bedrooms).join(' · ')}
-                </span>
-              </div>
-            )}
-
             {type && typeof type === 'string' && type.trim() !== '' && (
               <div className="bg-[#e5e7ff] flex gap-1.5 items-center px-2.5 py-1.5 rounded-[28px]">
                 <div className="w-4.5 h-4.5 flex items-center justify-center">
